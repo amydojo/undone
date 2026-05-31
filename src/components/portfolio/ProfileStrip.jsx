@@ -37,7 +37,7 @@ export default function ProfileStrip() {
         {/* Collapsible details */}
         <button
           type="button"
-          aria-label={expanded ? "Collapse more about Amy" : "Expand more about Amy"}
+          aria-label={expanded ? "Hide more about Amy" : "Show more about Amy"}
           aria-expanded={expanded}
           onClick={() => setExpanded((v) => !v)}
           className="mt-3 flex w-full items-center gap-2 text-[9px] uppercase tracking-[0.16em] text-[#11100d]/44"

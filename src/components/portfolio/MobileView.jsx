@@ -107,7 +107,7 @@ function OverviewTab({ record, mode, openWorkspace }) {
 
 function ProofTab({ record, activeReceipt, onSelectReceipt }) {
   const receipts = record.receipts;
-  const selectedReceipt = activeReceipt ?? receipts[0] ?? null;
+  const selectedReceipt = activeReceipt;
   const previewArtifact = selectedReceipt?.artifacts?.[0] ?? {};
   const receiptContents = selectedReceipt?.contents ?? [];
 
@@ -205,7 +205,7 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
 // ─── Artifacts Tab ───────────────────────────────────────────────────────────
 
 function ArtifactsTab({ record, activeReceipt }) {
-  const selectedReceipt = activeReceipt ?? record.receipts[0] ?? null;
+  const selectedReceipt = activeReceipt;
   const artifacts = selectedReceipt?.artifacts ?? [{}];
   const nextProof = record.nextProof ?? [];
 

@@ -110,7 +110,7 @@ export default function UndonePortfolioV10() {
 
   // Derive the receipt object for child components
   const activeReceipt = useMemo(
-    () => activeRecord.receipts.find((r) => r.id === activeReceiptId) ?? activeRecord.receipts[0] ?? null,
+    () => activeRecord.receipts.find((r) => r.id === activeReceiptId) ?? null,
     [activeRecord, activeReceiptId]
   );
 
