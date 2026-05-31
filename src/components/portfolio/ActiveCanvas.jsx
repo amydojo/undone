@@ -1,21 +1,31 @@
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Command } from "lucide-react";
+import { ArrowUpRight, Layers } from "lucide-react";
 import AccentDot from "../ui/AccentDot";
 import MetricPill from "../ui/MetricPill";
 import SystemPath from "./SystemPath";
 import ProfileStrip from "./ProfileStrip";
+import { profile } from "../../data/profile";
 
 export default function ActiveCanvas({ record, mode, openWorkspace }) {
   return (
     <main className="min-h-[calc(100vh-73px)] overflow-hidden bg-[#f7f1e7] p-4 lg:p-6">
-      <section className="grid min-h-full grid-rows-[auto_1fr_auto] rounded-[36px] border border-[#11100d]/10 bg-[#fffaf1]/44 p-5 shadow-[0_30px_120px_rgba(17,16,13,0.06)] lg:p-8">
+      <section className="grid min-h-full grid-rows-[auto_auto_1fr_auto] rounded-[28px] border border-[#11100d]/10 bg-[#fffaf1]/44 p-5 shadow-[0_30px_120px_rgba(17,16,13,0.06)] lg:p-8">
+
+        {/* Identity hero */}
+        <div className="mb-6 rounded-[22px] border border-[#11100d]/8 bg-[#f7f1e7]/60 p-5">
+          <div className="mb-2 text-[9px] uppercase tracking-[0.2em] text-[#11100d]/36">Amy Do</div>
+          <p className="mb-2 text-[15px] font-medium leading-6 tracking-[-0.015em] text-[#11100d]">{profile.positioning}</p>
+          <p className="max-w-2xl text-sm leading-6 text-[#11100d]/58">{profile.oneSentence}</p>
+        </div>
+
+        {/* Active case header */}
         <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-[#11100d]/44">
-            <Command className="h-3.5 w-3.5" />
-            <span>Designed to last.</span>
-            <span className="hidden h-px w-10 bg-[#11100d]/14 sm:block" />
-            <span>Built by Amy Do.</span>
+          <div className="flex items-center gap-3 text-[9px] uppercase tracking-[0.22em] text-[#11100d]/44">
+            <Layers className="h-3.5 w-3.5" />
+            <span>Currently inspecting</span>
+            <span className="hidden h-px w-8 bg-[#11100d]/14 sm:block" />
+            <span className="hidden sm:block">active case file</span>
           </div>
           <button
             type="button"
@@ -34,7 +44,7 @@ export default function ActiveCanvas({ record, mode, openWorkspace }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-            className="grid gap-8 py-12 xl:grid-cols-[1fr_360px] xl:items-end"
+            className="grid gap-8 py-10 xl:grid-cols-[1fr_360px] xl:items-end"
           >
             <div>
               <div className="mb-6 flex flex-wrap gap-2">
@@ -42,7 +52,7 @@ export default function ActiveCanvas({ record, mode, openWorkspace }) {
                   <span key={item} className="rounded-full border border-[#11100d]/10 bg-[#f7f1e7]/72 px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] text-[#11100d]/44">{item}</span>
                 ))}
               </div>
-              <h1 className="max-w-4xl text-[44px] font-normal leading-[0.98] tracking-[-0.045em] text-[#11100d] sm:text-[62px] xl:text-[76px]">
+              <h1 className="max-w-4xl text-[44px] font-normal leading-[0.98] tracking-[-0.045em] text-[#11100d] sm:text-[58px] xl:text-[70px]">
                 {mode === "proof" ? record.title : record.thesis}
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-7 tracking-[-0.012em] text-[#11100d]/64">{mode === "proof" ? record.oneLine : record.system}</p>
@@ -56,15 +66,15 @@ export default function ActiveCanvas({ record, mode, openWorkspace }) {
 
         <div className="grid gap-4 xl:grid-cols-[1fr_360px]">
           <SystemPath record={record} />
-          <div className="rounded-[32px] bg-[#11100d] p-5 text-[#f7f1e7]">
-            <div className="mb-8 flex items-center justify-between text-[10px] uppercase tracking-[0.2em] text-[#f7f1e7]/40">
-              <span>decision logic</span>
+          <div className="rounded-[28px] bg-[#11100d] p-5 text-[#f7f1e7]">
+            <div className="mb-6 flex items-center justify-between text-[9px] uppercase tracking-[0.2em] text-[#f7f1e7]/40">
+              <span>Decision logic</span>
               <AccentDot record={record} size="h-2.5 w-2.5" />
             </div>
             <div className="space-y-4">
               {record.decisions.slice(0, 2).map((decision) => (
                 <div key={decision.label}>
-                  <div className="mb-1 text-[9px] uppercase tracking-[0.18em] text-[#f7f1e7]/32">{decision.label}</div>
+                  <div className="mb-1 text-[9px] uppercase tracking-[0.16em] text-[#f7f1e7]/32">{decision.label}</div>
                   <p className="text-sm leading-6 text-[#f7f1e7]/68">{decision.body}</p>
                 </div>
               ))}
