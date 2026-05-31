@@ -55,14 +55,12 @@ export default function RecordRail({ recordsList, activeRecord, setActiveRecord,
                 <div className="text-[20px] leading-[1.04] tracking-[-0.03em]">{record.title}</div>
                 <div className={cx("mt-2 text-[9px] uppercase tracking-[0.14em]", active ? "text-[#f7f1e7]/42" : "text-[#11100d]/42")}>{record.status} / {record.type}</div>
                 {active ? (
-                  <button
-                    type="button"
-                    aria-label={`Open ${record.title} case file`}
-                    onClick={(e) => { e.stopPropagation(); openWorkspace(record); }}
-                    className="mt-4 flex w-full items-center justify-between rounded-full border border-[#f7f1e7]/20 px-3 py-2 text-[9px] uppercase tracking-[0.14em] text-[#f7f1e7]/62 transition hover:border-[#f7f1e7]/40 hover:text-[#f7f1e7]"
+                  <span
+                    aria-hidden="true"
+                    className="mt-4 flex w-full items-center justify-between rounded-full border border-[#f7f1e7]/20 px-3 py-2 text-[9px] uppercase tracking-[0.14em] text-[#f7f1e7]/62"
                   >
                     inspect system <ArrowUpRight className="h-3 w-3" />
-                  </button>
+                  </span>
                 ) : null}
               </button>
             );

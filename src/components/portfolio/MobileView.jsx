@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { ArrowUpRight } from "lucide-react";
 import AccentDot from "../ui/AccentDot";
 import ArtifactCard from "../ui/ArtifactCard";
 import MetricPill from "../ui/MetricPill";
+import { CheckCircle2, ChevronRight } from "lucide-react";
+import SystemPath from "./SystemPath";
+import ProfileStrip from "./ProfileStrip";
+import OverviewArtifact from "./OverviewArtifact";
 import { cx } from "../../utils/cx";
-import { profile } from "../../data/profile";
-import { CheckCircle2, ChevronDown, ChevronRight } from "lucide-react";
 
 const TABS = [
   { id: "overview", label: "Overview" },
@@ -16,143 +18,83 @@ const TABS = [
 // ─── Overview Tab ────────────────────────────────────────────────────────────
 
 function OverviewTab({ record, mode, openWorkspace }) {
-  const [showMore, setShowMore] = useState(false);
-  return (
-    <div className="space-y-4 px-4 py-4">
-      {/* Identity summary — resume + contact visible immediately */}
-      <div className="rounded-[18px] border border-[#11100d]/10 bg-[#fffaf1] p-4">
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0 flex-1">
-            <div className="mb-1 text-[9px] uppercase tracking-[0.2em] text-[#11100d]/36">
-              Amy Do
-            </div>
-            <p className="text-[13px] font-medium leading-5 tracking-[-0.01em] text-[#11100d]">
-              {profile.positioning}
-            </p>
-          </div>
-          <div className="flex shrink-0 flex-col gap-2">
-            <a
-              href={profile.resumeHref}
-              aria-label="Download Amy Do's resume"
-              className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#11100d] px-4 py-2 text-[10px] uppercase tracking-[0.15em] text-[#f7f1e7] transition active:scale-[0.98]"
-            >
-              résumé
-            </a>
-            <a
-              href={`mailto:${profile.contact}`}
-              aria-label={`Email Amy Do at ${profile.contact}`}
-              className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-[#11100d]/12 px-4 py-2 text-[10px] uppercase tracking-[0.15em] text-[#11100d]/60 transition active:scale-[0.98]"
-            >
-              contact
-            </a>
-          </div>
-        </div>
+  const overviewDecisions = record.decisions.filter((decision) => ["constraint", "move"].includes(decision.label));
 
-        {/* Collapsible extended profile */}
+  return (
+    <div className="space-y-6 px-4 py-6">
+      <div className="flex items-center justify-between gap-3">
+        <div className="text-[9px] uppercase tracking-[0.18em] text-[#11100d]/42">active case file</div>
         <button
           type="button"
-          aria-label={showMore ? "Hide extended profile details" : "Show more about Amy"}
-          aria-expanded={showMore}
-          onClick={() => setShowMore((v) => !v)}
-          className="mt-3 flex w-full items-center gap-2 text-[9px] uppercase tracking-[0.16em] text-[#11100d]/44"
+          aria-label={`Open ${record.title} case file`}
+          onClick={() => openWorkspace(record)}
+          className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#11100d] px-4 text-[10px] uppercase tracking-[0.16em] text-[#f7f1e7] transition active:scale-[0.98]"
         >
-          more about Amy
-          <ChevronDown className={cx("h-3.5 w-3.5 transition-transform", showMore && "rotate-180")} />
+          Open case file <ArrowUpRight className="h-3.5 w-3.5" />
         </button>
-
-        {showMore && (
-          <div className="mt-3 space-y-3 border-t border-[#11100d]/10 pt-3">
-            <div>
-              <div className="mb-2 text-[9px] uppercase tracking-[0.18em] text-[#11100d]/38">Role fit</div>
-              <div className="flex flex-wrap gap-1.5">
-                {profile.roleFits.map((item) => (
-                  <span key={item} className="rounded-full border border-[#11100d]/10 px-3 py-1.5 text-[10px] text-[#11100d]/62">{item}</span>
-                ))}
-              </div>
-            </div>
-            <div>
-              <div className="mb-2 text-[9px] uppercase tracking-[0.18em] text-[#11100d]/38">Tool fluency</div>
-              <div className="flex flex-wrap gap-1.5">
-                {profile.toolFluency.map((item) => (
-                  <span key={item} className="rounded-full border border-[#11100d]/10 bg-[#f7f1e7]/60 px-3 py-1.5 text-[10px] text-[#11100d]/62">{item}</span>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
       </div>
 
-      {/* Case header */}
       <div>
-        <div className="mb-3 flex flex-wrap gap-1.5">
-          {[record.category, record.timeline, record.status].map((item) => (
-            <span
-              key={item}
-              className="rounded-full border border-[#11100d]/10 bg-[#f7f1e7]/72 px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] text-[#11100d]/44"
-            >
-              {item}
-            </span>
+        <div className="flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.15em] text-[#11100d]/42">
+          {[record.category, record.timeline, record.status].map((item, index) => (
+            <React.Fragment key={item}>
+              {index > 0 ? <span className="h-1 w-1 rounded-full bg-[#11100d]/18" aria-hidden="true" /> : null}
+              <span>{item}</span>
+            </React.Fragment>
           ))}
         </div>
-        <h1 className="text-[34px] font-normal leading-[1.0] tracking-[-0.04em] text-[#11100d]">
+        <h1 className="mt-4 text-[40px] font-normal leading-[1.02] tracking-[-0.04em] text-[#11100d]">
           {mode === "proof" ? record.title : record.thesis}
         </h1>
-        <p className="mt-3 text-[14px] leading-6 tracking-[-0.01em] text-[#11100d]/64">
+        <p className="mt-4 max-w-[620px] text-base leading-[1.65] text-[#11100d]/66">
           {mode === "proof" ? record.oneLine : record.system}
         </p>
       </div>
 
-      {/* Metrics */}
-      <div className="grid gap-2">
-        {record.metrics.map((metric) => (
-          <MetricPill key={metric.label} metric={metric} />
-        ))}
-      </div>
+      <OverviewArtifact record={record} onOpenWorkspace={openWorkspace} compact />
 
-      {/* System path - compact numbered list */}
-      <div className="rounded-[18px] border border-[#11100d]/10 bg-[#fffaf1]/64 p-4">
-        <div className="mb-3 text-[9px] uppercase tracking-[0.18em] text-[#11100d]/38">
-          System path
-        </div>
-        <ol className="space-y-2">
-          {record.path.map((step, i) => (
-            <li key={step} className="flex items-center gap-3">
-              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#11100d]/10 bg-[#f7f1e7] text-[9px] uppercase tracking-[0.08em] text-[#11100d]/48">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <span className="text-[12px] uppercase tracking-[0.12em] text-[#11100d]/70">
-                {step}
-              </span>
-            </li>
+      <section>
+        <div className="text-[10px] uppercase tracking-[0.15em] text-[#11100d]/38">Proof signals</div>
+        <div className="mt-3 grid grid-cols-3 overflow-hidden rounded-[18px] border border-[#11100d]/10 bg-[#fffaf1] divide-x divide-[#11100d]/10">
+          {record.metrics.map((metric) => (
+            <MetricPill key={metric.label} metric={metric} />
           ))}
-        </ol>
-      </div>
+        </div>
+      </section>
 
-      {/* Decision logic preview */}
-      <div className="rounded-[18px] bg-[#11100d] p-4 text-[#f7f1e7]">
-        <div className="mb-3 flex items-center justify-between text-[9px] uppercase tracking-[0.2em] text-[#f7f1e7]/40">
+      <section className="space-y-6">
+        <div>
+          <div className="text-[10px] uppercase tracking-[0.15em] text-[#11100d]/38">System summary</div>
+          <p className="mt-4 text-base leading-[1.65] text-[#11100d]/68">{record.signal}</p>
+          <p className="mt-4 text-base leading-[1.65] text-[#11100d]/60">{record.system}</p>
+        </div>
+        <SystemPath record={record} />
+      </section>
+
+      <div className="rounded-[20px] bg-[#11100d] p-4 text-[#f7f1e7]">
+        <div className="mb-4 flex items-center justify-between text-[10px] uppercase tracking-[0.15em] text-[#f7f1e7]/40">
           <span>Decision logic</span>
           <AccentDot record={record} size="h-2.5 w-2.5" />
         </div>
-        {record.decisions.slice(0, 2).map((decision) => (
+        {overviewDecisions.map((decision) => (
           <div key={decision.label} className="mb-3 last:mb-0">
-            <div className="mb-1 text-[9px] uppercase tracking-[0.14em] text-[#f7f1e7]/32">
+            <div className="mb-1 text-[10px] uppercase tracking-[0.14em] text-[#f7f1e7]/32">
               {decision.label}
             </div>
-            <p className="text-[13px] leading-5 text-[#f7f1e7]/68">{decision.body}</p>
+            <p className="text-[14px] leading-6 text-[#f7f1e7]/70">{decision.body}</p>
           </div>
         ))}
+        <button
+          type="button"
+          onClick={() => openWorkspace(record)}
+          className="mt-4 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.14em] text-[#f7f1e7]/62"
+        >
+          view full decision logic
+          <ArrowUpRight className="h-3.5 w-3.5" />
+        </button>
       </div>
 
-      {/* Open case file CTA */}
-      <button
-        type="button"
-        aria-label={`Open ${record.title} case file`}
-        onClick={() => openWorkspace(record)}
-        className="flex w-full items-center justify-center gap-2 rounded-full bg-[#11100d] px-4 py-4 text-[10px] uppercase tracking-[0.16em] text-[#f7f1e7] transition active:scale-[0.98]"
-      >
-        open case file <ArrowUpRight className="h-3.5 w-3.5" />
-      </button>
+      <ProfileStrip />
     </div>
   );
 }

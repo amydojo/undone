@@ -145,9 +145,9 @@ export const records = [
         id: 'signal-interpretation-map',
         name: 'Signal interpretation map',
         format: 'logic diagram',
-        status: 'needs polish',
-        claim: 'Shows fuzzy emotional inputs becoming structured product logic.',
-        proof: '8 signal states using energy, tension, clarity, sleep, and confidence labels.',
+        status: 'needs visual',
+        claim: 'Maps energy, tension, clarity, and sleep into emotional state logic.',
+        proof: 'Maps energy, tension, clarity, and sleep into emotional state logic.',
         contents: ['energy range', 'tension range', 'clarity range', 'sleep quality', 'state detection', 'confidence labels'],
         artifacts: [
           {
@@ -165,8 +165,8 @@ export const records = [
         name: 'Storybook component environment',
         format: 'component QA',
         status: 'needs screenshot',
-        claim: 'Shows design-to-development work beyond static Figma screens.',
-        proof: '10 stories covering UI states, edge cases, responsive behavior, and implementation handoff.',
+        claim: 'Documents reusable UI states for product handoff and QA.',
+        proof: 'Documents reusable UI states for product handoff and QA.',
         contents: ['SignalSparkline', 'BodyWeatherHero', 'SimilarDays', 'GentleNextMove', 'DebugPanel', 'MSW setup'],
         artifacts: [
           {
@@ -184,8 +184,8 @@ export const records = [
         name: 'Feedback store logic',
         format: 'prototype logic',
         status: 'needs link',
-        claim: 'Shows lightweight product learning without a heavy backend.',
-        proof: 'localStorage patterns connected check-ins, feedback, suggestion scoring, and similar days.',
+        claim: 'Connects check-ins, feedback, and similar-day patterns using lightweight prototype logic.',
+        proof: 'Connects check-ins, feedback, and similar-day patterns using lightweight prototype logic.',
         contents: ['mirror_checkins', 'mirror_feedback', 'suggestion scoring', 'pattern frequency', 'similar day matching'],
         artifacts: [
           {
@@ -203,8 +203,8 @@ export const records = [
         name: 'Debug and QA overlay',
         format: 'testing artifact',
         status: 'ready',
-        claim: 'Shows inspection and testing built into the product environment.',
-        proof: 'Triple-click debug trigger, pipeline view, and 10 test cases.',
+        claim: 'Shows the internal reasoning pipeline and test cases behind the interface.',
+        proof: 'Shows the internal reasoning pipeline and test cases behind the interface.',
         contents: ['pipeline view', 'test cases', 'Esc behavior', 'responsive checks', 'frayed edge case'],
         artifacts: [
           {
