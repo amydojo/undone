@@ -8,7 +8,24 @@ export default function SystemPath({ record, dark = false }) {
         <span>system path</span>
         <span>{record.id}</span>
       </div>
-      <div className="grid gap-2 md:grid-cols-6">
+      {/* Mobile: horizontal scroll strip */}
+      <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden md:hidden">
+        {record.path.map((step) => (
+          <div
+            key={step}
+            className={cx(
+              "flex shrink-0 items-center justify-center rounded-[16px] border px-3 py-2 text-[10px] uppercase tracking-[0.12em]",
+              dark
+                ? "border-[#f7f1e7]/10 bg-[#f7f1e7]/5 text-[#f7f1e7]/62"
+                : "border-[#11100d]/10 bg-[#f7f1e7] text-[#11100d]/62"
+            )}
+          >
+            {step}
+          </div>
+        ))}
+      </div>
+      {/* Desktop: grid */}
+      <div className="hidden gap-2 md:grid md:grid-cols-6">
         {record.path.map((step, index) => (
           <div key={step} className="relative">
             <div className={cx("grid min-h-16 place-items-center rounded-[20px] border px-2 text-center text-[10px] uppercase tracking-[0.13em]", dark ? "border-[#f7f1e7]/10 bg-[#f7f1e7]/5 text-[#f7f1e7]/62" : "border-[#11100d]/10 bg-[#f7f1e7] text-[#11100d]/62")}>{step}</div>

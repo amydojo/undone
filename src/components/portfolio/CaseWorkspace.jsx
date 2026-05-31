@@ -48,7 +48,7 @@ export default function CaseWorkspace({ workspace, closeWorkspace, mode, activeR
                 <button
                   aria-label='Close workspace'
                   onClick={closeWorkspace}
-                  className='rounded-full border border-[#11100d]/12 bg-[#fffaf1] p-2 text-[#11100d]/60 transition hover:text-[#11100d]'
+                  className='flex h-11 w-11 items-center justify-center rounded-full border border-[#11100d]/12 bg-[#fffaf1] text-[#11100d]/60 transition hover:text-[#11100d]'
                 >
                   <X className='h-4 w-4' />
                 </button>
