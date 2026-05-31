@@ -42,8 +42,8 @@ export default function MobileRecordSelector({
 
   return (
     <>
-      {/* Compact selector bar */}
-      <div className="border-b border-[#11100d]/10 bg-[#f0eadf]/80 px-4 py-3 lg:hidden">
+      {/* Compact selector bar — sticky so the active case is always visible */}
+      <div className="sticky top-0 z-30 border-b border-[#11100d]/10 bg-[#f0eadf]/95 px-4 py-3 backdrop-blur-xl lg:hidden">
         <button
           type="button"
           aria-label="Open record selector"

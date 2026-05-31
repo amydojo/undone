@@ -13,6 +13,39 @@ function WorkspaceSection({ title, children, right }) {
   )
 }
 
+function WorkspaceReadinessSummary({ workspace }) {
+  const all = workspace.receipts.flatMap((r) => r.artifacts ?? [])
+  const acc = all.reduce(
+    (a, art) => {
+      if (art.status === 'ready') a.ready += 1
+      else if (art.status === 'needs screenshot') a.screenshot += 1
+      else if (art.status === 'needs metric') a.metric += 1
+      else if (art.status === 'needs polish') a.polish += 1
+      return a
+    },
+    { ready: 0, screenshot: 0, metric: 0, polish: 0 }
+  )
+  const counts = [
+    { label: 'Ready', count: acc.ready, dot: 'bg-emerald-500/60' },
+    { label: 'Screenshot', count: acc.screenshot, dot: 'bg-amber-400/70' },
+    { label: 'Metric', count: acc.metric, dot: 'bg-sky-400/70' },
+    { label: 'Polish', count: acc.polish, dot: 'bg-violet-400/60' },
+  ].filter((item) => item.count > 0)
+
+  if (counts.length === 0) return null
+
+  return (
+    <div className='flex flex-wrap gap-2 rounded-[14px] border border-[#11100d]/8 bg-[#fffaf1]/70 px-3 py-2.5'>
+      {counts.map(({ label, count, dot }) => (
+        <span key={label} className='flex items-center gap-1.5 text-[10px] uppercase tracking-[0.12em] text-[#11100d]/52'>
+          <span className={`h-1.5 w-1.5 rounded-full ${dot}`} />
+          {count} {label}
+        </span>
+      ))}
+    </div>
+  )
+}
+
 export default function CaseWorkspace({ workspace, closeWorkspace, mode, activeReceipt, onSelectReceipt }) {
   const selectedReceipt = activeReceipt ?? workspace?.receipts?.[0] ?? null
   const selectedArtifacts = selectedReceipt?.artifacts?.length ? selectedReceipt.artifacts : [{}]
@@ -136,7 +169,8 @@ export default function CaseWorkspace({ workspace, closeWorkspace, mode, activeR
                   </WorkspaceSection>
 
                   <WorkspaceSection title='artifacts'>
-                    <div className='grid gap-2 sm:grid-cols-2 lg:grid-cols-1'>
+                    <WorkspaceReadinessSummary workspace={workspace} />
+                    <div className='mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-1'>
                       {selectedArtifacts.map((artifact, index) => (
                         <ArtifactCard key={artifact.id || `${selectedReceipt?.id || 'receipt'}-artifact-${index}`} artifact={artifact} />
                       ))}
