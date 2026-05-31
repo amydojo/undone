@@ -6,6 +6,8 @@ import RecordRail from "./RecordRail";
 import ActiveCanvas from "./ActiveCanvas";
 import ProofRail from "./ProofRail";
 import CaseWorkspace from "./CaseWorkspace";
+import MobileRecordSelector from "./MobileRecordSelector";
+import MobileView from "./MobileView";
 
 export default function UndonePortfolioV10() {
   const [query, setQuery] = useState("");
@@ -14,6 +16,8 @@ export default function UndonePortfolioV10() {
   const [activeRecordSlug, setActiveRecordSlug] = useState(records[0].slug);
   const [activeReceiptId, setActiveReceiptId] = useState(records[0].receipts[0]?.id ?? null);
   const [workspaceRecordSlug, setWorkspaceRecordSlug] = useState(null);
+  const [mobileSheetOpen, setMobileSheetOpen] = useState(false);
+  const [mobileTab, setMobileTab] = useState("overview");
   const searchInputRef = useRef(null);
 
   const filteredRecords = useMemo(() => {
@@ -104,14 +108,45 @@ export default function UndonePortfolioV10() {
 
   const openWorkspace = (record) => setWorkspaceRecordSlug(record.slug);
 
+  // Derive the receipt object for child components
+  const activeReceipt = useMemo(
+    () => activeRecord.receipts.find((r) => r.id === activeReceiptId) ?? activeRecord.receipts[0] ?? null,
+    [activeRecord, activeReceiptId]
+  );
+
+  function handleSelectReceipt(id) {
+    setActiveReceiptId(id);
+  }
+
   return (
-    <div className="min-h-screen bg-[#0b0b09] font-sans text-[#11100d]">
-      <div className="mx-auto min-h-screen max-w-[1720px] bg-[#f7f1e7] shadow-[0_0_0_1px_rgba(255,255,255,0.08)]">
+    <div className="min-h-screen overflow-x-hidden bg-[#0b0b09] font-sans text-[#11100d]">
+      <div className="mx-auto min-h-screen max-w-[1720px] overflow-x-hidden bg-[#f7f1e7] shadow-[0_0_0_1px_rgba(255,255,255,0.08)]">
         <div className="pointer-events-none fixed inset-0 opacity-[0.45] [background-image:radial-gradient(circle_at_18%_8%,rgba(255,255,255,0.85),transparent_28%),linear-gradient(rgba(17,16,13,0.028)_1px,transparent_1px),linear-gradient(90deg,rgba(17,16,13,0.028)_1px,transparent_1px)] [background-size:auto,38px_38px,38px_38px]" />
         <div className="relative z-10">
           <TopBar search={query} setSearch={setQuery} mode={mode} setMode={setMode} searchInputRef={searchInputRef} />
 
-          <div className="grid lg:grid-cols-[320px_1fr_360px]">
+          {/* Mobile layout */}
+          <MobileRecordSelector
+            recordsList={filteredRecords}
+            activeRecord={activeRecord}
+            setActiveRecord={(record) => setActiveRecordSlug(record.slug)}
+            activeFilter={activeFilter}
+            setActiveFilter={setActiveFilter}
+            isOpen={mobileSheetOpen}
+            setIsOpen={setMobileSheetOpen}
+          />
+          <MobileView
+            record={activeRecord}
+            mode={mode}
+            openWorkspace={openWorkspace}
+            activeReceipt={activeReceipt}
+            onSelectReceipt={handleSelectReceipt}
+            mobileTab={mobileTab}
+            setMobileTab={setMobileTab}
+          />
+
+          {/* Desktop layout */}
+          <div className="hidden lg:grid lg:grid-cols-[320px_1fr_360px]">
             <RecordRail
               recordsList={filteredRecords}
               activeRecord={activeRecord}
@@ -121,13 +156,26 @@ export default function UndonePortfolioV10() {
               setActiveFilter={setActiveFilter}
             />
             <ActiveCanvas record={activeRecord} mode={mode} openWorkspace={openWorkspace} />
-            <ProofRail record={activeRecord} activeReceiptId={activeReceiptId} setActiveReceiptId={setActiveReceiptId} mode={mode} />
+            <ProofRail
+              record={activeRecord}
+              activeReceipt={activeReceipt}
+              onSelectReceipt={handleSelectReceipt}
+              mode={mode}
+            />
           </div>
         </div>
       </div>
 
       <AnimatePresence>
-        {workspaceRecord ? <CaseWorkspace record={workspaceRecord} onClose={() => setWorkspaceRecordSlug(null)} /> : null}
+        {workspaceRecord ? (
+          <CaseWorkspace
+            workspace={workspaceRecord}
+            closeWorkspace={() => setWorkspaceRecordSlug(null)}
+            mode={mode}
+            activeReceipt={activeReceipt}
+            onSelectReceipt={handleSelectReceipt}
+          />
+        ) : null}
       </AnimatePresence>
     </div>
   );

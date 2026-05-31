@@ -10,7 +10,7 @@ import { profile } from "../../data/profile";
 export default function ActiveCanvas({ record, mode, openWorkspace }) {
   return (
     <main className="min-h-[calc(100vh-73px)] overflow-hidden bg-[#f7f1e7] p-4 lg:p-6">
-      <section className="grid min-h-full grid-rows-[auto_auto_1fr_auto] rounded-[28px] border border-[#11100d]/10 bg-[#fffaf1]/44 p-5 shadow-[0_30px_120px_rgba(17,16,13,0.06)] lg:p-8">
+      <section className="grid min-h-full grid-rows-[auto_auto_1fr_auto] rounded-[28px] border border-[#11100d]/10 bg-[#fffaf1]/44 p-4 shadow-[0_30px_120px_rgba(17,16,13,0.06)] lg:p-8">
 
         {/* Identity hero */}
         <div className="mb-6 rounded-[22px] border border-[#11100d]/8 bg-[#f7f1e7]/60 p-5">
@@ -52,7 +52,7 @@ export default function ActiveCanvas({ record, mode, openWorkspace }) {
                   <span key={item} className="rounded-full border border-[#11100d]/10 bg-[#f7f1e7]/72 px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] text-[#11100d]/44">{item}</span>
                 ))}
               </div>
-              <h1 className="max-w-4xl text-[44px] font-normal leading-[0.98] tracking-[-0.045em] text-[#11100d] sm:text-[58px] xl:text-[70px]">
+              <h1 className="max-w-4xl text-[36px] font-normal leading-[1.0] tracking-[-0.04em] text-[#11100d] sm:text-[48px] xl:text-[70px]">
                 {mode === "proof" ? record.title : record.thesis}
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-7 tracking-[-0.012em] text-[#11100d]/64">{mode === "proof" ? record.oneLine : record.system}</p>
