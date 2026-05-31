@@ -39,7 +39,7 @@ export default function TopBar({ search, setSearch, mode, setMode, searchInputRe
             aria-pressed={mode === value}
             onClick={() => setMode(value)}
             className={cx(
-              "rounded-full px-3 py-2 text-[10px] uppercase tracking-[0.16em] transition",
+              "min-h-11 rounded-full px-3 py-2 text-[10px] uppercase tracking-[0.16em] transition",
               mode === value ? "bg-[#11100d] text-[#f7f1e7]" : "text-[#11100d]/46 hover:text-[#11100d]"
             )}
           >
