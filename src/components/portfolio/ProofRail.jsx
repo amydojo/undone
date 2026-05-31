@@ -6,7 +6,9 @@ import cx from '../../utils/cx'
 
 export default function ProofRail({ mode, record, activeReceipt, onSelectReceipt }) {
   const receipts = record.receipts
-  const previewArtifact = activeReceipt.artifacts?.[0] ?? {}
+  const selectedReceipt = activeReceipt ?? receipts[0]
+  const previewArtifact = selectedReceipt?.artifacts?.[0] ?? {}
+  const receiptContents = selectedReceipt?.contents ?? []
 
   return (
     <aside className='border-l border-[#11100d]/10 bg-[#f7f1e7] p-4 lg:p-5'>
@@ -17,7 +19,7 @@ export default function ProofRail({ mode, record, activeReceipt, onSelectReceipt
 
       <div className='grid gap-2'>
         {receipts.map((receipt, i) => {
-          const active = activeReceipt.id === receipt.id
+          const active = selectedReceipt?.id === receipt.id
           return (
             <button
               key={receipt.id}
@@ -45,7 +47,7 @@ export default function ProofRail({ mode, record, activeReceipt, onSelectReceipt
 
       <AnimatePresence mode='wait'>
         <motion.div
-          key={activeReceipt.id}
+          key={selectedReceipt?.id || record.id}
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
@@ -53,10 +55,10 @@ export default function ProofRail({ mode, record, activeReceipt, onSelectReceipt
           className='mt-4 rounded-[22px] border border-[#11100d]/10 bg-[#fffaf1] p-4'
         >
           <div className='mb-2 text-[9px] uppercase tracking-[0.16em] text-[#11100d]/40'>selected receipt</div>
-          <h4 className='text-sm leading-6 text-[#11100d]'>{activeReceipt.name}</h4>
-          <p className='mt-2 text-[13px] leading-6 text-[#11100d]/78'>{mode === 'proof' ? activeReceipt.proof : activeReceipt.claim}</p>
+          <h4 className='text-sm leading-6 text-[#11100d]'>{selectedReceipt?.name}</h4>
+          <p className='mt-2 text-[13px] leading-6 text-[#11100d]/78'>{mode === 'proof' ? selectedReceipt?.proof : selectedReceipt?.claim}</p>
           <div className='mt-3 flex flex-wrap gap-2'>
-            {(mode === 'proof' ? activeReceipt.contents : activeReceipt.contents.slice(0, 3)).map((item) => (
+            {(mode === 'proof' ? receiptContents : receiptContents.slice(0, 3)).map((item) => (
               <span key={item} className='rounded-full border border-[#11100d]/10 bg-[#f7f1e7] px-2 py-1 text-[10px] uppercase tracking-[0.12em] text-[#11100d]/48'>
                 {item}
               </span>

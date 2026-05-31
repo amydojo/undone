@@ -14,7 +14,11 @@ function WorkspaceSection({ title, children, right }) {
 }
 
 export default function CaseWorkspace({ workspace, closeWorkspace, mode, activeReceipt, onSelectReceipt }) {
-  const selectedArtifacts = activeReceipt?.artifacts?.length ? activeReceipt.artifacts : [{}]
+  const selectedReceipt = activeReceipt ?? workspace?.receipts?.[0] ?? null
+  const selectedArtifacts = selectedReceipt?.artifacts?.length ? selectedReceipt.artifacts : [{}]
+  const selectedContents = selectedReceipt?.contents ?? []
+  const owned = workspace?.owned ?? []
+  const nextProof = workspace?.nextProof ?? []
 
   return (
     <AnimatePresence>
@@ -84,7 +88,7 @@ export default function CaseWorkspace({ workspace, closeWorkspace, mode, activeR
                   <WorkspaceSection title='receipts'>
                     <div className='space-y-2'>
                       {workspace.receipts.map((receipt) => {
-                        const active = activeReceipt.id === receipt.id
+                        const active = selectedReceipt?.id === receipt.id
                         const compactArtifact = receipt.artifacts?.[0] ?? {}
 
                         return (
@@ -114,16 +118,16 @@ export default function CaseWorkspace({ workspace, closeWorkspace, mode, activeR
 
                 <div className='space-y-3'>
                   <WorkspaceSection title='selected receipt' right>
-                    <h3 className='text-sm tracking-[-0.01em] text-[#11100d]'>{activeReceipt.name}</h3>
+                    <h3 className='text-sm tracking-[-0.01em] text-[#11100d]'>{selectedReceipt?.name}</h3>
                     <div className='mt-2 flex items-center justify-between gap-2'>
-                      <p className='text-[13px] leading-6 text-[#11100d]/74'>{activeReceipt.proof}</p>
+                      <p className='text-[13px] leading-6 text-[#11100d]/74'>{selectedReceipt?.proof}</p>
                       <span className='rounded-full border border-[#11100d]/12 bg-[#f7f1e7] px-2 py-1 text-[9px] tracking-[0.03em] text-[#11100d]/58'>
-                        {activeReceipt.status || 'needs screenshot'}
+                        {selectedReceipt?.status || 'needs screenshot'}
                       </span>
                     </div>
 
                     <div className='mt-4 grid gap-2'>
-                      {(mode === 'proof' ? activeReceipt.contents : activeReceipt.contents.slice(0, 3)).map((item) => (
+                      {(mode === 'proof' ? selectedContents : selectedContents.slice(0, 3)).map((item) => (
                         <div key={item} className='rounded-[14px] border border-[#11100d]/10 bg-[#f7f1e7] px-3 py-2 text-[12px] text-[#11100d]/68'>
                           {item}
                         </div>
@@ -133,8 +137,8 @@ export default function CaseWorkspace({ workspace, closeWorkspace, mode, activeR
 
                   <WorkspaceSection title='artifacts'>
                     <div className='grid gap-2 sm:grid-cols-2 lg:grid-cols-1'>
-                      {selectedArtifacts.map((artifact) => (
-                        <ArtifactCard key={artifact.id || `${activeReceipt.id}-artifact`} artifact={artifact} />
+                      {selectedArtifacts.map((artifact, index) => (
+                        <ArtifactCard key={artifact.id || `${selectedReceipt?.id || 'receipt'}-artifact-${index}`} artifact={artifact} />
                       ))}
                     </div>
                   </WorkspaceSection>
@@ -145,7 +149,7 @@ export default function CaseWorkspace({ workspace, closeWorkspace, mode, activeR
 
                   <WorkspaceSection title='what I owned'>
                     <div className='flex flex-wrap gap-1.5'>
-                      {workspace.owned.map((item) => (
+                      {owned.map((item) => (
                         <span key={item} className='rounded-full border border-[#11100d]/10 bg-[#f7f1e7] px-2 py-1 text-[10px] uppercase tracking-[0.12em] text-[#11100d]/52'>
                           {item}
                         </span>
@@ -155,7 +159,7 @@ export default function CaseWorkspace({ workspace, closeWorkspace, mode, activeR
 
                   <WorkspaceSection title='what to add next'>
                     <ul className='space-y-1.5'>
-                      {workspace.nextProof.map((item) => (
+                      {nextProof.map((item) => (
                         <li key={item} className='flex items-start gap-2 text-[12px] leading-5 text-[#11100d]/68'>
                           <CheckCircle2 className='mt-0.5 h-3.5 w-3.5 text-[#11100d]/44' />
                           <span>{item}</span>

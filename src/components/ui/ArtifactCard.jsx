@@ -13,6 +13,9 @@ const TYPE_LABELS = {
   external: 'external'
 }
 
+const PLACEHOLDER_LABEL = 'artifact slot ready'
+const PLACEHOLDER_CAPTION = 'add screenshot, dashboard, email, prototype, document, or production proof'
+
 function statusTone(status) {
   if (status === 'ready') {
     return 'border-emerald-500/25 bg-emerald-500/10 text-emerald-700'
@@ -23,8 +26,8 @@ function statusTone(status) {
 
 export default function ArtifactCard({ artifact = {}, className, compact = false }) {
   const type = TYPE_LABELS[artifact.type] ?? 'image'
-  const label = artifact.label || 'artifact slot ready'
-  const caption = artifact.caption || 'add screenshot, dashboard, email, prototype, document, or production proof'
+  const label = artifact.label || PLACEHOLDER_LABEL
+  const caption = artifact.caption || PLACEHOLDER_CAPTION
   const status = artifact.status || 'needs screenshot'
   const hasSource = typeof artifact.src === 'string' && artifact.src.trim().length > 0
 
@@ -36,7 +39,7 @@ export default function ArtifactCard({ artifact = {}, className, compact = false
         ) : (
           <div className='flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-[#fffaf1] to-[#f7f1e7] px-3 text-center'>
             <ImagePlus className={cx('text-[#11100d]/40', compact ? 'h-3.5 w-3.5' : 'h-4 w-4')} />
-            <p className='mt-1 text-[10px] uppercase tracking-[0.14em] text-[#11100d]/44'>artifact slot ready</p>
+            <p className='mt-1 text-[10px] uppercase tracking-[0.14em] text-[#11100d]/44'>{PLACEHOLDER_LABEL}</p>
             {!compact ? <p className='mt-1 text-[11px] leading-relaxed text-[#11100d]/55'>{caption}</p> : null}
           </div>
         )}
