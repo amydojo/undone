@@ -1,230 +1,354 @@
 import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { CheckCircle2, X } from 'lucide-react'
-import ArtifactCard from '../ui/ArtifactCard'
-import cx from '../../utils/cx'
+import { X } from 'lucide-react'
 
-const MIRROR_PIPELINE_STEPS = [
-  {
-    id: '01',
-    chip: 'input',
-    title: 'Input capture',
-    body: 'Energy, tension, clarity, and sleep are collected as lightweight self-report signals.'
+const SECTIONS = [
+  { id: 'brief', label: 'brief' },
+  { id: 'problem', label: 'problem' },
+  { id: 'system', label: 'system' },
+  { id: 'design-move', label: 'design move' },
+  { id: 'decisions', label: 'decisions' },
+  { id: 'outcome', label: 'outcome' }
+]
+
+const CASE_COPY_BY_SLUG = {
+  'smooth-md-growth-os': {
+    thesis: 'A clinic brand rebuilt as operating infrastructure.',
+    summary:
+      'Smooth MD did not need more isolated campaign assets. It needed one operating layer connecting positioning, offer logic, lifecycle messaging, CRM states, and measurement.',
+    problem:
+      'The clinic had strong services, but the customer experience was fragmented across ads, service pages, intake, follow up, and reporting. Each touchpoint created slightly different expectations, which made the brand harder to trust and the team harder to coordinate.',
+    systemIntro: 'The system turned scattered campaign work into reusable brand and growth infrastructure.',
+    designMove:
+      'I treated the clinic brand like a product system. The goal was not just to make the brand look consistent. It was to make every touchpoint clarify what the lead wanted, what they needed next, and how the campaign was performing.',
+    outcomeIntro:
+      'The work created a cleaner handoff between brand, acquisition, CRM, lifecycle messaging, and reporting.',
+    outcomes: [
+      'Service lines and offer language were aligned into one repeatable operating structure.',
+      'Lifecycle and CRM behavior became easier to coordinate across acquisition and follow up.',
+      'Campaign decisions used clearer downstream signals instead of isolated creative performance.'
+    ]
   },
-  {
-    id: '02',
-    chip: 'range',
-    title: 'Signal normalization',
-    body: 'Each input is translated into a readable range so the system can compare patterns without pretending to be medically precise.'
+  mirror: {
+    summary:
+      'Mirror translated low-effort self reporting into calm state logic so emotional context could be readable under cognitive load.',
+    problem:
+      'Emotional check-ins are often either vague or gamified. Both patterns create pressure and reduce trust in the interface.',
+    systemIntro: 'The system converted fuzzy input into explainable state output without pretending to diagnose mood.',
+    designMove:
+      'I treated emotional UX as signal interpretation, not mood tracking. The interface needed to translate messy self reporting into something calm, explainable, and useful without turning self awareness into another performance loop.',
+    outcomeIntro: 'The product became clearer, calmer, and easier to trust when the user needed support most.'
   },
-  {
-    id: '03',
-    chip: 'state',
-    title: 'State matching',
-    body: 'The system checks recurring combinations and maps them to calm, human-readable states like frayed, compressed, drifting, or settled.'
+  'meta-airtable-dashboard': {
+    summary:
+      'This project connected paid media performance with CRM movement, booking behavior, and revenue confidence in one decision layer.',
+    problem:
+      'Marketing teams had data, but not enough structure to decide what to do next with confidence.',
+    systemIntro: 'The system reframed reporting from dashboard output into action-ready operational logic.',
+    designMove:
+      'I treated reporting as a decision interface, not a dashboard. The goal was to help the team understand which campaigns deserved action, not just which campaigns produced leads.',
+    outcomeIntro: 'Weekly optimization became easier because campaign performance was connected to business movement.'
   },
-  {
-    id: '04',
-    chip: 'reason',
-    title: 'Explanation layer',
-    body: 'Mirror shows why the reading appeared, what signals contributed, and what kind of support may fit the moment.'
+  'snip-provider-pipeline': {
+    summary:
+      'The workflow turned repetitive provider sourcing into a quality-controlled production pipeline for profile publishing.',
+    problem:
+      'Manual provider research and media handling consumed team time and introduced avoidable quality inconsistencies.',
+    systemIntro: 'The system removed sourcing drag while preserving quality gates and human judgment where needed.',
+    designMove:
+      'I treated automation as a quality controlled workflow, not a shortcut. The system removed repetitive sourcing drag while preserving human review where trust mattered.',
+    outcomeIntro: 'Operations became faster and more reliable because automation was paired with structured QA.'
   },
-  {
-    id: '05',
-    chip: 'response',
-    title: 'Next move',
-    body: 'The output is intentionally small. No streaks. No pressure loop. Just one grounded action.'
+  'multi-brand-retention': {
+    summary:
+      'The retention model separated intent and service context so follow-up timing felt relevant instead of generic.',
+    problem:
+      'Leads with very different readiness levels were receiving nearly identical communication rhythms.',
+    systemIntro: 'The system turned lifecycle messaging into a timing-aware operating model across brands.',
+    designMove:
+      'I treated timing as part of the message. The system separated intent, service interest, and lead readiness so follow up could feel relevant instead of generic.',
+    outcomeIntro: 'Follow-up became easier to coordinate and more useful to leads across the full lifecycle.'
   }
-]
+}
 
-const MIRROR_SAMPLE_SIGNALS = [
-  ['sleep', 'fragmented'],
-  ['tension', 'high'],
-  ['clarity', 'low'],
-  ['energy', 'low']
-]
+const SYSTEM_MODEL_BY_SLUG = {
+  'smooth-md-growth-os': [
+    { label: 'brand position', meaning: 'Define the promise and trust language.' },
+    { label: 'offer architecture', meaning: 'Turn services into clear decision paths.' },
+    { label: 'lead context', meaning: 'Separate passive ad leads from high intent web leads.' },
+    { label: 'CRM state', meaning: 'Track where each person is in the booking journey.' },
+    { label: 'lifecycle message', meaning: 'Send the right explanation and CTA based on stage.' },
+    { label: 'measurement', meaning: 'Connect campaign performance to booking and revenue signals.' }
+  ],
+  mirror: [
+    { label: 'input signals', meaning: 'Capture energy, tension, clarity, and sleep with low-effort check-ins.' },
+    { label: 'normalization', meaning: 'Translate self-reports into comparable ranges without fake medical precision.' },
+    { label: 'state matching', meaning: 'Map recurring signal combinations to calm, human-readable states.' },
+    { label: 'explanation layer', meaning: 'Explain why the reading appeared and which signals contributed most.' },
+    { label: 'next move', meaning: 'Return one grounded action with no streak pressure or productivity loop.' }
+  ],
+  'meta-airtable-dashboard': [
+    { label: 'ad spend', meaning: 'Collect paid-media investment and campaign-level performance context.' },
+    { label: 'lead', meaning: 'Capture volume and quality signals from each source and service line.' },
+    { label: 'CRM state', meaning: 'Track movement through booking status and conversion readiness.' },
+    { label: 'booking', meaning: 'Connect scheduling behavior to marketing inputs and timing windows.' },
+    { label: 'revenue', meaning: 'Associate outcomes with attribution confidence instead of false certainty.' },
+    { label: 'decision', meaning: 'Surface weekly optimization moves that teams can execute immediately.' }
+  ],
+  'snip-provider-pipeline': [
+    { label: 'source', meaning: 'Pull provider data from reliable public records and source systems.' },
+    { label: 'enrich', meaning: 'Add metadata and media candidates required for publish-ready profiles.' },
+    { label: 'validate', meaning: 'Run quality gates to flag weak, missing, or incorrect assets.' },
+    { label: 'organize', meaning: 'Standardize files, naming, and review states for handoff.' },
+    { label: 'publish', meaning: 'Deliver clean, structured assets for production deployment.' }
+  ],
+  'multi-brand-retention': [
+    { label: 'source', meaning: 'Capture lead origin to preserve intent context from first touch.' },
+    { label: 'intent', meaning: 'Classify readiness so low and high intent do not share the same cadence.' },
+    { label: 'service', meaning: 'Route people into the right service pathway and offer language.' },
+    { label: 'timing', meaning: 'Trigger lifecycle moments at behavior-based intervals, not fixed blasts.' },
+    { label: 'message', meaning: 'Deliver explanation and proof matched to where they are in the journey.' },
+    { label: 'booking', meaning: 'Drive toward conversion while preserving trust and brand consistency.' }
+  ]
+}
 
-function WorkspaceSection({ title, children, right }) {
+const PROBLEM_CONTEXT_BY_SLUG = {
+  'smooth-md-growth-os': {
+    before: ['fragmented campaign assets', 'inconsistent CRM logic', 'uneven follow up timing'],
+    after: ['one operating layer', 'clear offer architecture', 'connected lifecycle and measurement']
+  },
+  mirror: {
+    before: ['vague emotional check-in output', 'pressure loops from streak-oriented UX', 'low trust in interpretation logic'],
+    after: ['readable signal model', 'clear explanation layer', 'one calm next move']
+  },
+  'meta-airtable-dashboard': {
+    before: ['dashboard-heavy reporting', 'unclear action priority', 'CRM and revenue disconnected from media'],
+    after: ['decision-ready reporting layer', 'shared performance language', 'connected spend to booking and revenue']
+  },
+  'snip-provider-pipeline': {
+    before: ['manual provider sourcing drag', 'uneven image quality and metadata', 'fragile handoff structure'],
+    after: ['repeatable sourcing workflow', 'quality gates before publish', 'structured handoff system']
+  },
+  'multi-brand-retention': {
+    before: ['generic lifecycle blasts', 'intent and service mixed together', 'timing disconnected from readiness'],
+    after: ['intent-aware routing', 'service-specific cadence', 'timing aligned to booking behavior']
+  }
+}
+
+const OUTCOME_BY_SLUG = {
+  'smooth-md-growth-os': [
+    'Service lines and offer language were aligned into one repeatable operating structure.',
+    'Lifecycle and CRM behavior became easier to coordinate across acquisition and follow-up.',
+    'Campaign decisions used clearer downstream signals instead of isolated creative performance.'
+  ],
+  mirror: [
+    'Signal states became readable without turning reflection into a performance loop.',
+    'Component behavior and state logic were production-oriented, not just conceptual screens.',
+    'The product could explain why a reading appeared and suggest one grounded next action.'
+  ],
+  'meta-airtable-dashboard': [
+    'Ad and CRM inputs were unified into one decision-ready performance view.',
+    'Teams could review campaign health with attribution confidence instead of guesswork.',
+    'Optimization choices were tied to booking and revenue movement, not vanity metrics.'
+  ],
+  'snip-provider-pipeline': [
+    'Manual sourcing overhead dropped through automation and validation gates.',
+    'Quality checks improved consistency before assets reached publication workflows.',
+    'Handoff moved from ad hoc file dumps to a reliable, structured pipeline.'
+  ],
+  'multi-brand-retention': [
+    'Follow-up timing reflected intent and service context instead of batch email cadence.',
+    'Lifecycle communication became more consistent across multi-brand operations.',
+    'Retention flows emphasized trust and booking progress over promotional noise.'
+  ]
+}
+
+const OUTCOME_INTRO_BY_SLUG = {
+  mirror: 'The system made emotional signal feedback calmer, clearer, and more actionable.',
+  'meta-airtable-dashboard': 'The dashboard model created a tighter bridge between marketing signals and business decisions.',
+  'snip-provider-pipeline': 'The workflow reduced manual overhead and improved quality consistency in production handoff.',
+  'multi-brand-retention': 'Lifecycle behavior became easier to orchestrate across services, brands, and intent levels.'
+}
+
+function sectionDomId(slug, sectionId) {
+  return `${slug}-case-${sectionId}`
+}
+
+function getCaseCopy(workspace) {
+  const mapped = CASE_COPY_BY_SLUG[workspace.slug] ?? {}
+  return {
+    thesis: mapped.thesis ?? workspace.thesis,
+    summary: mapped.summary ?? workspace.oneLine,
+    problem: mapped.problem ?? workspace.signal,
+    systemIntro: mapped.systemIntro ?? workspace.system,
+    designMove:
+      mapped.designMove ??
+      'I treated the project as an operating system, not a static deliverable, so each touchpoint could drive clearer decisions and cleaner handoff.',
+    outcomeIntro: mapped.outcomeIntro ?? OUTCOME_INTRO_BY_SLUG[workspace.slug] ?? workspace.hiringTranslation
+  }
+}
+
+function getSystemModel(workspace) {
+  return SYSTEM_MODEL_BY_SLUG[workspace.slug] ?? workspace.path.map((step) => ({ label: step, meaning: workspace.system }))
+}
+
+function getProblemContext(workspace) {
+  return PROBLEM_CONTEXT_BY_SLUG[workspace.slug] ?? { before: [workspace.signal], after: [workspace.system] }
+}
+
+function getOutcomeItems(workspace) {
+  if (OUTCOME_BY_SLUG[workspace.slug]) return OUTCOME_BY_SLUG[workspace.slug]
+  return workspace.metrics.map((metric) => `${metric.value} ${metric.label}`)
+}
+
+function scrollToSection(workspace, sectionId) {
+  const node = document.getElementById(sectionDomId(workspace.slug, sectionId))
+  if (node) node.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
+
+function BriefSection({ workspace }) {
+  const copy = getCaseCopy(workspace)
+
   return (
-    <section className={cx('rounded-[22px] border border-[#11100d]/10 bg-[#fffaf1] p-5', right && 'h-full')}>
-      <div className='mb-3 text-[9px] uppercase tracking-[0.2em] text-[#11100d]/40'>{title}</div>
-      {children}
+    <section id={sectionDomId(workspace.slug, 'brief')} className='space-y-8 border-b border-[#11100d]/10 pb-12'>
+      <div className='grid gap-8 xl:grid-cols-[minmax(0,1.35fr)_minmax(0,0.8fr)] xl:items-end'>
+        <h3 className='max-w-[48rem] text-[40px] leading-[1.01] tracking-[-0.03em] text-[#11100d] lg:text-[62px]'>{copy.thesis}</h3>
+        <p className='max-w-[34rem] text-base leading-[1.65] text-[#11100d]/68'>{copy.summary}</p>
+      </div>
+
+      <div className='grid border-y border-[#11100d]/10 md:grid-cols-3 md:divide-x md:divide-[#11100d]/10'>
+        {workspace.metrics.map((metric) => (
+          <div key={metric.label} className='border-b border-[#11100d]/10 px-2 py-3 text-left last:border-b-0 md:border-b-0 md:px-4'>
+            <div className='text-[22px] leading-none tracking-[-0.03em] text-[#11100d]'>{metric.value}</div>
+            <div className='mt-2 text-[10px] uppercase tracking-[0.14em] text-[#11100d]/42'>{metric.label}</div>
+          </div>
+        ))}
+      </div>
     </section>
   )
 }
 
-function WorkspaceReadinessSummary({ workspace }) {
-  const all = workspace.receipts.flatMap((r) => r.artifacts ?? [])
-  const acc = all.reduce(
-    (a, art) => {
-      if (art.status === 'ready') a.ready += 1
-      else if (art.status === 'needs screenshot') a.screenshot += 1
-      else if (art.status === 'needs metric') a.metric += 1
-      else if (art.status === 'needs polish') a.polish += 1
-      return a
-    },
-    { ready: 0, screenshot: 0, metric: 0, polish: 0 }
-  )
-  const counts = [
-    { label: 'Ready', count: acc.ready, dot: 'bg-emerald-500/60' },
-    { label: 'Screenshot', count: acc.screenshot, dot: 'bg-amber-400/70' },
-    { label: 'Metric', count: acc.metric, dot: 'bg-sky-400/70' },
-    { label: 'Polish', count: acc.polish, dot: 'bg-violet-400/60' },
-  ].filter((item) => item.count > 0)
-
-  if (counts.length === 0) return null
+function ProblemSection({ workspace }) {
+  const context = getProblemContext(workspace)
+  const copy = getCaseCopy(workspace)
 
   return (
-    <div className='flex flex-wrap gap-2 rounded-[14px] border border-[#11100d]/8 bg-[#fffaf1]/70 px-3 py-2.5'>
-      {counts.map(({ label, count, dot }) => (
-        <span key={label} className='flex items-center gap-1.5 text-[10px] uppercase tracking-[0.12em] text-[#11100d]/52'>
-          <span className={`h-1.5 w-1.5 rounded-full ${dot}`} />
-          {count} {label}
-        </span>
-      ))}
-    </div>
+    <section id={sectionDomId(workspace.slug, 'problem')} className='space-y-7 border-b border-[#11100d]/10 pb-12'>
+      <h4 className='text-[10px] uppercase tracking-[0.14em] text-[#11100d]/40'>Problem</h4>
+      <p className='max-w-3xl text-base leading-[1.65] text-[#11100d]/68'>{copy.problem}</p>
+      <dl className='grid gap-6 border-t border-[#11100d]/10 pt-6 md:grid-cols-2 md:gap-8'>
+        <div>
+          <dt className='text-[10px] uppercase tracking-[0.14em] text-[#11100d]/40'>Before</dt>
+          <dd className='mt-3 space-y-2'>
+            {context.before.map((item) => (
+              <p key={item} className='text-[15px] leading-7 text-[#11100d]/70'>
+                {item}
+              </p>
+            ))}
+          </dd>
+        </div>
+        <div className='border-t border-[#11100d]/10 pt-6 md:border-l md:border-t-0 md:pl-8 md:pt-0'>
+          <dt className='text-[10px] uppercase tracking-[0.14em] text-[#11100d]/40'>After</dt>
+          <dd className='mt-3 space-y-2'>
+            {context.after.map((item) => (
+              <p key={item} className='text-[15px] leading-7 text-[#11100d]/70'>
+                {item}
+              </p>
+            ))}
+          </dd>
+        </div>
+      </dl>
+    </section>
   )
 }
 
-function MirrorSystemWorkspace({ workspace, selectedReceipt, mode }) {
-  const accentBorder = `${workspace.accent}33`
-  const accentWash = `${workspace.accent}14`
-  const accentStrong = `${workspace.accent}22`
-  const receiptContents = selectedReceipt?.contents ?? []
-  const selectedArtifact = selectedReceipt?.artifacts?.[0] ?? {}
+function SystemSection({ workspace }) {
+  const model = getSystemModel(workspace)
+  const copy = getCaseCopy(workspace)
 
   return (
-    <div className='grid gap-3 lg:grid-cols-[1.1fr_0.9fr]'>
-      <WorkspaceSection title='signal pipeline'>
-        <div className='flex items-start justify-between gap-3 border-b border-[#11100d]/8 pb-4'>
-          <div>
-            <h3 className='text-base tracking-[-0.02em] text-[#11100d]'>Signal pipeline</h3>
-            <p className='mt-2 max-w-xl text-[13px] leading-6 text-[#11100d]/66'>Mirror turns messy self-reporting into a readable emotional signal.</p>
-          </div>
-          <span
-            className='rounded-full border px-2.5 py-1 text-[9px] uppercase tracking-[0.16em] text-[#11100d]/56'
-            style={{ borderColor: accentBorder, backgroundColor: accentWash }}
-          >
-            affective ux system
-          </span>
+    <section id={sectionDomId(workspace.slug, 'system')} className='space-y-7 border-b border-[#11100d]/10 pb-12'>
+      <h4 className='text-[10px] uppercase tracking-[0.14em] text-[#11100d]/40'>System</h4>
+      <p className='max-w-3xl text-base leading-[1.65] text-[#11100d]/68'>{copy.systemIntro}</p>
+
+      <div className='rounded-[22px] border border-[#11100d]/14 bg-[#171512] px-5 py-6 text-[#f7f1e7] lg:px-7 lg:py-7'>
+        <div className='mb-6 flex items-center justify-between'>
+          <div className='text-[10px] uppercase tracking-[0.14em] text-[#f7f1e7]/44'>System model</div>
+          <span className='h-2 w-2 rounded-full' style={{ backgroundColor: workspace.accent }} aria-hidden='true' />
         </div>
 
-        <div className='mt-4 space-y-3'>
-          {MIRROR_PIPELINE_STEPS.map((step, index) => (
-            <div key={step.id} className='relative pl-5'>
-              {index < MIRROR_PIPELINE_STEPS.length - 1 ? (
-                <span className='absolute left-[7px] top-8 h-[calc(100%-1rem)] w-px bg-[#11100d]/10' aria-hidden='true' />
-              ) : null}
-              <span
-                className='absolute left-0 top-1.5 h-3.5 w-3.5 rounded-full border border-[#11100d]/12 bg-[#fffaf1]'
-                style={{ boxShadow: `0 0 0 3px ${accentWash}` }}
-                aria-hidden='true'
-              />
-              <div className='rounded-[18px] border border-[#11100d]/10 bg-[#f7f1e7] px-3.5 py-3'>
-                <div className='flex flex-wrap items-center justify-between gap-2'>
-                  <div className='flex items-center gap-2.5'>
-                    <span className='text-[10px] uppercase tracking-[0.16em] text-[#11100d]/38'>{step.id}</span>
-                    <h4 className='text-sm tracking-[-0.01em] text-[#11100d]'>{step.title}</h4>
-                  </div>
-                  <span
-                    className='rounded-full border px-2 py-1 text-[9px] uppercase tracking-[0.14em] text-[#11100d]/52'
-                    style={{ borderColor: accentBorder, backgroundColor: accentWash }}
-                  >
-                    {step.chip}
-                  </span>
-                </div>
-                <p className='mt-2 text-[13px] leading-6 text-[#11100d]/68'>{step.body}</p>
+        <div className='divide-y divide-[#f7f1e7]/10'>
+          {model.map((step, index) => (
+            <div key={step.label} className='grid gap-3 py-4 sm:grid-cols-[58px_1fr] sm:items-start'>
+              <div className='text-[10px] uppercase tracking-[0.14em] text-[#f7f1e7]/50'>{String(index + 1).padStart(2, '0')}</div>
+              <div>
+                <div className='text-[13px] uppercase tracking-[0.12em] text-[#f7f1e7]/84'>{step.label}</div>
+                <p className='mt-2 max-w-3xl text-[14px] leading-6 text-[#f7f1e7]/72'>{step.meaning}</p>
               </div>
             </div>
           ))}
         </div>
-      </WorkspaceSection>
-
-      <WorkspaceSection title='sample reading' right>
-        <div
-          className='rounded-[22px] border px-4 py-4 shadow-[0_12px_30px_rgba(17,16,13,0.08)]'
-          style={{ borderColor: accentBorder, backgroundColor: '#181614' }}
-        >
-          <div className='flex items-start justify-between gap-3'>
-            <div>
-              <div className='text-[9px] uppercase tracking-[0.16em] text-[#f7f1e7]/46'>live output</div>
-              <h3 className='mt-2 text-lg tracking-[-0.03em] text-[#fffaf1]'>frayed</h3>
-            </div>
-            <span
-              className='rounded-full border px-2.5 py-1 text-[9px] uppercase tracking-[0.16em] text-[#fffaf1]/78'
-              style={{ borderColor: accentStrong, backgroundColor: accentWash }}
-            >
-              likely
-            </span>
-          </div>
-
-          <div className='mt-4 rounded-[18px] border border-[#f7f1e7]/10 bg-[#201d1a] px-3 py-3'>
-            <div className='text-[9px] uppercase tracking-[0.16em] text-[#f7f1e7]/42'>signals</div>
-            <dl className='mt-3 space-y-2'>
-              {MIRROR_SAMPLE_SIGNALS.map(([label, value]) => (
-                <div key={label} className='flex items-center justify-between gap-3 border-b border-[#f7f1e7]/8 pb-2 last:border-b-0 last:pb-0'>
-                  <dt className='text-[11px] uppercase tracking-[0.14em] text-[#f7f1e7]/46'>{label}</dt>
-                  <dd className='text-sm text-[#fffaf1]'>{value}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-
-          <div className='mt-4 space-y-3'>
-            <div>
-              <div className='text-[9px] uppercase tracking-[0.16em] text-[#f7f1e7]/42'>why this appeared</div>
-              <p className='mt-2 text-[13px] leading-6 text-[#f7f1e7]/78'>Low sleep combined with high tension and low clarity suggests the system is overloaded but still trying to function.</p>
-            </div>
-            <div>
-              <div className='text-[9px] uppercase tracking-[0.16em] text-[#f7f1e7]/42'>next move</div>
-              <p className='mt-2 text-[13px] leading-6 text-[#f7f1e7]/78'>Reduce incoming input. Do one task with no switching.</p>
-            </div>
-            <div className='rounded-[16px] border border-[#f7f1e7]/10 bg-[#201d1a] px-3 py-2.5'>
-              <div className='text-[9px] uppercase tracking-[0.16em] text-[#f7f1e7]/42'>what this proves</div>
-              <p className='mt-1 text-sm text-[#fffaf1]'>I can design product logic, not just screens.</p>
-            </div>
-          </div>
-        </div>
-
-        <div className='mt-4 rounded-[18px] border border-[#11100d]/10 bg-[#f7f1e7] p-3'>
-          <div className='flex flex-wrap items-start justify-between gap-2'>
-            <div>
-              <div className='text-[9px] uppercase tracking-[0.16em] text-[#11100d]/40'>selected receipt</div>
-              <h3 className='mt-1 text-sm tracking-[-0.01em] text-[#11100d]'>{selectedReceipt?.name}</h3>
-            </div>
-            <span className='rounded-full border border-[#11100d]/12 bg-[#fffaf1] px-2 py-1 text-[9px] uppercase tracking-[0.12em] text-[#11100d]/56'>
-              {selectedReceipt?.status || 'needs screenshot'}
-            </span>
-          </div>
-
-          <p className='mt-3 text-[13px] leading-6 text-[#11100d]/68'>{mode === 'proof' ? selectedReceipt?.proof : selectedReceipt?.claim}</p>
-
-          <div className='mt-3 flex flex-wrap gap-1.5'>
-            {receiptContents.slice(0, 4).map((item) => (
-              <span key={item} className='rounded-full border border-[#11100d]/10 bg-[#fffaf1] px-2 py-1 text-[10px] uppercase tracking-[0.12em] text-[#11100d]/54'>
-                {item}
-              </span>
-            ))}
-          </div>
-
-          <ArtifactCard artifact={selectedArtifact} compact className='mt-3' />
-        </div>
-      </WorkspaceSection>
-    </div>
+      </div>
+    </section>
   )
 }
 
-export default function CaseWorkspace({ workspace, closeWorkspace, mode, activeReceipt, onSelectReceipt }) {
-  const selectedReceipt = activeReceipt ?? workspace?.receipts?.[0] ?? null
-  const selectedArtifacts = selectedReceipt?.artifacts?.length ? selectedReceipt.artifacts : [{}]
-  const selectedContents = selectedReceipt?.contents ?? []
-  const owned = workspace?.owned ?? []
-  const nextProof = workspace?.nextProof ?? []
-  const isMirrorWorkspace = workspace?.slug === 'mirror'
+function DesignMoveSection({ workspace }) {
+  const copy = getCaseCopy(workspace)
 
   return (
+    <section id={sectionDomId(workspace.slug, 'design-move')} className='space-y-6 border-b border-[#11100d]/10 pb-12'>
+      <h4 className='text-[10px] uppercase tracking-[0.14em] text-[#11100d]/40'>Design move</h4>
+      <p className='max-w-3xl text-base leading-[1.65] text-[#11100d]/68'>{copy.designMove}</p>
+    </section>
+  )
+}
+
+function DecisionsSection({ workspace }) {
+  const rows = ['constraint', 'move', 'tradeoff', 'principle'].map((key) => {
+    const decision = workspace.decisions.find((item) => item.label === key)
+    return { key, body: decision?.body ?? 'Not captured for this case.' }
+  })
+
+  return (
+    <section id={sectionDomId(workspace.slug, 'decisions')} className='space-y-6 border-b border-[#11100d]/10 pb-12'>
+      <h4 className='text-[10px] uppercase tracking-[0.14em] text-[#11100d]/40'>Decisions</h4>
+      <div className='border-y border-[#11100d]/10'>
+        {rows.map((row) => (
+          <div key={row.key} className='grid grid-cols-1 gap-2 border-b border-[#11100d]/10 px-2 py-4 last:border-b-0 md:grid-cols-[170px_1fr] md:gap-4 md:px-4'>
+            <div className='text-[10px] uppercase tracking-[0.14em] text-[#11100d]/42'>{row.key}</div>
+            <p className='text-[15px] leading-7 text-[#11100d]/70'>{row.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function OutcomeSection({ workspace }) {
+  const outcomeItems = getOutcomeItems(workspace)
+  const copy = getCaseCopy(workspace)
+
+  return (
+    <section id={sectionDomId(workspace.slug, 'outcome')} className='space-y-6 pb-3'>
+      <h4 className='text-[10px] uppercase tracking-[0.14em] text-[#11100d]/40'>What changed</h4>
+      <p className='max-w-3xl text-base leading-[1.65] text-[#11100d]/68'>{copy.outcomeIntro}</p>
+      <ul className='divide-y divide-[#11100d]/10 border-y border-[#11100d]/10'>
+        {outcomeItems.map((item) => (
+          <li key={item} className='py-3 text-[15px] leading-7 text-[#11100d]/70'>
+            {item}
+          </li>
+        ))}
+      </ul>
+      <p className='pt-1 text-[12px] leading-6 text-[#11100d]/54'>Related proof lives in the archive inspector.</p>
+    </section>
+  )
+}
+
+export default function CaseWorkspace({ workspace, closeWorkspace }) {
+  return (
     <AnimatePresence>
-      {workspace && (
+      {workspace ? (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -242,146 +366,69 @@ export default function CaseWorkspace({ workspace, closeWorkspace, mode, activeR
             aria-label={`${workspace.title} case file workspace`}
           >
             <div className='grid h-full grid-rows-[auto_1fr]'>
-              <header className='flex items-center justify-between border-b border-[#11100d]/10 px-5 py-4 lg:px-7'>
-                <div>
-                  <div className='text-[9px] uppercase tracking-[0.2em] text-[#11100d]/42'>case file workspace</div>
-                  <h2 className='mt-1 text-lg tracking-[-0.02em]'>{workspace.title}</h2>
+              <header className='border-b border-[#11100d]/10 px-5 py-4 lg:px-7'>
+                <div className='flex items-start justify-between gap-4'>
+                  <div>
+                    <div className='text-[9px] uppercase tracking-[0.16em] text-[#11100d]/42'>case file workspace</div>
+                    <h2 className='mt-1 text-lg tracking-[-0.02em] text-[#11100d]'>{workspace.title}</h2>
+                  </div>
+                  <button
+                    aria-label='Close workspace'
+                    onClick={closeWorkspace}
+                    className='flex h-11 w-11 items-center justify-center rounded-full border border-[#11100d]/12 bg-[#fffaf1] text-[#11100d]/60 transition hover:text-[#11100d]'
+                  >
+                    <X className='h-4 w-4' />
+                  </button>
                 </div>
-                <button
-                  aria-label='Close workspace'
-                  onClick={closeWorkspace}
-                  className='flex h-11 w-11 items-center justify-center rounded-full border border-[#11100d]/12 bg-[#fffaf1] text-[#11100d]/60 transition hover:text-[#11100d]'
-                >
-                  <X className='h-4 w-4' />
-                </button>
+                <div className='mt-3 flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.14em] text-[#11100d]/42'>
+                  {[workspace.category, workspace.timeline, workspace.status, workspace.role].map((item, index) => (
+                    <React.Fragment key={item}>
+                      {index > 0 ? <span className='h-1 w-1 rounded-full bg-[#11100d]/18' aria-hidden='true' /> : null}
+                      <span>{item}</span>
+                    </React.Fragment>
+                  ))}
+                </div>
               </header>
 
-              <div className='grid h-full grid-cols-1 gap-3 overflow-y-auto p-4 lg:grid-cols-[1.35fr_1fr] lg:gap-4 lg:p-6'>
-                <div className='space-y-3'>
-                  <WorkspaceSection title='overview'>
-                    <p className='text-sm leading-7 text-[#11100d]/70'>{workspace.system}</p>
-                    <p className='mt-3 rounded-[14px] border border-[#11100d]/10 bg-[#f7f1e7] px-3 py-2 text-[12px] leading-5 text-[#11100d]/62'>
-                      Evidence archive in progress. Placeholder slots mark the exact proof assets being added.
-                    </p>
-                  </WorkspaceSection>
+              <div className='grid h-full grid-cols-1 overflow-hidden lg:grid-cols-[240px_1fr]'>
+                <aside className='hidden border-r border-[#11100d]/10 px-4 py-6 lg:block'>
+                  <div className='sticky top-0 space-y-6'>
+                    {SECTIONS.map((section) => (
+                      <button
+                        key={section.id}
+                        type='button'
+                        onClick={() => scrollToSection(workspace, section.id)}
+                        className='w-full rounded-full px-3 py-2 text-left text-[10px] uppercase tracking-[0.14em] text-[#11100d]/54 transition hover:bg-[#11100d]/6 hover:text-[#11100d]'
+                      >
+                        {section.label}
+                      </button>
+                    ))}
 
-                  {isMirrorWorkspace ? (
-                    <MirrorSystemWorkspace workspace={workspace} selectedReceipt={selectedReceipt} mode={mode} />
-                  ) : (
-                    <WorkspaceSection title='system'>
-                      <div className='grid gap-2 sm:grid-cols-2'>
-                        {workspace.path.map((step, i) => (
-                          <div key={step} className='rounded-[18px] border border-[#11100d]/10 bg-[#f7f1e7] p-3'>
-                            <div className='text-[9px] uppercase tracking-[0.15em] text-[#11100d]/36'>step {String(i + 1).padStart(2, '0')}</div>
-                            <div className='mt-1 text-sm text-[#11100d]/75'>{step}</div>
-                          </div>
-                        ))}
+                    <div className='border-t border-[#11100d]/10 pt-4'>
+                      <div className='text-[10px] uppercase tracking-[0.14em] text-[#11100d]/40'>case summary</div>
+                      <div className='mt-3 space-y-2 text-[12px] leading-6 text-[#11100d]/62'>
+                        <p>{workspace.type}</p>
+                        <p>{workspace.role}</p>
                       </div>
-                    </WorkspaceSection>
-                  )}
-
-                  <WorkspaceSection title='decisions'>
-                    <div className='grid gap-2 sm:grid-cols-2'>
-                      {workspace.decisions.map((decision) => (
-                        <div key={decision.label} className='rounded-[18px] border border-[#11100d]/10 bg-[#f7f1e7] p-3'>
-                          <div className='text-[9px] uppercase tracking-[0.16em] text-[#11100d]/36'>{decision.label}</div>
-                          <p className='mt-1 text-[12px] leading-6 text-[#11100d]/66'>{decision.body}</p>
-                        </div>
-                      ))}
                     </div>
-                  </WorkspaceSection>
+                  </div>
+                </aside>
 
-                  <WorkspaceSection title='receipts'>
-                    <div className='space-y-2'>
-                      {workspace.receipts.map((receipt) => {
-                        const active = selectedReceipt?.id === receipt.id
-                        const compactArtifact = receipt.artifacts?.[0] ?? {}
-
-                        return (
-                          <button
-                            key={receipt.id}
-                            onClick={() => onSelectReceipt(receipt.id)}
-                            className={cx(
-                              'w-full rounded-[18px] border p-3 text-left',
-                              active ? 'border-[#11100d]/20 bg-[#11100d]/5' : 'border-[#11100d]/10 bg-[#f7f1e7]'
-                            )}
-                          >
-                            <div className='flex items-center justify-between gap-2'>
-                              <div className='text-[10px] uppercase tracking-[0.16em] text-[#11100d]/36'>{receipt.format}</div>
-                              <span className='rounded-full border border-[#11100d]/12 bg-[#fffaf1] px-2 py-1 text-[9px] tracking-[0.03em] text-[#11100d]/58'>
-                                {receipt.status || 'needs screenshot'}
-                              </span>
-                            </div>
-                            <div className='mt-1 text-sm text-[#11100d]'>{receipt.name}</div>
-                            <div className='mt-1 text-[13px] leading-6 text-[#11100d]/62'>{mode === 'proof' ? receipt.proof : receipt.claim}</div>
-                            <ArtifactCard artifact={compactArtifact} compact className='mt-2' />
-                          </button>
-                        )
-                      })}
-                    </div>
-                  </WorkspaceSection>
-                </div>
-
-                <div className='space-y-3'>
-                  {!isMirrorWorkspace ? (
-                    <WorkspaceSection title='selected receipt' right>
-                      <h3 className='text-sm tracking-[-0.01em] text-[#11100d]'>{selectedReceipt?.name}</h3>
-                      <div className='mt-2 flex items-center justify-between gap-2'>
-                        <p className='text-[13px] leading-6 text-[#11100d]/74'>{selectedReceipt?.proof}</p>
-                        <span className='rounded-full border border-[#11100d]/12 bg-[#f7f1e7] px-2 py-1 text-[9px] tracking-[0.03em] text-[#11100d]/58'>
-                          {selectedReceipt?.status || 'needs screenshot'}
-                        </span>
-                      </div>
-
-                      <div className='mt-4 grid gap-2'>
-                        {(mode === 'proof' ? selectedContents : selectedContents.slice(0, 3)).map((item) => (
-                          <div key={item} className='rounded-[14px] border border-[#11100d]/10 bg-[#f7f1e7] px-3 py-2 text-[12px] text-[#11100d]/68'>
-                            {item}
-                          </div>
-                        ))}
-                      </div>
-                    </WorkspaceSection>
-                  ) : null}
-
-                  <WorkspaceSection title='artifacts'>
-                    <WorkspaceReadinessSummary workspace={workspace} />
-                    <div className='mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-1'>
-                      {selectedArtifacts.map((artifact, index) => (
-                        <ArtifactCard key={artifact.id || `${selectedReceipt?.id || 'receipt'}-artifact-${index}`} artifact={artifact} />
-                      ))}
-                    </div>
-                  </WorkspaceSection>
-
-                  <WorkspaceSection title='why this matters'>
-                    <p className='text-[13px] leading-6 text-[#11100d]/68'>{workspace.hiringTranslation}</p>
-                  </WorkspaceSection>
-
-                  <WorkspaceSection title='what I owned'>
-                    <div className='flex flex-wrap gap-1.5'>
-                      {owned.map((item) => (
-                        <span key={item} className='rounded-full border border-[#11100d]/10 bg-[#f7f1e7] px-2 py-1 text-[10px] uppercase tracking-[0.12em] text-[#11100d]/52'>
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </WorkspaceSection>
-
-                  <WorkspaceSection title='what to add next'>
-                    <ul className='space-y-1.5'>
-                      {nextProof.map((item) => (
-                        <li key={item} className='flex items-start gap-2 text-[12px] leading-5 text-[#11100d]/68'>
-                          <CheckCircle2 className='mt-0.5 h-3.5 w-3.5 text-[#11100d]/44' />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </WorkspaceSection>
-                </div>
+                <main className='h-full overflow-y-auto px-5 py-7 lg:px-10 lg:py-10'>
+                  <div className='relative space-y-12 lg:space-y-16'>
+                    <BriefSection workspace={workspace} />
+                    <ProblemSection workspace={workspace} />
+                    <SystemSection workspace={workspace} />
+                    <DesignMoveSection workspace={workspace} />
+                    <DecisionsSection workspace={workspace} />
+                    <OutcomeSection workspace={workspace} />
+                  </div>
+                </main>
               </div>
             </div>
           </motion.div>
         </motion.div>
-      )}
+      ) : null}
     </AnimatePresence>
   )
 }
