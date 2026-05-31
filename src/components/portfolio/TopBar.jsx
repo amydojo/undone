@@ -27,7 +27,7 @@ export default function TopBar({ search, setSearch, mode, setMode, searchInputRe
         <span className="hidden rounded-full border border-[#11100d]/10 px-2 py-1 text-[9px] uppercase tracking-[0.14em] text-[#11100d]/36 sm:block">/</span>
       </label>
 
-      <div className="grid grid-cols-2 gap-2 rounded-full border border-[#11100d]/10 bg-[#fffaf1]/70 p-1" role="group" aria-label="View mode selector">
+      <div className="hidden lg:grid lg:grid-cols-2 gap-2 rounded-full border border-[#11100d]/10 bg-[#fffaf1]/70 p-1" role="group" aria-label="View mode selector">
         {[
           ["overview", "overview"],
           ["proof", "proof mode"]

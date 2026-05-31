@@ -32,14 +32,17 @@ export default function ArtifactCard({ artifact = {}, className, compact = false
   const hasSource = typeof artifact.src === 'string' && artifact.src.trim().length > 0
 
   return (
-    <article className={cx('overflow-hidden rounded-[18px] border border-[#11100d]/10 bg-[#f7f1e7]', compact ? 'p-2.5' : 'p-3', className)}>
+    <article
+      className={cx('overflow-hidden rounded-[18px] border border-[#11100d]/10 bg-[#f7f1e7]', compact ? 'p-2.5' : 'p-3', className)}
+      aria-label={label}
+    >
       <div className={cx('overflow-hidden rounded-[14px] border border-[#11100d]/10', compact ? 'h-20' : 'h-28')}>
         {hasSource ? (
           <img src={artifact.src} alt={label} className='h-full w-full object-cover' loading='lazy' />
         ) : (
           <div className='flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-[#fffaf1] to-[#f7f1e7] px-3 text-center'>
             <ImagePlus className={cx('text-[#11100d]/40', compact ? 'h-3.5 w-3.5' : 'h-4 w-4')} />
-            <p className='mt-1 text-[10px] uppercase tracking-[0.14em] text-[#11100d]/44'>{PLACEHOLDER_LABEL}</p>
+            <p className='mt-1 text-[10px] uppercase tracking-[0.14em] text-[#11100d]/44'>{label}</p>
             {!compact ? <p className='mt-1 text-[11px] leading-relaxed text-[#11100d]/55'>{caption}</p> : null}
           </div>
         )}
