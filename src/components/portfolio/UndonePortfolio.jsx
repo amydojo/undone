@@ -12,7 +12,7 @@ export default function UndonePortfolioV10() {
   const [mode, setMode] = useState("overview");
   const [activeFilter, setActiveFilter] = useState("all");
   const [activeRecordSlug, setActiveRecordSlug] = useState(records[0].slug);
-  const [activeReceiptId, setActiveReceiptId] = useState(records[0].receipts[0].id);
+  const [activeReceiptId, setActiveReceiptId] = useState(records[0].receipts[0]?.id ?? null);
   const [workspaceRecordSlug, setWorkspaceRecordSlug] = useState(null);
   const searchInputRef = useRef(null);
 
@@ -55,10 +55,14 @@ export default function UndonePortfolioV10() {
   }, [activeRecord.slug, filteredRecords]);
 
   useEffect(() => {
-    if (!activeRecord.receipts.some((receipt) => receipt.id === activeReceiptId)) {
-      setActiveReceiptId(activeRecord.receipts[0]?.id);
+    if (activeRecord.receipts.length === 0) {
+      setActiveReceiptId(null);
+      return;
     }
-  }, [activeReceiptId, activeRecord]);
+    setActiveReceiptId((currentId) =>
+      activeRecord.receipts.some((receipt) => receipt.id === currentId) ? currentId : activeRecord.receipts[0].id
+    );
+  }, [activeRecord]);
 
   useEffect(() => {
     function handleKeyDown(event) {
@@ -68,12 +72,13 @@ export default function UndonePortfolioV10() {
         tagName === "INPUT" ||
         tagName === "TEXTAREA" ||
         tagName === "SELECT" ||
-        activeElement?.isContentEditable;
+        activeElement?.isContentEditable === true;
 
       if (event.key === "Escape") {
         setWorkspaceRecordSlug(null);
       }
 
+      // Ignore modifier shortcuts to avoid conflicts with browser/system commands.
       if (event.metaKey || event.ctrlKey || event.altKey) {
         return;
       }

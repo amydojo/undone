@@ -6,6 +6,10 @@ import { cx } from "../../utils/cx";
 export default function ProofRail({ record, activeReceiptId, setActiveReceiptId, mode }) {
   const selectedReceipt = record.receipts.find((receipt) => receipt.id === activeReceiptId) || record.receipts[0];
 
+  if (!selectedReceipt) {
+    return null;
+  }
+
   return (
     <aside className="border-l border-[#11100d]/10 bg-[#f0eadf]/68 p-4 lg:h-[calc(100vh-73px)] lg:overflow-y-auto" aria-label="Receipt inspector">
       <div className="mb-5 flex items-center justify-between">

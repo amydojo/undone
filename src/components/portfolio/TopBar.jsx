@@ -13,7 +13,7 @@ export default function TopBar({ search, setSearch, mode, setMode, searchInputRe
         <span className="rounded-full border border-[#11100d]/10 px-3 py-1 text-[9px] uppercase tracking-[0.18em] text-[#11100d]/48">v10</span>
       </div>
 
-      <label className="flex min-w-0 items-center gap-3 rounded-full border border-[#11100d]/10 bg-[#fffaf1]/74 px-4 py-2" aria-label="Portfolio search">
+      <label className="flex min-w-0 items-center gap-3 rounded-full border border-[#11100d]/10 bg-[#fffaf1]/74 px-4 py-2">
         <Search className="h-4 w-4 text-[#11100d]/34" />
         <input
           ref={searchInputRef}
@@ -27,7 +27,7 @@ export default function TopBar({ search, setSearch, mode, setMode, searchInputRe
         <span className="hidden rounded-full border border-[#11100d]/10 px-2 py-1 text-[9px] uppercase tracking-[0.14em] text-[#11100d]/36 sm:block">/</span>
       </label>
 
-      <div className="grid grid-cols-2 gap-2 rounded-full border border-[#11100d]/10 bg-[#fffaf1]/70 p-1" role="tablist" aria-label="View mode selector">
+      <div className="grid grid-cols-2 gap-2 rounded-full border border-[#11100d]/10 bg-[#fffaf1]/70 p-1" role="group" aria-label="View mode selector">
         {[
           ["overview", "overview"],
           ["proof", "proof mode"]

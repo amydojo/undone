@@ -25,6 +25,10 @@ export default function CaseWorkspace({ record, onClose }) {
     [activeReceiptId, record.receipts]
   );
 
+  if (!activeReceipt) {
+    return null;
+  }
+
   return (
     <motion.div
       className="fixed inset-0 z-50 bg-[#050504]/78 p-2 backdrop-blur-2xl lg:p-5"
