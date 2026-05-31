@@ -3,33 +3,38 @@ import { profile } from "../../data/profile";
 
 export default function ProfileStrip() {
   return (
-    <section className="mt-5 grid gap-3 rounded-[32px] border border-[#11100d]/10 bg-[#fffaf1]/58 p-4 lg:grid-cols-[1.15fr_0.85fr_0.85fr_180px] lg:p-5" aria-label="Profile strip">
+    <section className="mt-5 grid gap-3 rounded-[28px] border border-[#11100d]/10 bg-[#fffaf1]/58 p-5 lg:grid-cols-[1.2fr_1fr_1fr_180px]" aria-label="Profile strip">
+      {/* Identity */}
       <div>
-        <div className="mb-3 text-[10px] uppercase tracking-[0.18em] text-[#11100d]/38">who amy is</div>
-        <p className="max-w-xl text-base leading-7 tracking-[-0.012em] text-[#11100d]/68">{profile.intro}</p>
+        <div className="mb-1 text-[9px] uppercase tracking-[0.18em] text-[#11100d]/38">Amy Do</div>
+        <p className="mb-3 text-[13px] font-medium leading-5 tracking-[-0.01em] text-[#11100d]">{profile.positioning}</p>
+        <p className="max-w-xl text-sm leading-6 text-[#11100d]/60">{profile.oneSentence}</p>
       </div>
 
+      {/* Role fit */}
       <div>
-        <div className="mb-3 text-[10px] uppercase tracking-[0.18em] text-[#11100d]/38">looking for</div>
-        <div className="flex flex-wrap gap-2">
-          {profile.lookingFor.map((item) => (
-            <span key={item} className="rounded-full border border-[#11100d]/10 px-3 py-2 text-[10px] uppercase tracking-[0.13em] text-[#11100d]/58">{item}</span>
+        <div className="mb-3 text-[9px] uppercase tracking-[0.18em] text-[#11100d]/38">Role fit</div>
+        <div className="flex flex-wrap gap-1.5">
+          {profile.roleFits.map((item) => (
+            <span key={item} className="rounded-full border border-[#11100d]/10 px-3 py-1.5 text-[10px] text-[#11100d]/62">{item}</span>
           ))}
         </div>
       </div>
 
+      {/* Tool fluency */}
       <div>
-        <div className="mb-3 text-[10px] uppercase tracking-[0.18em] text-[#11100d]/38">current focus</div>
-        <div className="grid gap-2">
-          {profile.currentFocus.map((item) => (
-            <div key={item} className="text-sm leading-5 text-[#11100d]/62">→ {item}</div>
+        <div className="mb-3 text-[9px] uppercase tracking-[0.18em] text-[#11100d]/38">Tool fluency</div>
+        <div className="flex flex-wrap gap-1.5">
+          {profile.toolFluency.map((item) => (
+            <span key={item} className="rounded-full border border-[#11100d]/10 bg-[#f7f1e7]/60 px-3 py-1.5 text-[10px] text-[#11100d]/62">{item}</span>
           ))}
         </div>
       </div>
 
+      {/* Contact */}
       <div className="flex flex-col justify-between gap-3">
         <div>
-          <div className="mb-2 text-[10px] uppercase tracking-[0.18em] text-[#11100d]/38">contact</div>
+          <div className="mb-2 text-[9px] uppercase tracking-[0.18em] text-[#11100d]/38">Contact</div>
           <a href={`mailto:${profile.contact}`} className="text-sm text-[#11100d]/70 underline decoration-[#11100d]/20 underline-offset-4 hover:text-[#11100d]">{profile.contact}</a>
         </div>
         <a
