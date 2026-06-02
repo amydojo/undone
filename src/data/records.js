@@ -402,10 +402,16 @@ export const records = [
         id: 'leads-master-table-logic',
         name: 'Leads_Master table logic',
         format: 'data model',
-        status: 'needs screenshot',
-        claim: 'Shows the data spine behind the dashboard.',
-        proof: 'Lead source, service interest, status, booking behavior, and conversion value mapped together.',
-        contents: ['lead source', 'campaign', 'service interest', 'status', 'booking behavior', 'conversion value'],
+        status: 'ready',
+        claim: 'Shows the shared lead record that connected acquisition source, service interest, CRM state, booking behavior, and conversion value.',
+        proof: 'Shared lead record connecting acquisition source, service interest, CRM state, booking behavior, and conversion value.',
+        contents: ['name', 'phone', 'email', 'lead source', 'CRM state', 'conversion value'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'meta-leads-master-table-logic'
+          }
+        ],
         artifacts: [
           {
             id: 'meta-leads-master-dashboard',
@@ -421,10 +427,16 @@ export const records = [
         id: 'campaign-performance-logic',
         name: 'Campaign_Performance logic',
         format: 'analytics table',
-        status: 'needs metric',
-        claim: 'Shows paid media metrics structured for decisions, not screenshots.',
-        proof: 'Spend, leads, CPL, CTR, ROAS, creative angle, and fallback generation.',
-        contents: ['campaign name', 'spend', 'leads', 'CPL', 'CTR', 'ROAS', 'creative angle'],
+        status: 'ready',
+        claim: 'Shows how ad performance was translated from platform metrics into business signals.',
+        proof: 'Meta signals, CRM signals, and decision signals mapped into one optimization table.',
+        contents: ['spend', 'impressions', 'clicks', 'leads', 'booked', 'ROAS'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'meta-campaign-performance-logic'
+          }
+        ],
         artifacts: [
           {
             id: 'meta-ads-performance-view',
@@ -440,10 +452,16 @@ export const records = [
         id: 'revenue-attribution-model',
         name: 'Revenue_Attribution model',
         format: 'logic layer',
-        status: 'needs link',
-        claim: 'Shows the bridge between marketing activity and business outcome.',
-        proof: 'Booking value, converted revenue, campaign source, confidence score, and LTV signal.',
-        contents: ['booking value', 'converted revenue', 'source campaign', 'confidence score', 'LTV signal'],
+        status: 'ready',
+        claim: 'Shows how revenue was matched back to campaign and lead context using confidence based attribution logic.',
+        proof: 'Revenue matched back to lead and campaign context with confidence based attribution logic.',
+        contents: ['lead record', 'campaign context', 'booking behavior', 'revenue value', 'confidence', 'ROAS context'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'meta-revenue-attribution-model'
+          }
+        ],
         artifacts: [
           {
             id: 'meta-revenue-attribution-document',
@@ -460,9 +478,15 @@ export const records = [
         name: 'Decision dashboard UI',
         format: 'interface system',
         status: 'ready',
-        claim: 'Shows analytics becoming usable for weekly optimization.',
-        proof: 'Campaign health, funnel breakdowns, creative insights, and next action prompts.',
-        contents: ['campaign cards', 'funnel metrics', 'lead status', 'creative insights', 'next action prompts'],
+        claim: 'Shows the final decision layer where campaign, CRM, and revenue signals became optimization guidance.',
+        proof: 'Campaign, CRM, and revenue signals translated into optimization guidance.',
+        contents: ['spend', 'leads', 'booked', 'revenue', 'campaign health', 'next move'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'meta-decision-dashboard-ui'
+          }
+        ],
         artifacts: [
           {
             id: 'meta-decision-dashboard-ui',

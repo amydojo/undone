@@ -1,8 +1,7 @@
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
-import ArtifactCard from "../ui/ArtifactCard";
 import MetricPill from "../ui/MetricPill";
-import { CheckCircle2, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import ProfileStrip from "./ProfileStrip";
 import OverviewArtifact from "./OverviewArtifact";
 import { cx } from "../../utils/cx";
@@ -19,7 +18,6 @@ const DECODER_LINES = {
 const TABS = [
   { id: "overview", label: "Overview" },
   { id: "proof", label: "Receipts" },
-  { id: "artifacts", label: "Artifacts" },
 ];
 
 function displayStatus(raw) {
@@ -193,117 +191,6 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
   );
 }
 
-// ─── Artifacts Tab ───────────────────────────────────────────────────────────
-
-// Compute readiness stats across all artifacts in all receipts (single pass)
-function getReadinessStats(record) {
-  const all = record.receipts.flatMap((r) => r.artifacts ?? []);
-  return all.reduce(
-    (acc, a) => {
-      if (a.status === "ready") acc.ready += 1;
-      else if (a.status === "needs screenshot") acc.needsScreenshot += 1;
-      else if (a.status === "needs metric") acc.needsMetric += 1;
-      else if (a.status === "needs polish") acc.needsPolish += 1;
-      acc.total += 1;
-      return acc;
-    },
-    { ready: 0, needsScreenshot: 0, needsMetric: 0, needsPolish: 0, total: 0 }
-  );
-}
-
-function ReadinessSummary({ record }) {
-  const stats = getReadinessStats(record);
-  const items = [
-    { label: "Ready", count: stats.ready, dot: "bg-emerald-500/60" },
-    { label: "Screenshot", count: stats.needsScreenshot, dot: "bg-amber-400/70" },
-    { label: "Metric", count: stats.needsMetric, dot: "bg-sky-400/70" },
-    { label: "Polish", count: stats.needsPolish, dot: "bg-violet-400/60" },
-  ].filter((item) => item.count > 0);
-
-  if (items.length === 0) return null;
-
-  return (
-    <div className="flex flex-wrap gap-2 rounded-[14px] border border-[#11100d]/8 bg-[#fffaf1]/70 px-3 py-2.5">
-      {items.map(({ label, count, dot }) => (
-        <span key={label} className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.12em] text-[#11100d]/52">
-          <span className={`h-1.5 w-1.5 rounded-full ${dot}`} />
-          {count} {label}
-        </span>
-      ))}
-    </div>
-  );
-}
-
-function ArtifactsTab({ record, activeReceipt }) {
-  const selectedReceipt = activeReceipt;
-  const artifacts = selectedReceipt?.artifacts ?? [{}];
-  const nextProof = record.nextProof ?? [];
-
-  // Collect all artifacts across all receipts for gallery
-  const allArtifacts = record.receipts.flatMap((r) =>
-    (r.artifacts ?? [{}]).map((a) => ({ ...a, receiptName: r.name }))
-  );
-
-  return (
-    <div className="space-y-4 px-4 py-4">
-      {/* Asset readiness summary */}
-      <ReadinessSummary record={record} />
-
-      {/* Featured artifact */}
-      {artifacts[0] !== undefined && (
-        <div>
-          <div className="mb-2 text-[9px] uppercase tracking-[0.18em] text-[#11100d]/40">
-            Featured artifact
-          </div>
-          <ArtifactCard artifact={artifacts[0]} />
-        </div>
-      )}
-
-      {/* Artifact gallery */}
-      {allArtifacts.length > 1 && (
-        <div>
-          <div className="mb-2 text-[9px] uppercase tracking-[0.18em] text-[#11100d]/40">
-            Artifact gallery
-          </div>
-          <div className="grid grid-cols-2 gap-2">
-            {allArtifacts.map((artifact, index) => (
-              <ArtifactCard
-                key={artifact.id || `gallery-artifact-${index}`}
-                artifact={artifact}
-                compact
-              />
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Next proof checklist */}
-      {nextProof.length > 0 && (
-        <div className="rounded-[18px] border border-[#11100d]/10 bg-[#fffaf1] p-4">
-          <div className="mb-3 text-[9px] uppercase tracking-[0.18em] text-[#11100d]/40">
-            What to add next
-          </div>
-          <ul className="space-y-2">
-            {nextProof.map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-2 text-[12px] leading-5 text-[#11100d]/68"
-              >
-                <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#11100d]/40" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-3 rounded-[12px] border border-[#11100d]/10 bg-[#f7f1e7] px-3 py-2 text-[11px] leading-5 text-[#11100d]/50">
-            Evidence archive in progress. Placeholder slots mark the exact proof
-            assets being added.
-          </p>
-        </div>
-      )}
-    </div>
-  );
-}
-
 // ─── Main MobileView ─────────────────────────────────────────────────────────
 
 export default function MobileView({
@@ -315,12 +202,20 @@ export default function MobileView({
   mobileTab,
   setMobileTab,
 }) {
+  const activeMobileTab = TABS.some(({ id }) => id === mobileTab) ? mobileTab : "overview";
+
+  React.useEffect(() => {
+    if (activeMobileTab !== mobileTab) {
+      setMobileTab(activeMobileTab);
+    }
+  }, [activeMobileTab, mobileTab, setMobileTab]);
+
   return (
     <div className="lg:hidden">
       {/* Sticky tab bar — positioned below the sticky case selector (~80 px) */}
       <div className="sticky top-20 z-20 border-b border-[#11100d]/10 bg-[#f7f1e7]/92 px-4 py-2.5 backdrop-blur-xl">
         <div
-          className="grid grid-cols-3 gap-1 rounded-full border border-[#11100d]/10 bg-[#fffaf1]/70 p-1"
+          className="grid grid-cols-2 gap-1 rounded-full border border-[#11100d]/10 bg-[#fffaf1]/70 p-1"
           role="group"
           aria-label="Mobile section tabs"
         >
@@ -329,11 +224,11 @@ export default function MobileView({
               key={id}
               type="button"
               aria-label={`Show ${label} tab`}
-              aria-pressed={mobileTab === id}
+              aria-pressed={activeMobileTab === id}
               onClick={() => setMobileTab(id)}
               className={cx(
                 "rounded-full py-2.5 text-[10px] uppercase tracking-[0.14em] transition",
-                mobileTab === id
+                activeMobileTab === id
                   ? "bg-[#11100d] text-[#f7f1e7]"
                   : "text-[#11100d]/46"
               )}
@@ -345,18 +240,15 @@ export default function MobileView({
       </div>
 
       {/* Tab content */}
-      {mobileTab === "overview" && (
+      {activeMobileTab === "overview" && (
         <OverviewTab record={record} mode={mode} openWorkspace={openWorkspace} />
       )}
-      {mobileTab === "proof" && (
+      {activeMobileTab === "proof" && (
         <ProofTab
           record={record}
           activeReceipt={activeReceipt}
           onSelectReceipt={onSelectReceipt}
         />
-      )}
-      {mobileTab === "artifacts" && (
-        <ArtifactsTab record={record} activeReceipt={activeReceipt} />
       )}
     </div>
   );

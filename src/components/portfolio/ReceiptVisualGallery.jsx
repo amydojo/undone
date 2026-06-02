@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import MirrorReceiptVisual from "./receipt-visuals/MirrorReceiptVisual";
 import { getMirrorReceiptVisual } from "../../data/mirrorReceiptVisuals";
+import { getMetaAirtableReceiptVisual } from "../../data/metaAirtableReceiptVisuals";
 
 function resolvePublicSrc(src) {
   if (!src.startsWith("/")) return src;
@@ -23,7 +24,7 @@ function getAssetKey(asset, index) {
 
 function getAssetDefinition(asset) {
   if (asset.kind !== "component") return null;
-  return getMirrorReceiptVisual(asset.componentKey);
+  return getMirrorReceiptVisual(asset.componentKey) ?? getMetaAirtableReceiptVisual(asset.componentKey);
 }
 
 export default function ReceiptVisualGallery({
