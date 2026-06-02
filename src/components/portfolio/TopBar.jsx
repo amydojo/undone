@@ -1,11 +1,10 @@
 import React from "react";
 import { Search } from "lucide-react";
-import { cx } from "../../utils/cx";
 import { profile } from "../../data/profile";
 
-export default function TopBar({ search, setSearch, mode, setMode, searchInputRef }) {
+export default function TopBar({ search, setSearch, searchInputRef }) {
   return (
-    <header className="grid grid-cols-1 gap-3 border-b border-[#11100d]/10 bg-[#f7f1e7]/88 px-4 py-4 backdrop-blur-xl lg:grid-cols-[300px_1fr_320px] lg:px-6">
+      <header className="grid grid-cols-1 gap-3 border-b border-[#11100d]/10 bg-[#f7f1e7]/88 px-4 py-4 backdrop-blur-xl lg:grid-cols-[300px_1fr_auto] lg:px-6">
       {/* Identity: mobile = stacked + actions right; desktop = inline */}
       <div className="flex items-start justify-between gap-3 lg:items-center">
         <div className="flex flex-col gap-1 lg:flex-row lg:items-center lg:gap-3">
@@ -48,33 +47,11 @@ export default function TopBar({ search, setSearch, mode, setMode, searchInputRe
         <span className="hidden rounded-full border border-[#11100d]/10 px-2 py-1 text-[9px] uppercase tracking-[0.14em] text-[#11100d]/36 sm:block">/</span>
       </label>
 
-      {/* Desktop right: résumé · contact + mode switcher */}
-      <div className="hidden lg:flex lg:items-center lg:justify-end lg:gap-4">
-        <div className="flex items-center gap-3">
-          <a href={profile.resumeHref} aria-label="Open resume" className="text-[9px] uppercase tracking-[0.13em] text-[#11100d]/36 transition hover:text-[#11100d]">résumé</a>
-          <span className="text-[#11100d]/14" aria-hidden="true">·</span>
-          <a href={`mailto:${profile.contact}`} aria-label="Send email" className="text-[9px] uppercase tracking-[0.13em] text-[#11100d]/36 transition hover:text-[#11100d]">contact</a>
-        </div>
-        <div className="grid grid-cols-2 gap-2 rounded-full border border-[#11100d]/10 bg-[#fffaf1]/70 p-1" role="group" aria-label="View mode selector">
-          {[
-            ["overview", "overview"],
-            ["proof", "proof mode"]
-          ].map(([value, label]) => (
-            <button
-              key={value}
-              type="button"
-              aria-label={`Switch to ${label}`}
-              aria-pressed={mode === value}
-              onClick={() => setMode(value)}
-              className={cx(
-                "rounded-full px-3 py-2 text-[10px] uppercase tracking-[0.16em] transition",
-                mode === value ? "bg-[#11100d] text-[#f7f1e7]" : "text-[#11100d]/46 hover:text-[#11100d]"
-              )}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
+      {/* Desktop right: résumé · contact */}
+      <div className="hidden lg:flex lg:items-center lg:gap-3">
+        <a href={profile.resumeHref} aria-label="Open resume" className="text-[9px] uppercase tracking-[0.13em] text-[#11100d]/36 transition hover:text-[#11100d]">résumé</a>
+        <span className="text-[#11100d]/14" aria-hidden="true">·</span>
+        <a href={`mailto:${profile.contact}`} aria-label="Send email" className="text-[9px] uppercase tracking-[0.13em] text-[#11100d]/36 transition hover:text-[#11100d]">contact</a>
       </div>
     </header>
   );

@@ -1,50 +1,70 @@
 import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronRight } from 'lucide-react'
-import ArtifactCard from '../ui/ArtifactCard'
 import cx from '../../utils/cx'
 
-export default function ProofRail({ mode, record, activeReceipt, onSelectReceipt }) {
+function displayStatus(raw) {
+  if (!raw || raw === 'needs screenshot') return 'visual pending'
+  if (raw === 'needs metric') return 'metric pending'
+  if (raw === 'needs polish') return 'polish pending'
+  if (raw === 'needs link') return 'link pending'
+  return raw
+}
+
+export default function ProofRail({ record, activeReceipt, onSelectReceipt }) {
   const receipts = record.receipts
   const selectedReceipt = activeReceipt ?? receipts[0]
-  const previewArtifact = selectedReceipt?.artifacts?.[0] ?? {}
   const receiptContents = selectedReceipt?.contents ?? []
 
   return (
-    <aside className='border-l border-[#11100d]/10 bg-[#f7f1e7] p-4 lg:p-5'>
-      <div className='mb-3 flex items-center justify-between text-[9px] uppercase tracking-[0.2em] text-[#11100d]/44'>
-        <span>receipt inspector</span>
-        <span>{mode}</span>
+    <aside className='flex flex-col border-l border-[#11100d]/10 bg-[#f7f1e7]'>
+      {/* Header */}
+      <div className='flex items-center justify-between border-b border-[#11100d]/8 px-4 py-4 lg:px-5'>
+        <span className='text-[9px] uppercase tracking-[0.2em] text-[#11100d]/44'>Receipt Inspector</span>
+        <span className='rounded-full border border-[#11100d]/8 px-2 py-0.5 text-[9px] text-[#11100d]/36'>
+          {receipts.length} proof {receipts.length === 1 ? 'object' : 'objects'}
+        </span>
       </div>
 
-      <div className='grid gap-2'>
+      {/* Compact receipt list */}
+      <div className='divide-y divide-[#11100d]/6'>
         {receipts.map((receipt, i) => {
           const active = selectedReceipt?.id === receipt.id
+          const status = displayStatus(receipt.status)
           return (
             <button
               key={receipt.id}
+              type='button'
+              aria-label={`Select receipt: ${receipt.name}`}
+              aria-pressed={active}
               onClick={() => onSelectReceipt(receipt.id)}
               className={cx(
-                'w-full rounded-[18px] border p-3 text-left transition',
-                active ? 'border-[#11100d]/20 bg-[#fffaf1]' : 'border-[#11100d]/10 bg-[#fffaf1]/40 hover:border-[#11100d]/16'
+                'flex w-full items-center gap-3 px-4 py-3 text-left transition lg:px-5',
+                active ? 'bg-[#fffaf1]' : 'hover:bg-[#fffaf1]/50'
               )}
             >
-              <div className='mb-2 flex items-center justify-between text-[9px] uppercase tracking-[0.16em] text-[#11100d]/40'>
-                <span>receipt {String(i + 1).padStart(2, '0')}</span>
-                <ChevronRight className={cx('h-3.5 w-3.5 transition', active && 'translate-x-[1px]')} />
+              <span className='w-5 shrink-0 text-[10px] tabular-nums text-[#11100d]/24'>
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <div className='min-w-0 flex-1'>
+                <p className={cx('truncate text-[12px] leading-5', active ? 'text-[#11100d]' : 'text-[#11100d]/68')}>
+                  {receipt.name}
+                </p>
+                <p className='truncate text-[10px] text-[#11100d]/36'>{receipt.format}</p>
               </div>
-              <p className='text-sm text-[#11100d]'>{receipt.name}</p>
-              <div className='mt-1 flex items-center justify-between gap-2'>
-                <p className='text-[12px] text-[#11100d]/55'>{receipt.format}</p>
-                <span className='rounded-full border border-[#11100d]/12 bg-[#f7f1e7] px-2 py-1 text-[9px] tracking-[0.04em] text-[#11100d]/58'>
-                  {receipt.status || 'needs screenshot'}
-                </span>
-              </div>
+              <span className={cx(
+                'shrink-0 rounded-full px-2 py-0.5 text-[9px]',
+                active ? 'bg-[#11100d]/[0.05] text-[#11100d]/48' : 'text-[#11100d]/28'
+              )}>
+                {status}
+              </span>
+              <ChevronRight className={cx('h-3 w-3 shrink-0 text-[#11100d]/16 transition', active && 'text-[#11100d]/36')} />
             </button>
           )
         })}
       </div>
 
+      {/* Selected receipt detail */}
       <AnimatePresence mode='wait'>
         <motion.div
           key={selectedReceipt?.id || record.id}
@@ -52,20 +72,38 @@ export default function ProofRail({ mode, record, activeReceipt, onSelectReceipt
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.2 }}
-          className='mt-4 rounded-[22px] border border-[#11100d]/10 bg-[#fffaf1] p-4'
+          className='m-4 rounded-[18px] border border-[#11100d]/8 bg-[#fffaf1] p-4 lg:m-5 lg:p-5'
         >
-          <div className='mb-2 text-[9px] uppercase tracking-[0.16em] text-[#11100d]/40'>selected receipt</div>
-          <h4 className='text-sm leading-6 text-[#11100d]'>{selectedReceipt?.name}</h4>
-          <p className='mt-2 text-[13px] leading-6 text-[#11100d]/78'>{mode === 'proof' ? selectedReceipt?.proof : selectedReceipt?.claim}</p>
-          <div className='mt-3 flex flex-wrap gap-2'>
-            {(mode === 'proof' ? receiptContents : receiptContents.slice(0, 3)).map((item) => (
-              <span key={item} className='rounded-full border border-[#11100d]/10 bg-[#f7f1e7] px-2 py-1 text-[10px] uppercase tracking-[0.12em] text-[#11100d]/48'>
-                {item}
-              </span>
-            ))}
+          <div className='mb-3 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/28'>
+            For: {record.title}
           </div>
 
-          <ArtifactCard artifact={previewArtifact} className='mt-3' compact={mode !== 'proof'} />
+          <div className='mb-1 text-[9px] uppercase tracking-[0.14em] text-[#11100d]/34'>Selected receipt</div>
+          <h4 className='text-[13px] font-medium leading-5 text-[#11100d]'>{selectedReceipt?.name}</h4>
+
+          <p className='mt-2.5 text-[12px] leading-[1.65] text-[#11100d]/56'>
+            {selectedReceipt?.claim}
+          </p>
+
+          {receiptContents.length > 0 && (
+            <div className='mt-3.5'>
+              <div className='mb-1.5 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/28'>Contents</div>
+              <div className='flex flex-wrap gap-1.5'>
+                {receiptContents.map((item) => (
+                  <span key={item} className='rounded-full border border-[#11100d]/8 bg-[#f7f1e7] px-2 py-0.5 text-[10px] text-[#11100d]/48'>
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className='mt-4 flex items-center gap-2'>
+            <span className='text-[9px] uppercase tracking-[0.13em] text-[#11100d]/26'>Status</span>
+            <span className='rounded-full border border-[#11100d]/8 bg-[#f7f1e7] px-2 py-0.5 text-[9px] text-[#11100d]/42'>
+              {displayStatus(selectedReceipt?.status)}
+            </span>
+          </div>
         </motion.div>
       </AnimatePresence>
     </aside>

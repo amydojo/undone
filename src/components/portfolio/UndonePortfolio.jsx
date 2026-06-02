@@ -11,7 +11,6 @@ import MobileView from "./MobileView";
 
 export default function UndonePortfolioV10() {
   const [query, setQuery] = useState("");
-  const [mode, setMode] = useState("overview");
   const [activeFilter, setActiveFilter] = useState("all");
   const [activeRecordSlug, setActiveRecordSlug] = useState(records[0].slug);
   const [activeReceiptId, setActiveReceiptId] = useState(records[0].receipts[0]?.id ?? null);
@@ -123,7 +122,7 @@ export default function UndonePortfolioV10() {
       <div className="mx-auto min-h-screen max-w-[1720px] overflow-x-hidden bg-[#f7f1e7] shadow-[0_0_0_1px_rgba(255,255,255,0.08)]">
         <div className="pointer-events-none fixed inset-0 opacity-[0.45] [background-image:radial-gradient(circle_at_18%_8%,rgba(255,255,255,0.85),transparent_28%),linear-gradient(rgba(17,16,13,0.028)_1px,transparent_1px),linear-gradient(90deg,rgba(17,16,13,0.028)_1px,transparent_1px)] [background-size:auto,38px_38px,38px_38px]" />
         <div className="relative z-10">
-          <TopBar search={query} setSearch={setQuery} mode={mode} setMode={setMode} searchInputRef={searchInputRef} />
+          <TopBar search={query} setSearch={setQuery} searchInputRef={searchInputRef} />
 
           {/* Mobile layout */}
           <MobileRecordSelector
@@ -137,7 +136,7 @@ export default function UndonePortfolioV10() {
           />
           <MobileView
             record={activeRecord}
-            mode={mode}
+            mode="overview"
             openWorkspace={openWorkspace}
             activeReceipt={activeReceipt}
             onSelectReceipt={handleSelectReceipt}
@@ -155,12 +154,11 @@ export default function UndonePortfolioV10() {
               activeFilter={activeFilter}
               setActiveFilter={setActiveFilter}
             />
-            <ActiveCanvas record={activeRecord} mode={mode} openWorkspace={openWorkspace} />
+            <ActiveCanvas record={activeRecord} mode="overview" openWorkspace={openWorkspace} />
             <ProofRail
               record={activeRecord}
               activeReceipt={activeReceipt}
               onSelectReceipt={handleSelectReceipt}
-              mode={mode}
             />
           </div>
         </div>

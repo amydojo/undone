@@ -17,11 +17,19 @@ const DECODER_LINES = {
 
 const TABS = [
   { id: "overview", label: "Overview" },
-  { id: "proof", label: "Proof" },
+  { id: "proof", label: "Receipts" },
   { id: "artifacts", label: "Artifacts" },
 ];
 
-// ─── Overview Tab ────────────────────────────────────────────────────────────
+function displayStatus(raw) {
+  if (!raw || raw === 'needs screenshot') return 'visual pending'
+  if (raw === 'needs metric') return 'metric pending'
+  if (raw === 'needs polish') return 'polish pending'
+  if (raw === 'needs link') return 'link pending'
+  return raw
+}
+
+// ─── Overview Tab ─────────────────────────────────────────────────────────────
 
 function OverviewTab({ record, mode, openWorkspace }) {
   return (
@@ -83,7 +91,6 @@ function OverviewTab({ record, mode, openWorkspace }) {
 function ProofTab({ record, activeReceipt, onSelectReceipt }) {
   const receipts = record.receipts;
   const selectedReceipt = activeReceipt;
-  const previewArtifact = selectedReceipt?.artifacts?.[0] ?? {};
   const receiptContents = selectedReceipt?.contents ?? [];
 
   return (
@@ -94,20 +101,12 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
           <div className="mb-2 text-[9px] uppercase tracking-[0.16em] text-[#11100d]/40">
             selected receipt
           </div>
-          <div className="mb-2 flex items-start justify-between gap-2">
-            <h3 className="text-[14px] leading-5 text-[#11100d]">
-              {selectedReceipt.name}
-            </h3>
-            <span className="shrink-0 rounded-full border border-[#11100d]/12 bg-[#f7f1e7] px-2 py-1 text-[9px] tracking-[0.03em] text-[#11100d]/58">
-              {selectedReceipt.status || "needs screenshot"}
-            </span>
-          </div>
-          <p className="text-[13px] leading-6 text-[#11100d]/74">
-            {selectedReceipt.proof}
+          <h3 className="text-[14px] leading-5 text-[#11100d]">
+            {selectedReceipt.name}
+          </h3>
+          <p className="mt-2 text-[13px] leading-6 text-[#11100d]/70">
+            {selectedReceipt.claim}
           </p>
-
-          {/* Artifact preview */}
-          <ArtifactCard artifact={previewArtifact} className="mt-3" />
 
           {/* Contents */}
           {receiptContents.length > 0 && (
@@ -122,6 +121,14 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
               ))}
             </div>
           )}
+
+          {/* Status — no image placeholder */}
+          <div className="mt-3 flex items-center gap-2">
+            <span className="text-[9px] uppercase tracking-[0.13em] text-[#11100d]/26">Status</span>
+            <span className="rounded-full border border-[#11100d]/8 bg-[#f7f1e7] px-2 py-0.5 text-[9px] text-[#11100d]/42">
+              {displayStatus(selectedReceipt.status)}
+            </span>
+          </div>
         </div>
       )}
 
@@ -133,6 +140,7 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
         <div className="space-y-2">
           {receipts.map((receipt, i) => {
             const active = selectedReceipt?.id === receipt.id;
+            const status = displayStatus(receipt.status);
             return (
               <button
                 key={receipt.id}
@@ -157,8 +165,8 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
                     <span className="truncate text-[11px] text-[#11100d]/50">
                       {receipt.format}
                     </span>
-                    <span className="shrink-0 rounded-full border border-[#11100d]/10 bg-[#f7f1e7] px-2 py-0.5 text-[9px] tracking-[0.03em] text-[#11100d]/50">
-                      {receipt.status || "needs screenshot"}
+                    <span className="shrink-0 rounded-full border border-[#11100d]/10 bg-[#f7f1e7] px-2 py-0.5 text-[9px] tracking-[0.03em] text-[#11100d]/48">
+                      {status}
                     </span>
                   </div>
                 </div>
