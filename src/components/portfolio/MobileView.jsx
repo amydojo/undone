@@ -1,39 +1,53 @@
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
-import AccentDot from "../ui/AccentDot";
 import ArtifactCard from "../ui/ArtifactCard";
 import MetricPill from "../ui/MetricPill";
 import { CheckCircle2, ChevronRight } from "lucide-react";
-import SystemPath from "./SystemPath";
 import ProfileStrip from "./ProfileStrip";
 import OverviewArtifact from "./OverviewArtifact";
 import { cx } from "../../utils/cx";
 
+const DECODER_LINES = {
+  mirror: 'emotional inputs → usable product logic.',
+  'smooth-md-growth-os': '6 service lines. one operating layer.',
+  'meta-airtable-dashboard': 'from lead volume to revenue decisions.',
+  'snip-provider-pipeline': '200+ profiles. one repeatable sourcing system.',
+  'multi-brand-retention': 'lead intent routed into the right next message.',
+};
+
 const TABS = [
   { id: "overview", label: "Overview" },
-  { id: "proof", label: "Proof" },
+  { id: "proof", label: "Receipts" },
   { id: "artifacts", label: "Artifacts" },
 ];
 
-// ─── Overview Tab ────────────────────────────────────────────────────────────
+function displayStatus(raw) {
+  if (!raw || raw === 'needs screenshot' || raw === 'needs visual') return 'visual pending'
+  if (raw === 'needs metric') return 'metric pending'
+  if (raw === 'needs polish') return 'polish pending'
+  if (raw === 'needs link') return 'link pending'
+  return raw
+}
+
+// ─── Overview Tab ─────────────────────────────────────────────────────────────
 
 function OverviewTab({ record, mode, openWorkspace }) {
-  const overviewDecisions = record.decisions.filter((decision) => ["constraint", "move"].includes(decision.label));
-
   return (
-    <div className="space-y-6 px-4 py-6">
+    <div className="space-y-8 px-4 py-6">
+      {/* Top bar */}
       <div className="flex items-center justify-between gap-3">
         <div className="text-[9px] uppercase tracking-[0.18em] text-[#11100d]/42">active case file</div>
         <button
           type="button"
           aria-label={`Open ${record.title} case file`}
           onClick={() => openWorkspace(record)}
-          className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#11100d] px-4 text-[10px] uppercase tracking-[0.16em] text-[#f7f1e7] transition active:scale-[0.98]"
+          className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#11100d] px-4 text-[10px] uppercase tracking-[0.16em] text-[#f7f1e7] transition active:scale-[0.98]"
         >
           Open case file <ArrowUpRight className="h-3.5 w-3.5" />
         </button>
       </div>
 
+      {/* Hero */}
       <div>
         <div className="flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.15em] text-[#11100d]/42">
           {[record.category, record.timeline, record.status].map((item, index) => (
@@ -43,56 +57,29 @@ function OverviewTab({ record, mode, openWorkspace }) {
             </React.Fragment>
           ))}
         </div>
-        <h1 className="mt-4 text-[40px] font-normal leading-[1.02] tracking-[-0.04em] text-[#11100d]">
+        <h1 className="mt-4 text-[clamp(30px,9vw,38px)] font-normal leading-[1.02] tracking-[-0.035em] text-[#11100d] [text-wrap:balance]">
           {mode === "proof" ? record.title : record.thesis}
         </h1>
-        <p className="mt-4 max-w-[620px] text-base leading-[1.65] text-[#11100d]/66">
-          {mode === "proof" ? record.oneLine : record.system}
-        </p>
+        {DECODER_LINES[record.slug] && (
+          <p className="mt-3 text-[18px] leading-[1.3] tracking-[-0.018em] text-[#11100d]/76">
+            {DECODER_LINES[record.slug]}
+          </p>
+        )}
+        <p className="mt-2 text-[14px] leading-[1.6] text-[#11100d]/40">{record.oneLine}</p>
       </div>
 
-      <OverviewArtifact record={record} onOpenWorkspace={openWorkspace} compact />
-
-      <section>
+      {/* Proof ledger */}
+      <div>
         <div className="text-[10px] uppercase tracking-[0.15em] text-[#11100d]/38">Proof signals</div>
-        <div className="mt-3 grid grid-cols-3 overflow-hidden rounded-[18px] border border-[#11100d]/10 bg-[#fffaf1] divide-x divide-[#11100d]/10">
+        <div className="mt-4 grid grid-cols-1 divide-y divide-[#11100d]/10">
           {record.metrics.map((metric) => (
             <MetricPill key={metric.label} metric={metric} />
           ))}
         </div>
-      </section>
-
-      <section className="space-y-6">
-        <div>
-          <div className="text-[10px] uppercase tracking-[0.15em] text-[#11100d]/38">System summary</div>
-          <p className="mt-4 text-base leading-[1.65] text-[#11100d]/68">{record.signal}</p>
-          <p className="mt-4 text-base leading-[1.65] text-[#11100d]/60">{record.system}</p>
-        </div>
-        <SystemPath record={record} />
-      </section>
-
-      <div className="rounded-[20px] bg-[#11100d] p-4 text-[#f7f1e7]">
-        <div className="mb-4 flex items-center justify-between text-[10px] uppercase tracking-[0.15em] text-[#f7f1e7]/40">
-          <span>Decision logic</span>
-          <AccentDot record={record} size="h-2.5 w-2.5" />
-        </div>
-        {overviewDecisions.map((decision) => (
-          <div key={decision.label} className="mb-3 last:mb-0">
-            <div className="mb-1 text-[10px] uppercase tracking-[0.14em] text-[#f7f1e7]/32">
-              {decision.label}
-            </div>
-            <p className="text-[14px] leading-6 text-[#f7f1e7]/70">{decision.body}</p>
-          </div>
-        ))}
-        <button
-          type="button"
-          onClick={() => openWorkspace(record)}
-          className="mt-4 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.14em] text-[#f7f1e7]/62"
-        >
-          view full decision logic
-          <ArrowUpRight className="h-3.5 w-3.5" />
-        </button>
       </div>
+
+      {/* System object */}
+      <OverviewArtifact record={record} />
 
       <ProfileStrip />
     </div>
@@ -104,7 +91,6 @@ function OverviewTab({ record, mode, openWorkspace }) {
 function ProofTab({ record, activeReceipt, onSelectReceipt }) {
   const receipts = record.receipts;
   const selectedReceipt = activeReceipt;
-  const previewArtifact = selectedReceipt?.artifacts?.[0] ?? {};
   const receiptContents = selectedReceipt?.contents ?? [];
 
   return (
@@ -115,20 +101,12 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
           <div className="mb-2 text-[9px] uppercase tracking-[0.16em] text-[#11100d]/40">
             selected receipt
           </div>
-          <div className="mb-2 flex items-start justify-between gap-2">
-            <h3 className="text-[14px] leading-5 text-[#11100d]">
-              {selectedReceipt.name}
-            </h3>
-            <span className="shrink-0 rounded-full border border-[#11100d]/12 bg-[#f7f1e7] px-2 py-1 text-[9px] tracking-[0.03em] text-[#11100d]/58">
-              {selectedReceipt.status || "needs screenshot"}
-            </span>
-          </div>
-          <p className="text-[13px] leading-6 text-[#11100d]/74">
-            {selectedReceipt.proof}
+          <h3 className="text-[14px] leading-5 text-[#11100d]">
+            {selectedReceipt.name}
+          </h3>
+          <p className="mt-2 text-[13px] leading-6 text-[#11100d]/70">
+            {selectedReceipt.claim}
           </p>
-
-          {/* Artifact preview */}
-          <ArtifactCard artifact={previewArtifact} className="mt-3" />
 
           {/* Contents */}
           {receiptContents.length > 0 && (
@@ -143,6 +121,14 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
               ))}
             </div>
           )}
+
+          {/* Status — no image placeholder */}
+          <div className="mt-3 flex items-center gap-2">
+            <span className="text-[9px] uppercase tracking-[0.13em] text-[#11100d]/26">Status</span>
+            <span className="rounded-full border border-[#11100d]/8 bg-[#f7f1e7] px-2 py-0.5 text-[9px] text-[#11100d]/42">
+              {displayStatus(selectedReceipt.status)}
+            </span>
+          </div>
         </div>
       )}
 
@@ -154,6 +140,7 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
         <div className="space-y-2">
           {receipts.map((receipt, i) => {
             const active = selectedReceipt?.id === receipt.id;
+            const status = displayStatus(receipt.status);
             return (
               <button
                 key={receipt.id}
@@ -178,8 +165,8 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
                     <span className="truncate text-[11px] text-[#11100d]/50">
                       {receipt.format}
                     </span>
-                    <span className="shrink-0 rounded-full border border-[#11100d]/10 bg-[#f7f1e7] px-2 py-0.5 text-[9px] tracking-[0.03em] text-[#11100d]/50">
-                      {receipt.status || "needs screenshot"}
+                    <span className="shrink-0 rounded-full border border-[#11100d]/10 bg-[#f7f1e7] px-2 py-0.5 text-[9px] tracking-[0.03em] text-[#11100d]/48">
+                      {status}
                     </span>
                   </div>
                 </div>

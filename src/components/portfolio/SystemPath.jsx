@@ -4,9 +4,8 @@ import { cx } from "../../utils/cx";
 export default function SystemPath({ record, dark = false, className }) {
   return (
     <div className={cx("min-w-0", className)}>
-      <div className={cx("mb-3 flex items-center justify-between text-[10px] uppercase tracking-[0.15em]", dark ? "text-[#f7f1e7]/38" : "text-[#11100d]/38")}>
-        <span>system path</span>
-        <span>{record.id}</span>
+      <div className={cx("mb-3 text-[10px] uppercase tracking-[0.15em]", dark ? "text-[#f7f1e7]/38" : "text-[#11100d]/38")}>
+        system path
       </div>
       <div className="space-y-2 md:hidden">
         {record.path.map((step, index) => (
@@ -19,11 +18,11 @@ export default function SystemPath({ record, dark = false, className }) {
           </div>
         ))}
       </div>
-      <div className="hidden flex-wrap items-center gap-2 md:flex">
+      <div className="hidden flex-wrap items-center gap-x-3 gap-y-2 md:flex">
         {record.path.map((step, index) => (
           <React.Fragment key={step}>
             <span className={cx("text-[11px] uppercase tracking-[0.13em]", dark ? "text-[#f7f1e7]/68" : "text-[#11100d]/66")}>{step}</span>
-            {index < record.path.length - 1 ? <span className={cx("text-sm", dark ? "text-[#f7f1e7]/22" : "text-[#11100d]/22")}>→</span> : null}
+            {index < record.path.length - 1 ? <span className={cx("select-none text-[13px]", dark ? "text-[#f7f1e7]/30" : "text-[#11100d]/32")}>→</span> : null}
           </React.Fragment>
         ))}
       </div>
