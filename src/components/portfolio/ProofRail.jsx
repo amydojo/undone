@@ -2,6 +2,7 @@ import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronRight } from 'lucide-react'
 import cx from '../../utils/cx'
+import ReceiptVisualGallery from './ReceiptVisualGallery'
 
 function displayStatus(raw) {
   if (!raw || raw === 'needs screenshot' || raw === 'needs visual') return 'visual pending'
@@ -97,6 +98,12 @@ export default function ProofRail({ record, activeReceipt, onSelectReceipt }) {
               </div>
             </div>
           )}
+
+          <ReceiptVisualGallery
+            visualAssets={selectedReceipt?.visualAssets}
+            receiptName={selectedReceipt?.name}
+            receiptFormat={selectedReceipt?.format}
+          />
 
           <div className='mt-4 flex items-center gap-2'>
             <span className='text-[9px] uppercase tracking-[0.13em] text-[#11100d]/26'>Status</span>

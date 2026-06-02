@@ -89,13 +89,72 @@ export const records = [
         ]
       },
       {
+        id: 'instagram-identity-rebuild',
+        name: 'Instagram identity rebuild',
+        format: 'visual system',
+        status: 'ready',
+        claim: 'Shows the shift from generic medspa presence to a clearer skin + laser brand with real treatment proof.',
+        proof: 'Historical profile and grid snapshots showing the identity shift across positioning, service clarity, and clinic-specific proof.',
+        contents: ['Before profile snapshot', 'After profile snapshot', 'Grid evolution', 'Service proof', 'Location and booking clarity'],
+        visualAssets: [
+          {
+            src: '/receipts/smooth-md/instagram-identity-rebuild/instagram-before-profile.jpeg',
+            alt: 'Smooth MD Instagram before profile snapshot',
+            caption: 'Historical profile snapshot showing generic medical spa positioning, low content depth, and limited service clarity.'
+          },
+          {
+            src: '/receipts/smooth-md/instagram-identity-rebuild/instagram-after-profile.jpeg',
+            alt: 'Smooth MD Instagram after profile snapshot',
+            caption: 'Updated profile snapshot showing clearer skin + laser positioning, stronger local trust signals, and a more complete brand presence.'
+          },
+          {
+            src: '/receipts/smooth-md/instagram-identity-rebuild/instagram-before-grid.jpeg',
+            alt: 'Smooth MD Instagram before grid snapshot',
+            caption: 'Earlier grid state with stock-heavy beauty imagery and weaker connection to real services, staff, and treatment proof.'
+          },
+          {
+            src: '/receipts/smooth-md/instagram-identity-rebuild/instagram-after-grid.jpeg',
+            alt: 'Smooth MD Instagram after grid snapshot',
+            caption: 'Updated grid showing real treatments, staff presence, service education, and clinic-specific visual proof.'
+          }
+        ],
+        artifacts: []
+      },
+      {
         id: 'campaign-toolkit',
         name: 'Campaign toolkit',
         format: 'creative system',
         status: 'ready',
-        claim: 'Shows how the brand system became repeatable production infrastructure.',
+        claim: 'Shows how the brand system became repeatable production infrastructure across paid ads, offer creative, and service-specific campaign assets.',
         proof: 'Ad hooks, landing sections, email blocks, CTA logic, and proof layouts.',
-        contents: ['ad hooks', 'offer modules', 'landing page sections', 'email blocks', 'social proof layouts'],
+        contents: ['Meta ad hooks', 'Offer modules', 'Hydrafacial promo system', 'Before/after proof', 'Mobile-native CTA'],
+        visualAssets: [
+          {
+            src: '/receipts/smooth-md/campaign-toolkit/stretch-mark-meta-ad-preview.jpeg',
+            alt: 'Smooth MD stretch mark Meta ad preview',
+            caption: 'Meta lead ad creative using direct-response problem framing, before/after proof, and a first-area discount offer.'
+          },
+          {
+            src: '/receipts/smooth-md/campaign-toolkit/hydrafacial-meta-ad-preview.jpeg',
+            alt: 'Smooth MD Hydrafacial Meta ad preview',
+            caption: 'Hydrafacial offer creative built around a clear monthly promo, treatment positioning, and conversion CTA.'
+          },
+          {
+            src: '/receipts/smooth-md/campaign-toolkit/brazilian-laser-hair-removal-ad-preview.jpeg',
+            alt: 'Smooth MD Brazilian laser hair removal ad preview',
+            caption: 'Paid social ad creative using a direct problem hook, clear Brazilian laser hair removal offer, price anchor, and mobile-native CTA.'
+          },
+          {
+            src: '/receipts/smooth-md/campaign-toolkit/hydrafacial-reset-tan-model.jpeg',
+            alt: 'Smooth MD Hydrafacial reset campaign asset with tan model',
+            caption: 'Hydrafacial campaign asset using reusable reset language and premium skin-health positioning.'
+          },
+          {
+            src: '/receipts/smooth-md/campaign-toolkit/hydrafacial-reset-dark-skin-model.jpeg',
+            alt: 'Smooth MD Hydrafacial reset campaign asset with dark skin model',
+            caption: 'Creative variation showing the campaign system could flex across imagery while keeping the same core message.'
+          }
+        ],
         artifacts: [
           {
             id: 'smooth-md-landing-page-section',
@@ -145,10 +204,16 @@ export const records = [
         id: 'signal-interpretation-map',
         name: 'Signal interpretation map',
         format: 'logic diagram',
-        status: 'needs visual',
-        claim: 'Maps energy, tension, clarity, and sleep into emotional state logic.',
-        proof: 'Maps energy, tension, clarity, and sleep into emotional state logic.',
+        status: 'ready',
+        claim: 'Maps raw emotional inputs into deterministic state logic.',
+        proof: 'Maps raw emotional inputs into deterministic state logic.',
         contents: ['energy range', 'tension range', 'clarity range', 'sleep quality', 'state detection', 'confidence labels'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'signal-interpretation-map'
+          }
+        ],
         artifacts: [
           {
             id: 'mirror-signal-flow-map',
@@ -164,10 +229,16 @@ export const records = [
         id: 'storybook-component-environment',
         name: 'Storybook component environment',
         format: 'component QA',
-        status: 'needs screenshot',
-        claim: 'Documents reusable UI states for product handoff and QA.',
-        proof: 'Documents reusable UI states for product handoff and QA.',
+        status: 'ready',
+        claim: 'Static Storybook build preserved component documentation for product states.',
+        proof: 'Static Storybook build preserved component documentation for product states.',
         contents: ['SignalSparkline', 'BodyWeatherHero', 'SimilarDays', 'GentleNextMove', 'DebugPanel', 'MSW setup'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'storybook-component-environment'
+          }
+        ],
         artifacts: [
           {
             id: 'mirror-storybook-component-state',
@@ -181,12 +252,18 @@ export const records = [
       },
       {
         id: 'feedback-store-logic',
-        name: 'Feedback store logic',
+        name: 'Feedback store learning loop',
         format: 'prototype logic',
-        status: 'needs link',
-        claim: 'Connects check-ins, feedback, and similar-day patterns using lightweight prototype logic.',
-        proof: 'Connects check-ins, feedback, and similar-day patterns using lightweight prototype logic.',
+        status: 'ready',
+        claim: 'Every user rating changes future suggestion scoring without telemetry.',
+        proof: 'Every user rating changes future suggestion scoring without telemetry.',
         contents: ['mirror_checkins', 'mirror_feedback', 'suggestion scoring', 'pattern frequency', 'similar day matching'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'feedback-store-learning-loop'
+          }
+        ],
         artifacts: [
           {
             id: 'mirror-feedback-logic-snippet',
@@ -203,9 +280,15 @@ export const records = [
         name: 'Debug and QA overlay',
         format: 'testing artifact',
         status: 'ready',
-        claim: 'Shows the internal reasoning pipeline and test cases behind the interface.',
-        proof: 'Shows the internal reasoning pipeline and test cases behind the interface.',
+        claim: 'The product includes an inline debug layer for regression checks and demo control.',
+        proof: 'The product includes an inline debug layer for regression checks and demo control.',
         contents: ['pipeline view', 'test cases', 'Esc behavior', 'responsive checks', 'frayed edge case'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'debug-and-qa-overlay'
+          }
+        ],
         artifacts: [
           {
             id: 'mirror-debug-overlay-screenshot',
@@ -216,6 +299,70 @@ export const records = [
             status: 'ready'
           }
         ]
+      },
+      {
+        id: 'similar-days-pattern-logic',
+        name: 'Similar days pattern logic',
+        format: 'pattern matching',
+        status: 'ready',
+        claim: 'Compares current check-ins to recent similar states without overstating certainty.',
+        proof: 'Compares current check-ins to recent similar states without overstating certainty.',
+        contents: ['current check-in', 'stored entries', 'same state', 'last 30 days', 'language calibration', 'what helped lookup'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'similar-days-pattern-logic'
+          }
+        ],
+        artifacts: []
+      },
+      {
+        id: 'local-storage-data-model',
+        name: 'Local storage data model',
+        format: 'data architecture',
+        status: 'ready',
+        claim: 'Three persisted keys separate check-ins, feedback, and QA notes.',
+        proof: 'Three persisted keys separate check-ins, feedback, and QA notes.',
+        contents: ['mirror_checkins', 'mirror_feedback', 'mirror_field_notes', 'CheckInEntry schema', 'sentinel behavior'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'local-storage-data-model'
+          }
+        ],
+        artifacts: []
+      },
+      {
+        id: 'seed-scenario-system',
+        name: 'Seed scenario system',
+        format: 'demo data',
+        status: 'ready',
+        claim: 'Demo entries cover all 8 states through the live engine, not hardcoded overrides.',
+        proof: 'Demo entries cover all 8 states through the live engine, not hardcoded overrides.',
+        contents: ['29 entries', '8 states', 'stable IDs', 'realistic context tags', 'journal-style notes', 'regression verified'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'seed-scenario-system'
+          }
+        ],
+        artifacts: []
+      },
+      {
+        id: 'gentle-next-move-logic',
+        name: 'Gentle next move logic',
+        format: 'recommendation system',
+        status: 'ready',
+        claim: 'Suggestions are selected through scored eligibility and safety constraints.',
+        proof: 'Suggestions are selected through scored eligibility and safety constraints.',
+        contents: ['15 actions', 'feedbackScore', 'contextBoost', 'basePriority', 'safety constraints', 'faint rationale'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'gentle-next-move-logic'
+          }
+        ],
+        artifacts: []
       }
     ]
   },

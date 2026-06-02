@@ -6,6 +6,7 @@ import { CheckCircle2, ChevronRight } from "lucide-react";
 import ProfileStrip from "./ProfileStrip";
 import OverviewArtifact from "./OverviewArtifact";
 import { cx } from "../../utils/cx";
+import ReceiptVisualGallery from "./ReceiptVisualGallery";
 
 const DECODER_LINES = {
   mirror: 'emotional inputs → usable product logic.',
@@ -121,6 +122,13 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
               ))}
             </div>
           )}
+
+          <ReceiptVisualGallery
+            visualAssets={selectedReceipt.visualAssets}
+            receiptName={selectedReceipt.name}
+            receiptFormat={selectedReceipt.format}
+            variant="mobile"
+          />
 
           {/* Status — no image placeholder */}
           <div className="mt-3 flex items-center gap-2">
