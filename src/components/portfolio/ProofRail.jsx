@@ -4,7 +4,7 @@ import { ChevronRight } from 'lucide-react'
 import cx from '../../utils/cx'
 
 function displayStatus(raw) {
-  if (!raw || raw === 'needs screenshot') return 'visual pending'
+  if (!raw || raw === 'needs screenshot' || raw === 'needs visual') return 'visual pending'
   if (raw === 'needs metric') return 'metric pending'
   if (raw === 'needs polish') return 'polish pending'
   if (raw === 'needs link') return 'link pending'
