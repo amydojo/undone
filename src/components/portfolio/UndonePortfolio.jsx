@@ -169,9 +169,6 @@ export default function UndonePortfolioV10() {
           <CaseWorkspace
             workspace={workspaceRecord}
             closeWorkspace={() => setWorkspaceRecordSlug(null)}
-            mode={mode}
-            activeReceipt={activeReceipt}
-            onSelectReceipt={handleSelectReceipt}
           />
         ) : null}
       </AnimatePresence>
