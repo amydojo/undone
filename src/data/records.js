@@ -612,6 +612,80 @@ export const records = [
   },
   {
     id: '05',
+    slug: 'guardrail-hr',
+    title: 'Guardrail HR Compliance Assessment Platform',
+    category: 'product ux',
+    type: 'compliance workflow',
+    status: 'prototype',
+    timeline: '2024',
+    accent: '#d7e8ff',
+    thesis: 'A compliance product that turned HR risk into a guided assessment system.',
+    oneLine: 'A self-serve HR compliance concept translating messy policy risk into score-based triage, answer traceability, and structured guidance.',
+    role: 'Product UX, systems design, assessment logic, interface strategy',
+    tools: ['Figma', 'Product strategy', 'Assessment logic', 'UX writing', 'Systems mapping'],
+    hiringTranslation:
+      'This case is relevant to design technologist and product UX roles because it translates ambiguous compliance risk into explainable assessment logic, traceable answers, and structured user guidance.',
+    metrics: [
+      { value: '22', label: 'questions' },
+      { value: 'score', label: 'based triage' },
+      { value: 'trace', label: 'answer logic' }
+    ],
+    path: ['Question', 'Risk Driver', 'Score', 'Result', 'Resource', 'Action'],
+    signal: 'Small teams often do not know whether an HR issue is minor, urgent, or legally risky.',
+    system: 'Question intake, risk drivers, score calculation, result tiers, resource recommendations, and action paths formed one guided assessment flow.',
+    owned: ['product UX', 'systems design', 'assessment logic', 'interface strategy', 'risk language'],
+    nextProof: ['Add assessment flow visual', 'Add risk score model', 'Add results UX framework'],
+    decisions: [
+      { label: 'constraint', body: 'Compliance language needed to be useful without overpromising legal certainty.' },
+      { label: 'move', body: 'Use score-based triage, risk drivers, and answer traceability instead of generic advice.' },
+      { label: 'tradeoff', body: 'Less dramatic automation, more explainable user trust.' },
+      { label: 'principle', body: 'Make risk understandable before making recommendations.' }
+    ],
+    receipts: [
+      {
+        id: 'assessment-flow-logic',
+        name: 'Assessment flow logic',
+        format: 'assessment system',
+        status: 'needs visual',
+        claim: 'Shows how user answers move through a 22-question compliance assessment into score-based triage.',
+        proof: '22-question flow, answer options, risk drivers, score tiers, and result routing.',
+        contents: ['22-question flow', 'answer options', 'risk drivers', 'score tiers', 'result routing'],
+        artifacts: []
+      },
+      {
+        id: 'risk-score-model',
+        name: 'Risk score model',
+        format: 'scoring logic',
+        status: 'needs visual',
+        claim: 'Shows how policy uncertainty is translated into a readable risk score without pretending to be legal advice.',
+        proof: 'Risk weight, answer value, score range, severity tier, and recommendation boundary.',
+        contents: ['risk weight', 'answer value', 'score range', 'severity tier', 'recommendation boundary'],
+        artifacts: []
+      },
+      {
+        id: 'answer-traceability-map',
+        name: 'Answer traceability map',
+        format: 'logic transparency',
+        status: 'needs visual',
+        claim: "Shows how each result can be traced back to the user's selected answers and risk drivers.",
+        proof: 'Selected answers, risk driver labels, score contribution, result explanation, and review path.',
+        contents: ['selected answers', 'risk driver labels', 'score contribution', 'result explanation', 'review path'],
+        artifacts: []
+      },
+      {
+        id: 'results-ux-framework',
+        name: 'Results UX framework',
+        format: 'product interface',
+        status: 'needs visual',
+        claim: 'Shows how assessment output becomes a structured user-facing result with next steps.',
+        proof: 'Risk tier, summary, why-this-appeared explanation, recommended resource, and action path.',
+        contents: ['risk tier', 'summary', 'why this appeared', 'recommended resource', 'action path'],
+        artifacts: []
+      }
+    ]
+  },
+  {
+    id: '06',
     slug: 'multi-brand-retention',
     title: 'Multi Brand Retention Engine',
     category: 'retention',

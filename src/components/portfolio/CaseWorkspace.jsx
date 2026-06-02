@@ -62,6 +62,17 @@ const CASE_COPY_BY_SLUG = {
       'I treated automation as a quality controlled workflow, not a shortcut. The system removed repetitive sourcing drag while preserving human review where trust mattered.',
     outcomeIntro: 'Operations became faster and more reliable because automation was paired with structured QA.'
   },
+  'guardrail-hr': {
+    thesis: 'A compliance product that turned HR risk into a guided assessment system.',
+    summary:
+      'A compliance product that turned HR risk into a guided assessment system.',
+    problem:
+      'Small teams often do not know whether an HR issue is minor, urgent, or legally risky. The product needed to translate ambiguous workplace situations into a structured assessment flow without pretending to replace legal judgment.',
+    systemIntro: 'Question intake, risk drivers, score calculation, result tiers, resource recommendations, and action paths formed one guided assessment flow.',
+    designMove:
+      'I treated HR compliance as a triage experience, not a static information library. The interface needed to help users understand what kind of risk they were dealing with, why the score appeared, and what next step made sense.',
+    outcomeIntro: 'The concept defined a clearer self-serve compliance triage experience.'
+  },
   'multi-brand-retention': {
     thesis: 'A retention model that makes follow-up timing feel relevant, not generic.',
     summary:
@@ -106,6 +117,14 @@ const SYSTEM_MODEL_BY_SLUG = {
     { label: 'organize', meaning: 'Standardize files, naming, and review states for handoff.' },
     { label: 'publish', meaning: 'Deliver clean, structured assets for production deployment.' }
   ],
+  'guardrail-hr': [
+    { label: 'question', meaning: 'Capture the workplace situation through a structured assessment prompt.' },
+    { label: 'risk driver', meaning: 'Map answers to the compliance factors that influence severity.' },
+    { label: 'score', meaning: 'Translate answer values into a readable risk range.' },
+    { label: 'result', meaning: 'Return a tiered outcome without claiming legal certainty.' },
+    { label: 'resource', meaning: 'Point the user toward relevant guidance for the situation.' },
+    { label: 'action', meaning: 'Make the next step clear enough to reduce ambiguity.' }
+  ],
   'multi-brand-retention': [
     { label: 'source', meaning: 'Capture lead origin to preserve intent context from first touch.' },
     { label: 'intent', meaning: 'Classify readiness so low and high intent do not share the same cadence.' },
@@ -133,6 +152,10 @@ const PROBLEM_CONTEXT_BY_SLUG = {
     before: ['manual provider sourcing drag', 'uneven image quality and metadata', 'fragile handoff structure'],
     after: ['repeatable sourcing workflow', 'quality gates before publish', 'structured handoff system']
   },
+  'guardrail-hr': {
+    before: ['unclear HR risk', 'manual policy interpretation', 'no guided next step'],
+    after: ['22-question assessment', 'risk score output', 'traceable answer logic', 'structured resource path']
+  },
   'multi-brand-retention': {
     before: ['generic lifecycle blasts', 'intent and service mixed together', 'timing disconnected from readiness'],
     after: ['intent-aware routing', 'service-specific cadence', 'timing aligned to booking behavior']
@@ -159,6 +182,11 @@ const OUTCOME_BY_SLUG = {
     'Manual sourcing overhead dropped through automation and validation gates.',
     'Quality checks improved consistency before assets reached publication workflows.',
     'Handoff moved from ad hoc file dumps to a reliable, structured pipeline.'
+  ],
+  'guardrail-hr': [
+    'Defined a 22-question assessment model.',
+    'Mapped answers to risk drivers and score tiers.',
+    'Created a structured result UX for self-serve compliance triage.'
   ],
   'multi-brand-retention': [
     'Follow-up timing reflected intent and service context instead of batch email cadence.',

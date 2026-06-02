@@ -45,6 +45,17 @@ const SYSTEM_OBJECTS = {
       right: ['Structured profiles', 'Review-ready assets'],
     },
   },
+  'guardrail-hr': {
+    title: 'Assessment Engine',
+    purpose: 'Turns employee policy uncertainty into structured compliance triage.',
+    flow: ['Question', 'Risk Driver', 'Score', 'Result', 'Resource', 'Action'],
+    contrast: {
+      leftLabel: 'Before',
+      left: ['Unclear HR risk', 'Manual policy interpretation', 'No guided next step'],
+      rightLabel: 'After',
+      right: ['22-question assessment', 'Risk score output', 'Traceable answer logic', 'Structured resource path'],
+    },
+  },
   'multi-brand-retention': {
     title: 'Lifecycle Router',
     purpose: 'Turns mixed lead intent into service-specific follow-up.',

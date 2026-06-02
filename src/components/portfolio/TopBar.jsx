@@ -141,6 +141,20 @@ export default function TopBar() {
               LinkedIn
             </a>
           </div>
+
+          <a
+            href={profile.portfolioHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 block rounded-[12px] border border-[#11100d]/8 px-3 py-2 transition hover:border-[#11100d]/16 hover:bg-[#f7f1e7]"
+          >
+            <span className="block text-[9px] uppercase tracking-[0.13em] text-[#11100d]/54">
+              Undone Design
+            </span>
+            <span className="mt-1 block text-[11px] leading-4 text-[#11100d]/42">
+              Design work, packaging, and visual systems
+            </span>
+          </a>
         </div>
       )}
     </header>

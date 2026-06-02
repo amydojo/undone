@@ -6,6 +6,7 @@ export const metaAirtableReceiptVisuals = {
     status: 'ready',
     accentColor: '#b6f3d4',
     claim: 'Shows the shared lead record that connected acquisition source, service interest, CRM state, booking behavior, and conversion value.',
+    previewRows: ['shared lead record', '5 signal groups', 'attribution-ready fields'],
     sections: [
       {
         title: 'Identity',
@@ -42,6 +43,7 @@ export const metaAirtableReceiptVisuals = {
     status: 'ready',
     accentColor: '#b6f3d4',
     claim: 'Shows how ad performance was translated from platform metrics into business signals.',
+    previewRows: ['Meta signals', 'CRM signals', 'decision signals'],
     sections: [
       {
         title: 'Meta Signals',
@@ -68,6 +70,7 @@ export const metaAirtableReceiptVisuals = {
     status: 'ready',
     accentColor: '#b6f3d4',
     claim: 'Shows how revenue was matched back to campaign and lead context using confidence based attribution logic.',
+    previewRows: ['confidence model', 'revenue match path', 'ROAS context'],
     sections: [
       {
         title: 'Input',
@@ -99,6 +102,7 @@ export const metaAirtableReceiptVisuals = {
     status: 'ready',
     accentColor: '#b6f3d4',
     claim: 'Shows the final decision layer where campaign, CRM, and revenue signals became optimization guidance.',
+    previewRows: ['top signal strip', 'campaign health', 'next move guidance'],
     sections: [
       {
         title: 'Top Signals',

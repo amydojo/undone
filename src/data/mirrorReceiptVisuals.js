@@ -5,6 +5,7 @@ export const mirrorReceiptVisuals = {
     type: 'logic diagram',
     status: 'ready',
     claim: 'Maps raw emotional inputs into deterministic state logic.',
+    previewRows: ['8 states', '4 input ranges', 'priority detection rules'],
     sections: [
       {
         title: 'Signal normalization',
@@ -34,6 +35,7 @@ export const mirrorReceiptVisuals = {
     type: 'prototype logic',
     status: 'ready',
     claim: 'Every user rating changes future suggestion scoring without telemetry.',
+    previewRows: ['4 feedback weights', 'local score update', 'no telemetry'],
     sections: [
       {
         title: 'Feedback loop',
@@ -58,6 +60,7 @@ export const mirrorReceiptVisuals = {
     type: 'testing artifact',
     status: 'ready',
     claim: 'The product includes an inline debug layer for regression checks and demo control.',
+    previewRows: ['6 test suites', '48+ assertions', 'all passing'],
     sections: [
       {
         title: 'Controls',
@@ -89,6 +92,7 @@ export const mirrorReceiptVisuals = {
     type: 'pattern matching',
     status: 'ready',
     claim: 'Compares current check-ins to recent similar states without overstating certainty.',
+    previewRows: ['last 30 days', 'tag frequency', 'calibrated claim strength'],
     sections: [
       {
         title: 'Pipeline',
@@ -109,6 +113,7 @@ export const mirrorReceiptVisuals = {
     type: 'component QA',
     status: 'ready',
     claim: 'Static Storybook build preserved component documentation for product states.',
+    previewRows: ['3 primitive groups', '3 product patterns', 'static evidence build'],
     sections: [
       {
         title: 'Primitives',
@@ -134,6 +139,7 @@ export const mirrorReceiptVisuals = {
     type: 'data architecture',
     status: 'ready',
     claim: 'Three persisted keys separate check-ins, feedback, and QA notes.',
+    previewRows: ['3 persisted keys', 'CheckInEntry schema', 'sentinel clear behavior'],
     sections: [
       {
         title: 'Persisted keys',
@@ -157,6 +163,7 @@ export const mirrorReceiptVisuals = {
     type: 'demo data',
     status: 'ready',
     claim: 'Demo entries cover all 8 states through the live engine, not hardcoded overrides.',
+    previewRows: ['29 entries', '8 states', 'live engine path'],
     sections: [
       {
         title: 'Dataset',
@@ -177,6 +184,7 @@ export const mirrorReceiptVisuals = {
     type: 'recommendation system',
     status: 'ready',
     claim: 'Suggestions are selected through scored eligibility and safety constraints.',
+    previewRows: ['15 support actions', 'scored eligibility', 'safety constraints'],
     sections: [
       {
         title: 'Support library',

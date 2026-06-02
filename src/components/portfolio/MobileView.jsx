@@ -1,7 +1,6 @@
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
 import MetricPill from "../ui/MetricPill";
-import { ChevronRight } from "lucide-react";
 import ProfileStrip from "./ProfileStrip";
 import OverviewArtifact from "./OverviewArtifact";
 import { cx } from "../../utils/cx";
@@ -12,6 +11,7 @@ const DECODER_LINES = {
   'smooth-md-growth-os': '6 service lines. one operating layer.',
   'meta-airtable-dashboard': 'from lead volume to revenue decisions.',
   'snip-provider-pipeline': '200+ profiles. one repeatable sourcing system.',
+  'guardrail-hr': '22 questions. one risk score. clearer next steps.',
   'multi-brand-retention': 'lead intent routed into the right next message.',
 };
 
@@ -26,6 +26,14 @@ function displayStatus(raw) {
   if (raw === 'needs polish') return 'polish pending'
   if (raw === 'needs link') return 'link pending'
   return raw
+}
+
+function hasComponentVisual(receipt) {
+  return (receipt?.visualAssets ?? []).some((asset) => asset?.kind === 'component' || asset?.componentKey)
+}
+
+function isReadyStatus(raw) {
+  return displayStatus(raw) === 'ready'
 }
 
 // ─── Overview Tab ─────────────────────────────────────────────────────────────
@@ -91,15 +99,115 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
   const receipts = record.receipts;
   const selectedReceipt = activeReceipt;
   const receiptContents = selectedReceipt?.contents ?? [];
+  const componentVisual = hasComponentVisual(selectedReceipt);
+  const selectedStatus = displayStatus(selectedReceipt?.status);
+  const showSelectedStatus = selectedReceipt && !isReadyStatus(selectedReceipt.status);
 
   return (
     <div className="space-y-4 px-4 py-4">
-      {/* Selected receipt detail – shown first per mobile proof priority */}
-      {selectedReceipt && (
-        <div className="rounded-[18px] border border-[#11100d]/10 bg-[#fffaf1] p-4">
-          <div className="mb-2 text-[9px] uppercase tracking-[0.16em] text-[#11100d]/40">
-            selected receipt
+      <header className="flex items-end justify-between gap-3">
+        <div>
+          <div className="text-[9px] uppercase tracking-[0.18em] text-[#11100d]/38">Receipts</div>
+          <div className="mt-1 text-[18px] leading-none tracking-[-0.02em] text-[#11100d]">
+            {receipts.length} proof {receipts.length === 1 ? "object" : "objects"}
           </div>
+        </div>
+      </header>
+
+      <div className="-mx-4 overflow-x-auto px-4 pb-2 pt-1 [scrollbar-width:none]">
+        <div className="flex snap-x snap-mandatory gap-2.5 border-y border-[#11100d]/8 bg-[#fffaf1]/38 py-2">
+          {receipts.map((receipt, i) => {
+            const active = selectedReceipt?.id === receipt.id;
+            const status = displayStatus(receipt.status);
+            const showStatus = !isReadyStatus(receipt.status);
+
+            return (
+              <button
+                key={receipt.id}
+                type="button"
+                aria-label={`Select receipt: ${receipt.name}`}
+                aria-pressed={active}
+                onClick={() => onSelectReceipt(receipt.id)}
+                className={cx(
+                  "relative min-h-[88px] min-w-[188px] snap-start overflow-hidden rounded-[13px] border px-3 py-2.5 text-left transition active:scale-[0.99]",
+                  active
+                    ? "border-[#11100d]/28 bg-[#fffaf1] shadow-[0_1px_0_rgba(17,16,13,0.08)]"
+                    : "border-[#11100d]/8 bg-[#f7f1e7]/72"
+                )}
+              >
+                <span
+                  className={cx(
+                    "absolute inset-x-3 top-0 h-px",
+                    active ? "bg-[#11100d]/46" : "bg-transparent"
+                  )}
+                  aria-hidden="true"
+                />
+                <div className="flex items-start justify-between gap-3">
+                  <span
+                    className={cx(
+                      "inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-[9px] tabular-nums tracking-[0.06em]",
+                      active
+                        ? "border-[#11100d]/20 bg-[#11100d] text-[#f7f1e7]"
+                        : "border-[#11100d]/10 bg-[#fffaf1] text-[#11100d]/42"
+                    )}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  {showStatus && (
+                    <span
+                      className={cx(
+                        "shrink-0 rounded-full border px-2 py-0.5 text-[9px] tracking-[0.03em]",
+                        active
+                          ? "border-[#11100d]/10 bg-[#f7f1e7] text-[#11100d]/44"
+                          : "border-[#11100d]/10 bg-[#f7f1e7] text-[#11100d]/48"
+                      )}
+                    >
+                      {status}
+                    </span>
+                  )}
+                </div>
+                <div
+                  className={cx(
+                    "mt-2 line-clamp-2 text-[12px] leading-4",
+                    active ? "text-[#11100d]" : "text-[#11100d]/72"
+                  )}
+                >
+                  {receipt.name}
+                </div>
+                <div
+                  className={cx(
+                    "mt-1.5 truncate text-[9px] uppercase tracking-[0.14em]",
+                    active ? "text-[#11100d]/46" : "text-[#11100d]/34"
+                  )}
+                >
+                  {receipt.format}
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {selectedReceipt && componentVisual && (
+        <div>
+          <ReceiptVisualGallery
+            visualAssets={selectedReceipt.visualAssets}
+            receiptName={selectedReceipt.name}
+            receiptFormat={selectedReceipt.format}
+            variant="mobile"
+          />
+          {showSelectedStatus && (
+            <div className="mt-3">
+              <span className="rounded-full border border-[#11100d]/8 bg-[#fffaf1] px-2.5 py-1 text-[9px] tracking-[0.03em] text-[#11100d]/42">
+                {selectedStatus}
+              </span>
+            </div>
+          )}
+        </div>
+      )}
+
+      {selectedReceipt && !componentVisual && (
+        <div className="rounded-[18px] border border-[#11100d]/10 bg-[#fffaf1] p-4">
           <h3 className="text-[14px] leading-5 text-[#11100d]">
             {selectedReceipt.name}
           </h3>
@@ -107,7 +215,6 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
             {selectedReceipt.claim}
           </p>
 
-          {/* Contents */}
           {receiptContents.length > 0 && (
             <div className="mt-3 flex flex-wrap gap-1.5">
               {receiptContents.map((item) => (
@@ -128,65 +235,15 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
             variant="mobile"
           />
 
-          {/* Status — no image placeholder */}
-          <div className="mt-3 flex items-center gap-2">
-            <span className="text-[9px] uppercase tracking-[0.13em] text-[#11100d]/26">Status</span>
-            <span className="rounded-full border border-[#11100d]/8 bg-[#f7f1e7] px-2 py-0.5 text-[9px] text-[#11100d]/42">
-              {displayStatus(selectedReceipt.status)}
-            </span>
-          </div>
+          {showSelectedStatus && (
+            <div className="mt-3">
+              <span className="rounded-full border border-[#11100d]/8 bg-[#f7f1e7] px-2.5 py-1 text-[9px] tracking-[0.03em] text-[#11100d]/42">
+                {selectedStatus}
+              </span>
+            </div>
+          )}
         </div>
       )}
-
-      {/* Receipt list */}
-      <div>
-        <div className="mb-2 text-[9px] uppercase tracking-[0.18em] text-[#11100d]/40">
-          Receipt list
-        </div>
-        <div className="space-y-2">
-          {receipts.map((receipt, i) => {
-            const active = selectedReceipt?.id === receipt.id;
-            const status = displayStatus(receipt.status);
-            return (
-              <button
-                key={receipt.id}
-                type="button"
-                aria-label={`Select receipt: ${receipt.name}`}
-                onClick={() => onSelectReceipt(receipt.id)}
-                className={cx(
-                  "flex w-full items-center gap-3 rounded-[16px] border p-3 text-left transition",
-                  active
-                    ? "border-[#11100d]/20 bg-[#fffaf1]"
-                    : "border-[#11100d]/10 bg-[#fffaf1]/40"
-                )}
-              >
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#11100d]/10 bg-[#f7f1e7] text-[9px] uppercase tracking-[0.1em] text-[#11100d]/48">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="min-w-0 flex-1">
-                  <div className="truncate text-[13px] text-[#11100d]">
-                    {receipt.name}
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="truncate text-[11px] text-[#11100d]/50">
-                      {receipt.format}
-                    </span>
-                    <span className="shrink-0 rounded-full border border-[#11100d]/10 bg-[#f7f1e7] px-2 py-0.5 text-[9px] tracking-[0.03em] text-[#11100d]/48">
-                      {status}
-                    </span>
-                  </div>
-                </div>
-                <ChevronRight
-                  className={cx(
-                    "h-3.5 w-3.5 shrink-0 text-[#11100d]/30 transition",
-                    active && "translate-x-[1px] text-[#11100d]/60"
-                  )}
-                />
-              </button>
-            );
-          })}
-        </div>
-      </div>
     </div>
   );
 }

@@ -12,10 +12,15 @@ function displayStatus(raw) {
   return raw
 }
 
+function hasComponentVisual(receipt) {
+  return (receipt?.visualAssets ?? []).some((asset) => asset?.kind === 'component' || asset?.componentKey)
+}
+
 export default function ProofRail({ record, activeReceipt, onSelectReceipt }) {
   const receipts = record.receipts
   const selectedReceipt = activeReceipt ?? receipts[0]
   const receiptContents = selectedReceipt?.contents ?? []
+  const componentVisual = hasComponentVisual(selectedReceipt)
 
   return (
     <aside className='flex flex-col border-l border-[#11100d]/10 bg-[#f7f1e7]'>
@@ -75,18 +80,24 @@ export default function ProofRail({ record, activeReceipt, onSelectReceipt }) {
           transition={{ duration: 0.2 }}
           className='m-4 rounded-[18px] border border-[#11100d]/8 bg-[#fffaf1] p-4 lg:m-5 lg:p-5'
         >
-          <div className='mb-3 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/28'>
-            For: {record.title}
-          </div>
+          {!componentVisual && (
+            <>
+              <div className='mb-3 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/28'>
+                For: {record.title}
+              </div>
 
-          <div className='mb-1 text-[9px] uppercase tracking-[0.14em] text-[#11100d]/34'>Selected receipt</div>
-          <h4 className='text-[13px] font-medium leading-5 text-[#11100d]'>{selectedReceipt?.name}</h4>
+              <div className='mb-1 text-[9px] uppercase tracking-[0.14em] text-[#11100d]/34'>Selected receipt</div>
+              <h4 className='text-[13px] font-medium leading-5 text-[#11100d]'>{selectedReceipt?.name}</h4>
+            </>
+          )}
 
-          <p className='mt-2.5 text-[12px] leading-[1.65] text-[#11100d]/56'>
-            {selectedReceipt?.claim}
-          </p>
+          {!componentVisual && (
+            <p className='mt-2.5 text-[12px] leading-[1.65] text-[#11100d]/56'>
+              {selectedReceipt?.claim}
+            </p>
+          )}
 
-          {receiptContents.length > 0 && (
+          {!componentVisual && receiptContents.length > 0 && (
             <div className='mt-3.5'>
               <div className='mb-1.5 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/28'>Contents</div>
               <div className='flex flex-wrap gap-1.5'>

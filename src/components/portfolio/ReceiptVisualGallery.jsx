@@ -27,6 +27,10 @@ function getAssetDefinition(asset) {
   return getMirrorReceiptVisual(asset.componentKey) ?? getMetaAirtableReceiptVisual(asset.componentKey);
 }
 
+function isComponentAsset(asset) {
+  return Boolean(getAssetDefinition(asset));
+}
+
 export default function ReceiptVisualGallery({
   visualAssets,
   receiptName = "Selected receipt",
@@ -52,6 +56,7 @@ export default function ReceiptVisualGallery({
   const isMobile = variant === "mobile";
   const activeAsset = activeIndex === null ? null : visibleAssets[activeIndex];
   const featuredAsset = visibleAssets[0];
+  const isComponentSet = visibleAssets.every((asset) => isComponentAsset(asset));
   const activeLabel = activeIndex === null ? null : `${formatIndex(activeIndex, visibleAssets.length)} / ${formatIndex(visibleAssets.length - 1, visibleAssets.length)}`;
 
   useEffect(() => {
@@ -95,7 +100,11 @@ export default function ReceiptVisualGallery({
     if (definition) {
       return (
         <div className={mode === "viewer" ? "w-full max-w-[760px]" : "w-full"}>
-          <MirrorReceiptVisual {...definition} />
+          <MirrorReceiptVisual
+            {...definition}
+            displayMode={mode === "viewer" ? "full" : "compact"}
+            ctaLabel="Inspect receipt"
+          />
         </div>
       );
     }
@@ -143,12 +152,23 @@ export default function ReceiptVisualGallery({
   }
 
   return (
-    <div className="mt-4">
-      <div className="mb-2 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/28">
-        Visual proof
-      </div>
+    <div className={isComponentSet ? "" : "mt-4"}>
+      {!isComponentSet && (
+        <div className="mb-2 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/28">
+          Visual proof
+        </div>
+      )}
 
-      {isMobile ? (
+      {isComponentSet ? (
+        <button
+          type="button"
+          aria-label={`Inspect receipt: ${getAssetLabel(featuredAsset)}`}
+          onClick={() => setActiveIndex(0)}
+          className="block w-full text-left transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/35"
+        >
+          {renderAsset(featuredAsset, "desktop")}
+        </button>
+      ) : isMobile ? (
         <div className="flex max-w-full snap-x snap-mandatory gap-3 overflow-x-auto pb-1">
           {visibleAssets.map((asset, index) => (
             <figure
@@ -160,23 +180,30 @@ export default function ReceiptVisualGallery({
                 aria-label={`Inspect proof ${formatIndex(index, visibleAssets.length)} of ${formatIndex(visibleAssets.length - 1, visibleAssets.length)}: ${getAssetLabel(asset)}`}
                 onClick={() => setActiveIndex(index)}
                 className={
-                  getAssetDefinition(asset)
-                    ? "flex h-[360px] w-full items-start justify-center overflow-auto bg-[#11100d]/5 p-2 text-left transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/35"
+                  isComponentAsset(asset)
+                    ? "block w-full bg-[#11100d]/5 p-2 text-left transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/35"
                     : "block h-[360px] w-full overflow-hidden bg-[#11100d]/5 text-left transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/35"
                 }
               >
                 {renderAsset(asset, "mobile")}
               </button>
-              <div className="border-t border-[#11100d]/8 px-3 py-2.5">
-                <div className="mb-1.5 text-[10px] tabular-nums tracking-[0.08em] text-[#11100d]/38">
+              {!isComponentAsset(asset) && (
+                <div className="border-t border-[#11100d]/8 px-3 py-2.5">
+                  <div className="mb-1.5 text-[10px] tabular-nums tracking-[0.08em] text-[#11100d]/38">
+                    {formatIndex(index, visibleAssets.length)} / {formatIndex(visibleAssets.length - 1, visibleAssets.length)}
+                  </div>
+                  {getAssetCaption(asset) && (
+                    <figcaption className="text-[11px] leading-5 text-[#11100d]/54">
+                      {getAssetCaption(asset)}
+                    </figcaption>
+                  )}
+                </div>
+              )}
+              {isComponentAsset(asset) && visibleAssets.length > 1 && (
+                <div className="border-t border-[#11100d]/8 px-3 py-2 text-[10px] tabular-nums tracking-[0.08em] text-[#11100d]/38">
                   {formatIndex(index, visibleAssets.length)} / {formatIndex(visibleAssets.length - 1, visibleAssets.length)}
                 </div>
-                {getAssetCaption(asset) && (
-                  <figcaption className="text-[11px] leading-5 text-[#11100d]/54">
-                    {getAssetCaption(asset)}
-                  </figcaption>
-                )}
-              </div>
+              )}
             </figure>
           ))}
         </div>
@@ -187,20 +214,21 @@ export default function ReceiptVisualGallery({
             type="button"
             aria-label={`View proof set: ${getAssetLabel(featuredAsset)}`}
             onClick={() => setActiveIndex(0)}
-            className={getAssetDefinition(featuredAsset)
-              ? "flex h-[200px] w-full items-start justify-center overflow-hidden bg-[#11100d]/5 p-2 text-left transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/35"
+            className={isComponentAsset(featuredAsset)
+              ? "block w-full bg-[#11100d]/5 p-2 text-left transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/35"
               : "block h-[200px] w-full overflow-hidden bg-[#11100d]/5 text-left transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/35"
             }
           >
             {renderAsset(featuredAsset, "desktop")}
           </button>
-          {getAssetCaption(featuredAsset) && (
+          {!isComponentAsset(featuredAsset) && getAssetCaption(featuredAsset) && (
             <figcaption className="px-3 py-2.5 text-[11px] leading-5 text-[#11100d]/54">
               {getAssetCaption(featuredAsset)}
             </figcaption>
           )}
         </figure>
-        <div className="flex items-center justify-between gap-3 border-t border-[#11100d]/8 px-3 py-2.5">
+        {!isComponentAsset(featuredAsset) && (
+          <div className="flex items-center justify-between gap-3 border-t border-[#11100d]/8 px-3 py-2.5">
           <div className="flex items-center gap-2">
             <span className="text-[10px] uppercase tracking-[0.12em] text-[#11100d]/40">
               {visibleAssets.length} visual {visibleAssets.length === 1 ? "asset" : "assets"}
@@ -225,6 +253,7 @@ export default function ReceiptVisualGallery({
             View proof set
           </button>
         </div>
+        )}
       </div>
       )}
 
