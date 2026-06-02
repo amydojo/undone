@@ -10,6 +10,7 @@ const DECODER_LINES = {
   'smooth-md-growth-os': '6 service lines. one operating layer.',
   'meta-airtable-dashboard': 'from lead volume to revenue decisions.',
   'snip-provider-pipeline': '200+ profiles. one repeatable sourcing system.',
+  'guardrail-hr': '22 questions. one risk score. clearer next steps.',
   'multi-brand-retention': 'lead intent routed into the right next message.',
 };
 

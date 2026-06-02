@@ -1,24 +1,23 @@
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
-import ArtifactCard from "../ui/ArtifactCard";
 import MetricPill from "../ui/MetricPill";
-import { CheckCircle2, ChevronRight } from "lucide-react";
 import ProfileStrip from "./ProfileStrip";
 import OverviewArtifact from "./OverviewArtifact";
 import { cx } from "../../utils/cx";
+import ReceiptVisualGallery from "./ReceiptVisualGallery";
 
 const DECODER_LINES = {
   mirror: 'emotional inputs → usable product logic.',
   'smooth-md-growth-os': '6 service lines. one operating layer.',
   'meta-airtable-dashboard': 'from lead volume to revenue decisions.',
   'snip-provider-pipeline': '200+ profiles. one repeatable sourcing system.',
+  'guardrail-hr': '22 questions. one risk score. clearer next steps.',
   'multi-brand-retention': 'lead intent routed into the right next message.',
 };
 
 const TABS = [
   { id: "overview", label: "Overview" },
   { id: "proof", label: "Receipts" },
-  { id: "artifacts", label: "Artifacts" },
 ];
 
 function displayStatus(raw) {
@@ -27,6 +26,14 @@ function displayStatus(raw) {
   if (raw === 'needs polish') return 'polish pending'
   if (raw === 'needs link') return 'link pending'
   return raw
+}
+
+function hasComponentVisual(receipt) {
+  return (receipt?.visualAssets ?? []).some((asset) => asset?.kind === 'component' || asset?.componentKey)
+}
+
+function isReadyStatus(raw) {
+  return displayStatus(raw) === 'ready'
 }
 
 // ─── Overview Tab ─────────────────────────────────────────────────────────────
@@ -92,15 +99,115 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
   const receipts = record.receipts;
   const selectedReceipt = activeReceipt;
   const receiptContents = selectedReceipt?.contents ?? [];
+  const componentVisual = hasComponentVisual(selectedReceipt);
+  const selectedStatus = displayStatus(selectedReceipt?.status);
+  const showSelectedStatus = selectedReceipt && !isReadyStatus(selectedReceipt.status);
 
   return (
     <div className="space-y-4 px-4 py-4">
-      {/* Selected receipt detail – shown first per mobile proof priority */}
-      {selectedReceipt && (
-        <div className="rounded-[18px] border border-[#11100d]/10 bg-[#fffaf1] p-4">
-          <div className="mb-2 text-[9px] uppercase tracking-[0.16em] text-[#11100d]/40">
-            selected receipt
+      <header className="flex items-end justify-between gap-3">
+        <div>
+          <div className="text-[9px] uppercase tracking-[0.18em] text-[#11100d]/38">Receipts</div>
+          <div className="mt-1 text-[18px] leading-none tracking-[-0.02em] text-[#11100d]">
+            {receipts.length} proof {receipts.length === 1 ? "object" : "objects"}
           </div>
+        </div>
+      </header>
+
+      <div className="-mx-4 overflow-x-auto px-4 pb-2 pt-1 [scrollbar-width:none]">
+        <div className="flex snap-x snap-mandatory gap-2.5 border-y border-[#11100d]/8 bg-[#fffaf1]/38 py-2">
+          {receipts.map((receipt, i) => {
+            const active = selectedReceipt?.id === receipt.id;
+            const status = displayStatus(receipt.status);
+            const showStatus = !isReadyStatus(receipt.status);
+
+            return (
+              <button
+                key={receipt.id}
+                type="button"
+                aria-label={`Select receipt: ${receipt.name}`}
+                aria-pressed={active}
+                onClick={() => onSelectReceipt(receipt.id)}
+                className={cx(
+                  "relative min-h-[88px] min-w-[188px] snap-start overflow-hidden rounded-[13px] border px-3 py-2.5 text-left transition active:scale-[0.99]",
+                  active
+                    ? "border-[#11100d]/28 bg-[#fffaf1] shadow-[0_1px_0_rgba(17,16,13,0.08)]"
+                    : "border-[#11100d]/8 bg-[#f7f1e7]/72"
+                )}
+              >
+                <span
+                  className={cx(
+                    "absolute inset-x-3 top-0 h-px",
+                    active ? "bg-[#11100d]/46" : "bg-transparent"
+                  )}
+                  aria-hidden="true"
+                />
+                <div className="flex items-start justify-between gap-3">
+                  <span
+                    className={cx(
+                      "inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-[9px] tabular-nums tracking-[0.06em]",
+                      active
+                        ? "border-[#11100d]/20 bg-[#11100d] text-[#f7f1e7]"
+                        : "border-[#11100d]/10 bg-[#fffaf1] text-[#11100d]/42"
+                    )}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  {showStatus && (
+                    <span
+                      className={cx(
+                        "shrink-0 rounded-full border px-2 py-0.5 text-[9px] tracking-[0.03em]",
+                        active
+                          ? "border-[#11100d]/10 bg-[#f7f1e7] text-[#11100d]/44"
+                          : "border-[#11100d]/10 bg-[#f7f1e7] text-[#11100d]/48"
+                      )}
+                    >
+                      {status}
+                    </span>
+                  )}
+                </div>
+                <div
+                  className={cx(
+                    "mt-2 line-clamp-2 text-[12px] leading-4",
+                    active ? "text-[#11100d]" : "text-[#11100d]/72"
+                  )}
+                >
+                  {receipt.name}
+                </div>
+                <div
+                  className={cx(
+                    "mt-1.5 truncate text-[9px] uppercase tracking-[0.14em]",
+                    active ? "text-[#11100d]/46" : "text-[#11100d]/34"
+                  )}
+                >
+                  {receipt.format}
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {selectedReceipt && componentVisual && (
+        <div>
+          <ReceiptVisualGallery
+            visualAssets={selectedReceipt.visualAssets}
+            receiptName={selectedReceipt.name}
+            receiptFormat={selectedReceipt.format}
+            variant="mobile"
+          />
+          {showSelectedStatus && (
+            <div className="mt-3">
+              <span className="rounded-full border border-[#11100d]/8 bg-[#fffaf1] px-2.5 py-1 text-[9px] tracking-[0.03em] text-[#11100d]/42">
+                {selectedStatus}
+              </span>
+            </div>
+          )}
+        </div>
+      )}
+
+      {selectedReceipt && !componentVisual && (
+        <div className="rounded-[18px] border border-[#11100d]/10 bg-[#fffaf1] p-4">
           <h3 className="text-[14px] leading-5 text-[#11100d]">
             {selectedReceipt.name}
           </h3>
@@ -108,7 +215,6 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
             {selectedReceipt.claim}
           </p>
 
-          {/* Contents */}
           {receiptContents.length > 0 && (
             <div className="mt-3 flex flex-wrap gap-1.5">
               {receiptContents.map((item) => (
@@ -122,174 +228,20 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
             </div>
           )}
 
-          {/* Status — no image placeholder */}
-          <div className="mt-3 flex items-center gap-2">
-            <span className="text-[9px] uppercase tracking-[0.13em] text-[#11100d]/26">Status</span>
-            <span className="rounded-full border border-[#11100d]/8 bg-[#f7f1e7] px-2 py-0.5 text-[9px] text-[#11100d]/42">
-              {displayStatus(selectedReceipt.status)}
-            </span>
-          </div>
-        </div>
-      )}
+          <ReceiptVisualGallery
+            visualAssets={selectedReceipt.visualAssets}
+            receiptName={selectedReceipt.name}
+            receiptFormat={selectedReceipt.format}
+            variant="mobile"
+          />
 
-      {/* Receipt list */}
-      <div>
-        <div className="mb-2 text-[9px] uppercase tracking-[0.18em] text-[#11100d]/40">
-          Receipt list
-        </div>
-        <div className="space-y-2">
-          {receipts.map((receipt, i) => {
-            const active = selectedReceipt?.id === receipt.id;
-            const status = displayStatus(receipt.status);
-            return (
-              <button
-                key={receipt.id}
-                type="button"
-                aria-label={`Select receipt: ${receipt.name}`}
-                onClick={() => onSelectReceipt(receipt.id)}
-                className={cx(
-                  "flex w-full items-center gap-3 rounded-[16px] border p-3 text-left transition",
-                  active
-                    ? "border-[#11100d]/20 bg-[#fffaf1]"
-                    : "border-[#11100d]/10 bg-[#fffaf1]/40"
-                )}
-              >
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#11100d]/10 bg-[#f7f1e7] text-[9px] uppercase tracking-[0.1em] text-[#11100d]/48">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="min-w-0 flex-1">
-                  <div className="truncate text-[13px] text-[#11100d]">
-                    {receipt.name}
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="truncate text-[11px] text-[#11100d]/50">
-                      {receipt.format}
-                    </span>
-                    <span className="shrink-0 rounded-full border border-[#11100d]/10 bg-[#f7f1e7] px-2 py-0.5 text-[9px] tracking-[0.03em] text-[#11100d]/48">
-                      {status}
-                    </span>
-                  </div>
-                </div>
-                <ChevronRight
-                  className={cx(
-                    "h-3.5 w-3.5 shrink-0 text-[#11100d]/30 transition",
-                    active && "translate-x-[1px] text-[#11100d]/60"
-                  )}
-                />
-              </button>
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ─── Artifacts Tab ───────────────────────────────────────────────────────────
-
-// Compute readiness stats across all artifacts in all receipts (single pass)
-function getReadinessStats(record) {
-  const all = record.receipts.flatMap((r) => r.artifacts ?? []);
-  return all.reduce(
-    (acc, a) => {
-      if (a.status === "ready") acc.ready += 1;
-      else if (a.status === "needs screenshot") acc.needsScreenshot += 1;
-      else if (a.status === "needs metric") acc.needsMetric += 1;
-      else if (a.status === "needs polish") acc.needsPolish += 1;
-      acc.total += 1;
-      return acc;
-    },
-    { ready: 0, needsScreenshot: 0, needsMetric: 0, needsPolish: 0, total: 0 }
-  );
-}
-
-function ReadinessSummary({ record }) {
-  const stats = getReadinessStats(record);
-  const items = [
-    { label: "Ready", count: stats.ready, dot: "bg-emerald-500/60" },
-    { label: "Screenshot", count: stats.needsScreenshot, dot: "bg-amber-400/70" },
-    { label: "Metric", count: stats.needsMetric, dot: "bg-sky-400/70" },
-    { label: "Polish", count: stats.needsPolish, dot: "bg-violet-400/60" },
-  ].filter((item) => item.count > 0);
-
-  if (items.length === 0) return null;
-
-  return (
-    <div className="flex flex-wrap gap-2 rounded-[14px] border border-[#11100d]/8 bg-[#fffaf1]/70 px-3 py-2.5">
-      {items.map(({ label, count, dot }) => (
-        <span key={label} className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.12em] text-[#11100d]/52">
-          <span className={`h-1.5 w-1.5 rounded-full ${dot}`} />
-          {count} {label}
-        </span>
-      ))}
-    </div>
-  );
-}
-
-function ArtifactsTab({ record, activeReceipt }) {
-  const selectedReceipt = activeReceipt;
-  const artifacts = selectedReceipt?.artifacts ?? [{}];
-  const nextProof = record.nextProof ?? [];
-
-  // Collect all artifacts across all receipts for gallery
-  const allArtifacts = record.receipts.flatMap((r) =>
-    (r.artifacts ?? [{}]).map((a) => ({ ...a, receiptName: r.name }))
-  );
-
-  return (
-    <div className="space-y-4 px-4 py-4">
-      {/* Asset readiness summary */}
-      <ReadinessSummary record={record} />
-
-      {/* Featured artifact */}
-      {artifacts[0] !== undefined && (
-        <div>
-          <div className="mb-2 text-[9px] uppercase tracking-[0.18em] text-[#11100d]/40">
-            Featured artifact
-          </div>
-          <ArtifactCard artifact={artifacts[0]} />
-        </div>
-      )}
-
-      {/* Artifact gallery */}
-      {allArtifacts.length > 1 && (
-        <div>
-          <div className="mb-2 text-[9px] uppercase tracking-[0.18em] text-[#11100d]/40">
-            Artifact gallery
-          </div>
-          <div className="grid grid-cols-2 gap-2">
-            {allArtifacts.map((artifact, index) => (
-              <ArtifactCard
-                key={artifact.id || `gallery-artifact-${index}`}
-                artifact={artifact}
-                compact
-              />
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Next proof checklist */}
-      {nextProof.length > 0 && (
-        <div className="rounded-[18px] border border-[#11100d]/10 bg-[#fffaf1] p-4">
-          <div className="mb-3 text-[9px] uppercase tracking-[0.18em] text-[#11100d]/40">
-            What to add next
-          </div>
-          <ul className="space-y-2">
-            {nextProof.map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-2 text-[12px] leading-5 text-[#11100d]/68"
-              >
-                <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#11100d]/40" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-3 rounded-[12px] border border-[#11100d]/10 bg-[#f7f1e7] px-3 py-2 text-[11px] leading-5 text-[#11100d]/50">
-            Evidence archive in progress. Placeholder slots mark the exact proof
-            assets being added.
-          </p>
+          {showSelectedStatus && (
+            <div className="mt-3">
+              <span className="rounded-full border border-[#11100d]/8 bg-[#f7f1e7] px-2.5 py-1 text-[9px] tracking-[0.03em] text-[#11100d]/42">
+                {selectedStatus}
+              </span>
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -307,12 +259,20 @@ export default function MobileView({
   mobileTab,
   setMobileTab,
 }) {
+  const activeMobileTab = TABS.some(({ id }) => id === mobileTab) ? mobileTab : "overview";
+
+  React.useEffect(() => {
+    if (activeMobileTab !== mobileTab) {
+      setMobileTab(activeMobileTab);
+    }
+  }, [activeMobileTab, mobileTab, setMobileTab]);
+
   return (
     <div className="lg:hidden">
       {/* Sticky tab bar — positioned below the sticky case selector (~80 px) */}
       <div className="sticky top-20 z-20 border-b border-[#11100d]/10 bg-[#f7f1e7]/92 px-4 py-2.5 backdrop-blur-xl">
         <div
-          className="grid grid-cols-3 gap-1 rounded-full border border-[#11100d]/10 bg-[#fffaf1]/70 p-1"
+          className="grid grid-cols-2 gap-1 rounded-full border border-[#11100d]/10 bg-[#fffaf1]/70 p-1"
           role="group"
           aria-label="Mobile section tabs"
         >
@@ -321,11 +281,11 @@ export default function MobileView({
               key={id}
               type="button"
               aria-label={`Show ${label} tab`}
-              aria-pressed={mobileTab === id}
+              aria-pressed={activeMobileTab === id}
               onClick={() => setMobileTab(id)}
               className={cx(
                 "rounded-full py-2.5 text-[10px] uppercase tracking-[0.14em] transition",
-                mobileTab === id
+                activeMobileTab === id
                   ? "bg-[#11100d] text-[#f7f1e7]"
                   : "text-[#11100d]/46"
               )}
@@ -337,18 +297,15 @@ export default function MobileView({
       </div>
 
       {/* Tab content */}
-      {mobileTab === "overview" && (
+      {activeMobileTab === "overview" && (
         <OverviewTab record={record} mode={mode} openWorkspace={openWorkspace} />
       )}
-      {mobileTab === "proof" && (
+      {activeMobileTab === "proof" && (
         <ProofTab
           record={record}
           activeReceipt={activeReceipt}
           onSelectReceipt={onSelectReceipt}
         />
-      )}
-      {mobileTab === "artifacts" && (
-        <ArtifactsTab record={record} activeReceipt={activeReceipt} />
       )}
     </div>
   );

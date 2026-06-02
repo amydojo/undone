@@ -89,13 +89,72 @@ export const records = [
         ]
       },
       {
+        id: 'instagram-identity-rebuild',
+        name: 'Instagram identity rebuild',
+        format: 'visual system',
+        status: 'ready',
+        claim: 'Shows the shift from generic medspa presence to a clearer skin + laser brand with real treatment proof.',
+        proof: 'Historical profile and grid snapshots showing the identity shift across positioning, service clarity, and clinic-specific proof.',
+        contents: ['Before profile snapshot', 'After profile snapshot', 'Grid evolution', 'Service proof', 'Location and booking clarity'],
+        visualAssets: [
+          {
+            src: '/receipts/smooth-md/instagram-identity-rebuild/instagram-before-profile.jpeg',
+            alt: 'Smooth MD Instagram before profile snapshot',
+            caption: 'Historical profile snapshot showing generic medical spa positioning, low content depth, and limited service clarity.'
+          },
+          {
+            src: '/receipts/smooth-md/instagram-identity-rebuild/instagram-after-profile.jpeg',
+            alt: 'Smooth MD Instagram after profile snapshot',
+            caption: 'Updated profile snapshot showing clearer skin + laser positioning, stronger local trust signals, and a more complete brand presence.'
+          },
+          {
+            src: '/receipts/smooth-md/instagram-identity-rebuild/instagram-before-grid.jpeg',
+            alt: 'Smooth MD Instagram before grid snapshot',
+            caption: 'Earlier grid state with stock-heavy beauty imagery and weaker connection to real services, staff, and treatment proof.'
+          },
+          {
+            src: '/receipts/smooth-md/instagram-identity-rebuild/instagram-after-grid.jpeg',
+            alt: 'Smooth MD Instagram after grid snapshot',
+            caption: 'Updated grid showing real treatments, staff presence, service education, and clinic-specific visual proof.'
+          }
+        ],
+        artifacts: []
+      },
+      {
         id: 'campaign-toolkit',
         name: 'Campaign toolkit',
         format: 'creative system',
         status: 'ready',
-        claim: 'Shows how the brand system became repeatable production infrastructure.',
+        claim: 'Shows how the brand system became repeatable production infrastructure across paid ads, offer creative, and service-specific campaign assets.',
         proof: 'Ad hooks, landing sections, email blocks, CTA logic, and proof layouts.',
-        contents: ['ad hooks', 'offer modules', 'landing page sections', 'email blocks', 'social proof layouts'],
+        contents: ['Meta ad hooks', 'Offer modules', 'Hydrafacial promo system', 'Before/after proof', 'Mobile-native CTA'],
+        visualAssets: [
+          {
+            src: '/receipts/smooth-md/campaign-toolkit/stretch-mark-meta-ad-preview.jpeg',
+            alt: 'Smooth MD stretch mark Meta ad preview',
+            caption: 'Meta lead ad creative using direct-response problem framing, before/after proof, and a first-area discount offer.'
+          },
+          {
+            src: '/receipts/smooth-md/campaign-toolkit/hydrafacial-meta-ad-preview.jpeg',
+            alt: 'Smooth MD Hydrafacial Meta ad preview',
+            caption: 'Hydrafacial offer creative built around a clear monthly promo, treatment positioning, and conversion CTA.'
+          },
+          {
+            src: '/receipts/smooth-md/campaign-toolkit/brazilian-laser-hair-removal-ad-preview.jpeg',
+            alt: 'Smooth MD Brazilian laser hair removal ad preview',
+            caption: 'Paid social ad creative using a direct problem hook, clear Brazilian laser hair removal offer, price anchor, and mobile-native CTA.'
+          },
+          {
+            src: '/receipts/smooth-md/campaign-toolkit/hydrafacial-reset-tan-model.jpeg',
+            alt: 'Smooth MD Hydrafacial reset campaign asset with tan model',
+            caption: 'Hydrafacial campaign asset using reusable reset language and premium skin-health positioning.'
+          },
+          {
+            src: '/receipts/smooth-md/campaign-toolkit/hydrafacial-reset-dark-skin-model.jpeg',
+            alt: 'Smooth MD Hydrafacial reset campaign asset with dark skin model',
+            caption: 'Creative variation showing the campaign system could flex across imagery while keeping the same core message.'
+          }
+        ],
         artifacts: [
           {
             id: 'smooth-md-landing-page-section',
@@ -145,10 +204,16 @@ export const records = [
         id: 'signal-interpretation-map',
         name: 'Signal interpretation map',
         format: 'logic diagram',
-        status: 'needs visual',
-        claim: 'Maps energy, tension, clarity, and sleep into emotional state logic.',
-        proof: 'Maps energy, tension, clarity, and sleep into emotional state logic.',
+        status: 'ready',
+        claim: 'Maps raw emotional inputs into deterministic state logic.',
+        proof: 'Maps raw emotional inputs into deterministic state logic.',
         contents: ['energy range', 'tension range', 'clarity range', 'sleep quality', 'state detection', 'confidence labels'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'signal-interpretation-map'
+          }
+        ],
         artifacts: [
           {
             id: 'mirror-signal-flow-map',
@@ -164,10 +229,16 @@ export const records = [
         id: 'storybook-component-environment',
         name: 'Storybook component environment',
         format: 'component QA',
-        status: 'needs screenshot',
-        claim: 'Documents reusable UI states for product handoff and QA.',
-        proof: 'Documents reusable UI states for product handoff and QA.',
+        status: 'ready',
+        claim: 'Static Storybook build preserved component documentation for product states.',
+        proof: 'Static Storybook build preserved component documentation for product states.',
         contents: ['SignalSparkline', 'BodyWeatherHero', 'SimilarDays', 'GentleNextMove', 'DebugPanel', 'MSW setup'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'storybook-component-environment'
+          }
+        ],
         artifacts: [
           {
             id: 'mirror-storybook-component-state',
@@ -181,12 +252,18 @@ export const records = [
       },
       {
         id: 'feedback-store-logic',
-        name: 'Feedback store logic',
+        name: 'Feedback store learning loop',
         format: 'prototype logic',
-        status: 'needs link',
-        claim: 'Connects check-ins, feedback, and similar-day patterns using lightweight prototype logic.',
-        proof: 'Connects check-ins, feedback, and similar-day patterns using lightweight prototype logic.',
+        status: 'ready',
+        claim: 'Every user rating changes future suggestion scoring without telemetry.',
+        proof: 'Every user rating changes future suggestion scoring without telemetry.',
         contents: ['mirror_checkins', 'mirror_feedback', 'suggestion scoring', 'pattern frequency', 'similar day matching'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'feedback-store-learning-loop'
+          }
+        ],
         artifacts: [
           {
             id: 'mirror-feedback-logic-snippet',
@@ -203,9 +280,15 @@ export const records = [
         name: 'Debug and QA overlay',
         format: 'testing artifact',
         status: 'ready',
-        claim: 'Shows the internal reasoning pipeline and test cases behind the interface.',
-        proof: 'Shows the internal reasoning pipeline and test cases behind the interface.',
+        claim: 'The product includes an inline debug layer for regression checks and demo control.',
+        proof: 'The product includes an inline debug layer for regression checks and demo control.',
         contents: ['pipeline view', 'test cases', 'Esc behavior', 'responsive checks', 'frayed edge case'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'debug-and-qa-overlay'
+          }
+        ],
         artifacts: [
           {
             id: 'mirror-debug-overlay-screenshot',
@@ -216,6 +299,70 @@ export const records = [
             status: 'ready'
           }
         ]
+      },
+      {
+        id: 'similar-days-pattern-logic',
+        name: 'Similar days pattern logic',
+        format: 'pattern matching',
+        status: 'ready',
+        claim: 'Compares current check-ins to recent similar states without overstating certainty.',
+        proof: 'Compares current check-ins to recent similar states without overstating certainty.',
+        contents: ['current check-in', 'stored entries', 'same state', 'last 30 days', 'language calibration', 'what helped lookup'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'similar-days-pattern-logic'
+          }
+        ],
+        artifacts: []
+      },
+      {
+        id: 'local-storage-data-model',
+        name: 'Local storage data model',
+        format: 'data architecture',
+        status: 'ready',
+        claim: 'Three persisted keys separate check-ins, feedback, and QA notes.',
+        proof: 'Three persisted keys separate check-ins, feedback, and QA notes.',
+        contents: ['mirror_checkins', 'mirror_feedback', 'mirror_field_notes', 'CheckInEntry schema', 'sentinel behavior'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'local-storage-data-model'
+          }
+        ],
+        artifacts: []
+      },
+      {
+        id: 'seed-scenario-system',
+        name: 'Seed scenario system',
+        format: 'demo data',
+        status: 'ready',
+        claim: 'Demo entries cover all 8 states through the live engine, not hardcoded overrides.',
+        proof: 'Demo entries cover all 8 states through the live engine, not hardcoded overrides.',
+        contents: ['29 entries', '8 states', 'stable IDs', 'realistic context tags', 'journal-style notes', 'regression verified'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'seed-scenario-system'
+          }
+        ],
+        artifacts: []
+      },
+      {
+        id: 'gentle-next-move-logic',
+        name: 'Gentle next move logic',
+        format: 'recommendation system',
+        status: 'ready',
+        claim: 'Suggestions are selected through scored eligibility and safety constraints.',
+        proof: 'Suggestions are selected through scored eligibility and safety constraints.',
+        contents: ['15 actions', 'feedbackScore', 'contextBoost', 'basePriority', 'safety constraints', 'faint rationale'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'gentle-next-move-logic'
+          }
+        ],
+        artifacts: []
       }
     ]
   },
@@ -255,10 +402,16 @@ export const records = [
         id: 'leads-master-table-logic',
         name: 'Leads_Master table logic',
         format: 'data model',
-        status: 'needs screenshot',
-        claim: 'Shows the data spine behind the dashboard.',
-        proof: 'Lead source, service interest, status, booking behavior, and conversion value mapped together.',
-        contents: ['lead source', 'campaign', 'service interest', 'status', 'booking behavior', 'conversion value'],
+        status: 'ready',
+        claim: 'Shows the shared lead record that connected acquisition source, service interest, CRM state, booking behavior, and conversion value.',
+        proof: 'Shared lead record connecting acquisition source, service interest, CRM state, booking behavior, and conversion value.',
+        contents: ['name', 'phone', 'email', 'lead source', 'CRM state', 'conversion value'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'meta-leads-master-table-logic'
+          }
+        ],
         artifacts: [
           {
             id: 'meta-leads-master-dashboard',
@@ -274,10 +427,16 @@ export const records = [
         id: 'campaign-performance-logic',
         name: 'Campaign_Performance logic',
         format: 'analytics table',
-        status: 'needs metric',
-        claim: 'Shows paid media metrics structured for decisions, not screenshots.',
-        proof: 'Spend, leads, CPL, CTR, ROAS, creative angle, and fallback generation.',
-        contents: ['campaign name', 'spend', 'leads', 'CPL', 'CTR', 'ROAS', 'creative angle'],
+        status: 'ready',
+        claim: 'Shows how ad performance was translated from platform metrics into business signals.',
+        proof: 'Meta signals, CRM signals, and decision signals mapped into one optimization table.',
+        contents: ['spend', 'impressions', 'clicks', 'leads', 'booked', 'ROAS'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'meta-campaign-performance-logic'
+          }
+        ],
         artifacts: [
           {
             id: 'meta-ads-performance-view',
@@ -293,10 +452,16 @@ export const records = [
         id: 'revenue-attribution-model',
         name: 'Revenue_Attribution model',
         format: 'logic layer',
-        status: 'needs link',
-        claim: 'Shows the bridge between marketing activity and business outcome.',
-        proof: 'Booking value, converted revenue, campaign source, confidence score, and LTV signal.',
-        contents: ['booking value', 'converted revenue', 'source campaign', 'confidence score', 'LTV signal'],
+        status: 'ready',
+        claim: 'Shows how revenue was matched back to campaign and lead context using confidence based attribution logic.',
+        proof: 'Revenue matched back to lead and campaign context with confidence based attribution logic.',
+        contents: ['lead record', 'campaign context', 'booking behavior', 'revenue value', 'confidence', 'ROAS context'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'meta-revenue-attribution-model'
+          }
+        ],
         artifacts: [
           {
             id: 'meta-revenue-attribution-document',
@@ -313,9 +478,15 @@ export const records = [
         name: 'Decision dashboard UI',
         format: 'interface system',
         status: 'ready',
-        claim: 'Shows analytics becoming usable for weekly optimization.',
-        proof: 'Campaign health, funnel breakdowns, creative insights, and next action prompts.',
-        contents: ['campaign cards', 'funnel metrics', 'lead status', 'creative insights', 'next action prompts'],
+        claim: 'Shows the final decision layer where campaign, CRM, and revenue signals became optimization guidance.',
+        proof: 'Campaign, CRM, and revenue signals translated into optimization guidance.',
+        contents: ['spend', 'leads', 'booked', 'revenue', 'campaign health', 'next move'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'meta-decision-dashboard-ui'
+          }
+        ],
         artifacts: [
           {
             id: 'meta-decision-dashboard-ui',
@@ -441,6 +612,80 @@ export const records = [
   },
   {
     id: '05',
+    slug: 'guardrail-hr',
+    title: 'Guardrail HR Compliance Assessment Platform',
+    category: 'product ux',
+    type: 'compliance workflow',
+    status: 'prototype',
+    timeline: '2024',
+    accent: '#d7e8ff',
+    thesis: 'A compliance product that turned HR risk into a guided assessment system.',
+    oneLine: 'A self-serve HR compliance concept translating messy policy risk into score-based triage, answer traceability, and structured guidance.',
+    role: 'Product UX, systems design, assessment logic, interface strategy',
+    tools: ['Figma', 'Product strategy', 'Assessment logic', 'UX writing', 'Systems mapping'],
+    hiringTranslation:
+      'This case is relevant to design technologist and product UX roles because it translates ambiguous compliance risk into explainable assessment logic, traceable answers, and structured user guidance.',
+    metrics: [
+      { value: '22', label: 'questions' },
+      { value: 'score', label: 'based triage' },
+      { value: 'trace', label: 'answer logic' }
+    ],
+    path: ['Question', 'Risk Driver', 'Score', 'Result', 'Resource', 'Action'],
+    signal: 'Small teams often do not know whether an HR issue is minor, urgent, or legally risky.',
+    system: 'Question intake, risk drivers, score calculation, result tiers, resource recommendations, and action paths formed one guided assessment flow.',
+    owned: ['product UX', 'systems design', 'assessment logic', 'interface strategy', 'risk language'],
+    nextProof: ['Add assessment flow visual', 'Add risk score model', 'Add results UX framework'],
+    decisions: [
+      { label: 'constraint', body: 'Compliance language needed to be useful without overpromising legal certainty.' },
+      { label: 'move', body: 'Use score-based triage, risk drivers, and answer traceability instead of generic advice.' },
+      { label: 'tradeoff', body: 'Less dramatic automation, more explainable user trust.' },
+      { label: 'principle', body: 'Make risk understandable before making recommendations.' }
+    ],
+    receipts: [
+      {
+        id: 'assessment-flow-logic',
+        name: 'Assessment flow logic',
+        format: 'assessment system',
+        status: 'needs visual',
+        claim: 'Shows how user answers move through a 22-question compliance assessment into score-based triage.',
+        proof: '22-question flow, answer options, risk drivers, score tiers, and result routing.',
+        contents: ['22-question flow', 'answer options', 'risk drivers', 'score tiers', 'result routing'],
+        artifacts: []
+      },
+      {
+        id: 'risk-score-model',
+        name: 'Risk score model',
+        format: 'scoring logic',
+        status: 'needs visual',
+        claim: 'Shows how policy uncertainty is translated into a readable risk score without pretending to be legal advice.',
+        proof: 'Risk weight, answer value, score range, severity tier, and recommendation boundary.',
+        contents: ['risk weight', 'answer value', 'score range', 'severity tier', 'recommendation boundary'],
+        artifacts: []
+      },
+      {
+        id: 'answer-traceability-map',
+        name: 'Answer traceability map',
+        format: 'logic transparency',
+        status: 'needs visual',
+        claim: "Shows how each result can be traced back to the user's selected answers and risk drivers.",
+        proof: 'Selected answers, risk driver labels, score contribution, result explanation, and review path.',
+        contents: ['selected answers', 'risk driver labels', 'score contribution', 'result explanation', 'review path'],
+        artifacts: []
+      },
+      {
+        id: 'results-ux-framework',
+        name: 'Results UX framework',
+        format: 'product interface',
+        status: 'needs visual',
+        claim: 'Shows how assessment output becomes a structured user-facing result with next steps.',
+        proof: 'Risk tier, summary, why-this-appeared explanation, recommended resource, and action path.',
+        contents: ['risk tier', 'summary', 'why this appeared', 'recommended resource', 'action path'],
+        artifacts: []
+      }
+    ]
+  },
+  {
+    id: '06',
     slug: 'multi-brand-retention',
     title: 'Multi Brand Retention Engine',
     category: 'retention',
