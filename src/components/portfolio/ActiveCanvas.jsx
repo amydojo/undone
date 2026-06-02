@@ -87,7 +87,7 @@ export default function ActiveCanvas({ record, mode, openWorkspace }) {
           </motion.div>
         </AnimatePresence>
 
-        <div className="border-t border-[#11100d]/8 px-5 py-6 xl:px-10 xl:py-8">
+        <div className="border-t border-[#11100d]/8 px-5 py-5 xl:px-10 xl:py-6">
           <ProfileStrip />
         </div>
       </section>

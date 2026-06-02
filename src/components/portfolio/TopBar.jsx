@@ -1,14 +1,20 @@
 import React from "react";
 import { Search } from "lucide-react";
 import { cx } from "../../utils/cx";
+import { profile } from "../../data/profile";
 
 export default function TopBar({ search, setSearch, mode, setMode, searchInputRef }) {
   return (
     <header className="grid grid-cols-1 gap-3 border-b border-[#11100d]/10 bg-[#f7f1e7]/88 px-4 py-4 backdrop-blur-xl lg:grid-cols-[300px_1fr_320px] lg:px-6">
-      <div className="flex items-center justify-between lg:justify-start lg:gap-4">
-        <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-[#11100d]">
-          <span className="h-2 w-2 rounded-full bg-[#11100d]" />
-          <span>Amy Do</span>
+      <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-0.5 lg:flex-row lg:items-center lg:gap-4">
+          <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-[#11100d]">
+            <span className="h-2 w-2 rounded-full bg-[#11100d]" />
+            <span>Amy Do</span>
+          </div>
+          <span className="pl-5 text-[9px] tracking-[0.04em] text-[#11100d]/38 lg:pl-0 lg:text-[10px]">Design Technologist</span>
+          <a href={profile.resumeHref} className="hidden text-[9px] uppercase tracking-[0.13em] text-[#11100d]/38 transition hover:text-[#11100d] xl:inline">résumé</a>
+          <a href={`mailto:${profile.contact}`} className="hidden text-[9px] uppercase tracking-[0.13em] text-[#11100d]/38 transition hover:text-[#11100d] xl:inline">contact</a>
         </div>
         <span className="rounded-full border border-[#11100d]/10 px-3 py-1 text-[9px] uppercase tracking-[0.18em] text-[#11100d]/48">v10</span>
       </div>

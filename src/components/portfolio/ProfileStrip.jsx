@@ -7,63 +7,66 @@ export default function ProfileStrip({ className }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <section className={cx("rounded-[20px] border border-[#11100d]/8 bg-[#fffaf1]/44 p-4 lg:p-5", className)} aria-label="Profile strip">
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div className="min-w-0 flex-1">
-          <div className="text-[10px] uppercase tracking-[0.15em] text-[#11100d]/38">More about Amy</div>
-          <p className="mt-2 max-w-2xl text-[13px] leading-6 text-[#11100d]/66">{profile.positioning}</p>
+    <div className={cx("", className)}>
+      {/* Identity + action row */}
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+          <span className="text-[12px] font-medium text-[#11100d]/68">{profile.name}</span>
+          <span className="text-[#11100d]/18" aria-hidden="true">·</span>
+          <span className="text-[11px] text-[#11100d]/38">Design Technologist</span>
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <a
             href={profile.resumeHref}
             aria-label="Open resume"
-            className="inline-flex h-10 items-center justify-center rounded-full bg-[#11100d] px-4 text-[10px] uppercase tracking-[0.14em] text-[#f7f1e7]"
+            className="inline-flex h-8 items-center justify-center rounded-full bg-[#11100d] px-3.5 text-[9px] uppercase tracking-[0.14em] text-[#f7f1e7]"
           >
             résumé
           </a>
           <a
             href={`mailto:${profile.contact}`}
-            className="inline-flex h-10 items-center justify-center rounded-full border border-[#11100d]/10 px-4 text-[10px] uppercase tracking-[0.14em] text-[#11100d]/66"
+            className="inline-flex h-8 items-center justify-center rounded-full border border-[#11100d]/10 px-3.5 text-[9px] uppercase tracking-[0.14em] text-[#11100d]/58"
           >
             contact
           </a>
           <button
             type="button"
-            aria-label={expanded ? "Hide more about Amy" : "Show more about Amy"}
+            aria-label={expanded ? "Hide details" : "Show details"}
             aria-expanded={expanded}
             onClick={() => setExpanded((v) => !v)}
-            className="inline-flex h-10 items-center gap-2 rounded-full border border-[#11100d]/10 bg-[#fffaf1] px-4 text-[10px] uppercase tracking-[0.14em] text-[#11100d]/66"
+            className="inline-flex h-8 items-center gap-1.5 rounded-full border border-[#11100d]/10 px-3.5 text-[9px] uppercase tracking-[0.14em] text-[#11100d]/58"
           >
             details
-            <ChevronDown className={cx("h-3.5 w-3.5 transition-transform", expanded && "rotate-180")} />
+            <ChevronDown className={cx("h-3 w-3 transition-transform", expanded && "rotate-180")} />
           </button>
         </div>
       </div>
 
+      {/* Expandable details */}
       {expanded && (
-        <div className="mt-4 grid gap-4 border-t border-[#11100d]/10 pt-4 lg:grid-cols-[1.15fr_1fr_1fr]">
+        <div className="mt-4 grid gap-4 border-t border-[#11100d]/8 pt-4 sm:grid-cols-2 lg:grid-cols-3">
           <div>
-            <div className="text-[10px] uppercase tracking-[0.15em] text-[#11100d]/38">Summary</div>
-            <p className="mt-2 max-w-xl text-sm leading-6 text-[#11100d]/64">{profile.oneSentence}</p>
+            <div className="text-[9px] uppercase tracking-[0.15em] text-[#11100d]/34">Summary</div>
+            <p className="mt-2 text-[12px] leading-[1.65] text-[#11100d]/56">{profile.oneSentence}</p>
           </div>
           <div>
-            <div className="text-[10px] uppercase tracking-[0.15em] text-[#11100d]/38">Role fit</div>
-            <div className="mt-3 flex flex-wrap gap-1.5">
+            <div className="text-[9px] uppercase tracking-[0.15em] text-[#11100d]/34">Role fit</div>
+            <div className="mt-2 flex flex-wrap gap-1.5">
               {profile.roleFits.map((item) => (
-                <span key={item} className="rounded-full border border-[#11100d]/10 px-2.5 py-1 text-[10px] text-[#11100d]/62">{item}</span>
+                <span key={item} className="rounded-full border border-[#11100d]/8 px-2 py-0.5 text-[9px] text-[#11100d]/52">{item}</span>
               ))}
             </div>
           </div>
           <div>
-            <div className="text-[10px] uppercase tracking-[0.15em] text-[#11100d]/38">Tool fluency</div>
-            <div className="mt-3 flex flex-wrap gap-1.5">
+            <div className="text-[9px] uppercase tracking-[0.15em] text-[#11100d]/34">Tool fluency</div>
+            <div className="mt-2 flex flex-wrap gap-1.5">
               {profile.toolFluency.map((item) => (
-                <span key={item} className="rounded-full border border-[#11100d]/10 bg-[#f7f1e7]/60 px-2.5 py-1 text-[10px] text-[#11100d]/62">{item}</span>
+                <span key={item} className="rounded-full border border-[#11100d]/8 bg-[#f7f1e7]/60 px-2 py-0.5 text-[9px] text-[#11100d]/52">{item}</span>
               ))}
             </div>
           </div>
         </div>
       )}
-    </section>
+    </div>
   );
 }
