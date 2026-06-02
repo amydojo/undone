@@ -44,24 +44,24 @@ export default function ProfileStrip({ className }) {
 
       {/* Expandable details */}
       {expanded && (
-        <div className="mt-4 grid gap-4 border-t border-[#11100d]/8 pt-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-4 grid gap-5 rounded-[14px] border border-[#11100d]/6 bg-[#f7f1e7]/60 p-4 sm:grid-cols-2 lg:grid-cols-3">
           <div>
-            <div className="text-[9px] uppercase tracking-[0.15em] text-[#11100d]/34">Summary</div>
-            <p className="mt-2 text-[12px] leading-[1.65] text-[#11100d]/56">{profile.oneSentence}</p>
+            <div className="mb-2 text-[9px] uppercase tracking-[0.15em] text-[#11100d]/34">Summary</div>
+            <p className="text-[12px] leading-[1.65] text-[#11100d]/56">{profile.oneSentence}</p>
           </div>
           <div>
-            <div className="text-[9px] uppercase tracking-[0.15em] text-[#11100d]/34">Role fit</div>
-            <div className="mt-2 flex flex-wrap gap-1.5">
+            <div className="mb-2 text-[9px] uppercase tracking-[0.15em] text-[#11100d]/34">Role fit</div>
+            <div className="flex flex-wrap gap-1.5">
               {profile.roleFits.map((item) => (
                 <span key={item} className="rounded-full border border-[#11100d]/8 px-2 py-0.5 text-[9px] text-[#11100d]/52">{item}</span>
               ))}
             </div>
           </div>
           <div>
-            <div className="text-[9px] uppercase tracking-[0.15em] text-[#11100d]/34">Tool fluency</div>
-            <div className="mt-2 flex flex-wrap gap-1.5">
+            <div className="mb-2 text-[9px] uppercase tracking-[0.15em] text-[#11100d]/34">Tool fluency</div>
+            <div className="flex flex-wrap gap-1.5">
               {profile.toolFluency.map((item) => (
-                <span key={item} className="rounded-full border border-[#11100d]/8 bg-[#f7f1e7]/60 px-2 py-0.5 text-[9px] text-[#11100d]/52">{item}</span>
+                <span key={item} className="rounded-full border border-[#11100d]/8 bg-[#fffaf1]/70 px-2 py-0.5 text-[9px] text-[#11100d]/52">{item}</span>
               ))}
             </div>
           </div>
