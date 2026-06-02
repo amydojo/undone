@@ -17,8 +17,10 @@ export const profile = {
   toolFluency: ["Figma", "React", "Tailwind", "Storybook", "Airtable", "Mailchimp", "Meta Ads", "OpenAI", "Replit", "Zapier"],
   lookingFor: ["design technologist", "creative technologist", "product systems", "growth design"],
   currentFocus: ["AI assisted workflows", "brand systems", "lifecycle architecture", "internal tools"],
-  contact: "hello@amydo.dev",
-  resumeHref: "/Amy%20Do.pdf",
+  contact: "amycdo98@gmail.com",
+  linkedInHref: "https://linkedin.com/in/amycdo",
+  portfolioHref: "https://undone.design",
+  resumeHref: "/files/amy-do-design-technologist-resume.pdf",
 };
 
 export default profile;
