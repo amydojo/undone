@@ -92,7 +92,7 @@ export default function TopBar() {
       </div>
 
       {contactOpen && (
-        <div className="z-40 rounded-[16px] border border-[#11100d]/10 bg-[#fffaf1] p-4 text-[#11100d] shadow-[0_18px_50px_rgba(17,16,13,0.12)] lg:absolute lg:right-6 lg:top-[calc(100%-6px)] lg:w-[340px]">
+        <div className="z-40 rounded-[16px] border border-[#11100d]/10 bg-[#fffaf1] p-4 text-[#11100d] shadow-[0_14px_36px_rgba(17,16,13,0.1)] lg:absolute lg:right-6 lg:top-[calc(100%-6px)] lg:w-[300px]">
           <div className="flex items-start justify-between gap-4">
             <div>
               <div className="text-[13px] font-medium leading-5">Amy Do</div>
@@ -110,28 +110,25 @@ export default function TopBar() {
             </button>
           </div>
 
-          <p className="mt-3 text-[12px] leading-5 text-[#11100d]/62">
-            Available for design technologist, creative systems, growth design, and AI workflow roles.
+          <p className="mt-3 text-[11px] leading-5 text-[#11100d]/52">
+            Available for design technologist and creative systems roles.
           </p>
 
           <div className="mt-4">
             <div className="mb-1.5 text-[9px] uppercase tracking-[0.14em] text-[#11100d]/34">Email</div>
-            <div className="rounded-[12px] border border-[#11100d]/8 bg-[#f7f1e7] px-3 py-2 text-[12px] text-[#11100d]/68">
-              {profile.contact}
-            </div>
-          </div>
-
-          <div className="mt-4 grid grid-cols-2 gap-2">
             <a
               href={`mailto:${profile.contact}`}
-              className="inline-flex h-9 items-center justify-center rounded-full bg-[#11100d] px-3 text-[9px] uppercase tracking-[0.13em] text-[#f7f1e7]"
+              className="block rounded-[12px] border border-[#11100d]/8 bg-[#f7f1e7] px-3 py-2 text-[12px] text-[#11100d]/68 transition hover:text-[#11100d]"
             >
-              Email Amy
+              {profile.contact}
             </a>
+          </div>
+
+          <div className="mt-4 flex items-center gap-2">
             <button
               type="button"
               onClick={copyEmail}
-              className="inline-flex h-9 items-center justify-center rounded-full border border-[#11100d]/10 px-3 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/58"
+              className="inline-flex h-9 items-center justify-center rounded-full bg-[#11100d] px-3.5 text-[9px] uppercase tracking-[0.13em] text-[#f7f1e7]"
             >
               {copied ? "Copied" : "Copy email"}
             </button>
@@ -139,17 +136,9 @@ export default function TopBar() {
               href={profile.linkedInHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-9 items-center justify-center rounded-full border border-[#11100d]/10 px-3 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/58"
+              className="inline-flex h-9 items-center justify-center rounded-full border border-[#11100d]/10 px-3.5 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/58"
             >
               LinkedIn
-            </a>
-            <a
-              href={profile.portfolioHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex h-9 items-center justify-center rounded-full border border-[#11100d]/10 px-3 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/58"
-            >
-              Portfolio
             </a>
           </div>
         </div>

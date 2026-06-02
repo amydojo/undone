@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { records } from "../../data/records";
 import TopBar from "./TopBar";
@@ -10,35 +10,19 @@ import MobileRecordSelector from "./MobileRecordSelector";
 import MobileView from "./MobileView";
 
 export default function UndonePortfolioV10() {
-  const [query, setQuery] = useState("");
   const [activeFilter, setActiveFilter] = useState("all");
   const [activeRecordSlug, setActiveRecordSlug] = useState(records[0].slug);
   const [activeReceiptId, setActiveReceiptId] = useState(records[0].receipts[0]?.id ?? null);
   const [workspaceRecordSlug, setWorkspaceRecordSlug] = useState(null);
   const [mobileSheetOpen, setMobileSheetOpen] = useState(false);
   const [mobileTab, setMobileTab] = useState("overview");
-  const searchInputRef = useRef(null);
 
   const filteredRecords = useMemo(() => {
-    const normalized = query.trim().toLowerCase();
     return records.filter((record) => {
       const matchesFilter = activeFilter === "all" || record.category === activeFilter;
-      const searchable = [
-        record.title,
-        record.category,
-        record.type,
-        record.status,
-        record.thesis,
-        record.oneLine,
-        record.role,
-        ...record.tools,
-        ...record.receipts.flatMap((receipt) => [receipt.name, receipt.format, receipt.claim, receipt.proof, ...receipt.contents])
-      ]
-        .join(" ")
-        .toLowerCase();
-      return matchesFilter && (!normalized || searchable.includes(normalized));
+      return matchesFilter;
     });
-  }, [activeFilter, query]);
+  }, [activeFilter]);
 
   const activeRecord = useMemo(
     () => records.find((record) => record.slug === activeRecordSlug) || records[0],
@@ -86,11 +70,6 @@ export default function UndonePortfolioV10() {
         return;
       }
 
-      if (event.key === "/" && !isTyping) {
-        event.preventDefault();
-        searchInputRef.current?.focus();
-      }
-
       if ((event.key === "ArrowDown" || event.key === "ArrowUp") && filteredRecords.length > 0 && !isTyping) {
         event.preventDefault();
         const currentIndex = filteredRecords.findIndex((record) => record.slug === activeRecord.slug);
@@ -122,7 +101,7 @@ export default function UndonePortfolioV10() {
       <div className="mx-auto min-h-screen max-w-[1720px] overflow-x-hidden bg-[#f7f1e7] shadow-[0_0_0_1px_rgba(255,255,255,0.08)]">
         <div className="pointer-events-none fixed inset-0 opacity-[0.45] [background-image:radial-gradient(circle_at_18%_8%,rgba(255,255,255,0.85),transparent_28%),linear-gradient(rgba(17,16,13,0.028)_1px,transparent_1px),linear-gradient(90deg,rgba(17,16,13,0.028)_1px,transparent_1px)] [background-size:auto,38px_38px,38px_38px]" />
         <div className="relative z-10">
-          <TopBar search={query} setSearch={setQuery} searchInputRef={searchInputRef} />
+          <TopBar />
 
           {/* Mobile layout */}
           <MobileRecordSelector

@@ -18,6 +18,8 @@ export default function ProfileStrip({ className }) {
         <div className="flex flex-wrap items-center gap-2">
           <a
             href={profile.resumeHref}
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="Open resume"
             className="inline-flex h-8 items-center justify-center rounded-full bg-[#11100d] px-3.5 text-[9px] uppercase tracking-[0.14em] text-[#f7f1e7]"
           >
