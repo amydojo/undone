@@ -202,164 +202,136 @@ export const records = [
     receipts: [
       {
         id: 'signal-interpretation-map',
-        name: 'Signal interpretation map',
-        format: 'logic diagram',
+        testId: 'mirror-signal-interpretation-map',
+        name: 'Signal Interpretation Map',
+        format: 'Logic diagram',
         status: 'ready',
-        claim: 'Maps raw emotional inputs into deterministic state logic.',
-        proof: 'Maps raw emotional inputs into deterministic state logic.',
-        contents: ['energy range', 'tension range', 'clarity range', 'sleep quality', 'state detection', 'confidence labels'],
+        claim: 'Proves Mirror converts raw emotional inputs into deterministic body weather states.',
+        proof: 'Priority resolver, normalized signal ranges, body weather state, confidence label, and gentle next move.',
+        contents: ['raw inputs', 'normalized ranges', 'priority resolver', 'body weather state', 'confidence label', 'gentle next move'],
         visualAssets: [
           {
             kind: 'component',
             componentKey: 'signal-interpretation-map'
           }
         ],
-        artifacts: [
+        artifacts: []
+      },
+      {
+        id: 'check-in-data-model',
+        testId: 'mirror-check-in-data-model',
+        name: 'Check In Data Model',
+        format: 'Data schema',
+        status: 'ready',
+        claim: 'Proves the product has structured inputs rather than vague mood journaling.',
+        proof: 'Field map for signals, context profile, reflection note, and mirror_checkins storage.',
+        contents: ['energy', 'tension', 'clarity', 'sleep', 'contextProfile', 'note', 'mirror_checkins'],
+        visualAssets: [
           {
-            id: 'mirror-signal-flow-map',
-            type: 'flow',
-            label: 'Flow map',
-            src: '',
-            caption: 'Shows conversion from emotional signal inputs to reusable state logic.',
-            status: 'needs polish'
+            kind: 'component',
+            componentKey: 'check-in-data-model'
           }
-        ]
+        ],
+        artifacts: []
+      },
+      {
+        id: 'body-weather-state-system',
+        testId: 'mirror-body-weather-state-system',
+        name: 'Body Weather State System',
+        format: 'State model',
+        status: 'ready',
+        claim: 'Proves the product has a defined emotional state language and not random mood labels.',
+        proof: 'Eight body weather states with trigger pattern, user meaning, and interaction tone.',
+        contents: ['Frayed', 'Compressed', 'Sparked', 'Clear', 'Fog Forming', 'Drifting', 'Restoring', 'Settled'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'body-weather-state-system'
+          }
+        ],
+        artifacts: []
+      },
+      {
+        id: 'similar-days-matcher',
+        testId: 'mirror-similar-days-matcher',
+        name: 'Similar Days Matcher',
+        format: 'Pattern matching trace',
+        status: 'ready',
+        claim: "Proves Mirror can compare today's signals against previous check ins and surface useful memory.",
+        proof: "Ranked match trace using today's fingerprint, overlap criteria, and mirror_checkins history.",
+        contents: ['current check-in', 'mirror_checkins', 'signal overlap', 'context overlap', 'ranked similar days', 'helpful past actions'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'similar-days-matcher'
+          }
+        ],
+        artifacts: []
+      },
+      {
+        id: 'gentle-next-move-ranking',
+        testId: 'mirror-gentle-next-move-ranking',
+        name: 'Gentle Next Move Ranking',
+        format: 'Recommendation logic',
+        status: 'ready',
+        claim: 'Proves suggestions are not random wellness advice. They are sorted by state, signal fit, and past feedback.',
+        proof: 'Internal ranking ledger for candidate moves, triggers, friction, feedback weight, and final order.',
+        contents: ['state fit', 'signal match', 'prior feedback', 'friction level', 'suggestion order'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'gentle-next-move-ranking'
+          }
+        ],
+        artifacts: []
+      },
+      {
+        id: 'feedback-memory-loop',
+        testId: 'mirror-feedback-memory-loop',
+        name: 'Feedback Memory Loop',
+        format: 'Adaptive behavior log',
+        status: 'ready',
+        claim: 'Proves the product can learn which suggestions help without needing a heavy account system.',
+        proof: 'Suggestion response loop stored in mirror_feedback and applied to future ranking.',
+        contents: ['suggestion shown', 'user response', 'mirror_feedback', 'future ranking adjusted', 'similar days'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'feedback-memory-loop'
+          }
+        ],
+        artifacts: []
+      },
+      {
+        id: 'debug-overlay-test-bench',
+        testId: 'mirror-debug-overlay-test-bench',
+        name: 'Debug Overlay Test Bench',
+        format: 'QA console',
+        status: 'ready',
+        claim: 'Proves the system was testable and inspectable during development.',
+        proof: 'Internal debug overlay with pipeline visibility, demo controls, and state test cases.',
+        contents: ['Debug Overlay', 'triple click current patterns header', 'Esc', 'pipeline visibility', 'suggestion ranking', 'feedback store'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'debug-overlay-test-bench'
+          }
+        ],
+        artifacts: []
       },
       {
         id: 'storybook-component-environment',
-        name: 'Storybook component environment',
-        format: 'component QA',
+        testId: 'mirror-storybook-component-environment',
+        name: 'Storybook Component Environment',
+        format: 'Component QA',
         status: 'ready',
-        claim: 'Static Storybook build preserved component documentation for product states.',
-        proof: 'Static Storybook build preserved component documentation for product states.',
-        contents: ['SignalSparkline', 'BodyWeatherHero', 'SimilarDays', 'GentleNextMove', 'DebugPanel', 'MSW setup'],
+        claim: 'Proves the product interface was broken into reusable, inspectable components and documented states.',
+        proof: 'Static Storybook coverage matrix for primitives, data display, product patterns, QA, and pages.',
+        contents: ['SignalSparkline', 'BodyWeatherHero', 'SimilarDays', 'GentleNextMove', 'DebugPanel', 'MSW', 'Vitest', 'Playwright prepared'],
         visualAssets: [
           {
             kind: 'component',
             componentKey: 'storybook-component-environment'
-          }
-        ],
-        artifacts: [
-          {
-            id: 'mirror-storybook-component-state',
-            type: 'prototype',
-            label: 'Storybook component state',
-            src: '',
-            caption: 'Proves state-level QA and implementation-ready component behavior.',
-            status: 'needs screenshot'
-          }
-        ]
-      },
-      {
-        id: 'feedback-store-logic',
-        name: 'Feedback store learning loop',
-        format: 'prototype logic',
-        status: 'ready',
-        claim: 'Every user rating changes future suggestion scoring without telemetry.',
-        proof: 'Every user rating changes future suggestion scoring without telemetry.',
-        contents: ['mirror_checkins', 'mirror_feedback', 'suggestion scoring', 'pattern frequency', 'similar day matching'],
-        visualAssets: [
-          {
-            kind: 'component',
-            componentKey: 'feedback-store-learning-loop'
-          }
-        ],
-        artifacts: [
-          {
-            id: 'mirror-feedback-logic-snippet',
-            type: 'code',
-            label: 'Feedback scoring code',
-            src: '',
-            caption: 'Shows how suggestion scoring and learning loops are persisted in prototype state.',
-            status: 'needs link'
-          }
-        ]
-      },
-      {
-        id: 'debug-and-qa-overlay',
-        name: 'Debug and QA overlay',
-        format: 'testing artifact',
-        status: 'ready',
-        claim: 'The product includes an inline debug layer for regression checks and demo control.',
-        proof: 'The product includes an inline debug layer for regression checks and demo control.',
-        contents: ['pipeline view', 'test cases', 'Esc behavior', 'responsive checks', 'frayed edge case'],
-        visualAssets: [
-          {
-            kind: 'component',
-            componentKey: 'debug-and-qa-overlay'
-          }
-        ],
-        artifacts: [
-          {
-            id: 'mirror-debug-overlay-screenshot',
-            type: 'image',
-            label: 'Debug overlay screenshot',
-            src: '',
-            caption: 'Proves integrated QA tooling and pipeline inspection in the product surface.',
-            status: 'ready'
-          }
-        ]
-      },
-      {
-        id: 'similar-days-pattern-logic',
-        name: 'Similar days pattern logic',
-        format: 'pattern matching',
-        status: 'ready',
-        claim: 'Compares current check-ins to recent similar states without overstating certainty.',
-        proof: 'Compares current check-ins to recent similar states without overstating certainty.',
-        contents: ['current check-in', 'stored entries', 'same state', 'last 30 days', 'language calibration', 'what helped lookup'],
-        visualAssets: [
-          {
-            kind: 'component',
-            componentKey: 'similar-days-pattern-logic'
-          }
-        ],
-        artifacts: []
-      },
-      {
-        id: 'local-storage-data-model',
-        name: 'Local storage data model',
-        format: 'data architecture',
-        status: 'ready',
-        claim: 'Three persisted keys separate check-ins, feedback, and QA notes.',
-        proof: 'Three persisted keys separate check-ins, feedback, and QA notes.',
-        contents: ['mirror_checkins', 'mirror_feedback', 'mirror_field_notes', 'CheckInEntry schema', 'sentinel behavior'],
-        visualAssets: [
-          {
-            kind: 'component',
-            componentKey: 'local-storage-data-model'
-          }
-        ],
-        artifacts: []
-      },
-      {
-        id: 'seed-scenario-system',
-        name: 'Seed scenario system',
-        format: 'demo data',
-        status: 'ready',
-        claim: 'Demo entries cover all 8 states through the live engine, not hardcoded overrides.',
-        proof: 'Demo entries cover all 8 states through the live engine, not hardcoded overrides.',
-        contents: ['29 entries', '8 states', 'stable IDs', 'realistic context tags', 'journal-style notes', 'regression verified'],
-        visualAssets: [
-          {
-            kind: 'component',
-            componentKey: 'seed-scenario-system'
-          }
-        ],
-        artifacts: []
-      },
-      {
-        id: 'gentle-next-move-logic',
-        name: 'Gentle next move logic',
-        format: 'recommendation system',
-        status: 'ready',
-        claim: 'Suggestions are selected through scored eligibility and safety constraints.',
-        proof: 'Suggestions are selected through scored eligibility and safety constraints.',
-        contents: ['15 actions', 'feedbackScore', 'contextBoost', 'basePriority', 'safety constraints', 'faint rationale'],
-        visualAssets: [
-          {
-            kind: 'component',
-            componentKey: 'gentle-next-move-logic'
           }
         ],
         artifacts: []
@@ -400,6 +372,7 @@ export const records = [
     receipts: [
       {
         id: 'leads-master-table-logic',
+        testId: 'meta-leads-master',
         name: 'Leads_Master table logic',
         format: 'data model',
         status: 'ready',
@@ -425,6 +398,7 @@ export const records = [
       },
       {
         id: 'campaign-performance-logic',
+        testId: 'meta-campaign-performance',
         name: 'Campaign_Performance logic',
         format: 'analytics table',
         status: 'ready',
@@ -450,6 +424,7 @@ export const records = [
       },
       {
         id: 'revenue-attribution-model',
+        testId: 'meta-revenue-attribution',
         name: 'Revenue_Attribution model',
         format: 'logic layer',
         status: 'ready',
@@ -475,6 +450,7 @@ export const records = [
       },
       {
         id: 'decision-dashboard-ui',
+        testId: 'meta-decision-console',
         name: 'Decision dashboard UI',
         format: 'interface system',
         status: 'ready',
@@ -534,79 +510,75 @@ export const records = [
     receipts: [
       {
         id: 'nppes-provider-pull',
-        name: 'NPPES provider pull',
+        testId: 'snip-nppes-provider-pull',
+        name: 'NPPES Provider Pull',
         format: 'Python workflow',
-        status: 'needs screenshot',
-        claim: 'Shows real automation beyond no-code workflow glue.',
-        proof: 'Structured discovery for roughly 200 provider profiles.',
-        contents: ['provider name', 'taxonomy', 'location', 'clinic info', 'profile fields', 'source references'],
-        artifacts: [
+        receiptBodyType: 'providerPullTrace',
+        status: 'ready',
+        claim: 'NPPES provider records were pulled, normalized, and queued into a repeatable acquisition workflow.',
+        proof: 'API sourced candidates normalized into profile fields.',
+        contents: ['provider name', 'NPI', 'taxonomy', 'practice location', 'phone', 'credential', 'organization', 'source reference'],
+        visualAssets: [
           {
-            id: 'snip-provider-sourcing-script',
-            type: 'code',
-            label: 'Provider sourcing script',
-            src: '',
-            caption: 'Shows script-level extraction and normalization for provider records.',
-            status: 'needs screenshot'
+            kind: 'component',
+            componentKey: 'nppes-provider-pull'
           }
-        ]
+        ],
+        artifacts: []
       },
       {
         id: 'headshot-and-clinic-image-sourcing',
-        name: 'Headshot and clinic image sourcing',
-        format: 'asset pipeline',
-        status: 'needs polish',
-        claim: 'Shows data enrichment connected to publish-ready assets.',
-        proof: 'Bing image search, Google Maps clinic photos, fallback sourcing, and local saves.',
-        contents: ['provider headshots', 'clinic exterior photos', 'image source tracking', 'local file saves'],
-        artifacts: [
+        testId: 'snip-image-sourcing',
+        name: 'Headshot and Clinic Image Sourcing',
+        format: 'Asset pipeline',
+        receiptBodyType: 'imageSourcingPipeline',
+        status: 'ready',
+        claim: 'Headshot and clinic image sourcing followed fallback logic so missing provider images did not block progress.',
+        proof: 'Provider image candidates were routed by confidence and availability.',
+        contents: ['provider headshots', 'clinic exterior photos', 'source confidence', 'image quality', 'face presence', 'visual pending'],
+        visualAssets: [
           {
-            id: 'snip-before-after-comparison',
-            type: 'image',
-            label: 'Before and after creative comparison',
-            src: '',
-            caption: 'Compares raw source quality against validated publish-ready media assets.',
-            status: 'needs polish'
+            kind: 'component',
+            componentKey: 'headshot-and-clinic-image-sourcing'
           }
-        ]
+        ],
+        artifacts: []
       },
       {
         id: 'opencv-face-validation',
-        name: 'OpenCV face validation',
-        format: 'quality gate',
-        status: 'needs metric',
-        claim: 'Shows automated QA with human judgment still preserved.',
-        proof: 'Face detection used before accepting provider images.',
-        contents: ['face presence detection', 'bad image rejection', 'manual review queue', 'quality threshold'],
-        artifacts: [
+        testId: 'snip-opencv-face-validation',
+        name: 'OpenCV Face Validation',
+        format: 'Quality gate',
+        receiptBodyType: 'faceValidationGate',
+        status: 'ready',
+        claim: 'OpenCV validation acted as a quality gate before images entered the publishable asset set.',
+        proof: 'Candidate images passed through approve, reject, or fallback decisions.',
+        contents: ['face detected', 'single subject preferred', 'resolution acceptable', 'crop usable', 'not logo only', 'manual review'],
+        visualAssets: [
           {
-            id: 'snip-opencv-validation-output',
-            type: 'image',
-            label: 'OpenCV validation output',
-            src: '',
-            caption: 'Shows quality gate flags and threshold outcomes before manual review.',
-            status: 'needs metric'
+            kind: 'component',
+            componentKey: 'opencv-face-validation'
           }
-        ]
+        ],
+        artifacts: []
       },
       {
         id: 'structured-asset-folders',
-        name: 'Structured asset folders',
-        format: 'handoff system',
-        status: 'needs link',
-        claim: 'Shows the final mile of automation: clean handoff for humans.',
-        proof: 'Profile-ready folders, renamed assets, spreadsheet references, and publish states.',
-        contents: ['provider folders', 'renamed assets', 'spreadsheet references', 'publish status', 'review state'],
-        artifacts: [
+        testId: 'snip-structured-asset-folders',
+        name: 'Structured Asset Folders',
+        format: 'Handoff system',
+        receiptBodyType: 'assetHandoffMap',
+        status: 'ready',
+        claim: 'Provider data, image assets, source notes, and validation status were organized into structured handoff folders.',
+        proof: 'Each provider had source notes, asset status, and profile data preserved.',
+        contents: ['provider folders', 'profile.json', 'headshot.jpg', 'clinic-fallback.jpg', 'source notes', 'publish status'],
+        visualAssets: [
           {
-            id: 'snip-structured-handoff-document',
-            type: 'external',
-            label: 'Structured handoff index',
-            src: '',
-            caption: 'Links final publish folders, review states, and source references.',
-            status: 'needs link'
+            kind: 'component',
+            componentKey: 'structured-asset-folders'
           }
-        ]
+        ],
+        artifacts: []
       }
     ]
   },

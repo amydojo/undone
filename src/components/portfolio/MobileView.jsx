@@ -36,6 +36,10 @@ function isReadyStatus(raw) {
   return displayStatus(raw) === 'ready'
 }
 
+function getReceiptTestId(receipt) {
+  return receipt?.testId ?? receipt?.id
+}
+
 // ─── Overview Tab ─────────────────────────────────────────────────────────────
 
 function OverviewTab({ record, mode, openWorkspace }) {
@@ -125,6 +129,7 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
               <button
                 key={receipt.id}
                 type="button"
+                data-testid={`receipt-selector-${getReceiptTestId(receipt)}`}
                 aria-label={`Select receipt: ${receipt.name}`}
                 aria-pressed={active}
                 onClick={() => onSelectReceipt(receipt.id)}
@@ -194,6 +199,7 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
             visualAssets={selectedReceipt.visualAssets}
             receiptName={selectedReceipt.name}
             receiptFormat={selectedReceipt.format}
+            receiptTestId={getReceiptTestId(selectedReceipt)}
             variant="mobile"
           />
           {showSelectedStatus && (
@@ -232,6 +238,7 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
             visualAssets={selectedReceipt.visualAssets}
             receiptName={selectedReceipt.name}
             receiptFormat={selectedReceipt.format}
+            receiptTestId={getReceiptTestId(selectedReceipt)}
             variant="mobile"
           />
 

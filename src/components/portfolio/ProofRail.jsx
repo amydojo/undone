@@ -16,6 +16,10 @@ function hasComponentVisual(receipt) {
   return (receipt?.visualAssets ?? []).some((asset) => asset?.kind === 'component' || asset?.componentKey)
 }
 
+function getReceiptTestId(receipt) {
+  return receipt?.testId ?? receipt?.id
+}
+
 export default function ProofRail({ record, activeReceipt, onSelectReceipt }) {
   const receipts = record.receipts
   const selectedReceipt = activeReceipt ?? receipts[0]
@@ -41,6 +45,7 @@ export default function ProofRail({ record, activeReceipt, onSelectReceipt }) {
             <button
               key={receipt.id}
               type='button'
+              data-testid={`receipt-selector-${getReceiptTestId(receipt)}`}
               aria-label={`Select receipt: ${receipt.name}`}
               aria-pressed={active}
               onClick={() => onSelectReceipt(receipt.id)}
@@ -114,6 +119,7 @@ export default function ProofRail({ record, activeReceipt, onSelectReceipt }) {
             visualAssets={selectedReceipt?.visualAssets}
             receiptName={selectedReceipt?.name}
             receiptFormat={selectedReceipt?.format}
+            receiptTestId={getReceiptTestId(selectedReceipt)}
           />
 
           <div className='mt-4 flex items-center gap-2'>
