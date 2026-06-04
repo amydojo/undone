@@ -41,15 +41,15 @@ const CASE_COPY_BY_SLUG = {
     outcomeIntro: 'The product became clearer, calmer, and easier to trust when the user needed support most.'
   },
   'meta-airtable-dashboard': {
-    thesis: 'A reporting layer built for decisions, not just visibility.',
+    thesis: 'From lead volume to revenue-informed campaign decisions.',
     summary:
-      'This project connected paid media performance with CRM movement, booking behavior, and revenue confidence in one decision layer.',
+      'Meta Ads carried spend and lead volume. Airtable held Leads_Master records and CRM movement. I connected those fragments into a reporting layer that could judge campaigns by lead quality, booking behavior, revenue signals, and attribution confidence.',
     problem:
-      'Marketing teams had data, but not enough structure to decide what to do next with confidence.',
-    systemIntro: 'The system reframed reporting from dashboard output into action-ready operational logic.',
+      'Campaign reads were split across systems. Meta showed spend and lead volume, Airtable held lead and CRM state, and booking, arrival, conversion, and revenue evidence lived downstream. Without a shared reporting layer, the team could see activity but not clearly judge campaign quality.',
+    systemIntro: 'The system joined Meta campaign data, Airtable Leads_Master records, CRM status updates, booking behavior, arrival and conversion state, revenue value, attribution confidence, and decision recommendations.',
     designMove:
-      'I treated reporting as a decision interface, not a dashboard. The goal was to help the team understand which campaigns deserved action, not just which campaigns produced leads.',
-    outcomeIntro: 'Weekly optimization became easier because campaign performance was connected to business movement.'
+      'I treated reporting as marketing operations system design: model the lead record first, normalize downstream behavior, then design a decision layer that could separate scale, maintain, review, and tracking repair.',
+    outcomeIntro: 'The work made campaign conversations less about isolated platform metrics and more about what moved through the business.'
   },
   'snip-provider-pipeline': {
     thesis: 'Provider sourcing rebuilt as a quality-controlled production pipeline.',
@@ -103,12 +103,11 @@ const SYSTEM_MODEL_BY_SLUG = {
     { label: 'next move', meaning: 'Return one grounded action with no streak pressure or productivity loop.' }
   ],
   'meta-airtable-dashboard': [
-    { label: 'ad spend', meaning: 'Collect paid-media investment and campaign-level performance context.' },
-    { label: 'lead', meaning: 'Capture volume and quality signals from each source and service line.' },
-    { label: 'CRM state', meaning: 'Track movement through booking status and conversion readiness.' },
-    { label: 'booking', meaning: 'Connect scheduling behavior to marketing inputs and timing windows.' },
-    { label: 'revenue', meaning: 'Associate outcomes with attribution confidence instead of false certainty.' },
-    { label: 'decision', meaning: 'Surface weekly optimization moves that teams can execute immediately.' }
+    { label: 'Meta campaign data', meaning: 'Preserve spend, lead volume, campaign, ad set, ad name, and form context from the acquisition source.' },
+    { label: 'Leads_Master record', meaning: 'Hold identity, source, service interest, CRM state, booking behavior, outcome, and attribution fields in one shared record.' },
+    { label: 'CRM status updates', meaning: 'Track owner, follow-up timing, booked status, appointment state, arrival, and conversion readiness.' },
+    { label: 'Revenue attribution', meaning: 'Attach revenue value with confidence rules instead of pretending every outcome maps perfectly.' },
+    { label: 'Decision recommendations', meaning: 'Turn campaign evidence into scale, maintain, review, fix tracking, refresh creative, or nurture actions.' }
   ],
   'snip-provider-pipeline': [
     { label: 'source', meaning: 'Pull provider data from reliable public records and source systems.' },
@@ -145,8 +144,8 @@ const PROBLEM_CONTEXT_BY_SLUG = {
     after: ['readable signal model', 'clear explanation layer', 'one calm next move']
   },
   'meta-airtable-dashboard': {
-    before: ['dashboard-heavy reporting', 'unclear action priority', 'CRM and revenue disconnected from media'],
-    after: ['decision-ready reporting layer', 'shared performance language', 'connected spend to booking and revenue']
+    before: ['spend and lead volume isolated in Meta Ads', 'lead and CRM state split across Airtable updates', 'booking, conversion, and revenue signals downstream without a decision path'],
+    after: ['shared Leads_Master reporting model', 'campaign logic tied to booked, arrived, converted, and revenue state', 'decision categories for scale, maintain, review, and tracking repair']
   },
   'snip-provider-pipeline': {
     before: ['manual provider sourcing drag', 'uneven image quality and metadata', 'fragile handoff structure'],
@@ -174,9 +173,10 @@ const OUTCOME_BY_SLUG = {
     'The product could explain why a reading appeared and suggest one grounded next action.'
   ],
   'meta-airtable-dashboard': [
-    'Ad and CRM inputs were unified into one decision-ready performance view.',
-    'Teams could review campaign health with attribution confidence instead of guesswork.',
-    'Optimization choices were tied to booking and revenue movement, not vanity metrics.'
+    'The shared lead model gave campaign reports source, intent, CRM state, booking behavior, outcome, and attribution context.',
+    'Campaign performance reads used downstream behavior instead of stopping at spend, lead volume, or CPL.',
+    'Revenue attribution used confidence and manual review states where source evidence was incomplete.',
+    'The decision layer turned scattered signals into scale, maintain, review, and fix-tracking queues.'
   ],
   'snip-provider-pipeline': [
     'Manual sourcing overhead dropped through automation and validation gates.',
@@ -197,7 +197,7 @@ const OUTCOME_BY_SLUG = {
 
 const OUTCOME_INTRO_BY_SLUG = {
   mirror: 'The system made emotional signal feedback calmer, clearer, and more actionable.',
-  'meta-airtable-dashboard': 'The dashboard model created a tighter bridge between marketing signals and business decisions.',
+  'meta-airtable-dashboard': 'The reporting layer created a tighter bridge between marketing signals, CRM movement, and business decisions.',
   'snip-provider-pipeline': 'The workflow reduced manual overhead and improved quality consistency in production handoff.',
   'multi-brand-retention': 'Lifecycle behavior became easier to orchestrate across services, brands, and intent levels.'
 }

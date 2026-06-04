@@ -342,32 +342,32 @@ export const records = [
     id: '03',
     slug: 'meta-airtable-dashboard',
     title: 'Meta + Airtable Intelligence Layer',
-    category: 'analytics',
-    type: 'analytics system',
+    category: 'marketing operations',
+    type: 'reporting layer',
     status: 'built',
     timeline: '2025',
     accent: '#b6f3d4',
-    thesis: 'A reporting layer connecting ad spend to lead quality, booking behavior, and revenue signals.',
-    oneLine: 'Meta performance, CRM state, ROAS, and attribution confidence in one decision layer.',
-    role: 'Dashboard and attribution systems designer',
+    thesis: 'From lead volume to revenue-informed campaign decisions.',
+    oneLine: 'A reporting layer connecting Meta spend, Airtable lead records, CRM state, booking behavior, and revenue confidence.',
+    role: 'Marketing operations systems designer',
     tools: ['React', 'Airtable', 'Meta Marketing API', 'Zapier', 'Replit', 'OpenAI'],
     hiringTranslation:
-      'This case is relevant to growth designer, AI workflow designer, and product marketing designer roles because it translates ad platform noise into decision-ready dashboards, escalation logic, and clear business signals.',
+      'This case is relevant to growth systems, product marketing, and design technologist roles because it demonstrates strategy, data modeling, CRM logic, reporting structure, campaign performance interpretation, workflow design, and decision layer design.',
     metrics: [
-      { value: '3', label: 'core data tables' },
-      { value: 'live', label: 'sync logic' },
-      { value: 'ROAS', label: 'revenue view' }
+      { value: 'Meta', label: 'campaign signal' },
+      { value: 'CRM', label: 'booking behavior' },
+      { value: 'Revenue', label: 'confidence view' }
     ],
-    path: ['ad spend', 'lead', 'CRM state', 'booking', 'revenue', 'decision'],
-    signal: 'Meta showed form volume, but the business needed quality, movement, and revenue context.',
-    system: 'A dashboard model pulled campaign performance, CRM status, revenue attribution, and fallback logic into one decision view.',
-    owned: ['data model design', 'dashboard IA', 'attribution logic', 'automation orchestration', 'insight translation'],
+    path: ['Meta campaign', 'lead record', 'CRM state', 'booking', 'revenue', 'decision'],
+    signal: 'Meta Ads showed spend and lead volume. Airtable held lead records and CRM movement. Booking, arrival, conversion, and revenue signals lived downstream, so campaign reads were missing the behavior that made them useful.',
+    system: 'I designed a reporting layer that connected Meta campaign data, Airtable Leads_Master records, CRM status updates, booking behavior, revenue value, attribution confidence, and decision recommendations.',
+    owned: ['strategy', 'systems design', 'data modeling', 'CRM logic', 'reporting structure', 'campaign performance interpretation', 'workflow design', 'decision layer design'],
     nextProof: ['Add campaign dashboard screenshot', 'Add Meta ads performance view', 'Add revenue attribution table snapshot'],
     decisions: [
-      { label: 'constraint', body: 'Lead quality mattered more than surface volume, but CRM updates were uneven.' },
-      { label: 'move', body: 'Track funnel state instead of stopping at CPL.' },
-      { label: 'tradeoff', body: 'Use attribution confidence instead of fake precision.' },
-      { label: 'principle', body: 'Dashboards should tell teams what to do next.' }
+      { label: 'constraint', body: 'Spend, lead volume, CRM state, booking outcomes, and revenue context were split across tools, which made campaign quality hard to interpret.' },
+      { label: 'move', body: 'Model one shared lead record, then roll campaign performance through booked, arrived, converted, revenue value, and attribution confidence fields.' },
+      { label: 'tradeoff', body: 'Use qualitative confidence and manual review states instead of pretending every revenue event had perfect attribution.' },
+      { label: 'principle', body: 'Reporting should change the next action, not just confirm activity.' }
     ],
     receipts: [
       {
@@ -376,9 +376,9 @@ export const records = [
         name: 'Leads_Master table logic',
         format: 'data model',
         status: 'ready',
-        claim: 'Shows the shared lead record that connected acquisition source, service interest, CRM state, booking behavior, and conversion value.',
-        proof: 'Shared lead record connecting acquisition source, service interest, CRM state, booking behavior, and conversion value.',
-        contents: ['name', 'phone', 'email', 'lead source', 'CRM state', 'conversion value'],
+        claim: 'Proves the shared lead record carried source, intent, CRM state, booking behavior, outcome, and attribution fields together.',
+        proof: 'Leads_Master grouped identity, source, intent, CRM state, booking, outcome, and attribution fields so downstream reporting could read one record.',
+        contents: ['Lead Source', 'Service Interest', 'Status', 'Booked', 'Arrived', 'Converted', 'Revenue Value', 'Attribution Confidence'],
         visualAssets: [
           {
             kind: 'component',
@@ -391,7 +391,7 @@ export const records = [
             type: 'dashboard',
             label: 'Campaign dashboard screenshot',
             src: '',
-            caption: 'Shows lead-level schema connecting campaign and downstream conversion signals.',
+            caption: 'Documents the lead-level schema connecting campaign source, CRM state, booking behavior, and revenue context.',
             status: 'needs screenshot'
           }
         ]
@@ -400,11 +400,11 @@ export const records = [
         id: 'campaign-performance-logic',
         testId: 'meta-campaign-performance',
         name: 'Campaign_Performance logic',
-        format: 'analytics table',
+        format: 'formula worksheet',
         status: 'ready',
-        claim: 'Shows how ad performance was translated from platform metrics into business signals.',
-        proof: 'Meta signals, CRM signals, and decision signals mapped into one optimization table.',
-        contents: ['spend', 'impressions', 'clicks', 'leads', 'booked', 'ROAS'],
+        claim: 'Proves campaign performance was evaluated through downstream behavior, not just spend, leads, or CPL.',
+        proof: 'Spend and lead volume were normalized alongside booked, arrived, converted, revenue, and ROAS logic to guide campaign calls.',
+        contents: ['Spend', 'Leads', 'Booked Rate', 'Show Rate', 'Conversion Rate', 'ROAS', 'Decision Output'],
         visualAssets: [
           {
             kind: 'component',
@@ -417,7 +417,7 @@ export const records = [
             type: 'dashboard',
             label: 'Meta ads performance view',
             src: '',
-            caption: 'Proves campaign metrics are normalized for weekly optimization decisions.',
+            caption: 'Documents the formula layer that tied platform metrics to booking, arrival, conversion, and revenue signals.',
             status: 'needs metric'
           }
         ]
@@ -428,9 +428,9 @@ export const records = [
         name: 'Revenue_Attribution model',
         format: 'logic layer',
         status: 'ready',
-        claim: 'Shows how revenue was matched back to campaign and lead context using confidence based attribution logic.',
-        proof: 'Revenue matched back to lead and campaign context with confidence based attribution logic.',
-        contents: ['lead record', 'campaign context', 'booking behavior', 'revenue value', 'confidence', 'ROAS context'],
+        claim: 'Proves revenue was mapped back to campaigns with confidence levels instead of fake certainty.',
+        proof: 'Revenue records were traced through source match, lead match, outcome match, and review conditions before being used in reporting.',
+        contents: ['Meta Campaign', 'Lead Record', 'CRM Status', 'Booked', 'Arrived', 'Converted', 'Revenue Value', 'Attribution Confidence'],
         visualAssets: [
           {
             kind: 'component',
@@ -443,7 +443,7 @@ export const records = [
             type: 'document',
             label: 'Revenue attribution model',
             src: '',
-            caption: 'Documents attribution confidence logic and booking-value linkage.',
+            caption: 'Documents confidence rules for clean paths, partial evidence, missing campaign context, and manual review.',
             status: 'needs link'
           }
         ]
@@ -454,9 +454,9 @@ export const records = [
         name: 'Decision dashboard UI',
         format: 'interface system',
         status: 'ready',
-        claim: 'Shows the final decision layer where campaign, CRM, and revenue signals became optimization guidance.',
-        proof: 'Campaign, CRM, and revenue signals translated into optimization guidance.',
-        contents: ['spend', 'leads', 'booked', 'revenue', 'campaign health', 'next move'],
+        claim: 'Proves scattered campaign, CRM, and revenue signals became action categories like scale, maintain, review, and fix tracking.',
+        proof: 'The decision layer grouped evidence into operational queues so campaign conversations could move from reporting to next action.',
+        contents: ['Can Scale', 'Needs Review', 'Tracking Repair', 'Follow Up Risk', 'Recommended Action', 'Confidence'],
         visualAssets: [
           {
             kind: 'component',
@@ -469,7 +469,7 @@ export const records = [
             type: 'prototype',
             label: 'Decision dashboard prototype',
             src: '',
-            caption: 'Shows the interface layer that turns analytics into team actions.',
+            caption: 'Documents the interface layer that turns campaign, CRM, and revenue evidence into action queues.',
             status: 'ready'
           }
         ]

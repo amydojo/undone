@@ -38,8 +38,8 @@ export const metaAirtableReceiptVisuals = {
     type: 'Airtable schema map',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    claim: 'Shows the shared lead record that connected acquisition source, service interest, CRM state, booking behavior, and conversion value.',
-    operationalSignal: 'Meta lead form context and CRM updates were normalized into one record that downstream attribution could read.',
+    claim: 'Proves the shared lead record carried source, intent, CRM state, booking behavior, outcome, and attribution fields together.',
+    operationalSignal: 'Meta Lead Form context and CRM Status Updates were normalized into one Leads_Master record that downstream attribution could read.',
     receiptBodyType: 'airtableSchemaMap',
     preview: {
       rows: [
@@ -71,7 +71,7 @@ export const metaAirtableReceiptVisuals = {
       downstreamUsage: ['Campaign_Performance', 'Revenue_Attribution', 'Decision Dashboard UI', 'Manual Review Queue']
     },
     footerNote:
-      'Proves one lead record carries source, booking, and revenue context together instead of scattering acquisition and outcome evidence across disconnected systems.'
+      'One lead record carried source, booking, outcome, and attribution context together instead of scattering acquisition and revenue evidence across disconnected systems.'
   },
   'meta-campaign-performance-logic': {
     receiptNumber: '02',
@@ -79,8 +79,8 @@ export const metaAirtableReceiptVisuals = {
     type: 'Formula model sheet',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    claim: 'Shows how ad performance was translated from platform metrics into business signals.',
-    operationalSignal: 'Campaign reads combined Meta inputs with CRM movement so decisions did not stop at lead volume.',
+    claim: 'Proves campaign performance was evaluated through downstream behavior, not just spend, leads, or CPL.',
+    operationalSignal: 'Campaign reads combined Meta inputs with booked, arrived, converted, and revenue signals so decisions did not stop at lead volume.',
     receiptBodyType: 'campaignFormulaSheet',
     preview: {
       formulas: ['CPL', 'Booked', 'Show', 'Convert', 'ROAS'],
@@ -160,7 +160,7 @@ export const metaAirtableReceiptVisuals = {
       ]
     },
     footerNote:
-      'Proves campaign performance was interpreted as a business model sheet, not a platform metric screenshot.'
+      'Campaign performance was interpreted as a model of lead quality, booking movement, and revenue context, not a platform metric screenshot.'
   },
   'meta-revenue-attribution-model': {
     receiptNumber: '03',
@@ -168,8 +168,8 @@ export const metaAirtableReceiptVisuals = {
     type: 'Attribution trace',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    claim: 'Shows how revenue was matched back to campaign and lead context using confidence based attribution logic.',
-    operationalSignal: 'Revenue was linked through source, lead, and outcome evidence, then labeled by attribution confidence instead of fake certainty.',
+    claim: 'Proves revenue was mapped back to campaigns with confidence levels instead of fake certainty.',
+    operationalSignal: 'Revenue was linked through source match, lead match, and outcome evidence, then labeled by attribution confidence.',
     receiptBodyType: 'attributionTrace',
     preview: {
       nodes: ['Meta Campaign', 'Lead Record', 'Booked', 'Arrived', 'Converted', 'Revenue', 'Confidence'],
@@ -231,7 +231,7 @@ export const metaAirtableReceiptVisuals = {
       ]
     },
     footerNote:
-      'Proves attribution was handled as a confidence path with review conditions, not as a fake precision machine.'
+      'Attribution was handled as a confidence path with review conditions, not as a fake precision machine.'
   },
   'meta-decision-dashboard-ui': {
     receiptNumber: '04',
@@ -239,7 +239,7 @@ export const metaAirtableReceiptVisuals = {
     type: 'Decision queue console',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    claim: 'Shows the final decision layer where campaign, CRM, and revenue signals became optimization guidance.',
+    claim: 'Proves scattered campaign, CRM, and revenue signals became action categories like scale, maintain, review, and fix tracking.',
     operationalSignal: 'The interface organized scale, maintenance, review, and tracking repair actions from the same underlying campaign evidence.',
     receiptBodyType: 'decisionQueueConsole',
     preview: {
@@ -303,7 +303,7 @@ export const metaAirtableReceiptVisuals = {
       ]
     },
     footerNote:
-      'Proves the system translated Meta, Airtable, CRM, and revenue context into operational decisions instead of passive reporting.'
+      'The system translated Meta, Airtable, CRM, and revenue context into operational decisions instead of passive reporting.'
   }
 };
 
