@@ -45,12 +45,6 @@ function Connector({ vertical = false, dark = false }) {
   );
 }
 
-function groupCounts(fields = []) {
-  return fields.reduce((counts, field) => {
-    counts[field.group] = (counts[field.group] ?? 0) + 1;
-    return counts;
-  }, {});
-}
 
 function groupOrder(fields = []) {
   return fields.reduce((groups, field) => {
