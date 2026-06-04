@@ -5,40 +5,57 @@ export const snipReceiptVisuals = {
     type: 'Python workflow',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    whatItProves: 'Provider acquisition began from structured public records.',
-    operationalSignal: 'API sourced candidates normalized into profile fields.',
-    description: 'NPPES provider records were pulled, normalized, and queued into a repeatable acquisition workflow.',
+    whatItProves: 'Public provider records were converted into a structured acquisition queue.',
+    operationalSignal: 'NPPES candidates moved through request, response, normalization, taxonomy gate, and profile queue.',
+    description: 'NPPES provider records were pulled, normalized, and queued into a repeatable provider acquisition workflow.',
     receiptBodyType: 'providerPullTrace',
-    contents: ['provider name', 'NPI', 'taxonomy', 'practice location', 'phone', 'credential', 'organization', 'source reference'],
+    contents: ['NPPES API', 'request inputs', 'response records', 'normalized fields', 'taxonomy gate', 'candidate queue', 'source reference'],
     preview: {
-      steps: ['criteria', 'NPPES API', 'normalized', 'taxonomy', 'queued'],
-      meta: ['source: NPPES API', 'status: normalized', 'queue: image sourcing'],
-      rows: ['Provider 001 / active / ready', 'Provider 002 / active / fallback', 'Provider 004 / review / manual']
+      request: 'GET /nppes/providers?taxonomy=urology',
+      response: 'response.records -> candidate set',
+      steps: ['request', 'response', 'normalized', 'queued'],
+      rows: ['Provider 001 | active | source confirmed', 'Provider 002 | active | clinic fallback needed', 'Provider 004 | review needed | manual review']
     },
     body: {
-      flow: ['Search criteria', 'NPPES API pull', 'provider record normalization', 'taxonomy filter', 'profile candidate queue'],
-      operationalDetails: [
+      provenance: [
         { label: 'source', value: 'NPPES API' },
-        { label: 'status', value: 'normalized' },
-        { label: 'queue', value: 'image sourcing' },
-        { label: 'reference', value: 'source reference preserved' }
+        { label: 'request', value: 'urology / target service area' },
+        { label: 'mode', value: 'sanitized reconstruction' },
+        { label: 'output', value: 'provider candidate queue' }
       ],
-      queryInputs: [
-        { label: 'Specialty', value: 'urology' },
-        { label: 'Location', value: 'target service area' },
-        { label: 'Source', value: 'NPPES API' },
-        { label: 'Output', value: 'provider candidates' }
+      requestLog: [
+        'request.search_specialty = "urology"',
+        'request.location_scope = "target service area"',
+        'request.source = "NPPES API"',
+        'request.output = "provider candidates"'
       ],
-      normalizedFields: ['Provider name', 'NPI', 'Taxonomy', 'Practice location', 'Phone', 'Credential', 'Organization', 'Source reference'],
+      responseLog: [
+        'response.records = candidate set',
+        'response.source = "NPPES"',
+        'response.normalized_fields = provider profile ledger',
+        'response.next_queue = image sourcing'
+      ],
+      flow: ['request', 'response', 'normalized output', 'taxonomy gate', 'candidate queue'],
+      normalizedLedger: [
+        { field: 'Provider ID', capturedAs: 'sanitized provider key', sourceNote: 'assigned for portfolio reconstruction' },
+        { field: 'NPI Status', capturedAs: 'active / review needed', sourceNote: 'preserved from provider record state' },
+        { field: 'Credential', capturedAs: 'provider credential field', sourceNote: 'normalized profile field' },
+        { field: 'Taxonomy', capturedAs: 'urology match / adjacent taxonomy', sourceNote: 'taxonomy gate input' },
+        { field: 'Organization', capturedAs: 'organization field', sourceNote: 'normalized profile field' },
+        { field: 'Practice Location', capturedAs: 'target service area / CA', sourceNote: 'location scope retained' },
+        { field: 'Phone', capturedAs: 'contact field', sourceNote: 'normalized profile field' },
+        { field: 'Source Reference', capturedAs: 'source reference preserved', sourceNote: 'provenance retained for review' },
+        { field: 'Profile Status', capturedAs: 'ready / fallback / review', sourceNote: 'candidate queue output' }
+      ],
       queue: [
-        { candidate: 'Provider 001', npiStatus: 'active', taxonomyMatch: 'urology match', location: 'CA', profileStatus: 'ready for image sourcing' },
-        { candidate: 'Provider 002', npiStatus: 'active', taxonomyMatch: 'taxonomy reviewed', location: 'CA', profileStatus: 'needs clinic fallback' },
-        { candidate: 'Provider 003', npiStatus: 'active', taxonomyMatch: 'urology match', location: 'CA', profileStatus: 'ready for validation' },
-        { candidate: 'Provider 004', npiStatus: 'review needed', taxonomyMatch: 'adjacent taxonomy', location: 'CA', profileStatus: 'manual review' }
+        { candidate: 'Provider 001', npiStatus: 'active', taxonomyMatch: 'urology match', provenance: 'source confirmed', profileStatus: 'ready for image sourcing' },
+        { candidate: 'Provider 002', npiStatus: 'active', taxonomyMatch: 'taxonomy reviewed', provenance: 'source confirmed', profileStatus: 'clinic fallback needed' },
+        { candidate: 'Provider 003', npiStatus: 'active', taxonomyMatch: 'urology match', provenance: 'source confirmed', profileStatus: 'ready for validation' },
+        { candidate: 'Provider 004', npiStatus: 'review needed', taxonomyMatch: 'adjacent taxonomy', provenance: 'source partial', profileStatus: 'manual review' }
       ]
     },
     footerNote:
-      'Shows real automation beyond no code workflow glue by turning public provider records into a structured acquisition queue.'
+      'What this proves: public provider records were converted into a structured acquisition queue instead of manual copy-paste research.'
   },
   'headshot-and-clinic-image-sourcing': {
     receiptNumber: '02',
@@ -46,39 +63,41 @@ export const snipReceiptVisuals = {
     type: 'Asset pipeline',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    whatItProves: 'Visual sourcing used fallback logic instead of manual guessing.',
-    operationalSignal: 'Provider image candidates were routed by confidence and availability.',
-    description: 'Headshot and clinic image sourcing followed fallback logic so missing provider images did not block progress.',
+    whatItProves: 'Missing provider headshots did not block the provider acquisition pipeline.',
+    operationalSignal: 'Image candidates were routed by source confidence, availability, and review state.',
+    description: 'Headshot and clinic image sourcing followed fallback logic so provider imagery could move to validation or review.',
     receiptBodyType: 'imageSourcingPipeline',
-    contents: ['provider headshots', 'clinic exterior photos', 'source confidence', 'image quality', 'face presence', 'image source pending'],
+    contents: ['provider candidate', 'headshot candidate', 'clinic fallback', 'manual image review', 'source confidence', 'asset decision queue'],
     preview: {
       root: 'provider candidate',
-      branches: ['headshot found', 'clinic fallback', 'manual review'],
-      meta: ['decision: fallback needed', 'status: validation pending'],
-      rows: ['Provider 001 / headshot / validation', 'Provider 002 / clinic exterior / review', 'Provider 004 / none / pending']
+      branches: ['headshot -> face validation', 'multiple matches -> review', 'no headshot -> clinic fallback', 'low confidence -> pending'],
+      rows: ['IMG 001 | headshot | face validation', 'IMG 002 | clinic exterior | manual review', 'IMG 004 | none | image source pending']
     },
     body: {
-      flow: ['Provider candidate', 'headshot search', 'image candidate review', 'clinic image fallback', 'asset saved', 'validation pending'],
+      root: 'Provider candidate',
+      flow: ['provider candidate', 'headshot search', 'source confidence check', 'clinic fallback', 'asset decision queue', 'validation route'],
       operationalDetails: [
-        { label: 'decision', value: 'fallback needed' },
-        { label: 'status', value: 'validation pending' },
-        { label: 'source', value: 'source confidence checked' }
+        { label: 'decision basis', value: 'source confidence and availability' },
+        { label: 'review path', value: 'manual image review when confidence is mixed' },
+        { label: 'fallback', value: 'clinic fallback when no reliable headshot exists' },
+        { label: 'next queue', value: 'face validation or image source pending' }
       ],
       branches: [
-        { label: 'If headshot found', result: 'save provider headshot candidate', next: 'send to validation' },
-        { label: 'If no reliable headshot', result: 'search clinic image and save clinic fallback', next: 'image source pending' },
-        { label: 'If multiple matches', result: 'manual review required', next: 'source confidence check' }
+        { label: 'Headshot candidate found', result: 'Save provider headshot candidate when the source match is reliable.', decision: 'route', next: 'face validation' },
+        { label: 'Multiple possible matches', result: 'Hold the candidate when source confidence needs manual image review.', decision: 'hold', next: 'manual image review' },
+        { label: 'No reliable headshot', result: 'Search clinic imagery and preserve the fallback as the usable visual asset.', decision: 'clinic fallback', next: 'manual image review' },
+        { label: 'Clinic fallback needed', result: 'Route low-confidence or missing imagery to the pending source state.', decision: 'pending', next: 'image source pending' }
       ],
-      sourcingSignals: ['Provider name match', 'Clinic domain match', 'Location match', 'Image quality', 'Face presence', 'Source confidence'],
+      sourcingSignals: ['provider name match', 'clinic domain match', 'location match', 'face presence', 'image quality', 'source confidence'],
       queue: [
-        { asset: 'Provider 001', sourceType: 'headshot', confidence: 'high', nextStep: 'face validation' },
-        { asset: 'Provider 002', sourceType: 'clinic exterior', confidence: 'medium', nextStep: 'manual review' },
-        { asset: 'Provider 003', sourceType: 'headshot', confidence: 'medium', nextStep: 'face validation' },
-        { asset: 'Provider 004', sourceType: 'none', confidence: 'low', nextStep: 'image source pending' }
+        { assetId: 'IMG 001', sourceType: 'headshot', confidence: 'high', decision: 'route', nextStep: 'face validation' },
+        { assetId: 'IMG 002', sourceType: 'clinic exterior', confidence: 'medium', decision: 'hold', nextStep: 'manual image review' },
+        { assetId: 'IMG 003', sourceType: 'headshot', confidence: 'medium', decision: 'route', nextStep: 'validate' },
+        { assetId: 'IMG 004', sourceType: 'none', confidence: 'low', decision: 'pending', nextStep: 'image source pending' }
       ]
     },
     footerNote:
-      'Shows how the workflow avoided stalling when a provider headshot was unavailable by using clinic image fallback logic.'
+      'What this proves: missing provider headshots did not block the pipeline because fallback logic routed assets by confidence and availability.'
   },
   'opencv-face-validation': {
     receiptNumber: '03',
@@ -86,46 +105,50 @@ export const snipReceiptVisuals = {
     type: 'Quality gate',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    whatItProves: 'Image quality was checked before publishing.',
-    operationalSignal: 'Candidate images passed through approve, reject, or fallback decisions.',
-    description: 'OpenCV validation acted as a quality gate before images entered the publishable asset set.',
+    whatItProves: 'Provider imagery was checked before it entered the publishable asset set.',
+    operationalSignal: 'Image candidates passed through OpenCV detection, QC checks, and decision lanes.',
+    description: 'OpenCV validation acted as a computer vision quality gate before images were handed off for publishing.',
     receiptBodyType: 'faceValidationGate',
-    contents: ['face detected', 'single subject preferred', 'resolution acceptable', 'crop usable', 'not logo only', 'manual review'],
+    contents: ['image candidate', 'face detection', 'QC checks', 'approved lane', 'manual review lane', 'clinic fallback', 'rejected lane'],
     preview: {
-      gates: ['Approved', 'Manual Review', 'Fallback Needed'],
-      meta: ['validation: face detected', 'decision: fallback needed'],
-      rows: ['IMG 001 / approved', 'IMG 003 / review', 'IMG 004 / reject']
+      gates: ['Approved', 'Manual Review', 'Fallback Needed', 'Rejected'],
+      rows: ['IMG 001 | face yes | approved', 'IMG 003 | face yes | manual review', 'IMG 004 | face no | rejected']
     },
     body: {
-      flow: ['Image candidate', 'OpenCV face detection', 'quality check', 'approve, reject, or fallback'],
-      operationalDetails: [
-        { label: 'validation', value: 'face detected' },
-        { label: 'decision', value: 'fallback needed' },
-        { label: 'status', value: 'manual review if low confidence' }
-      ],
+      inspection: {
+        check: 'CHECK: OpenCV face detection',
+        rail: [
+          { label: 'input', value: 'image candidate' },
+          { label: 'output', value: 'approved / review / fallback / rejected' },
+          { label: 'mode', value: 'sanitized QC trace' },
+          { label: 'evidence', value: 'decision reason retained' }
+        ]
+      },
+      flow: ['image candidate', 'OpenCV detection', 'QC checks', 'decision lane'],
       checks: [
-        'Face detected',
-        'Single subject preferred',
-        'Image resolution acceptable',
-        'Crop usable',
-        'Not logo only',
-        'Not irrelevant clinic image',
-        'Manual review if confidence is low'
+        'face detected',
+        'single subject preferred',
+        'resolution acceptable',
+        'crop usable',
+        'not logo only',
+        'not irrelevant clinic image',
+        'confidence reviewed'
       ],
       destinations: [
         { label: 'Approved', items: ['IMG 001'] },
         { label: 'Manual Review', items: ['IMG 003'] },
-        { label: 'Fallback Needed', items: ['IMG 002', 'IMG 004'] }
+        { label: 'Fallback Needed', items: ['IMG 002'] },
+        { label: 'Rejected', items: ['IMG 004'] }
       ],
       table: [
-        { imageId: 'IMG 001', faceDetected: 'yes', quality: 'usable', decision: 'approved', reason: 'single face detected' },
-        { imageId: 'IMG 002', faceDetected: 'no', quality: 'low', decision: 'fallback', reason: 'clinic exterior only' },
-        { imageId: 'IMG 003', faceDetected: 'yes', quality: 'review', decision: 'manual review', reason: 'possible mismatch' },
-        { imageId: 'IMG 004', faceDetected: 'no', quality: 'reject', decision: 'reject', reason: 'logo or graphic' }
+        { imageId: 'IMG 001', faceDetected: 'face yes', quality: 'usable', decision: 'approved', reason: 'single face detected' },
+        { imageId: 'IMG 002', faceDetected: 'face no', quality: 'low', decision: 'fallback', reason: 'clinic exterior only' },
+        { imageId: 'IMG 003', faceDetected: 'face yes', quality: 'review', decision: 'manual review', reason: 'possible mismatch' },
+        { imageId: 'IMG 004', faceDetected: 'face no', quality: 'reject', decision: 'rejected', reason: 'logo or graphic' }
       ]
     },
     footerNote:
-      'Shows that provider imagery was not blindly collected. It passed through a validation gate before entering the publishable asset set.'
+      'What this proves: provider imagery was checked before publishing so profile assets were not blindly collected.'
   },
   'structured-asset-folders': {
     receiptNumber: '04',
@@ -133,22 +156,16 @@ export const snipReceiptVisuals = {
     type: 'Handoff system',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    whatItProves: 'Final outputs were organized for publishing handoff.',
-    operationalSignal: 'Each provider had source notes, asset status, and profile data preserved.',
-    description: 'Provider data, image assets, source notes, and validation status were organized into structured handoff folders.',
+    whatItProves: 'Provider data, imagery, validation status, and source notes were preserved for publishing handoff.',
+    operationalSignal: 'Each provider folder carried profile data, image state, source notes, validation status, and publish state.',
+    description: 'Provider data, image assets, source notes, and validation status were organized into a structured publishing manifest.',
     receiptBodyType: 'assetHandoffMap',
-    contents: ['provider folders', 'profile.json', 'headshot.jpg', 'clinic-fallback.jpg', 'source notes', 'publish status'],
+    contents: ['provider folders', 'profile.json', 'headshot.jpg', 'clinic-fallback.jpg', 'source-notes.txt', 'validation-status.txt', 'publish manifest'],
     preview: {
       tree: ['snip-snip-provider-assets/', 'provider-001/', 'profile.json', 'validation-status.txt'],
-      meta: ['handoff: publish ready', 'source notes preserved'],
-      states: ['ready to publish', 'image source pending', 'manual review', 'source incomplete']
+      manifest: ['Provider 001 | publish-ready', 'Provider 002 | manual review', 'Provider 003 | publish-ready']
     },
     body: {
-      operationalDetails: [
-        { label: 'handoff', value: 'publish ready' },
-        { label: 'status', value: 'validation status preserved' },
-        { label: 'reference', value: 'source notes retained' }
-      ],
       folderTree: [
         {
           name: 'snip-snip-provider-assets/',
@@ -159,7 +176,7 @@ export const snipReceiptVisuals = {
             },
             {
               name: 'provider-002/',
-              children: ['profile.json', 'clinic-fallback.jpg', 'source-notes.txt', 'image-source-pending.txt']
+              children: ['profile.json', 'clinic-fallback.jpg', 'source-notes.txt', 'visual-review.txt']
             },
             {
               name: 'provider-003/',
@@ -168,11 +185,16 @@ export const snipReceiptVisuals = {
           ]
         }
       ],
-      handoffFields: ['Provider name', 'Location', 'Taxonomy', 'Profile fields', 'Image status', 'Source references', 'Publish status'],
-      publishingStates: ['ready to publish', 'image source pending', 'manual review', 'source incomplete']
+      manifestRows: [
+        { providerId: 'Provider 001', profileData: 'complete', imageStatus: 'headshot approved', sourceNotes: 'present', validationStatus: 'approved', publishState: 'publish-ready' },
+        { providerId: 'Provider 002', profileData: 'complete', imageStatus: 'clinic fallback', sourceNotes: 'present', validationStatus: 'review', publishState: 'manual review' },
+        { providerId: 'Provider 003', profileData: 'complete', imageStatus: 'headshot approved', sourceNotes: 'present', validationStatus: 'approved', publishState: 'publish-ready' }
+      ],
+      handoffFields: ['Provider ID', 'Profile Data', 'Image Status', 'Source Notes', 'Validation Status', 'Publish State'],
+      publishingStates: ['publish-ready', 'manual review', 'image source pending', 'source incomplete']
     },
     footerNote:
-      'Shows the pipeline created structured publishing assets that could be reviewed, updated, and handed off without losing source context.'
+      'What this proves: provider data, imagery, validation status, and source notes were preserved as a structured publishing handoff instead of a messy folder dump.'
   }
 };
 

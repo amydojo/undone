@@ -145,7 +145,7 @@ export default function ReceiptVisualGallery({
             : MirrorReceiptVisual;
       const maxWidth =
         componentAsset.renderer === "snip"
-          ? "max-w-[860px]"
+          ? "max-w-[980px]"
           : componentAsset.renderer === "smooth"
             ? "max-w-[960px]"
           : componentAsset.renderer === "multi"
