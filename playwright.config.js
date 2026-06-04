@@ -13,7 +13,7 @@ export default defineConfig({
   workers: 1,
   reporter: 'html',
   use: {
-    baseURL: 'http://localhost:5173/undone/',
+    baseURL: 'http://127.0.0.1:5173/undone/',
     screenshot: 'only-on-failure',
     trace: 'on-first-retry'
   },
@@ -27,8 +27,8 @@ export default defineConfig({
     }
   ],
   webServer: {
-    command: 'npm run dev -- --host 0.0.0.0',
-    url: 'http://localhost:5173/undone/',
+    command: 'npm run dev -- --host 127.0.0.1',
+    url: 'http://127.0.0.1:5173/undone/',
     reuseExistingServer: true,
     timeout: 120000
   }

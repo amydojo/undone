@@ -4,6 +4,30 @@ import { mkdir } from 'node:fs/promises';
 
 const screenshotDir = 'tests/screenshots';
 const modalScreenshotDir = `${screenshotDir}/modals`;
+const cardScreenshotDir = `${screenshotDir}/cards`;
+
+const metaCardTargets = [
+  {
+    caseSlug: 'meta-airtable-dashboard',
+    receiptTestId: 'meta-leads-master',
+    filename: 'meta-leads-master-card.png'
+  },
+  {
+    caseSlug: 'meta-airtable-dashboard',
+    receiptTestId: 'meta-campaign-performance',
+    filename: 'meta-campaign-performance-card.png'
+  },
+  {
+    caseSlug: 'meta-airtable-dashboard',
+    receiptTestId: 'meta-revenue-attribution',
+    filename: 'meta-revenue-attribution-card.png'
+  },
+  {
+    caseSlug: 'meta-airtable-dashboard',
+    receiptTestId: 'meta-decision-console',
+    filename: 'meta-decision-console-card.png'
+  }
+];
 
 const modalTargets = [
   {
@@ -23,8 +47,18 @@ const modalTargets = [
   },
   {
     caseSlug: 'meta-airtable-dashboard',
+    receiptTestId: 'meta-campaign-performance',
+    filename: 'meta-campaign-performance-modal.png'
+  },
+  {
+    caseSlug: 'meta-airtable-dashboard',
     receiptTestId: 'meta-revenue-attribution',
     filename: 'meta-revenue-attribution-modal.png'
+  },
+  {
+    caseSlug: 'meta-airtable-dashboard',
+    receiptTestId: 'meta-decision-console',
+    filename: 'meta-decision-console-modal.png'
   },
   {
     caseSlug: 'snip-provider-pipeline',
@@ -69,14 +103,25 @@ async function openCase(page, caseSlug) {
   await caseCard.click();
 }
 
-async function openReceiptModal(page, receiptTestId) {
+async function openReceiptCard(page, receiptTestId) {
   const receiptSelector = await expectSingleVisibleTestId(page, `receipt-selector-${receiptTestId}`);
   await receiptSelector.click();
 
-  const receiptCard = await expectSingleVisibleTestId(page, `receipt-card-${receiptTestId}`);
+  return expectSingleVisibleTestId(page, `receipt-card-${receiptTestId}`);
+}
+
+async function openReceiptModal(page, receiptTestId) {
+  const receiptCard = await openReceiptCard(page, receiptTestId);
   await receiptCard.click();
 
   return expectSingleVisibleTestId(page, 'receipt-modal');
+}
+
+async function saveCardScreenshot(card, name) {
+  await mkdir(cardScreenshotDir, { recursive: true });
+  await card.screenshot({
+    path: `${cardScreenshotDir}/${name}`
+  });
 }
 
 async function saveModalScreenshot(modal, name) {
@@ -97,6 +142,15 @@ test.describe('receipt visual QA screenshots', () => {
     await preparePage(page, { width: 390, height: 900 });
     await saveFullPageScreenshot(page, 'receipts-mobile.png');
   });
+
+  for (const target of metaCardTargets) {
+    test(`captures ${target.receiptTestId} compact card`, async ({ page }) => {
+      await preparePage(page, { width: 1440, height: 1200 });
+      await openCase(page, target.caseSlug);
+      const card = await openReceiptCard(page, target.receiptTestId);
+      await saveCardScreenshot(card, target.filename);
+    });
+  }
 
   for (const target of modalTargets) {
     test(`captures ${target.receiptTestId} modal`, async ({ page }) => {

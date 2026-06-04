@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import MirrorReceiptVisual from "./receipt-visuals/MirrorReceiptVisual";
+import MetaAirtableReceiptVisual from "./receipt-visuals/MetaAirtableReceiptVisual";
 import SnipReceiptVisual from "./receipt-visuals/SnipReceiptVisual";
 import { getMirrorReceiptVisual } from "../../data/mirrorReceiptVisuals";
 import { getMetaAirtableReceiptVisual } from "../../data/metaAirtableReceiptVisuals";
@@ -34,7 +35,7 @@ function getComponentAsset(asset) {
   if (mirrorDefinition) return { definition: mirrorDefinition, renderer: "mirror" };
 
   const metaDefinition = getMetaAirtableReceiptVisual(asset.componentKey);
-  if (metaDefinition) return { definition: metaDefinition, renderer: "mirror" };
+  if (metaDefinition) return { definition: metaDefinition, renderer: "meta" };
 
   return null;
 }
@@ -72,9 +73,15 @@ export default function ReceiptVisualGallery({
 
   const isMobile = variant === "mobile";
   const activeAsset = activeIndex === null ? null : visibleAssets[activeIndex];
+  const activeComponentAsset = activeAsset ? getComponentAsset(activeAsset) : null;
   const featuredAsset = visibleAssets[0];
   const isComponentSet = visibleAssets.every((asset) => isComponentAsset(asset));
   const activeLabel = activeIndex === null ? null : `${formatIndex(activeIndex, visibleAssets.length)} / ${formatIndex(visibleAssets.length - 1, visibleAssets.length)}`;
+  const activeCaption = activeAsset ? getAssetCaption(activeAsset) : "";
+  const shouldShowActiveCaption = Boolean(
+    activeCaption &&
+      !(activeComponentAsset?.renderer === "meta" && activeComponentAsset.definition?.receiptBodyType)
+  );
 
   useEffect(() => {
     if (!activeAsset) return undefined;
@@ -116,8 +123,18 @@ export default function ReceiptVisualGallery({
     const definition = componentAsset?.definition;
 
     if (definition) {
-      const Component = componentAsset.renderer === "snip" ? SnipReceiptVisual : MirrorReceiptVisual;
-      const maxWidth = componentAsset.renderer === "snip" ? "max-w-[860px]" : "max-w-[760px]";
+      const Component =
+        componentAsset.renderer === "snip"
+          ? SnipReceiptVisual
+          : componentAsset.renderer === "meta"
+            ? MetaAirtableReceiptVisual
+            : MirrorReceiptVisual;
+      const maxWidth =
+        componentAsset.renderer === "snip"
+          ? "max-w-[860px]"
+          : componentAsset.renderer === "meta"
+            ? "max-w-[940px]"
+            : "max-w-[760px]";
 
       return (
         <div className={mode === "viewer" ? `w-full ${maxWidth}` : "w-full"}>
@@ -326,9 +343,9 @@ export default function ReceiptVisualGallery({
                 {renderAsset(activeAsset, "viewer")}
               </div>
             </div>
-            {getAssetCaption(activeAsset) && (
+            {shouldShowActiveCaption && (
               <figcaption className="border-t border-[#11100d]/8 px-4 py-3 text-[12px] leading-5 text-[#11100d]/62 sm:px-5">
-                {getAssetCaption(activeAsset)}
+                {activeCaption}
               </figcaption>
             )}
             {visibleAssets.length > 1 && (
