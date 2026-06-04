@@ -10,23 +10,25 @@ import MobileRecordSelector from "./MobileRecordSelector";
 import MobileView from "./MobileView";
 
 export default function UndonePortfolioV10() {
+  const visibleRecords = useMemo(() => records.filter((record) => record.visible !== false), []);
+  const defaultRecord = visibleRecords[0] ?? records[0];
   const [activeFilter, setActiveFilter] = useState("all");
-  const [activeRecordSlug, setActiveRecordSlug] = useState(records[0].slug);
-  const [activeReceiptId, setActiveReceiptId] = useState(records[0].receipts[0]?.id ?? null);
+  const [activeRecordSlug, setActiveRecordSlug] = useState(defaultRecord.slug);
+  const [activeReceiptId, setActiveReceiptId] = useState(defaultRecord.receipts[0]?.id ?? null);
   const [workspaceRecordSlug, setWorkspaceRecordSlug] = useState(null);
   const [mobileSheetOpen, setMobileSheetOpen] = useState(false);
   const [mobileTab, setMobileTab] = useState("overview");
 
   const filteredRecords = useMemo(() => {
-    return records.filter((record) => {
+    return visibleRecords.filter((record) => {
       const matchesFilter = activeFilter === "all" || record.category === activeFilter;
       return matchesFilter;
     });
-  }, [activeFilter]);
+  }, [activeFilter, visibleRecords]);
 
   const activeRecord = useMemo(
-    () => records.find((record) => record.slug === activeRecordSlug) || records[0],
-    [activeRecordSlug]
+    () => records.find((record) => record.slug === activeRecordSlug) || defaultRecord,
+    [activeRecordSlug, defaultRecord]
   );
 
   const workspaceRecord = useMemo(
@@ -35,11 +37,13 @@ export default function UndonePortfolioV10() {
   );
 
   useEffect(() => {
+    if (activeRecord.visible === false) return;
+
     if (!filteredRecords.some((record) => record.slug === activeRecord.slug)) {
-      const next = filteredRecords[0] || records[0];
+      const next = filteredRecords[0] || defaultRecord;
       setActiveRecordSlug(next.slug);
     }
-  }, [activeRecord.slug, filteredRecords]);
+  }, [activeRecord.slug, activeRecord.visible, defaultRecord, filteredRecords]);
 
   useEffect(() => {
     if (activeRecord.receipts.length === 0) {
