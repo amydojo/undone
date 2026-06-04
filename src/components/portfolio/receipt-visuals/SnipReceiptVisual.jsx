@@ -1,6 +1,5 @@
 import React from "react";
 
-const ACCENT = "#9fe7ff";
 
 function Dot({ className = "h-1.5 w-1.5" }) {
   return <span className={`${className} shrink-0 rounded-full bg-[#9fe7ff]`} aria-hidden="true" />;
