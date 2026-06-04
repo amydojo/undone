@@ -5,11 +5,14 @@ import cx from '../../utils/cx'
 import ReceiptVisualGallery from './ReceiptVisualGallery'
 
 function displayStatus(raw) {
-  if (!raw || raw === 'needs screenshot' || raw === 'needs visual') return 'visual pending'
-  if (raw === 'needs metric') return 'metric pending'
-  if (raw === 'needs polish') return 'polish pending'
-  if (raw === 'needs link') return 'link pending'
+  if (!raw) return null
+  if (raw === 'needs screenshot' || raw === 'needs visual' || raw === 'needs metric' || raw === 'needs polish' || raw === 'needs link') return 'queued'
   return raw
+}
+
+function shouldShowStatus(raw) {
+  const status = displayStatus(raw)
+  return Boolean(status && status !== 'ready')
 }
 
 function hasComponentVisual(receipt) {
@@ -40,7 +43,6 @@ export default function ProofRail({ record, activeReceipt, onSelectReceipt }) {
       <div className='divide-y divide-[#11100d]/6'>
         {receipts.map((receipt, i) => {
           const active = selectedReceipt?.id === receipt.id
-          const status = displayStatus(receipt.status)
           return (
             <button
               key={receipt.id}
@@ -63,12 +65,6 @@ export default function ProofRail({ record, activeReceipt, onSelectReceipt }) {
                 </p>
                 <p className='truncate text-[10px] text-[#11100d]/36'>{receipt.format}</p>
               </div>
-              <span className={cx(
-                'shrink-0 rounded-full px-2 py-0.5 text-[9px]',
-                active ? 'bg-[#11100d]/[0.05] text-[#11100d]/48' : 'text-[#11100d]/28'
-              )}>
-                {status}
-              </span>
               <ChevronRight className={cx('h-3 w-3 shrink-0 text-[#11100d]/16 transition', active && 'text-[#11100d]/36')} />
             </button>
           )
@@ -122,12 +118,14 @@ export default function ProofRail({ record, activeReceipt, onSelectReceipt }) {
             receiptTestId={getReceiptTestId(selectedReceipt)}
           />
 
-          <div className='mt-4 flex items-center gap-2'>
-            <span className='text-[9px] uppercase tracking-[0.13em] text-[#11100d]/26'>Status</span>
-            <span className='rounded-full border border-[#11100d]/8 bg-[#f7f1e7] px-2 py-0.5 text-[9px] text-[#11100d]/42'>
-              {displayStatus(selectedReceipt?.status)}
-            </span>
-          </div>
+          {shouldShowStatus(selectedReceipt?.status) && (
+            <div className='mt-4 flex items-center gap-2'>
+              <span className='text-[9px] uppercase tracking-[0.13em] text-[#11100d]/26'>Status</span>
+              <span className='rounded-full border border-[#11100d]/8 bg-[#f7f1e7] px-2 py-0.5 text-[9px] text-[#11100d]/42'>
+                {displayStatus(selectedReceipt?.status)}
+              </span>
+            </div>
+          )}
         </motion.div>
       </AnimatePresence>
     </aside>

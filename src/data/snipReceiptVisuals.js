@@ -50,7 +50,7 @@ export const snipReceiptVisuals = {
     operationalSignal: 'Provider image candidates were routed by confidence and availability.',
     description: 'Headshot and clinic image sourcing followed fallback logic so missing provider images did not block progress.',
     receiptBodyType: 'imageSourcingPipeline',
-    contents: ['provider headshots', 'clinic exterior photos', 'source confidence', 'image quality', 'face presence', 'visual pending'],
+    contents: ['provider headshots', 'clinic exterior photos', 'source confidence', 'image quality', 'face presence', 'image source pending'],
     preview: {
       root: 'provider candidate',
       branches: ['headshot found', 'clinic fallback', 'manual review'],
@@ -66,7 +66,7 @@ export const snipReceiptVisuals = {
       ],
       branches: [
         { label: 'If headshot found', result: 'save provider headshot candidate', next: 'send to validation' },
-        { label: 'If no reliable headshot', result: 'search clinic image and save clinic fallback', next: 'flag visual pending' },
+        { label: 'If no reliable headshot', result: 'search clinic image and save clinic fallback', next: 'image source pending' },
         { label: 'If multiple matches', result: 'manual review required', next: 'source confidence check' }
       ],
       sourcingSignals: ['Provider name match', 'Clinic domain match', 'Location match', 'Image quality', 'Face presence', 'Source confidence'],
@@ -74,7 +74,7 @@ export const snipReceiptVisuals = {
         { asset: 'Provider 001', sourceType: 'headshot', confidence: 'high', nextStep: 'face validation' },
         { asset: 'Provider 002', sourceType: 'clinic exterior', confidence: 'medium', nextStep: 'manual review' },
         { asset: 'Provider 003', sourceType: 'headshot', confidence: 'medium', nextStep: 'face validation' },
-        { asset: 'Provider 004', sourceType: 'none', confidence: 'low', nextStep: 'visual pending' }
+        { asset: 'Provider 004', sourceType: 'none', confidence: 'low', nextStep: 'image source pending' }
       ]
     },
     footerNote:
@@ -141,7 +141,7 @@ export const snipReceiptVisuals = {
     preview: {
       tree: ['snip-snip-provider-assets/', 'provider-001/', 'profile.json', 'validation-status.txt'],
       meta: ['handoff: publish ready', 'source notes preserved'],
-      states: ['ready to publish', 'visual pending', 'manual review', 'source incomplete']
+      states: ['ready to publish', 'image source pending', 'manual review', 'source incomplete']
     },
     body: {
       operationalDetails: [
@@ -159,7 +159,7 @@ export const snipReceiptVisuals = {
             },
             {
               name: 'provider-002/',
-              children: ['profile.json', 'clinic-fallback.jpg', 'source-notes.txt', 'visual-pending.txt']
+              children: ['profile.json', 'clinic-fallback.jpg', 'source-notes.txt', 'image-source-pending.txt']
             },
             {
               name: 'provider-003/',
@@ -169,7 +169,7 @@ export const snipReceiptVisuals = {
         }
       ],
       handoffFields: ['Provider name', 'Location', 'Taxonomy', 'Profile fields', 'Image status', 'Source references', 'Publish status'],
-      publishingStates: ['ready to publish', 'visual pending', 'manual review', 'source incomplete']
+      publishingStates: ['ready to publish', 'image source pending', 'manual review', 'source incomplete']
     },
     footerNote:
       'Shows the pipeline created structured publishing assets that could be reviewed, updated, and handed off without losing source context.'

@@ -68,6 +68,9 @@ export default function TopBar() {
             <span>Amy Do</span>
           </div>
           <span className="pl-5 text-[9px] text-[#11100d]/36 lg:pl-0">Design Technologist</span>
+          <span className="max-w-[360px] pl-5 text-[9px] leading-4 text-[#11100d]/36 lg:pl-0">
+            Product-minded creative strategist for brand, growth, and AI systems.
+          </span>
         </div>
         {/* Mobile-only: résumé + contact always visible */}
         <div className="flex shrink-0 items-center gap-1.5 lg:hidden">

@@ -335,16 +335,7 @@ export const records = [
             componentKey: 'meta-leads-master-table-logic'
           }
         ],
-        artifacts: [
-          {
-            id: 'meta-leads-master-dashboard',
-            type: 'dashboard',
-            label: 'Campaign dashboard screenshot',
-            src: '',
-            caption: 'Documents the lead-level schema connecting campaign source, CRM state, booking behavior, and revenue context.',
-            status: 'needs screenshot'
-          }
-        ]
+        artifacts: []
       },
       {
         id: 'campaign-performance-logic',
@@ -361,16 +352,7 @@ export const records = [
             componentKey: 'meta-campaign-performance-logic'
           }
         ],
-        artifacts: [
-          {
-            id: 'meta-ads-performance-view',
-            type: 'dashboard',
-            label: 'Meta ads performance view',
-            src: '',
-            caption: 'Documents the formula layer that tied platform metrics to booking, arrival, conversion, and revenue signals.',
-            status: 'needs metric'
-          }
-        ]
+        artifacts: []
       },
       {
         id: 'revenue-attribution-model',
@@ -387,16 +369,7 @@ export const records = [
             componentKey: 'meta-revenue-attribution-model'
           }
         ],
-        artifacts: [
-          {
-            id: 'meta-revenue-attribution-document',
-            type: 'document',
-            label: 'Revenue attribution model',
-            src: '',
-            caption: 'Documents confidence rules for clean paths, partial evidence, missing campaign context, and manual review.',
-            status: 'needs link'
-          }
-        ]
+        artifacts: []
       },
       {
         id: 'decision-dashboard-ui',
@@ -413,16 +386,7 @@ export const records = [
             componentKey: 'meta-decision-dashboard-ui'
           }
         ],
-        artifacts: [
-          {
-            id: 'meta-decision-dashboard-ui',
-            type: 'prototype',
-            label: 'Decision dashboard prototype',
-            src: '',
-            caption: 'Documents the interface layer that turns campaign, CRM, and revenue evidence into action queues.',
-            status: 'ready'
-          }
-        ]
+        artifacts: []
       }
     ]
   },
@@ -485,7 +449,7 @@ export const records = [
         status: 'ready',
         claim: 'Headshot and clinic image sourcing followed fallback logic so missing provider images did not block progress.',
         proof: 'Provider image candidates were routed by confidence and availability.',
-        contents: ['provider headshots', 'clinic exterior photos', 'source confidence', 'image quality', 'face presence', 'visual pending'],
+        contents: ['provider headshots', 'clinic exterior photos', 'source confidence', 'image quality', 'face presence', 'image source pending'],
         visualAssets: [
           {
             kind: 'component',

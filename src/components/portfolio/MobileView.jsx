@@ -21,19 +21,13 @@ const TABS = [
 ];
 
 function displayStatus(raw) {
-  if (!raw || raw === 'needs screenshot' || raw === 'needs visual') return 'visual pending'
-  if (raw === 'needs metric') return 'metric pending'
-  if (raw === 'needs polish') return 'polish pending'
-  if (raw === 'needs link') return 'link pending'
+  if (!raw) return null
+  if (raw === 'needs screenshot' || raw === 'needs visual' || raw === 'needs metric' || raw === 'needs polish' || raw === 'needs link') return 'queued'
   return raw
 }
 
 function hasComponentVisual(receipt) {
   return (receipt?.visualAssets ?? []).some((asset) => asset?.kind === 'component' || asset?.componentKey)
-}
-
-function isReadyStatus(raw) {
-  return displayStatus(raw) === 'ready'
 }
 
 function getReceiptTestId(receipt) {
@@ -105,7 +99,7 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
   const receiptContents = selectedReceipt?.contents ?? [];
   const componentVisual = hasComponentVisual(selectedReceipt);
   const selectedStatus = displayStatus(selectedReceipt?.status);
-  const showSelectedStatus = selectedReceipt && !isReadyStatus(selectedReceipt.status);
+  const showSelectedStatus = Boolean(selectedReceipt && selectedStatus && selectedStatus !== 'ready');
 
   return (
     <div className="space-y-4 px-4 py-4">
@@ -123,7 +117,7 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
           {receipts.map((receipt, i) => {
             const active = selectedReceipt?.id === receipt.id;
             const status = displayStatus(receipt.status);
-            const showStatus = !isReadyStatus(receipt.status);
+            const showStatus = Boolean(status && status !== 'ready');
 
             return (
               <button
