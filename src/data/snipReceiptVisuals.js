@@ -90,10 +90,7 @@ export const snipReceiptVisuals = {
       ],
       sourcingSignals: ['provider name match', 'clinic domain match', 'location match', 'face presence', 'image quality', 'source confidence'],
       queue: [
-        { assetId: 'IMG 001', sourceType: 'headshot', confidence: 'high', decision: 'route', nextStep: 'face validation' },
-        { assetId: 'IMG 002', sourceType: 'clinic exterior', confidence: 'medium', decision: 'hold', nextStep: 'manual image review' },
-        { assetId: 'IMG 003', sourceType: 'headshot', confidence: 'medium', decision: 'route', nextStep: 'validate' },
-        { assetId: 'IMG 004', sourceType: 'none', confidence: 'low', decision: 'pending', nextStep: 'image source pending' }
+        { assetId: 'IMG 003', sourceType: 'headshot', confidence: 'medium', decision: 'route', nextStep: 'face validation' },
       ]
     },
     footerNote:
