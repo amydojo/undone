@@ -503,6 +503,7 @@ export const records = [
     category: 'product ux',
     type: 'compliance workflow',
     status: 'prototype',
+    visible: false,
     timeline: '2024',
     accent: '#d7e8ff',
     thesis: 'A compliance product that turned HR risk into a guided assessment system.',
