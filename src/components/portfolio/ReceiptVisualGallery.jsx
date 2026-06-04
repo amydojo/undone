@@ -2,10 +2,12 @@ import React, { useEffect, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import MirrorReceiptVisual from "./receipt-visuals/MirrorReceiptVisual";
 import MetaAirtableReceiptVisual from "./receipt-visuals/MetaAirtableReceiptVisual";
+import MultiBrandRetentionReceiptVisual from "./receipt-visuals/MultiBrandRetentionReceiptVisual";
 import SnipReceiptVisual from "./receipt-visuals/SnipReceiptVisual";
 import SmoothMdReceiptVisual from "./receipt-visuals/SmoothMdReceiptVisual";
 import { getMirrorReceiptVisual } from "../../data/mirrorReceiptVisuals";
 import { getMetaAirtableReceiptVisual } from "../../data/metaAirtableReceiptVisuals";
+import { getMultiBrandRetentionReceiptVisual } from "../../data/multiBrandRetentionReceiptVisuals";
 import { getSnipReceiptVisual } from "../../data/snipReceiptVisuals";
 import { getSmoothMdReceiptVisual } from "../../data/smoothMdReceiptVisuals";
 
@@ -32,6 +34,9 @@ function getComponentAsset(asset) {
 
   const smoothDefinition = getSmoothMdReceiptVisual(asset.componentKey);
   if (smoothDefinition) return { definition: smoothDefinition, renderer: "smooth" };
+
+  const multiDefinition = getMultiBrandRetentionReceiptVisual(asset.componentKey);
+  if (multiDefinition) return { definition: multiDefinition, renderer: "multi" };
 
   const snipDefinition = getSnipReceiptVisual(asset.componentKey);
   if (snipDefinition) return { definition: snipDefinition, renderer: "snip" };
@@ -85,7 +90,12 @@ export default function ReceiptVisualGallery({
   const activeCaption = activeAsset ? getAssetCaption(activeAsset) : "";
   const shouldShowActiveCaption = Boolean(
     activeCaption &&
-      !((activeComponentAsset?.renderer === "meta" || activeComponentAsset?.renderer === "smooth") && activeComponentAsset.definition?.receiptBodyType)
+      !(
+        (activeComponentAsset?.renderer === "meta" ||
+          activeComponentAsset?.renderer === "smooth" ||
+          activeComponentAsset?.renderer === "multi") &&
+        activeComponentAsset.definition?.receiptBodyType
+      )
   );
 
   useEffect(() => {
@@ -133,6 +143,8 @@ export default function ReceiptVisualGallery({
           ? SnipReceiptVisual
           : componentAsset.renderer === "smooth"
             ? SmoothMdReceiptVisual
+          : componentAsset.renderer === "multi"
+            ? MultiBrandRetentionReceiptVisual
           : componentAsset.renderer === "meta"
             ? MetaAirtableReceiptVisual
             : MirrorReceiptVisual;
@@ -141,6 +153,8 @@ export default function ReceiptVisualGallery({
           ? "max-w-[860px]"
           : componentAsset.renderer === "smooth"
             ? "max-w-[960px]"
+          : componentAsset.renderer === "multi"
+            ? "max-w-[940px]"
           : componentAsset.renderer === "meta"
             ? "max-w-[940px]"
             : "max-w-[760px]";

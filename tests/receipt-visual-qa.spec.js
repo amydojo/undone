@@ -89,6 +89,26 @@ const modalTargets = [
     caseSlug: 'snip-provider-pipeline',
     receiptTestId: 'snip-structured-asset-folders',
     filename: 'snip-asset-folders-modal.png'
+  },
+  {
+    caseSlug: 'multi-brand-retention',
+    receiptTestId: 'multi-brand-lifecycle-flow-model',
+    filename: 'multi-brand-lifecycle-flow-modal.png'
+  },
+  {
+    caseSlug: 'multi-brand-retention',
+    receiptTestId: 'multi-brand-mailchimp-routing-map',
+    filename: 'multi-brand-routing-map-modal.png'
+  },
+  {
+    caseSlug: 'multi-brand-retention',
+    receiptTestId: 'multi-brand-follow-up-timing-protocol',
+    filename: 'multi-brand-follow-up-timing-modal.png'
+  },
+  {
+    caseSlug: 'multi-brand-retention',
+    receiptTestId: 'multi-brand-email-production-system',
+    filename: 'multi-brand-email-production-modal.png'
   }
 ];
 
@@ -97,7 +117,6 @@ async function preparePage(page, viewport) {
   await page.goto('./');
   await page.waitForLoadState('networkidle');
   await expect(page.locator('body')).toBeVisible();
-}
 }
 
 function visibleTestId(page, testId) {
