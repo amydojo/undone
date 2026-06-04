@@ -1,7 +1,6 @@
 import React from "react";
 import MirrorReceiptVisual from "./MirrorReceiptVisual";
 
-const ACCENT = "#c8ff62";
 
 function resolvePublicSrc(src) {
   if (!src || !src.startsWith("/")) return src;
