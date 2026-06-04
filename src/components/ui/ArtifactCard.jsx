@@ -24,11 +24,17 @@ function statusTone(status) {
   return 'border-[#11100d]/10 bg-[#11100d]/4 text-[#11100d]/62'
 }
 
+function displayStatus(status) {
+  if (!status) return 'queued'
+  if (status === 'needs screenshot' || status === 'needs visual' || status === 'needs metric' || status === 'needs polish' || status === 'needs link') return 'queued'
+  return status
+}
+
 export default function ArtifactCard({ artifact = {}, className, compact = false }) {
   const type = TYPE_LABELS[artifact.type] ?? 'image'
   const label = artifact.label || PLACEHOLDER_LABEL
   const caption = artifact.caption || PLACEHOLDER_CAPTION
-  const status = artifact.status || 'needs screenshot'
+  const status = displayStatus(artifact.status)
   const hasSource = typeof artifact.src === 'string' && artifact.src.trim().length > 0
 
   return (

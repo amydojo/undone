@@ -13,25 +13,25 @@ const SYSTEM_OBJECTS = {
     },
   },
   'smooth-md-growth-os': {
-    title: 'Operating Layer',
-    purpose: 'Turns scattered campaign work into repeatable clinic growth logic.',
-    flow: ['Position', 'Offer', 'Lead', 'CRM', 'Lifecycle', 'Measure'],
+    title: 'Clinic Growth OS',
+    purpose: 'Connects brand clarity, service hierarchy, consult path, CRM state, lifecycle routing, and campaign reads.',
+    flow: ['Service', 'Position', 'Offer', 'Consult', 'CRM', 'Lifecycle', 'Read'],
     contrast: {
       leftLabel: 'Before',
-      left: ['Scattered promos', 'Inconsistent follow-up'],
+      left: ['Scattered service promos', 'Consult and follow-up disconnected'],
       rightLabel: 'After',
-      right: ['Unified offer logic', 'Lifecycle routing', 'Measurable handoff'],
+      right: ['Shared service hierarchy', 'CRM/lifecycle routing', 'Campaign performance read'],
     },
   },
   'meta-airtable-dashboard': {
-    title: 'Decision Layer',
-    purpose: 'Turns ad performance into downstream campaign decisions.',
-    flow: ['Spend', 'Lead', 'CRM', 'Booking', 'Revenue', 'Decision'],
+    title: 'Reporting Layer',
+    purpose: 'Connects Meta spend, Airtable lead state, booking behavior, and revenue confidence.',
+    flow: ['Meta', 'Leads_Master', 'CRM State', 'Booking', 'Revenue', 'Decision'],
     contrast: {
       leftLabel: 'Before',
-      left: ['CPL as main signal', 'Isolated campaign metrics'],
+      left: ['Spend and leads in Meta', 'CRM and revenue downstream'],
       rightLabel: 'After',
-      right: ['Booking behavior', 'Revenue context'],
+      right: ['Booking behavior in campaign reads', 'Confidence-based revenue context'],
     },
   },
   'snip-provider-pipeline': {
@@ -74,9 +74,9 @@ export default function OverviewArtifact({ record }) {
   if (!obj) return null
 
   return (
-    <div className='overflow-hidden rounded-[20px] border border-[#11100d]/10 bg-[#fffaf1]'>
+    <div className='overflow-hidden rounded-[18px] border border-[#11100d]/10 bg-[#fffaf1] lg:rounded-[20px]'>
       {/* Header */}
-      <div className='flex items-center justify-between px-4 py-4 lg:px-5 lg:py-5'>
+      <div className='flex items-start justify-between gap-3 px-3.5 py-3.5 sm:px-4 sm:py-4 lg:px-5 lg:py-5'>
         <div className='flex min-w-0 items-center gap-3'>
           <span
             className='h-2.5 w-2.5 shrink-0 rounded-full'
@@ -91,12 +91,12 @@ export default function OverviewArtifact({ record }) {
       </div>
 
       {/* Purpose */}
-      <div className='border-t border-[#11100d]/8 px-4 pb-4 pt-3.5 lg:px-5'>
+      <div className='border-t border-[#11100d]/8 px-3.5 pb-3.5 pt-3 sm:px-4 sm:pb-4 sm:pt-3.5 lg:px-5'>
         <p className='min-w-0 text-[13px] leading-[1.6] text-[#11100d]/54 lg:text-[14px]'>{obj.purpose}</p>
       </div>
 
       {/* Flow */}
-      <div className='border-t border-[#11100d]/8 px-4 py-3 lg:px-5'>
+      <div className='border-t border-[#11100d]/8 px-3.5 py-3 sm:px-4 lg:px-5'>
         <div className='flex flex-wrap items-center gap-x-1.5 gap-y-1 min-w-0'>
           <span className='mr-1.5 text-[9px] uppercase tracking-[0.12em] text-[#11100d]/26'>Flow</span>
           {obj.flow.map((step, i) => (
@@ -112,7 +112,7 @@ export default function OverviewArtifact({ record }) {
 
       {/* Before / After or Input / Output */}
       <div className='grid grid-cols-1 border-t border-[#11100d]/8 sm:grid-cols-2'>
-        <div className='min-w-0 px-4 py-4 lg:px-5 lg:py-5'>
+        <div className='min-w-0 px-3.5 py-3.5 sm:px-4 sm:py-4 lg:px-5 lg:py-5'>
           <div className='mb-2.5 text-[9px] uppercase tracking-[0.12em] text-[#11100d]/28'>
             {obj.contrast.leftLabel}
           </div>
@@ -120,7 +120,7 @@ export default function OverviewArtifact({ record }) {
             <div key={line} className='mt-1 text-[12px] leading-[1.55] text-[#11100d]/52'>{line}</div>
           ))}
         </div>
-        <div className='min-w-0 px-4 py-4 lg:px-5 lg:py-5 border-t border-[#11100d]/8 sm:border-t-0 sm:border-l sm:border-l-[#11100d]/8'>
+        <div className='min-w-0 px-3.5 py-3.5 sm:px-4 sm:py-4 lg:px-5 lg:py-5 border-t border-[#11100d]/8 sm:border-t-0 sm:border-l sm:border-l-[#11100d]/8'>
           <div className='mb-2.5 text-[9px] uppercase tracking-[0.12em] text-[#11100d]/28'>
             {obj.contrast.rightLabel}
           </div>

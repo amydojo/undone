@@ -8,163 +8,113 @@ export const records = [
     status: 'shipped',
     timeline: '2023 / 2024',
     accent: '#c8ff62',
-    thesis: 'A clinic brand rebuilt as operating infrastructure, not campaign decoration.',
-    oneLine: 'Brand, lifecycle, CRM, and offer logic unified into one clinic growth system.',
-    role: 'Lead systems designer',
+    thesis: 'A clinic brand rebuilt as growth infrastructure.',
+    oneLine: 'Brand, lifecycle, CRM, Instagram proof, and campaigns became one system for routing, launches, follow up, and performance reads.',
+    role: 'Brand systems strategist',
     tools: ['Figma', 'Airtable', 'Mailchimp', 'Webflow', 'Zapier', 'Meta Ads'],
     hiringTranslation:
-      'This case proves systems thinking and lifecycle strategy relevance for design technologist and growth designer roles by translating messy clinic signals into reusable brand architecture, CRM logic, and campaign decisions.',
+      'This case proves brand systems strategy, creative leadership, lifecycle/system design, CRM logic design, campaign architecture, and performance interpretation by turning fragmented clinic marketing into reusable growth infrastructure.',
     metrics: [
       { value: '6+', label: 'service lines unified' },
       { value: '+40%', label: 'lead conversion lift' },
       { value: '3.2x', label: 'ROAS on offer test' }
     ],
-    path: ['positioning', 'service logic', 'lead source', 'CRM state', 'lifecycle', 'measurement'],
-    signal: 'Ads, pages, consult language, follow up, and reporting were telling different stories.',
-    system: 'A unified operating layer connected positioning, offer structure, lifecycle messaging, CRM states, and measurement.',
-    owned: ['positioning', 'system architecture', 'copywriting', 'visual direction', 'workflow design', 'analytics interpretation'],
-    nextProof: ['Add campaign dashboard screenshot', 'Add email screenshot', 'Add Airtable CRM map'],
+    path: ['positioning', 'service hierarchy', 'offer architecture', 'consult path', 'CRM state', 'performance read'],
+    signal: 'Smooth MD had strong services, offers, social content, ads, CRM follow-up, and patient touchpoints, but they were not operating from one shared framework.',
+    system: 'A clinic growth operating system connected service hierarchy, consult language, offer architecture, Instagram proof, lifecycle routing, CRM status logic, and campaign performance reads.',
+    owned: ['brand systems strategy', 'creative leadership', 'lifecycle/system design', 'CRM logic design', 'campaign architecture', 'workflow design', 'performance interpretation'],
+    nextProof: ['Brand operating framework', 'Patient lifecycle map', 'CRM status logic', 'Instagram proof system', 'Campaign launch kit'],
     decisions: [
-      { label: 'constraint', body: 'Clinical category, high competition, promo fatigue, limited team bandwidth.' },
-      { label: 'move', body: 'Replace one-off promo work with reusable offer logic by service line.' },
-      { label: 'tradeoff', body: 'More upfront alignment, less downstream chaos.' },
-      { label: 'principle', body: 'Clarity over cleverness. Consistency over isolated expression.' }
+      { label: 'constraint', body: 'Multiple service lines, offers, ads, Instagram proof, consult paths, CRM follow-up, and patient touchpoints were competing for clarity.' },
+      { label: 'move', body: 'Rebuild the clinic brand as a growth operating system: service hierarchy, offer architecture, lifecycle routing, CRM status logic, Instagram proof, and campaign launch rules.' },
+      { label: 'tradeoff', body: 'More upfront system definition so campaigns, content, and follow-up could reuse the same logic instead of restarting from scratch.' },
+      { label: 'principle', body: 'Public-facing brand clarity has to connect to operational follow-through: what service, what offer, what next step, what performance read.' }
     ],
     receipts: [
       {
         id: 'smooth-md-brand-framework',
+        testId: 'smooth-md-brand-framework',
         name: 'Smooth MD brand framework',
         format: 'strategy system',
-        status: 'needs screenshot',
-        claim: 'Shows the shift from service promos to a unified product marketing system.',
-        proof: '+40% lead conversion lift in Q1 and 3.2x ROAS on microneedling offer testing.',
-        contents: ['Skin to the Future', 'Progress > Perfection', 'Aesthetic Advocacy', 'service offer hierarchy', 'clinical minimal visual rules'],
-        artifacts: [
+        status: 'ready',
+        claim: 'Proves the brand was rebuilt as a reusable operating framework across positioning, service hierarchy, offer logic, trust language, and visual rules.',
+        proof: '+40% lead conversion lift and 3.2x ROAS on offer testing are framed as outputs of clearer service, consult, and offer logic.',
+        contents: ['positioning spine', 'service hierarchy', 'trust language', 'offer architecture', 'visual rules', 'proof pillars'],
+        visualAssets: [
           {
-            id: 'smooth-md-brand-framework-page',
-            type: 'document',
-            label: 'Brand framework page',
-            src: '',
-            caption: 'Shows the positioning architecture and visual rules that drove campaign consistency.',
-            status: 'needs screenshot'
+            kind: 'component',
+            componentKey: 'smooth-md-brand-framework'
           }
-        ]
+        ],
+        artifacts: []
       },
       {
         id: 'lifecycle-map',
+        testId: 'smooth-md-lifecycle-map',
         name: 'Lifecycle map',
         format: 'journey flow',
-        status: 'needs polish',
-        claim: 'Shows acquisition, nurture, and booking behavior connected as one system.',
-        proof: 'Welcome, service interest, abandonment, and Day 21 reactivation paths.',
-        contents: ['Meta lead to Airtable', 'website lead to CRM', 'Mailchimp service tags', '2 day follow up', 'Day 21 reactivation'],
-        artifacts: [
+        status: 'ready',
+        claim: 'Proves lead source, service intent, consult path, follow-up timing, treatment state, retention, and reactivation were connected into one patient journey.',
+        proof: 'Welcome, service interest, consult CTA, two-day follow-up, provider-name follow-up, and Day 21 reactivation paths connected to CRM and lifecycle routing.',
+        contents: ['Meta lead', 'website lead', 'Instagram inquiry', 'consult CTA', '2-day follow-up', 'Day 21 reactivation', 'retention logic'],
+        visualAssets: [
           {
-            id: 'smooth-md-flow-map',
-            type: 'flow',
-            label: 'Flow map',
-            src: '',
-            caption: 'Proves lifecycle routing from lead source to reactivation windows.',
-            status: 'needs polish'
+            kind: 'component',
+            componentKey: 'smooth-md-lifecycle-map'
           }
-        ]
+        ],
+        artifacts: []
       },
       {
         id: 'crm-status-logic',
+        testId: 'smooth-md-crm-status-logic',
         name: 'CRM status logic',
         format: 'ops map',
-        status: 'needs metric',
-        claim: 'Shows the operational layer behind the creative system.',
-        proof: 'Lead source, service interest, booking stage, and revenue signal mapped for follow up.',
-        contents: ['lead source', 'brand tag', 'booked', 'arrived', 'converted', 'revenue attribution'],
-        artifacts: [
+        status: 'ready',
+        claim: 'Proves follow-up, booking state, arrival, conversion, and revenue handoff were modeled as repeatable clinic ops logic.',
+        proof: 'Lead source, service interest, follow-up date, owner, booked date, arrival, conversion, revenue value, and attribution review mapped into a status model.',
+        contents: ['new lead', 'contacted', 'booked', 'no-show', 'arrived', 'converted', 'revenue handoff', 'reactivation'],
+        visualAssets: [
           {
-            id: 'smooth-md-airtable-crm-status-map',
-            type: 'dashboard',
-            label: 'Airtable CRM status map',
-            src: '',
-            caption: 'Shows state-level CRM logic and revenue attribution fields used for follow-up.',
-            status: 'needs metric'
+            kind: 'component',
+            componentKey: 'smooth-md-crm-status-logic'
           }
-        ]
+        ],
+        artifacts: []
       },
       {
         id: 'instagram-identity-rebuild',
+        testId: 'smooth-md-instagram-identity-rebuild',
         name: 'Instagram identity rebuild',
         format: 'visual system',
         status: 'ready',
-        claim: 'Shows the shift from generic medspa presence to a clearer skin + laser brand with real treatment proof.',
-        proof: 'Historical profile and grid snapshots showing the identity shift across positioning, service clarity, and clinic-specific proof.',
-        contents: ['Before profile snapshot', 'After profile snapshot', 'Grid evolution', 'Service proof', 'Location and booking clarity'],
+        claim: 'Proves Instagram moved from generic medspa visibility to clearer service proof, local trust signals, and inquiry behavior.',
+        proof: 'Before/after profile and grid evidence, service proof, location trust signals, messaging/contact insight, and follower movement from 57 to 2,043 are supported by existing screenshots.',
+        contents: ['before profile', 'after profile', 'grid evolution', 'service proof', 'message/contact proof', 'follower movement'],
         visualAssets: [
           {
-            src: '/receipts/smooth-md/instagram-identity-rebuild/instagram-before-profile.jpeg',
-            alt: 'Smooth MD Instagram before profile snapshot',
-            caption: 'Historical profile snapshot showing generic medical spa positioning, low content depth, and limited service clarity.'
-          },
-          {
-            src: '/receipts/smooth-md/instagram-identity-rebuild/instagram-after-profile.jpeg',
-            alt: 'Smooth MD Instagram after profile snapshot',
-            caption: 'Updated profile snapshot showing clearer skin + laser positioning, stronger local trust signals, and a more complete brand presence.'
-          },
-          {
-            src: '/receipts/smooth-md/instagram-identity-rebuild/instagram-before-grid.jpeg',
-            alt: 'Smooth MD Instagram before grid snapshot',
-            caption: 'Earlier grid state with stock-heavy beauty imagery and weaker connection to real services, staff, and treatment proof.'
-          },
-          {
-            src: '/receipts/smooth-md/instagram-identity-rebuild/instagram-after-grid.jpeg',
-            alt: 'Smooth MD Instagram after grid snapshot',
-            caption: 'Updated grid showing real treatments, staff presence, service education, and clinic-specific visual proof.'
+            kind: 'component',
+            componentKey: 'smooth-md-instagram-identity-rebuild'
           }
         ],
         artifacts: []
       },
       {
         id: 'campaign-toolkit',
+        testId: 'smooth-md-campaign-toolkit',
         name: 'Campaign toolkit',
         format: 'creative system',
         status: 'ready',
-        claim: 'Shows how the brand system became repeatable production infrastructure across paid ads, offer creative, and service-specific campaign assets.',
-        proof: 'Ad hooks, landing sections, email blocks, CTA logic, and proof layouts.',
-        contents: ['Meta ad hooks', 'Offer modules', 'Hydrafacial promo system', 'Before/after proof', 'Mobile-native CTA'],
+        claim: 'Proves campaigns were built from reusable offer logic, creative modules, CTA paths, lead capture, follow-up, and performance interpretation.',
+        proof: 'Ad hooks, offer modules, proof layouts, CTA logic, lead capture, follow-up path, +40% lead conversion lift, and 3.2x ROAS on offer testing were treated as campaign-system evidence.',
+        contents: ['offer module', 'audience angle', 'creative modules', 'CTA', 'lead capture', 'follow-up path', 'performance read'],
         visualAssets: [
           {
-            src: '/receipts/smooth-md/campaign-toolkit/stretch-mark-meta-ad-preview.jpeg',
-            alt: 'Smooth MD stretch mark Meta ad preview',
-            caption: 'Meta lead ad creative using direct-response problem framing, before/after proof, and a first-area discount offer.'
-          },
-          {
-            src: '/receipts/smooth-md/campaign-toolkit/hydrafacial-meta-ad-preview.jpeg',
-            alt: 'Smooth MD Hydrafacial Meta ad preview',
-            caption: 'Hydrafacial offer creative built around a clear monthly promo, treatment positioning, and conversion CTA.'
-          },
-          {
-            src: '/receipts/smooth-md/campaign-toolkit/brazilian-laser-hair-removal-ad-preview.jpeg',
-            alt: 'Smooth MD Brazilian laser hair removal ad preview',
-            caption: 'Paid social ad creative using a direct problem hook, clear Brazilian laser hair removal offer, price anchor, and mobile-native CTA.'
-          },
-          {
-            src: '/receipts/smooth-md/campaign-toolkit/hydrafacial-reset-tan-model.jpeg',
-            alt: 'Smooth MD Hydrafacial reset campaign asset with tan model',
-            caption: 'Hydrafacial campaign asset using reusable reset language and premium skin-health positioning.'
-          },
-          {
-            src: '/receipts/smooth-md/campaign-toolkit/hydrafacial-reset-dark-skin-model.jpeg',
-            alt: 'Smooth MD Hydrafacial reset campaign asset with dark skin model',
-            caption: 'Creative variation showing the campaign system could flex across imagery while keeping the same core message.'
+            kind: 'component',
+            componentKey: 'smooth-md-campaign-toolkit'
           }
         ],
-        artifacts: [
-          {
-            id: 'smooth-md-landing-page-section',
-            type: 'prototype',
-            label: 'Landing page section',
-            src: '',
-            caption: 'Proves modular creative components used across campaign launches.',
-            status: 'ready'
-          }
-        ]
+        artifacts: []
       }
     ]
   },
@@ -202,164 +152,136 @@ export const records = [
     receipts: [
       {
         id: 'signal-interpretation-map',
-        name: 'Signal interpretation map',
-        format: 'logic diagram',
+        testId: 'mirror-signal-interpretation-map',
+        name: 'Signal Interpretation Map',
+        format: 'Logic diagram',
         status: 'ready',
-        claim: 'Maps raw emotional inputs into deterministic state logic.',
-        proof: 'Maps raw emotional inputs into deterministic state logic.',
-        contents: ['energy range', 'tension range', 'clarity range', 'sleep quality', 'state detection', 'confidence labels'],
+        claim: 'Proves Mirror converts raw emotional inputs into deterministic body weather states.',
+        proof: 'Priority resolver, normalized signal ranges, body weather state, confidence label, and gentle next move.',
+        contents: ['raw inputs', 'normalized ranges', 'priority resolver', 'body weather state', 'confidence label', 'gentle next move'],
         visualAssets: [
           {
             kind: 'component',
             componentKey: 'signal-interpretation-map'
           }
         ],
-        artifacts: [
+        artifacts: []
+      },
+      {
+        id: 'check-in-data-model',
+        testId: 'mirror-check-in-data-model',
+        name: 'Check In Data Model',
+        format: 'Data schema',
+        status: 'ready',
+        claim: 'Proves the product has structured inputs rather than vague mood journaling.',
+        proof: 'Field map for signals, context profile, reflection note, and mirror_checkins storage.',
+        contents: ['energy', 'tension', 'clarity', 'sleep', 'contextProfile', 'note', 'mirror_checkins'],
+        visualAssets: [
           {
-            id: 'mirror-signal-flow-map',
-            type: 'flow',
-            label: 'Flow map',
-            src: '',
-            caption: 'Shows conversion from emotional signal inputs to reusable state logic.',
-            status: 'needs polish'
+            kind: 'component',
+            componentKey: 'check-in-data-model'
           }
-        ]
+        ],
+        artifacts: []
+      },
+      {
+        id: 'body-weather-state-system',
+        testId: 'mirror-body-weather-state-system',
+        name: 'Body Weather State System',
+        format: 'State model',
+        status: 'ready',
+        claim: 'Proves the product has a defined emotional state language and not random mood labels.',
+        proof: 'Eight body weather states with trigger pattern, user meaning, and interaction tone.',
+        contents: ['Frayed', 'Compressed', 'Sparked', 'Clear', 'Fog Forming', 'Drifting', 'Restoring', 'Settled'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'body-weather-state-system'
+          }
+        ],
+        artifacts: []
+      },
+      {
+        id: 'similar-days-matcher',
+        testId: 'mirror-similar-days-matcher',
+        name: 'Similar Days Matcher',
+        format: 'Pattern matching trace',
+        status: 'ready',
+        claim: "Proves Mirror can compare today's signals against previous check ins and surface useful memory.",
+        proof: "Ranked match trace using today's fingerprint, overlap criteria, and mirror_checkins history.",
+        contents: ['current check-in', 'mirror_checkins', 'signal overlap', 'context overlap', 'ranked similar days', 'helpful past actions'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'similar-days-matcher'
+          }
+        ],
+        artifacts: []
+      },
+      {
+        id: 'gentle-next-move-ranking',
+        testId: 'mirror-gentle-next-move-ranking',
+        name: 'Gentle Next Move Ranking',
+        format: 'Recommendation logic',
+        status: 'ready',
+        claim: 'Proves suggestions are not random wellness advice. They are sorted by state, signal fit, and past feedback.',
+        proof: 'Internal ranking ledger for candidate moves, triggers, friction, feedback weight, and final order.',
+        contents: ['state fit', 'signal match', 'prior feedback', 'friction level', 'suggestion order'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'gentle-next-move-ranking'
+          }
+        ],
+        artifacts: []
+      },
+      {
+        id: 'feedback-memory-loop',
+        testId: 'mirror-feedback-memory-loop',
+        name: 'Feedback Memory Loop',
+        format: 'Adaptive behavior log',
+        status: 'ready',
+        claim: 'Proves the product can learn which suggestions help without needing a heavy account system.',
+        proof: 'Suggestion response loop stored in mirror_feedback and applied to future ranking.',
+        contents: ['suggestion shown', 'user response', 'mirror_feedback', 'future ranking adjusted', 'similar days'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'feedback-memory-loop'
+          }
+        ],
+        artifacts: []
+      },
+      {
+        id: 'debug-overlay-test-bench',
+        testId: 'mirror-debug-overlay-test-bench',
+        name: 'Debug Overlay Test Bench',
+        format: 'QA console',
+        status: 'ready',
+        claim: 'Proves the system was testable and inspectable during development.',
+        proof: 'Internal debug overlay with pipeline visibility, demo controls, and state test cases.',
+        contents: ['Debug Overlay', 'triple click current patterns header', 'Esc', 'pipeline visibility', 'suggestion ranking', 'feedback store'],
+        visualAssets: [
+          {
+            kind: 'component',
+            componentKey: 'debug-overlay-test-bench'
+          }
+        ],
+        artifacts: []
       },
       {
         id: 'storybook-component-environment',
-        name: 'Storybook component environment',
-        format: 'component QA',
+        testId: 'mirror-storybook-component-environment',
+        name: 'Storybook Component Environment',
+        format: 'Component QA',
         status: 'ready',
-        claim: 'Static Storybook build preserved component documentation for product states.',
-        proof: 'Static Storybook build preserved component documentation for product states.',
-        contents: ['SignalSparkline', 'BodyWeatherHero', 'SimilarDays', 'GentleNextMove', 'DebugPanel', 'MSW setup'],
+        claim: 'Proves the product interface was broken into reusable, inspectable components and documented states.',
+        proof: 'Static Storybook coverage matrix for primitives, data display, product patterns, QA, and pages.',
+        contents: ['SignalSparkline', 'BodyWeatherHero', 'SimilarDays', 'GentleNextMove', 'DebugPanel', 'MSW', 'Vitest', 'Playwright prepared'],
         visualAssets: [
           {
             kind: 'component',
             componentKey: 'storybook-component-environment'
-          }
-        ],
-        artifacts: [
-          {
-            id: 'mirror-storybook-component-state',
-            type: 'prototype',
-            label: 'Storybook component state',
-            src: '',
-            caption: 'Proves state-level QA and implementation-ready component behavior.',
-            status: 'needs screenshot'
-          }
-        ]
-      },
-      {
-        id: 'feedback-store-logic',
-        name: 'Feedback store learning loop',
-        format: 'prototype logic',
-        status: 'ready',
-        claim: 'Every user rating changes future suggestion scoring without telemetry.',
-        proof: 'Every user rating changes future suggestion scoring without telemetry.',
-        contents: ['mirror_checkins', 'mirror_feedback', 'suggestion scoring', 'pattern frequency', 'similar day matching'],
-        visualAssets: [
-          {
-            kind: 'component',
-            componentKey: 'feedback-store-learning-loop'
-          }
-        ],
-        artifacts: [
-          {
-            id: 'mirror-feedback-logic-snippet',
-            type: 'code',
-            label: 'Feedback scoring code',
-            src: '',
-            caption: 'Shows how suggestion scoring and learning loops are persisted in prototype state.',
-            status: 'needs link'
-          }
-        ]
-      },
-      {
-        id: 'debug-and-qa-overlay',
-        name: 'Debug and QA overlay',
-        format: 'testing artifact',
-        status: 'ready',
-        claim: 'The product includes an inline debug layer for regression checks and demo control.',
-        proof: 'The product includes an inline debug layer for regression checks and demo control.',
-        contents: ['pipeline view', 'test cases', 'Esc behavior', 'responsive checks', 'frayed edge case'],
-        visualAssets: [
-          {
-            kind: 'component',
-            componentKey: 'debug-and-qa-overlay'
-          }
-        ],
-        artifacts: [
-          {
-            id: 'mirror-debug-overlay-screenshot',
-            type: 'image',
-            label: 'Debug overlay screenshot',
-            src: '',
-            caption: 'Proves integrated QA tooling and pipeline inspection in the product surface.',
-            status: 'ready'
-          }
-        ]
-      },
-      {
-        id: 'similar-days-pattern-logic',
-        name: 'Similar days pattern logic',
-        format: 'pattern matching',
-        status: 'ready',
-        claim: 'Compares current check-ins to recent similar states without overstating certainty.',
-        proof: 'Compares current check-ins to recent similar states without overstating certainty.',
-        contents: ['current check-in', 'stored entries', 'same state', 'last 30 days', 'language calibration', 'what helped lookup'],
-        visualAssets: [
-          {
-            kind: 'component',
-            componentKey: 'similar-days-pattern-logic'
-          }
-        ],
-        artifacts: []
-      },
-      {
-        id: 'local-storage-data-model',
-        name: 'Local storage data model',
-        format: 'data architecture',
-        status: 'ready',
-        claim: 'Three persisted keys separate check-ins, feedback, and QA notes.',
-        proof: 'Three persisted keys separate check-ins, feedback, and QA notes.',
-        contents: ['mirror_checkins', 'mirror_feedback', 'mirror_field_notes', 'CheckInEntry schema', 'sentinel behavior'],
-        visualAssets: [
-          {
-            kind: 'component',
-            componentKey: 'local-storage-data-model'
-          }
-        ],
-        artifacts: []
-      },
-      {
-        id: 'seed-scenario-system',
-        name: 'Seed scenario system',
-        format: 'demo data',
-        status: 'ready',
-        claim: 'Demo entries cover all 8 states through the live engine, not hardcoded overrides.',
-        proof: 'Demo entries cover all 8 states through the live engine, not hardcoded overrides.',
-        contents: ['29 entries', '8 states', 'stable IDs', 'realistic context tags', 'journal-style notes', 'regression verified'],
-        visualAssets: [
-          {
-            kind: 'component',
-            componentKey: 'seed-scenario-system'
-          }
-        ],
-        artifacts: []
-      },
-      {
-        id: 'gentle-next-move-logic',
-        name: 'Gentle next move logic',
-        format: 'recommendation system',
-        status: 'ready',
-        claim: 'Suggestions are selected through scored eligibility and safety constraints.',
-        proof: 'Suggestions are selected through scored eligibility and safety constraints.',
-        contents: ['15 actions', 'feedbackScore', 'contextBoost', 'basePriority', 'safety constraints', 'faint rationale'],
-        visualAssets: [
-          {
-            kind: 'component',
-            componentKey: 'gentle-next-move-logic'
           }
         ],
         artifacts: []
@@ -370,133 +292,101 @@ export const records = [
     id: '03',
     slug: 'meta-airtable-dashboard',
     title: 'Meta + Airtable Intelligence Layer',
-    category: 'analytics',
-    type: 'analytics system',
+    category: 'marketing operations',
+    type: 'reporting layer',
     status: 'built',
     timeline: '2025',
     accent: '#b6f3d4',
-    thesis: 'A reporting layer connecting ad spend to lead quality, booking behavior, and revenue signals.',
-    oneLine: 'Meta performance, CRM state, ROAS, and attribution confidence in one decision layer.',
-    role: 'Dashboard and attribution systems designer',
+    thesis: 'From lead volume to revenue-informed campaign decisions.',
+    oneLine: 'A reporting layer connecting Meta spend, Airtable lead records, CRM state, booking behavior, and revenue confidence.',
+    role: 'Marketing operations systems designer',
     tools: ['React', 'Airtable', 'Meta Marketing API', 'Zapier', 'Replit', 'OpenAI'],
     hiringTranslation:
-      'This case is relevant to growth designer, AI workflow designer, and product marketing designer roles because it translates ad platform noise into decision-ready dashboards, escalation logic, and clear business signals.',
+      'This case is relevant to growth systems, product marketing, and design technologist roles because it demonstrates strategy, data modeling, CRM logic, reporting structure, campaign performance interpretation, workflow design, and decision layer design.',
     metrics: [
-      { value: '3', label: 'core data tables' },
-      { value: 'live', label: 'sync logic' },
-      { value: 'ROAS', label: 'revenue view' }
+      { value: 'Meta', label: 'campaign signal' },
+      { value: 'CRM', label: 'booking behavior' },
+      { value: 'Revenue', label: 'confidence view' }
     ],
-    path: ['ad spend', 'lead', 'CRM state', 'booking', 'revenue', 'decision'],
-    signal: 'Meta showed form volume, but the business needed quality, movement, and revenue context.',
-    system: 'A dashboard model pulled campaign performance, CRM status, revenue attribution, and fallback logic into one decision view.',
-    owned: ['data model design', 'dashboard IA', 'attribution logic', 'automation orchestration', 'insight translation'],
+    path: ['Meta campaign', 'lead record', 'CRM state', 'booking', 'revenue', 'decision'],
+    signal: 'Meta Ads showed spend and lead volume. Airtable held lead records and CRM movement. Booking, arrival, conversion, and revenue signals lived downstream, so campaign reads were missing the behavior that made them useful.',
+    system: 'I designed a reporting layer that connected Meta campaign data, Airtable Leads_Master records, CRM status updates, booking behavior, revenue value, attribution confidence, and decision recommendations.',
+    owned: ['strategy', 'systems design', 'data modeling', 'CRM logic', 'reporting structure', 'campaign performance interpretation', 'workflow design', 'decision layer design'],
     nextProof: ['Add campaign dashboard screenshot', 'Add Meta ads performance view', 'Add revenue attribution table snapshot'],
     decisions: [
-      { label: 'constraint', body: 'Lead quality mattered more than surface volume, but CRM updates were uneven.' },
-      { label: 'move', body: 'Track funnel state instead of stopping at CPL.' },
-      { label: 'tradeoff', body: 'Use attribution confidence instead of fake precision.' },
-      { label: 'principle', body: 'Dashboards should tell teams what to do next.' }
+      { label: 'constraint', body: 'Spend, lead volume, CRM state, booking outcomes, and revenue context were split across tools, which made campaign quality hard to interpret.' },
+      { label: 'move', body: 'Model one shared lead record, then roll campaign performance through booked, arrived, converted, revenue value, and attribution confidence fields.' },
+      { label: 'tradeoff', body: 'Use qualitative confidence and manual review states instead of pretending every revenue event had perfect attribution.' },
+      { label: 'principle', body: 'Reporting should change the next action, not just confirm activity.' }
     ],
     receipts: [
       {
         id: 'leads-master-table-logic',
+        testId: 'meta-leads-master',
         name: 'Leads_Master table logic',
         format: 'data model',
         status: 'ready',
-        claim: 'Shows the shared lead record that connected acquisition source, service interest, CRM state, booking behavior, and conversion value.',
-        proof: 'Shared lead record connecting acquisition source, service interest, CRM state, booking behavior, and conversion value.',
-        contents: ['name', 'phone', 'email', 'lead source', 'CRM state', 'conversion value'],
+        claim: 'Proves the shared lead record carried source, intent, CRM state, booking behavior, outcome, and attribution fields together.',
+        proof: 'Leads_Master grouped identity, source, intent, CRM state, booking, outcome, and attribution fields so downstream reporting could read one record.',
+        contents: ['Lead Source', 'Service Interest', 'Status', 'Booked', 'Arrived', 'Converted', 'Revenue Value', 'Attribution Confidence'],
         visualAssets: [
           {
             kind: 'component',
             componentKey: 'meta-leads-master-table-logic'
           }
         ],
-        artifacts: [
-          {
-            id: 'meta-leads-master-dashboard',
-            type: 'dashboard',
-            label: 'Campaign dashboard screenshot',
-            src: '',
-            caption: 'Shows lead-level schema connecting campaign and downstream conversion signals.',
-            status: 'needs screenshot'
-          }
-        ]
+        artifacts: []
       },
       {
         id: 'campaign-performance-logic',
+        testId: 'meta-campaign-performance',
         name: 'Campaign_Performance logic',
-        format: 'analytics table',
+        format: 'formula worksheet',
         status: 'ready',
-        claim: 'Shows how ad performance was translated from platform metrics into business signals.',
-        proof: 'Meta signals, CRM signals, and decision signals mapped into one optimization table.',
-        contents: ['spend', 'impressions', 'clicks', 'leads', 'booked', 'ROAS'],
+        claim: 'Proves campaign performance was evaluated through downstream behavior, not just spend, leads, or CPL.',
+        proof: 'Spend and lead volume were normalized alongside booked, arrived, converted, revenue, and ROAS logic to guide campaign calls.',
+        contents: ['Spend', 'Leads', 'Booked Rate', 'Show Rate', 'Conversion Rate', 'ROAS', 'Decision Output'],
         visualAssets: [
           {
             kind: 'component',
             componentKey: 'meta-campaign-performance-logic'
           }
         ],
-        artifacts: [
-          {
-            id: 'meta-ads-performance-view',
-            type: 'dashboard',
-            label: 'Meta ads performance view',
-            src: '',
-            caption: 'Proves campaign metrics are normalized for weekly optimization decisions.',
-            status: 'needs metric'
-          }
-        ]
+        artifacts: []
       },
       {
         id: 'revenue-attribution-model',
+        testId: 'meta-revenue-attribution',
         name: 'Revenue_Attribution model',
         format: 'logic layer',
         status: 'ready',
-        claim: 'Shows how revenue was matched back to campaign and lead context using confidence based attribution logic.',
-        proof: 'Revenue matched back to lead and campaign context with confidence based attribution logic.',
-        contents: ['lead record', 'campaign context', 'booking behavior', 'revenue value', 'confidence', 'ROAS context'],
+        claim: 'Proves revenue was mapped back to campaigns with confidence levels instead of fake certainty.',
+        proof: 'Revenue records were traced through source match, lead match, outcome match, and review conditions before being used in reporting.',
+        contents: ['Meta Campaign', 'Lead Record', 'CRM Status', 'Booked', 'Arrived', 'Converted', 'Revenue Value', 'Attribution Confidence'],
         visualAssets: [
           {
             kind: 'component',
             componentKey: 'meta-revenue-attribution-model'
           }
         ],
-        artifacts: [
-          {
-            id: 'meta-revenue-attribution-document',
-            type: 'document',
-            label: 'Revenue attribution model',
-            src: '',
-            caption: 'Documents attribution confidence logic and booking-value linkage.',
-            status: 'needs link'
-          }
-        ]
+        artifacts: []
       },
       {
         id: 'decision-dashboard-ui',
+        testId: 'meta-decision-console',
         name: 'Decision dashboard UI',
         format: 'interface system',
         status: 'ready',
-        claim: 'Shows the final decision layer where campaign, CRM, and revenue signals became optimization guidance.',
-        proof: 'Campaign, CRM, and revenue signals translated into optimization guidance.',
-        contents: ['spend', 'leads', 'booked', 'revenue', 'campaign health', 'next move'],
+        claim: 'Proves scattered campaign, CRM, and revenue signals became action categories like scale, maintain, review, and fix tracking.',
+        proof: 'The decision layer grouped evidence into operational queues so campaign conversations could move from reporting to next action.',
+        contents: ['Can Scale', 'Needs Review', 'Tracking Repair', 'Follow Up Risk', 'Recommended Action', 'Confidence'],
         visualAssets: [
           {
             kind: 'component',
             componentKey: 'meta-decision-dashboard-ui'
           }
         ],
-        artifacts: [
-          {
-            id: 'meta-decision-dashboard-ui',
-            type: 'prototype',
-            label: 'Decision dashboard prototype',
-            src: '',
-            caption: 'Shows the interface layer that turns analytics into team actions.',
-            status: 'ready'
-          }
-        ]
+        artifacts: []
       }
     ]
   },
@@ -534,79 +424,75 @@ export const records = [
     receipts: [
       {
         id: 'nppes-provider-pull',
-        name: 'NPPES provider pull',
+        testId: 'snip-nppes-provider-pull',
+        name: 'NPPES Provider Pull',
         format: 'Python workflow',
-        status: 'needs screenshot',
-        claim: 'Shows real automation beyond no-code workflow glue.',
-        proof: 'Structured discovery for roughly 200 provider profiles.',
-        contents: ['provider name', 'taxonomy', 'location', 'clinic info', 'profile fields', 'source references'],
-        artifacts: [
+        receiptBodyType: 'providerPullTrace',
+        status: 'ready',
+        claim: 'NPPES provider records were pulled, normalized, and queued into a repeatable acquisition workflow.',
+        proof: 'API sourced candidates normalized into profile fields.',
+        contents: ['provider name', 'NPI', 'taxonomy', 'practice location', 'phone', 'credential', 'organization', 'source reference'],
+        visualAssets: [
           {
-            id: 'snip-provider-sourcing-script',
-            type: 'code',
-            label: 'Provider sourcing script',
-            src: '',
-            caption: 'Shows script-level extraction and normalization for provider records.',
-            status: 'needs screenshot'
+            kind: 'component',
+            componentKey: 'nppes-provider-pull'
           }
-        ]
+        ],
+        artifacts: []
       },
       {
         id: 'headshot-and-clinic-image-sourcing',
-        name: 'Headshot and clinic image sourcing',
-        format: 'asset pipeline',
-        status: 'needs polish',
-        claim: 'Shows data enrichment connected to publish-ready assets.',
-        proof: 'Bing image search, Google Maps clinic photos, fallback sourcing, and local saves.',
-        contents: ['provider headshots', 'clinic exterior photos', 'image source tracking', 'local file saves'],
-        artifacts: [
+        testId: 'snip-image-sourcing',
+        name: 'Headshot and Clinic Image Sourcing',
+        format: 'Asset pipeline',
+        receiptBodyType: 'imageSourcingPipeline',
+        status: 'ready',
+        claim: 'Headshot and clinic image sourcing followed fallback logic so missing provider images did not block progress.',
+        proof: 'Provider image candidates were routed by confidence and availability.',
+        contents: ['provider headshots', 'clinic exterior photos', 'source confidence', 'image quality', 'face presence', 'image source pending'],
+        visualAssets: [
           {
-            id: 'snip-before-after-comparison',
-            type: 'image',
-            label: 'Before and after creative comparison',
-            src: '',
-            caption: 'Compares raw source quality against validated publish-ready media assets.',
-            status: 'needs polish'
+            kind: 'component',
+            componentKey: 'headshot-and-clinic-image-sourcing'
           }
-        ]
+        ],
+        artifacts: []
       },
       {
         id: 'opencv-face-validation',
-        name: 'OpenCV face validation',
-        format: 'quality gate',
-        status: 'needs metric',
-        claim: 'Shows automated QA with human judgment still preserved.',
-        proof: 'Face detection used before accepting provider images.',
-        contents: ['face presence detection', 'bad image rejection', 'manual review queue', 'quality threshold'],
-        artifacts: [
+        testId: 'snip-opencv-face-validation',
+        name: 'OpenCV Face Validation',
+        format: 'Quality gate',
+        receiptBodyType: 'faceValidationGate',
+        status: 'ready',
+        claim: 'OpenCV validation acted as a quality gate before images entered the publishable asset set.',
+        proof: 'Candidate images passed through approve, reject, or fallback decisions.',
+        contents: ['face detected', 'single subject preferred', 'resolution acceptable', 'crop usable', 'not logo only', 'manual review'],
+        visualAssets: [
           {
-            id: 'snip-opencv-validation-output',
-            type: 'image',
-            label: 'OpenCV validation output',
-            src: '',
-            caption: 'Shows quality gate flags and threshold outcomes before manual review.',
-            status: 'needs metric'
+            kind: 'component',
+            componentKey: 'opencv-face-validation'
           }
-        ]
+        ],
+        artifacts: []
       },
       {
         id: 'structured-asset-folders',
-        name: 'Structured asset folders',
-        format: 'handoff system',
-        status: 'needs link',
-        claim: 'Shows the final mile of automation: clean handoff for humans.',
-        proof: 'Profile-ready folders, renamed assets, spreadsheet references, and publish states.',
-        contents: ['provider folders', 'renamed assets', 'spreadsheet references', 'publish status', 'review state'],
-        artifacts: [
+        testId: 'snip-structured-asset-folders',
+        name: 'Structured Asset Folders',
+        format: 'Handoff system',
+        receiptBodyType: 'assetHandoffMap',
+        status: 'ready',
+        claim: 'Provider data, image assets, source notes, and validation status were organized into structured handoff folders.',
+        proof: 'Each provider had source notes, asset status, and profile data preserved.',
+        contents: ['provider folders', 'profile.json', 'headshot.jpg', 'clinic-fallback.jpg', 'source notes', 'publish status'],
+        visualAssets: [
           {
-            id: 'snip-structured-handoff-document',
-            type: 'external',
-            label: 'Structured handoff index',
-            src: '',
-            caption: 'Links final publish folders, review states, and source references.',
-            status: 'needs link'
+            kind: 'component',
+            componentKey: 'structured-asset-folders'
           }
-        ]
+        ],
+        artifacts: []
       }
     ]
   },

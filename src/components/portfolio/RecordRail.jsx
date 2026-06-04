@@ -40,6 +40,7 @@ export default function RecordRail({ recordsList, activeRecord, setActiveRecord,
               <button
                 key={record.slug}
                 type="button"
+                data-testid={`case-record-${record.slug}`}
                 aria-label={`Select ${record.title}`}
                 onClick={() => setActiveRecord(record)}
                 onDoubleClick={() => openWorkspace(record)}

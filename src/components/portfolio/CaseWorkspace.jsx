@@ -13,20 +13,21 @@ const SECTIONS = [
 
 const CASE_COPY_BY_SLUG = {
   'smooth-md-growth-os': {
-    thesis: 'A clinic brand rebuilt as operating infrastructure.',
+    thesis: 'A clinic brand rebuilt as growth infrastructure.',
     summary:
-      'Smooth MD did not need more isolated campaign assets. It needed one operating layer connecting positioning, offer logic, lifecycle messaging, CRM states, and measurement.',
+      'Smooth MD had services, offers, social content, ads, CRM follow-up, and patient touchpoints, but no shared operating framework. I rebuilt the marketing layer so brand, lifecycle, CRM logic, Instagram proof, and campaign execution could work from one clinic growth system.',
     problem:
-      'The clinic had strong services, but the customer experience was fragmented across ads, service pages, intake, follow up, and reporting. Each touchpoint created slightly different expectations, which made the brand harder to trust and the team harder to coordinate.',
-    systemIntro: 'The system turned scattered campaign work into reusable brand and growth infrastructure.',
+      'The clinic had multiple service lines and real demand signals, but the operating logic was fragmented. Service hierarchy, consult language, promotional logic, Instagram proof, lead follow-up, booking behavior, and performance reads were not tied to one shared model, so every campaign or content push had to rebuild context.',
+    systemIntro: 'The intervention was a clinic growth operating system: clearer service hierarchy, positioning language, offer architecture, Instagram identity, campaign toolkit, lifecycle journey, and CRM status logic.',
     designMove:
-      'I treated the clinic brand like a product system. The goal was not just to make the brand look consistent. It was to make every touchpoint clarify what the lead wanted, what they needed next, and how the campaign was performing.',
+      'I treated the clinic brand as operational infrastructure. Every public-facing touchpoint had to clarify the service, the offer, the consult path, the follow-up state, and the performance read behind the campaign.',
     outcomeIntro:
-      'The work created a cleaner handoff between brand, acquisition, CRM, lifecycle messaging, and reporting.',
+      'The brand became easier to understand, campaigns became easier to launch, leads became easier to route, and performance signals became easier to interpret.',
     outcomes: [
-      'Service lines and offer language were aligned into one repeatable operating structure.',
-      'Lifecycle and CRM behavior became easier to coordinate across acquisition and follow up.',
-      'Campaign decisions used clearer downstream signals instead of isolated creative performance.'
+      'Six-plus service lines were unified into a clearer hierarchy for content, ads, consult language, and offers.',
+      'Lifecycle routing connected lead source, service intent, consult path, follow-up timing, booking behavior, retention, and reactivation.',
+      'CRM status logic made follow-up, booking state, arrival, conversion, and revenue handoff easier to coordinate.',
+      'Instagram proof and campaign assets carried service clarity, local trust, CTA logic, and performance interpretation.'
     ]
   },
   mirror: {
@@ -41,15 +42,15 @@ const CASE_COPY_BY_SLUG = {
     outcomeIntro: 'The product became clearer, calmer, and easier to trust when the user needed support most.'
   },
   'meta-airtable-dashboard': {
-    thesis: 'A reporting layer built for decisions, not just visibility.',
+    thesis: 'From lead volume to revenue-informed campaign decisions.',
     summary:
-      'This project connected paid media performance with CRM movement, booking behavior, and revenue confidence in one decision layer.',
+      'Meta Ads carried spend and lead volume. Airtable held Leads_Master records and CRM movement. I connected those fragments into a reporting layer that could judge campaigns by lead quality, booking behavior, revenue signals, and attribution confidence.',
     problem:
-      'Marketing teams had data, but not enough structure to decide what to do next with confidence.',
-    systemIntro: 'The system reframed reporting from dashboard output into action-ready operational logic.',
+      'Campaign reads were split across systems. Meta showed spend and lead volume, Airtable held lead and CRM state, and booking, arrival, conversion, and revenue evidence lived downstream. Without a shared reporting layer, the team could see activity but not clearly judge campaign quality.',
+    systemIntro: 'The system joined Meta campaign data, Airtable Leads_Master records, CRM status updates, booking behavior, arrival and conversion state, revenue value, attribution confidence, and decision recommendations.',
     designMove:
-      'I treated reporting as a decision interface, not a dashboard. The goal was to help the team understand which campaigns deserved action, not just which campaigns produced leads.',
-    outcomeIntro: 'Weekly optimization became easier because campaign performance was connected to business movement.'
+      'I treated reporting as marketing operations system design: model the lead record first, normalize downstream behavior, then design a decision layer that could separate scale, maintain, review, and tracking repair.',
+    outcomeIntro: 'The work made campaign conversations less about isolated platform metrics and more about what moved through the business.'
   },
   'snip-provider-pipeline': {
     thesis: 'Provider sourcing rebuilt as a quality-controlled production pipeline.',
@@ -88,12 +89,12 @@ const CASE_COPY_BY_SLUG = {
 
 const SYSTEM_MODEL_BY_SLUG = {
   'smooth-md-growth-os': [
-    { label: 'brand position', meaning: 'Define the promise and trust language before campaign execution.' },
-    { label: 'offer architecture', meaning: 'Turn services into clear decision paths instead of isolated promotions.' },
-    { label: 'lead context', meaning: 'Separate passive ad leads from high-intent website and consult behavior.' },
-    { label: 'CRM state', meaning: 'Track where each person is in the booking journey.' },
-    { label: 'lifecycle message', meaning: 'Send the right explanation and CTA based on stage.' },
-    { label: 'measurement', meaning: 'Connect campaign performance to booking and revenue signals.' }
+    { label: 'service hierarchy', meaning: 'Unify skin health, laser, injectables, body, membership, and wellness add-ons so every offer and content path starts from the same clinic model.' },
+    { label: 'positioning language', meaning: 'Move from generic medspa promotion to skin + laser trust language with clearer consult expectations and local credibility.' },
+    { label: 'offer architecture', meaning: 'Turn service lines into first-time offers, member pricing, seasonal campaigns, lead magnets, and follow-up paths.' },
+    { label: 'Instagram proof', meaning: 'Use profile, grid, treatment proof, education, and contact signals to make the public brand easier to understand before a lead enters the CRM.' },
+    { label: 'CRM status logic', meaning: 'Model follow-up, booked, arrived, converted, no-show, lost, reactivation, and revenue handoff as repeatable clinic operations.' },
+    { label: 'performance read', meaning: 'Interpret campaign results through lead conversion lift, offer-test ROAS, booking behavior, and follow-up state instead of isolated creative output.' }
   ],
   mirror: [
     { label: 'input signals', meaning: 'Capture energy, tension, clarity, and sleep with low-effort check-ins.' },
@@ -103,12 +104,11 @@ const SYSTEM_MODEL_BY_SLUG = {
     { label: 'next move', meaning: 'Return one grounded action with no streak pressure or productivity loop.' }
   ],
   'meta-airtable-dashboard': [
-    { label: 'ad spend', meaning: 'Collect paid-media investment and campaign-level performance context.' },
-    { label: 'lead', meaning: 'Capture volume and quality signals from each source and service line.' },
-    { label: 'CRM state', meaning: 'Track movement through booking status and conversion readiness.' },
-    { label: 'booking', meaning: 'Connect scheduling behavior to marketing inputs and timing windows.' },
-    { label: 'revenue', meaning: 'Associate outcomes with attribution confidence instead of false certainty.' },
-    { label: 'decision', meaning: 'Surface weekly optimization moves that teams can execute immediately.' }
+    { label: 'Meta campaign data', meaning: 'Preserve spend, lead volume, campaign, ad set, ad name, and form context from the acquisition source.' },
+    { label: 'Leads_Master record', meaning: 'Hold identity, source, service interest, CRM state, booking behavior, outcome, and attribution fields in one shared record.' },
+    { label: 'CRM status updates', meaning: 'Track owner, follow-up timing, booked status, appointment state, arrival, and conversion readiness.' },
+    { label: 'Revenue attribution', meaning: 'Attach revenue value with confidence rules instead of pretending every outcome maps perfectly.' },
+    { label: 'Decision recommendations', meaning: 'Turn campaign evidence into scale, maintain, review, fix tracking, refresh creative, or nurture actions.' }
   ],
   'snip-provider-pipeline': [
     { label: 'source', meaning: 'Pull provider data from reliable public records and source systems.' },
@@ -137,16 +137,16 @@ const SYSTEM_MODEL_BY_SLUG = {
 
 const PROBLEM_CONTEXT_BY_SLUG = {
   'smooth-md-growth-os': {
-    before: ['scattered campaign assets', 'inconsistent CRM logic', 'uneven follow-up timing'],
-    after: ['one operating layer', 'clear offer architecture', 'connected lifecycle and measurement']
+    before: ['scattered service promos', 'service hierarchy unclear across channels', 'consult language and offers handled case by case', 'Instagram proof disconnected from lead follow-up', 'CRM and campaign logic operating separately'],
+    after: ['clinic growth operating system', 'shared service hierarchy and consult path', 'repeatable offer architecture and campaign launch kit', 'lifecycle routing from source to retention', 'CRM status logic connected to performance interpretation']
   },
   mirror: {
     before: ['vague emotional check-in output', 'pressure loops from streak-oriented UX', 'low trust in interpretation logic'],
     after: ['readable signal model', 'clear explanation layer', 'one calm next move']
   },
   'meta-airtable-dashboard': {
-    before: ['dashboard-heavy reporting', 'unclear action priority', 'CRM and revenue disconnected from media'],
-    after: ['decision-ready reporting layer', 'shared performance language', 'connected spend to booking and revenue']
+    before: ['spend and lead volume isolated in Meta Ads', 'lead and CRM state split across Airtable updates', 'booking, conversion, and revenue signals downstream without a decision path'],
+    after: ['shared Leads_Master reporting model', 'campaign logic tied to booked, arrived, converted, and revenue state', 'decision categories for scale, maintain, review, and tracking repair']
   },
   'snip-provider-pipeline': {
     before: ['manual provider sourcing drag', 'uneven image quality and metadata', 'fragile handoff structure'],
@@ -164,9 +164,10 @@ const PROBLEM_CONTEXT_BY_SLUG = {
 
 const OUTCOME_BY_SLUG = {
   'smooth-md-growth-os': [
-    'Service lines and offer language were aligned into one repeatable operating structure.',
-    'Lifecycle and CRM behavior became easier to coordinate across acquisition and follow-up.',
-    'Campaign decisions used clearer downstream signals instead of isolated creative performance.'
+    'Six-plus service lines moved into one hierarchy that could guide brand language, Instagram proof, campaign offers, and consult paths.',
+    'Lead source, service intent, follow-up timing, booking state, retention, and reactivation were connected into one lifecycle route.',
+    'CRM status logic made follow-up, arrival, conversion, revenue handoff, and review states easier to operate.',
+    'Campaign reads tied creative and offer performance to lead conversion lift, 3.2x offer-test ROAS, booking behavior, and follow-up context.'
   ],
   mirror: [
     'Signal states became readable without turning reflection into a performance loop.',
@@ -174,9 +175,10 @@ const OUTCOME_BY_SLUG = {
     'The product could explain why a reading appeared and suggest one grounded next action.'
   ],
   'meta-airtable-dashboard': [
-    'Ad and CRM inputs were unified into one decision-ready performance view.',
-    'Teams could review campaign health with attribution confidence instead of guesswork.',
-    'Optimization choices were tied to booking and revenue movement, not vanity metrics.'
+    'The shared lead model gave campaign reports source, intent, CRM state, booking behavior, outcome, and attribution context.',
+    'Campaign performance reads used downstream behavior instead of stopping at spend, lead volume, or CPL.',
+    'Revenue attribution used confidence and manual review states where source evidence was incomplete.',
+    'The decision layer turned scattered signals into scale, maintain, review, and fix-tracking queues.'
   ],
   'snip-provider-pipeline': [
     'Manual sourcing overhead dropped through automation and validation gates.',
@@ -197,7 +199,7 @@ const OUTCOME_BY_SLUG = {
 
 const OUTCOME_INTRO_BY_SLUG = {
   mirror: 'The system made emotional signal feedback calmer, clearer, and more actionable.',
-  'meta-airtable-dashboard': 'The dashboard model created a tighter bridge between marketing signals and business decisions.',
+  'meta-airtable-dashboard': 'The reporting layer created a tighter bridge between marketing signals, CRM movement, and business decisions.',
   'snip-provider-pipeline': 'The workflow reduced manual overhead and improved quality consistency in production handoff.',
   'multi-brand-retention': 'Lifecycle behavior became easier to orchestrate across services, brands, and intent levels.'
 }

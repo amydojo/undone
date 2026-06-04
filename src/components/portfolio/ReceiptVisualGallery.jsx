@@ -1,8 +1,13 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import MirrorReceiptVisual from "./receipt-visuals/MirrorReceiptVisual";
+import MetaAirtableReceiptVisual from "./receipt-visuals/MetaAirtableReceiptVisual";
+import SnipReceiptVisual from "./receipt-visuals/SnipReceiptVisual";
+import SmoothMdReceiptVisual from "./receipt-visuals/SmoothMdReceiptVisual";
 import { getMirrorReceiptVisual } from "../../data/mirrorReceiptVisuals";
 import { getMetaAirtableReceiptVisual } from "../../data/metaAirtableReceiptVisuals";
+import { getSnipReceiptVisual } from "../../data/snipReceiptVisuals";
+import { getSmoothMdReceiptVisual } from "../../data/smoothMdReceiptVisuals";
 
 function resolvePublicSrc(src) {
   if (!src.startsWith("/")) return src;
@@ -22,9 +27,26 @@ function getAssetKey(asset, index) {
   return asset.kind === "component" ? asset.componentKey : asset.src || `visual-asset-${index}`;
 }
 
-function getAssetDefinition(asset) {
+function getComponentAsset(asset) {
   if (asset.kind !== "component") return null;
-  return getMirrorReceiptVisual(asset.componentKey) ?? getMetaAirtableReceiptVisual(asset.componentKey);
+
+  const smoothDefinition = getSmoothMdReceiptVisual(asset.componentKey);
+  if (smoothDefinition) return { definition: smoothDefinition, renderer: "smooth" };
+
+  const snipDefinition = getSnipReceiptVisual(asset.componentKey);
+  if (snipDefinition) return { definition: snipDefinition, renderer: "snip" };
+
+  const mirrorDefinition = getMirrorReceiptVisual(asset.componentKey);
+  if (mirrorDefinition) return { definition: mirrorDefinition, renderer: "mirror" };
+
+  const metaDefinition = getMetaAirtableReceiptVisual(asset.componentKey);
+  if (metaDefinition) return { definition: metaDefinition, renderer: "meta" };
+
+  return null;
+}
+
+function getAssetDefinition(asset) {
+  return getComponentAsset(asset)?.definition ?? null;
 }
 
 function isComponentAsset(asset) {
@@ -35,6 +57,7 @@ export default function ReceiptVisualGallery({
   visualAssets,
   receiptName = "Selected receipt",
   receiptFormat = "visual proof",
+  receiptTestId,
   variant = "desktop"
 }) {
   const [failedSrcs, setFailedSrcs] = useState(() => new Set());
@@ -55,9 +78,15 @@ export default function ReceiptVisualGallery({
 
   const isMobile = variant === "mobile";
   const activeAsset = activeIndex === null ? null : visibleAssets[activeIndex];
+  const activeComponentAsset = activeAsset ? getComponentAsset(activeAsset) : null;
   const featuredAsset = visibleAssets[0];
   const isComponentSet = visibleAssets.every((asset) => isComponentAsset(asset));
   const activeLabel = activeIndex === null ? null : `${formatIndex(activeIndex, visibleAssets.length)} / ${formatIndex(visibleAssets.length - 1, visibleAssets.length)}`;
+  const activeCaption = activeAsset ? getAssetCaption(activeAsset) : "";
+  const shouldShowActiveCaption = Boolean(
+    activeCaption &&
+      !((activeComponentAsset?.renderer === "meta" || activeComponentAsset?.renderer === "smooth") && activeComponentAsset.definition?.receiptBodyType)
+  );
 
   useEffect(() => {
     if (!activeAsset) return undefined;
@@ -95,16 +124,30 @@ export default function ReceiptVisualGallery({
   }
 
   function renderAsset(asset, mode) {
-    const definition = getAssetDefinition(asset);
+    const componentAsset = getComponentAsset(asset);
+    const definition = componentAsset?.definition;
 
     if (definition) {
+      const Component =
+        componentAsset.renderer === "snip"
+          ? SnipReceiptVisual
+          : componentAsset.renderer === "smooth"
+            ? SmoothMdReceiptVisual
+          : componentAsset.renderer === "meta"
+            ? MetaAirtableReceiptVisual
+            : MirrorReceiptVisual;
+      const maxWidth =
+        componentAsset.renderer === "snip"
+          ? "max-w-[860px]"
+          : componentAsset.renderer === "smooth"
+            ? "max-w-[960px]"
+          : componentAsset.renderer === "meta"
+            ? "max-w-[940px]"
+            : "max-w-[760px]";
+
       return (
-        <div className={mode === "viewer" ? "w-full max-w-[760px]" : "w-full"}>
-          <MirrorReceiptVisual
-            {...definition}
-            displayMode={mode === "viewer" ? "full" : "compact"}
-            ctaLabel="Inspect receipt"
-          />
+        <div className={mode === "viewer" ? `w-full ${maxWidth}` : "w-full"}>
+          <Component {...definition} displayMode={mode === "viewer" ? "full" : "compact"} ctaLabel="Inspect receipt" />
         </div>
       );
     }
@@ -152,7 +195,7 @@ export default function ReceiptVisualGallery({
   }
 
   return (
-    <div className={isComponentSet ? "" : "mt-4"}>
+    <div data-testid="receipt-visual-gallery" className={isComponentSet ? "" : "mt-4"}>
       {!isComponentSet && (
         <div className="mb-2 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/28">
           Visual proof
@@ -162,6 +205,7 @@ export default function ReceiptVisualGallery({
       {isComponentSet ? (
         <button
           type="button"
+          data-testid={receiptTestId ? `receipt-card-${receiptTestId}` : undefined}
           aria-label={`Inspect receipt: ${getAssetLabel(featuredAsset)}`}
           onClick={() => setActiveIndex(0)}
           className="block w-full text-left transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/35"
@@ -177,6 +221,7 @@ export default function ReceiptVisualGallery({
             >
               <button
                 type="button"
+                data-testid={isComponentAsset(asset) && receiptTestId ? `receipt-card-${receiptTestId}` : undefined}
                 aria-label={`Inspect proof ${formatIndex(index, visibleAssets.length)} of ${formatIndex(visibleAssets.length - 1, visibleAssets.length)}: ${getAssetLabel(asset)}`}
                 onClick={() => setActiveIndex(index)}
                 className={
@@ -212,6 +257,7 @@ export default function ReceiptVisualGallery({
         <figure className="overflow-hidden">
           <button
             type="button"
+            data-testid={isComponentAsset(featuredAsset) && receiptTestId ? `receipt-card-${receiptTestId}` : undefined}
             aria-label={`View proof set: ${getAssetLabel(featuredAsset)}`}
             onClick={() => setActiveIndex(0)}
             className={isComponentAsset(featuredAsset)
@@ -259,13 +305,14 @@ export default function ReceiptVisualGallery({
 
       {activeAsset && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[#11100d]/88 px-3 py-4 sm:px-5 sm:py-6"
+          className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-[#11100d]/88 px-3 py-4 sm:items-center sm:px-5 sm:py-6"
           role="dialog"
           aria-modal="true"
           aria-label={`${receiptName} proof set viewer`}
         >
           <button
             type="button"
+            data-testid="receipt-modal-close"
             aria-label="Close proof set viewer"
             onClick={() => setActiveIndex(null)}
             className="absolute right-4 top-4 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#fffaf1]/20 bg-[#fffaf1] text-[#11100d] shadow-sm transition hover:bg-[#f7f1e7] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fffaf1]/80"
@@ -284,7 +331,7 @@ export default function ReceiptVisualGallery({
             </button>
           )}
 
-          <figure className="flex max-h-[90vh] w-full max-w-[90vw] flex-col overflow-hidden rounded-[18px] border border-[#fffaf1]/18 bg-[#fffaf1] shadow-2xl">
+          <figure data-testid="receipt-modal" className="flex max-h-[calc(100dvh-2rem)] w-full max-w-[90vw] flex-col overflow-hidden rounded-[18px] border border-[#fffaf1]/18 bg-[#fffaf1] shadow-2xl sm:max-h-[90vh]">
             <div className="flex items-center justify-between gap-4 border-b border-[#11100d]/8 px-4 py-3 sm:px-5">
               <div className="min-w-0">
                 <div className="truncate text-[13px] font-medium leading-5 text-[#11100d]">
@@ -301,13 +348,13 @@ export default function ReceiptVisualGallery({
               )}
             </div>
             <div className="flex min-h-0 flex-1 items-center justify-center bg-[#11100d]/5 p-3 sm:p-4">
-              <div className="flex max-h-[66vh] w-full justify-center overflow-auto sm:max-h-[78vh]">
+              <div className="flex max-h-[calc(100dvh-12rem)] w-full justify-center overflow-auto pb-2 sm:max-h-[78vh] sm:pb-0">
                 {renderAsset(activeAsset, "viewer")}
               </div>
             </div>
-            {getAssetCaption(activeAsset) && (
+            {shouldShowActiveCaption && (
               <figcaption className="border-t border-[#11100d]/8 px-4 py-3 text-[12px] leading-5 text-[#11100d]/62 sm:px-5">
-                {getAssetCaption(activeAsset)}
+                {activeCaption}
               </figcaption>
             )}
             {visibleAssets.length > 1 && (
