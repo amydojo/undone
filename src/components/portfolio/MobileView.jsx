@@ -9,7 +9,7 @@ import ReceiptVisualGallery from "./ReceiptVisualGallery";
 const DECODER_LINES = {
   mirror: 'emotional inputs → usable product logic.',
   'smooth-md-growth-os': '6 service lines. one operating layer.',
-  'meta-airtable-dashboard': 'from lead volume to revenue decisions.',
+  'meta-airtable-dashboard': 'ad spend → booking behavior → revenue decisions.',
   'snip-provider-pipeline': '200+ profiles. one repeatable sourcing system.',
   'guardrail-hr': '22 questions. one risk score. clearer next steps.',
   'multi-brand-retention': 'lead intent routed into the right next message.',
@@ -44,7 +44,7 @@ function getReceiptTestId(receipt) {
 
 function OverviewTab({ record, mode, openWorkspace }) {
   return (
-    <div className="space-y-8 px-4 py-6">
+    <div className="mx-auto max-w-[780px] space-y-6 px-4 py-4 sm:space-y-7 sm:py-5">
       {/* Top bar */}
       <div className="flex items-center justify-between gap-3">
         <div className="text-[9px] uppercase tracking-[0.18em] text-[#11100d]/42">active case file</div>
@@ -52,14 +52,14 @@ function OverviewTab({ record, mode, openWorkspace }) {
           type="button"
           aria-label={`Open ${record.title} case file`}
           onClick={() => openWorkspace(record)}
-          className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#11100d] px-4 text-[10px] uppercase tracking-[0.16em] text-[#f7f1e7] transition active:scale-[0.98]"
+          className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full border border-[#11100d]/14 bg-[#fffaf1]/70 px-3 text-[9px] uppercase tracking-[0.15em] text-[#11100d]/58 transition active:scale-[0.98]"
         >
-          Open case file <ArrowUpRight className="h-3.5 w-3.5" />
+          Open case file <ArrowUpRight className="h-3 w-3" />
         </button>
       </div>
 
       {/* Hero */}
-      <div>
+      <div className="max-w-[700px]">
         <div className="flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.15em] text-[#11100d]/42">
           {[record.category, record.timeline, record.status].map((item, index) => (
             <React.Fragment key={item}>
@@ -68,23 +68,23 @@ function OverviewTab({ record, mode, openWorkspace }) {
             </React.Fragment>
           ))}
         </div>
-        <h1 className="mt-4 text-[clamp(30px,9vw,38px)] font-normal leading-[1.02] tracking-[-0.035em] text-[#11100d] [text-wrap:balance]">
+        <h1 className="mt-3 text-[clamp(30px,9vw,38px)] font-normal leading-[1.02] tracking-[-0.035em] text-[#11100d] [text-wrap:balance]">
           {mode === "proof" ? record.title : record.thesis}
         </h1>
         {DECODER_LINES[record.slug] && (
-          <p className="mt-3 text-[18px] leading-[1.3] tracking-[-0.018em] text-[#11100d]/76">
+          <p className="mt-2.5 max-w-[620px] text-[18px] leading-[1.3] tracking-[-0.018em] text-[#11100d]/76">
             {DECODER_LINES[record.slug]}
           </p>
         )}
-        <p className="mt-2 text-[14px] leading-[1.6] text-[#11100d]/40">{record.oneLine}</p>
+        <p className="mt-2 max-w-[620px] text-[14px] leading-[1.55] text-[#11100d]/40">{record.oneLine}</p>
       </div>
 
       {/* Proof ledger */}
       <div>
         <div className="text-[10px] uppercase tracking-[0.15em] text-[#11100d]/38">Proof signals</div>
-        <div className="mt-4 grid grid-cols-1 divide-y divide-[#11100d]/10">
+        <div className="mt-3 grid grid-cols-1 divide-y divide-[#11100d]/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
           {record.metrics.map((metric) => (
-            <MetricPill key={metric.label} metric={metric} />
+            <MetricPill key={metric.label} metric={metric} compact />
           ))}
         </div>
       </div>
