@@ -503,6 +503,7 @@ export const records = [
     category: 'product ux',
     type: 'compliance workflow',
     status: 'prototype',
+    visible: false,
     timeline: '2024',
     accent: '#d7e8ff',
     thesis: 'A compliance product that turned HR risk into a guided assessment system.',
@@ -594,7 +595,7 @@ export const records = [
     signal: 'Website leads, Meta leads, consult inquiries, and abandoned interest signals were collapsing into one generic rhythm.',
     system: 'Welcome, interest-based, abandonment-style, and promotional lifecycle logic connected to brand tags and CRM status.',
     owned: ['segmentation architecture', 'lifecycle flow strategy', 'email production design', 'crm tagging model', 'performance analysis'],
-    nextProof: ['Add Mailchimp lifecycle email screenshot', 'Add Airtable CRM status map', 'Add HTML email module screenshot'],
+    nextProof: ['Lifecycle flow model', 'Mailchimp routing map', 'Follow-up timing protocol', 'Email production system'],
     decisions: [
       { label: 'constraint', body: 'Mixed lead intent and uneven booking readiness across service lines.' },
       { label: 'move', body: 'Separate passive Meta leads from higher-intent website leads.' },
@@ -604,79 +605,71 @@ export const records = [
     receipts: [
       {
         id: 'four-flow-lifecycle-model',
-        name: 'Four flow lifecycle model',
-        format: 'journey system',
+        testId: 'multi-brand-lifecycle-flow-model',
+        name: 'Lifecycle Flow Model',
+        format: 'lifecycle router',
         status: 'ready',
-        claim: 'Shows full nurture logic instead of isolated campaign emails.',
-        proof: 'Welcome, service interest, abandonment, and weekly educational promo paths.',
-        contents: ['welcome flow', 'service interest', 'abandonment style email', 'weekly promo'],
-        artifacts: [
+        claim: 'Proves welcome, service interest, abandonment-style, and weekly educational promo paths were structured as one lifecycle router.',
+        proof: 'Source, intent, service, timing, message, and booking readiness were treated as routing inputs instead of isolated email topics.',
+        contents: ['welcome flow', 'service interest', 'abandonment-style flow', 'weekly educational promo', 'source', 'intent', 'booking'],
+        visualAssets: [
           {
-            id: 'retention-mailchimp-lifecycle-email',
-            type: 'email',
-            label: 'Mailchimp lifecycle email',
-            src: '',
-            caption: 'Shows service-specific lifecycle messaging and sequence timing.',
-            status: 'ready'
+            kind: 'component',
+            componentKey: 'multi-brand-lifecycle-flow-model'
           }
-        ]
+        ],
+        artifacts: []
       },
       {
         id: 'multi-brand-tag-map',
-        name: 'Multi brand tag map',
-        format: 'CRM logic',
-        status: 'needs screenshot',
-        claim: 'Shows a messy multi-brand operation becoming sortable and actionable.',
-        proof: 'Smooth MD, Dr. Vigor, Dr. Neo, Dr. Food, Dr. Freeze, and Dr. Sculpt lead routing.',
-        contents: ['brand', 'service', 'source', 'status', 'lead intent', 'follow up state'],
-        artifacts: [
+        testId: 'multi-brand-mailchimp-routing-map',
+        name: 'Mailchimp Tag + Routing Map',
+        format: 'CRM routing map',
+        status: 'ready',
+        claim: 'Proves brand, service, source, CRM status, lead intent, and follow-up state were sortable routing inputs.',
+        proof: 'Smooth MD, Dr. Vigor, Dr. Neo, Dr. Food, Dr. Freeze, and Dr. Sculpt leads were separated by routing fields and send/suppress logic.',
+        contents: ['brand tag', 'service tag', 'source label', 'CRM status', 'lead intent', 'follow-up state'],
+        visualAssets: [
           {
-            id: 'retention-airtable-crm-status-map',
-            type: 'dashboard',
-            label: 'Airtable CRM status map',
-            src: '',
-            caption: 'Shows brand/service routing and follow-up states in one CRM map.',
-            status: 'needs screenshot'
+            kind: 'component',
+            componentKey: 'multi-brand-mailchimp-routing-map'
           }
-        ]
+        ],
+        artifacts: []
       },
       {
         id: 'follow-up-timing-rules',
-        name: 'Follow up timing rules',
-        format: 'ops protocol',
-        status: 'needs polish',
-        claim: 'Shows timing handled as part of the system, not just copy.',
-        proof: '2-day follow up, provider-named reminder, Day 21 reactivation, status-based exclusions.',
-        contents: ['2 day not closed', 'provider name', 'Day 21 promo', 'status exclusions'],
-        artifacts: [
+        testId: 'multi-brand-follow-up-timing-protocol',
+        name: 'Follow-Up Timing Protocol',
+        format: 'timing rules',
+        status: 'ready',
+        claim: 'Proves timing was handled as operational rules: 2-day follow-up, provider-named reminder, Day 21 reactivation, and status exclusions.',
+        proof: 'Follow-up timing controlled when to nurture, remind, suppress, or reactivate based on CRM state.',
+        contents: ['new lead', '2-day follow-up', 'provider-named reminder', 'Day 21 reactivation', 'status exclusions'],
+        visualAssets: [
           {
-            id: 'retention-timing-rules-document',
-            type: 'document',
-            label: 'Follow-up timing protocol',
-            src: '',
-            caption: 'Documents timing rules and exclusion logic for lifecycle sequencing.',
-            status: 'needs polish'
+            kind: 'component',
+            componentKey: 'multi-brand-follow-up-timing-protocol'
           }
-        ]
+        ],
+        artifacts: []
       },
       {
         id: 'html-email-system',
-        name: 'HTML email system',
+        testId: 'multi-brand-email-production-system',
+        name: 'Email Production System',
         format: 'production template',
-        status: 'needs screenshot',
-        claim: 'Shows email work built for real inbox conditions.',
-        proof: '600px wrapper, hybrid responsive layout, dark mode meta, VML Outlook support.',
+        status: 'ready',
+        claim: 'Proves email production used reusable Mailchimp modules and inbox-aware constraints instead of one-off campaign markup.',
+        proof: '600px wrapper, hybrid responsive layout, dark mode meta, VML Outlook support, and Mailchimp modules were treated as production rules.',
         contents: ['600px wrapper', 'hybrid responsive', 'dark mode meta', 'VML Outlook', 'Mailchimp modules'],
-        artifacts: [
+        visualAssets: [
           {
-            id: 'retention-html-email-module',
-            type: 'email',
-            label: 'HTML email module',
-            src: '',
-            caption: 'Shows production-grade module behavior across inbox environments.',
-            status: 'needs screenshot'
+            kind: 'component',
+            componentKey: 'multi-brand-email-production-system'
           }
-        ]
+        ],
+        artifacts: []
       }
     ]
   }

@@ -25,7 +25,7 @@ function Label({ children, className = "" }) {
 
 function StatusPill({ children }) {
   return (
-    <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-[#11100d]/10 bg-[#f7f1e7] px-2 py-0.5 text-[9px] uppercase tracking-[0.08em] text-[#11100d]/52">
+    <span className="inline-flex shrink-0 items-center gap-1.5 border-l border-[#11100d]/12 pl-2 text-[9px] uppercase tracking-[0.12em] text-[#11100d]/42">
       <Dot />
       {children}
     </span>
@@ -511,7 +511,7 @@ export default function SmoothMdReceiptVisual({
 
   if (displayMode === "compact") {
     return (
-      <article className="w-full overflow-hidden rounded-[12px] border border-[#11100d]/10 bg-[#fffaf1] text-[#11100d]">
+      <article className="w-full overflow-hidden rounded-[8px] border border-l-2 border-[#11100d]/10 border-l-[#c8ff62]/80 bg-[#fffaf1] text-[#11100d]">
         <div className="border-b border-[#11100d]/8 px-3.5 py-2.5">
           <div className="flex items-center justify-between gap-3">
             <span className="text-[9px] uppercase tracking-[0.14em] text-[#11100d]/36">Receipt {receiptNumber}</span>
@@ -521,7 +521,7 @@ export default function SmoothMdReceiptVisual({
           <div className="mt-0.5 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/42">{type}</div>
         </div>
 
-        <div className="border-b border-[#11100d]/8 bg-[#f7f1e7]/58 px-3.5 py-3">
+        <div className="border-b border-[#11100d]/8 bg-[#fffaf1] px-3.5 py-3">
           <CompactPreview receiptBodyType={receiptBodyType} preview={preview} />
         </div>
 
@@ -534,8 +534,8 @@ export default function SmoothMdReceiptVisual({
   }
 
   return (
-    <article className="w-full overflow-hidden rounded-[14px] border border-[#11100d]/10 bg-[#fffaf1] text-[#11100d]">
-      <div className="border-b border-[#11100d]/8 px-4 py-3 sm:px-5">
+    <article className="w-full overflow-hidden rounded-[8px] border border-t-2 border-[#11100d]/10 border-t-[#c8ff62]/80 bg-[#fffaf1] text-[#11100d]">
+      <div className="border-b border-[#11100d]/10 px-4 py-4 sm:px-5">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
@@ -550,20 +550,20 @@ export default function SmoothMdReceiptVisual({
         </div>
         {claim && <p className="mt-3 text-[12px] leading-5 text-[#11100d]/62">{claim}</p>}
         {operationalSignal && (
-          <div className="mt-3 border border-[#11100d]/8 bg-[#f7f1e7] px-3 py-2">
+          <div className="mt-3 border-l border-[#11100d]/16 bg-[#f7f1e7]/58 px-3 py-2">
             <Label>Operational signal</Label>
             <div className="mt-1 text-[12px] leading-5 text-[#11100d]/64">{operationalSignal}</div>
           </div>
         )}
       </div>
 
-      <div className="bg-[#f7f1e7]/38 p-2.5 sm:p-3">
+      <div className="bg-[#f7f1e7]/30 p-2.5 sm:p-3">
         <ArtifactBody receiptBodyType={receiptBodyType} body={body} />
       </div>
 
       {footerNote && (
-        <div className="border-t border-[#11100d]/8 px-4 py-3 text-[11px] leading-5 text-[#11100d]/54 sm:px-5">
-          <span className="block text-[9px] uppercase tracking-[0.14em] text-[#11100d]/34">What this proves</span>
+        <div className="border-t border-[#11100d]/10 px-4 py-3 text-[11px] leading-5 text-[#11100d]/54 sm:px-5">
+          <span className="block text-[9px] uppercase tracking-[0.14em] text-[#11100d]/34">Evidence note</span>
           <span className="mt-1 block">{footerNote.replace(/^What this proves:\s*/i, "")}</span>
         </div>
       )}

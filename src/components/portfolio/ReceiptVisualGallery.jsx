@@ -2,10 +2,12 @@ import React, { useEffect, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import MirrorReceiptVisual from "./receipt-visuals/MirrorReceiptVisual";
 import MetaAirtableReceiptVisual from "./receipt-visuals/MetaAirtableReceiptVisual";
+import MultiBrandRetentionReceiptVisual from "./receipt-visuals/MultiBrandRetentionReceiptVisual";
 import SnipReceiptVisual from "./receipt-visuals/SnipReceiptVisual";
 import SmoothMdReceiptVisual from "./receipt-visuals/SmoothMdReceiptVisual";
 import { getMirrorReceiptVisual } from "../../data/mirrorReceiptVisuals";
 import { getMetaAirtableReceiptVisual } from "../../data/metaAirtableReceiptVisuals";
+import { getMultiBrandRetentionReceiptVisual } from "../../data/multiBrandRetentionReceiptVisuals";
 import { getSnipReceiptVisual } from "../../data/snipReceiptVisuals";
 import { getSmoothMdReceiptVisual } from "../../data/smoothMdReceiptVisuals";
 
@@ -32,6 +34,9 @@ function getComponentAsset(asset) {
 
   const smoothDefinition = getSmoothMdReceiptVisual(asset.componentKey);
   if (smoothDefinition) return { definition: smoothDefinition, renderer: "smooth" };
+
+  const multiDefinition = getMultiBrandRetentionReceiptVisual(asset.componentKey);
+  if (multiDefinition) return { definition: multiDefinition, renderer: "multi" };
 
   const snipDefinition = getSnipReceiptVisual(asset.componentKey);
   if (snipDefinition) return { definition: snipDefinition, renderer: "snip" };
@@ -85,7 +90,7 @@ export default function ReceiptVisualGallery({
   const activeCaption = activeAsset ? getAssetCaption(activeAsset) : "";
   const shouldShowActiveCaption = Boolean(
     activeCaption &&
-      !((activeComponentAsset?.renderer === "meta" || activeComponentAsset?.renderer === "smooth") && activeComponentAsset.definition?.receiptBodyType)
+      !activeComponentAsset?.definition?.receiptBodyType
   );
 
   useEffect(() => {
@@ -133,6 +138,8 @@ export default function ReceiptVisualGallery({
           ? SnipReceiptVisual
           : componentAsset.renderer === "smooth"
             ? SmoothMdReceiptVisual
+          : componentAsset.renderer === "multi"
+            ? MultiBrandRetentionReceiptVisual
           : componentAsset.renderer === "meta"
             ? MetaAirtableReceiptVisual
             : MirrorReceiptVisual;
@@ -141,6 +148,8 @@ export default function ReceiptVisualGallery({
           ? "max-w-[860px]"
           : componentAsset.renderer === "smooth"
             ? "max-w-[960px]"
+          : componentAsset.renderer === "multi"
+            ? "max-w-[940px]"
           : componentAsset.renderer === "meta"
             ? "max-w-[940px]"
             : "max-w-[760px]";
@@ -315,7 +324,7 @@ export default function ReceiptVisualGallery({
             data-testid="receipt-modal-close"
             aria-label="Close proof set viewer"
             onClick={() => setActiveIndex(null)}
-            className="absolute right-4 top-4 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#fffaf1]/20 bg-[#fffaf1] text-[#11100d] shadow-sm transition hover:bg-[#f7f1e7] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fffaf1]/80"
+            className="absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center border border-[#fffaf1]/24 bg-[#fffaf1] text-[#11100d] transition hover:bg-[#f7f1e7] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fffaf1]/80"
           >
             <X className="h-4 w-4" />
           </button>
@@ -325,14 +334,14 @@ export default function ReceiptVisualGallery({
               type="button"
               aria-label="Previous image"
               onClick={showPrevious}
-              className="absolute left-3 top-1/2 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#fffaf1]/20 bg-[#fffaf1] text-[#11100d] shadow-sm transition hover:bg-[#f7f1e7] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fffaf1]/80 sm:inline-flex"
+              className="absolute left-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center border border-[#fffaf1]/20 bg-[#fffaf1] text-[#11100d] transition hover:bg-[#f7f1e7] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fffaf1]/80 sm:inline-flex"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
           )}
 
-          <figure data-testid="receipt-modal" className="flex max-h-[calc(100dvh-2rem)] w-full max-w-[90vw] flex-col overflow-hidden rounded-[18px] border border-[#fffaf1]/18 bg-[#fffaf1] shadow-2xl sm:max-h-[90vh]">
-            <div className="flex items-center justify-between gap-4 border-b border-[#11100d]/8 px-4 py-3 sm:px-5">
+          <figure data-testid="receipt-modal" className="flex max-h-[calc(100dvh-2rem)] w-full max-w-[90vw] flex-col overflow-hidden rounded-[8px] border border-[#fffaf1]/22 bg-[#fffaf1] sm:max-h-[90vh]">
+            <div className="flex items-center justify-between gap-4 border-b border-[#11100d]/10 px-4 py-3 sm:px-5">
               <div className="min-w-0">
                 <div className="truncate text-[13px] font-medium leading-5 text-[#11100d]">
                   {receiptName}
@@ -342,12 +351,12 @@ export default function ReceiptVisualGallery({
                 </div>
               </div>
               {activeLabel && (
-                <div className="shrink-0 rounded-full border border-[#11100d]/10 bg-[#f7f1e7] px-2.5 py-1 text-[10px] tabular-nums tracking-[0.08em] text-[#11100d]/48">
+                <div className="shrink-0 border-l border-[#11100d]/12 pl-3 text-[10px] tabular-nums tracking-[0.08em] text-[#11100d]/48">
                   {activeLabel}
                 </div>
               )}
             </div>
-            <div className="flex min-h-0 flex-1 items-center justify-center bg-[#11100d]/5 p-3 sm:p-4">
+            <div className="flex min-h-0 flex-1 items-center justify-center bg-[#f7f1e7] p-3 sm:p-4">
               <div className="flex max-h-[calc(100dvh-12rem)] w-full justify-center overflow-auto pb-2 sm:max-h-[78vh] sm:pb-0">
                 {renderAsset(activeAsset, "viewer")}
               </div>
@@ -384,7 +393,7 @@ export default function ReceiptVisualGallery({
               type="button"
               aria-label="Next image"
               onClick={showNext}
-              className="absolute right-3 top-1/2 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#fffaf1]/20 bg-[#fffaf1] text-[#11100d] shadow-sm transition hover:bg-[#f7f1e7] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fffaf1]/80 sm:inline-flex"
+              className="absolute right-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center border border-[#fffaf1]/20 bg-[#fffaf1] text-[#11100d] transition hover:bg-[#f7f1e7] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fffaf1]/80 sm:inline-flex"
             >
               <ChevronRight className="h-4 w-4" />
             </button>

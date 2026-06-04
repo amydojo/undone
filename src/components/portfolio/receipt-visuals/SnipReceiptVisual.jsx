@@ -15,7 +15,7 @@ function Label({ children, className = "" }) {
 
 function StatusPill({ children }) {
   return (
-    <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-[#11100d]/10 bg-[#f7f1e7] px-2 py-0.5 text-[9px] uppercase tracking-[0.08em] text-[#11100d]/52">
+    <span className="inline-flex shrink-0 items-center gap-1.5 border-l border-[#11100d]/12 pl-2 text-[9px] uppercase tracking-[0.12em] text-[#11100d]/42">
       <Dot />
       {children}
     </span>
@@ -24,7 +24,7 @@ function StatusPill({ children }) {
 
 function Tag({ children, className = "" }) {
   return (
-    <span className={`inline-flex w-fit items-center rounded-[6px] border border-[#11100d]/10 bg-[#f7f1e7] px-1.5 py-0.5 text-[9px] leading-4 text-[#11100d]/54 ${className}`}>
+    <span className={`inline-flex w-fit items-center border-l border-[#11100d]/12 pl-1.5 text-[9px] leading-4 text-[#11100d]/54 ${className}`}>
       {children}
     </span>
   );
@@ -32,7 +32,7 @@ function Tag({ children, className = "" }) {
 
 function Panel({ label, children, className = "" }) {
   return (
-    <section className={`rounded-[12px] border border-[#11100d]/10 bg-[#fffaf1] p-3 ${className}`}>
+    <section className={`border border-[#11100d]/10 bg-[#fffaf1] p-3 ${className}`}>
       {label && <Label className="mb-2">{label}</Label>}
       {children}
     </section>
@@ -51,10 +51,10 @@ function DetailStrip({ details = [], dark = false }) {
       {details.map((detail) => (
         <div
           key={`${detail.label}-${detail.value}`}
-          className={`rounded-[8px] border px-2 py-1.5 ${
+          className={`border-l px-2 py-1.5 ${
             dark
-              ? "border-[#f7f1e7]/12 bg-[#211f1a] text-[#f7f1e7]/60"
-              : "border-[#11100d]/8 bg-[#f7f1e7] text-[#11100d]/58"
+              ? "border-[#f7f1e7]/18 bg-[#211f1a] text-[#f7f1e7]/60"
+              : "border-[#11100d]/14 bg-[#f7f1e7] text-[#11100d]/58"
           }`}
         >
           <div className={`text-[8px] uppercase tracking-[0.12em] ${dark ? "text-[#f7f1e7]/34" : "text-[#11100d]/34"}`}>
@@ -584,7 +584,7 @@ export default function SnipReceiptVisual({
 }) {
   if (displayMode === "compact") {
     return (
-      <article className="w-full overflow-hidden rounded-[14px] border border-[#11100d]/10 bg-[#fffaf1] text-[#11100d]">
+      <article className="w-full overflow-hidden rounded-[8px] border border-l-2 border-[#11100d]/10 border-l-[#8be2ff]/80 bg-[#fffaf1] text-[#11100d]">
         <div className="border-b border-[#11100d]/8 px-3.5 py-3">
           <div className="flex items-center justify-between gap-3">
             <span className="text-[9px] uppercase tracking-[0.14em] text-[#11100d]/36">Receipt {receiptNumber}</span>
@@ -594,7 +594,7 @@ export default function SnipReceiptVisual({
           <div className="mt-1 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/42">{type}</div>
         </div>
 
-        <div className="border-b border-[#11100d]/8 bg-[#f7f1e7]/58 px-3.5 py-3">
+        <div className="border-b border-[#11100d]/8 bg-[#fffaf1] px-3.5 py-3">
           <CompactPreview receiptBodyType={receiptBodyType} preview={preview} />
         </div>
 
@@ -607,8 +607,8 @@ export default function SnipReceiptVisual({
   }
 
   return (
-    <article className="w-full overflow-hidden rounded-[16px] border border-[#11100d]/10 bg-[#fffaf1] text-[#11100d]">
-      <div className="border-b border-[#11100d]/8 px-4 py-3 sm:px-5">
+    <article className="w-full overflow-hidden rounded-[8px] border border-t-2 border-[#11100d]/10 border-t-[#8be2ff]/80 bg-[#fffaf1] text-[#11100d]">
+      <div className="border-b border-[#11100d]/10 px-4 py-4 sm:px-5">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
@@ -622,12 +622,12 @@ export default function SnipReceiptVisual({
           <StatusPill>{status}</StatusPill>
         </div>
 
-        <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
-          <div className="rounded-[10px] border border-[#11100d]/8 bg-[#f7f1e7] p-2.5">
+        <div className="mt-3 grid grid-cols-1 gap-3 border-l border-[#11100d]/16 bg-[#f7f1e7]/58 px-3 py-2 sm:grid-cols-2">
+          <div>
             <Label>What it proves</Label>
             <p className="mt-1 text-[12px] leading-5 text-[#11100d]/64">{whatItProves}</p>
           </div>
-          <div className="rounded-[10px] border border-[#11100d]/8 bg-[#f7f1e7] p-2.5">
+          <div className="border-t border-[#11100d]/10 pt-2 sm:border-l sm:border-t-0 sm:pl-3 sm:pt-0">
             <Label>Key operational signal</Label>
             <p className="mt-1 text-[12px] leading-5 text-[#11100d]/64">{operationalSignal}</p>
           </div>
@@ -644,13 +644,14 @@ export default function SnipReceiptVisual({
         )}
       </div>
 
-      <div className="bg-[#f7f1e7]/38 p-3 sm:p-4">
+      <div className="bg-[#f7f1e7]/30 p-3 sm:p-4">
         <ArtifactBody receiptBodyType={receiptBodyType} body={body} />
       </div>
 
       {footerNote && (
-        <div className="border-t border-[#11100d]/8 px-4 py-3 text-[11px] leading-5 text-[#11100d]/54 sm:px-5">
-          {footerNote}
+        <div className="border-t border-[#11100d]/10 px-4 py-3 text-[11px] leading-5 text-[#11100d]/54 sm:px-5">
+          <span className="block text-[9px] uppercase tracking-[0.14em] text-[#11100d]/34">Evidence note</span>
+          <span className="mt-1 block">{footerNote}</span>
         </div>
       )}
     </article>
