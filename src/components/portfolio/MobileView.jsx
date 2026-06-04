@@ -113,7 +113,7 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
       </header>
 
       <div className="-mx-4 overflow-x-auto px-4 pb-2 pt-1 [scrollbar-width:none]">
-        <div className="flex snap-x snap-mandatory gap-2.5 border-y border-[#11100d]/8 bg-[#fffaf1]/38 py-2">
+        <div className="flex snap-x snap-mandatory gap-2 border-y border-[#11100d]/8 bg-[#fffaf1]/30 py-2">
           {receipts.map((receipt, i) => {
             const active = selectedReceipt?.id === receipt.id;
             const status = displayStatus(receipt.status);
@@ -128,26 +128,26 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
                 aria-pressed={active}
                 onClick={() => onSelectReceipt(receipt.id)}
                 className={cx(
-                  "relative min-h-[88px] min-w-[188px] snap-start overflow-hidden rounded-[13px] border px-3 py-2.5 text-left transition active:scale-[0.99]",
+                  "relative min-h-[84px] min-w-[188px] snap-start overflow-hidden border px-3 py-2.5 text-left transition active:scale-[0.99]",
                   active
-                    ? "border-[#11100d]/28 bg-[#fffaf1] shadow-[0_1px_0_rgba(17,16,13,0.08)]"
-                    : "border-[#11100d]/8 bg-[#f7f1e7]/72"
+                    ? "border-[#11100d]/30 bg-[#fffaf1]"
+                    : "border-[#11100d]/8 bg-[#f7f1e7]/68"
                 )}
               >
                 <span
                   className={cx(
-                    "absolute inset-x-3 top-0 h-px",
-                    active ? "bg-[#11100d]/46" : "bg-transparent"
+                    "absolute bottom-0 left-3 top-0 w-px",
+                    active ? "bg-[#11100d]/42" : "bg-transparent"
                   )}
                   aria-hidden="true"
                 />
                 <div className="flex items-start justify-between gap-3">
                   <span
                     className={cx(
-                      "inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-[9px] tabular-nums tracking-[0.06em]",
+                      "shrink-0 font-mono text-[10px] tabular-nums tracking-[0.06em]",
                       active
-                        ? "border-[#11100d]/20 bg-[#11100d] text-[#f7f1e7]"
-                        : "border-[#11100d]/10 bg-[#fffaf1] text-[#11100d]/42"
+                        ? "text-[#11100d]/62"
+                        : "text-[#11100d]/32"
                     )}
                   >
                     {String(i + 1).padStart(2, "0")}
@@ -155,10 +155,10 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
                   {showStatus && (
                     <span
                       className={cx(
-                        "shrink-0 rounded-full border px-2 py-0.5 text-[9px] tracking-[0.03em]",
+                        "shrink-0 border-l border-[#11100d]/12 pl-2 text-[9px] uppercase tracking-[0.1em]",
                         active
-                          ? "border-[#11100d]/10 bg-[#f7f1e7] text-[#11100d]/44"
-                          : "border-[#11100d]/10 bg-[#f7f1e7] text-[#11100d]/48"
+                          ? "text-[#11100d]/44"
+                          : "text-[#11100d]/42"
                       )}
                     >
                       {status}
@@ -198,7 +198,7 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
           />
           {showSelectedStatus && (
             <div className="mt-3">
-              <span className="rounded-full border border-[#11100d]/8 bg-[#fffaf1] px-2.5 py-1 text-[9px] tracking-[0.03em] text-[#11100d]/42">
+              <span className="border-l border-[#11100d]/12 pl-2 text-[9px] uppercase tracking-[0.1em] text-[#11100d]/42">
                 {selectedStatus}
               </span>
             </div>
@@ -207,7 +207,7 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
       )}
 
       {selectedReceipt && !componentVisual && (
-        <div className="rounded-[18px] border border-[#11100d]/10 bg-[#fffaf1] p-4">
+        <div className="rounded-[8px] border border-[#11100d]/10 bg-[#fffaf1] p-4">
           <h3 className="text-[14px] leading-5 text-[#11100d]">
             {selectedReceipt.name}
           </h3>
@@ -220,7 +220,7 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
               {receiptContents.map((item) => (
                 <span
                   key={item}
-                  className="rounded-full border border-[#11100d]/10 bg-[#f7f1e7] px-2 py-1 text-[10px] uppercase tracking-[0.12em] text-[#11100d]/48"
+                  className="border-l border-[#11100d]/12 pl-2 text-[10px] uppercase tracking-[0.12em] text-[#11100d]/48"
                 >
                   {item}
                 </span>
@@ -238,7 +238,7 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
 
           {showSelectedStatus && (
             <div className="mt-3">
-              <span className="rounded-full border border-[#11100d]/8 bg-[#f7f1e7] px-2.5 py-1 text-[9px] tracking-[0.03em] text-[#11100d]/42">
+              <span className="border-l border-[#11100d]/12 pl-2 text-[9px] uppercase tracking-[0.1em] text-[#11100d]/42">
                 {selectedStatus}
               </span>
             </div>

@@ -34,13 +34,13 @@ export default function ProofRail({ record, activeReceipt, onSelectReceipt }) {
       {/* Header */}
       <div className='flex items-center justify-between border-b border-[#11100d]/8 px-4 py-4 lg:px-5'>
         <span className='text-[9px] uppercase tracking-[0.2em] text-[#11100d]/44'>Receipt Inspector</span>
-        <span className='rounded-full border border-[#11100d]/8 px-2 py-0.5 text-[9px] text-[#11100d]/36'>
+        <span className='border-l border-[#11100d]/12 pl-2 text-[9px] uppercase tracking-[0.12em] text-[#11100d]/34'>
           {receipts.length} proof {receipts.length === 1 ? 'object' : 'objects'}
         </span>
       </div>
 
       {/* Compact receipt list */}
-      <div className='divide-y divide-[#11100d]/6'>
+      <div className='divide-y divide-[#11100d]/7 border-b border-[#11100d]/8'>
         {receipts.map((receipt, i) => {
           const active = selectedReceipt?.id === receipt.id
           return (
@@ -52,20 +52,32 @@ export default function ProofRail({ record, activeReceipt, onSelectReceipt }) {
               aria-pressed={active}
               onClick={() => onSelectReceipt(receipt.id)}
               className={cx(
-                'flex w-full items-center gap-3 px-4 py-3 text-left transition lg:px-5',
-                active ? 'bg-[#fffaf1]' : 'hover:bg-[#fffaf1]/50'
+                'group grid w-full grid-cols-[34px_1fr_12px] items-center gap-3 px-4 py-3 text-left transition lg:px-5',
+                active ? 'bg-[#fffaf1]' : 'hover:bg-[#fffaf1]/45'
               )}
             >
-              <span className='w-5 shrink-0 text-[10px] tabular-nums text-[#11100d]/24'>
+              <span
+                className={cx(
+                  'relative font-mono text-[10px] tabular-nums text-[#11100d]/28',
+                  active && 'text-[#11100d]/62'
+                )}
+              >
+                <span
+                  className={cx(
+                    'absolute -left-4 top-1/2 h-7 w-px -translate-y-1/2 bg-transparent',
+                    active && 'bg-[#11100d]/42'
+                  )}
+                  aria-hidden='true'
+                />
                 {String(i + 1).padStart(2, '0')}
               </span>
               <div className='min-w-0 flex-1'>
-                <p className={cx('truncate text-[12px] leading-5', active ? 'text-[#11100d]' : 'text-[#11100d]/68')}>
+                <p className={cx('truncate text-[12px] leading-5', active ? 'text-[#11100d]' : 'text-[#11100d]/70')}>
                   {receipt.name}
                 </p>
-                <p className='truncate text-[10px] text-[#11100d]/36'>{receipt.format}</p>
+                <p className='truncate text-[9px] uppercase tracking-[0.12em] text-[#11100d]/34'>{receipt.format}</p>
               </div>
-              <ChevronRight className={cx('h-3 w-3 shrink-0 text-[#11100d]/16 transition', active && 'text-[#11100d]/36')} />
+              <ChevronRight className={cx('h-3 w-3 shrink-0 text-[#11100d]/14 transition group-hover:text-[#11100d]/28', active && 'text-[#11100d]/36')} />
             </button>
           )
         })}
@@ -79,7 +91,11 @@ export default function ProofRail({ record, activeReceipt, onSelectReceipt }) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.2 }}
-          className='m-4 rounded-[18px] border border-[#11100d]/8 bg-[#fffaf1] p-4 lg:m-5 lg:p-5'
+          className={cx(
+            componentVisual
+              ? 'm-4 border-y border-[#11100d]/10 py-4 lg:m-5 lg:py-5'
+              : 'm-4 rounded-[8px] border border-[#11100d]/10 bg-[#fffaf1] p-4 lg:m-5 lg:p-5'
+          )}
         >
           {!componentVisual && (
             <>
@@ -103,7 +119,7 @@ export default function ProofRail({ record, activeReceipt, onSelectReceipt }) {
               <div className='mb-1.5 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/28'>Contents</div>
               <div className='flex flex-wrap gap-1.5'>
                 {receiptContents.map((item) => (
-                  <span key={item} className='rounded-full border border-[#11100d]/8 bg-[#f7f1e7] px-2 py-0.5 text-[10px] text-[#11100d]/48'>
+                  <span key={item} className='border-l border-[#11100d]/12 pl-2 text-[10px] text-[#11100d]/48'>
                     {item}
                   </span>
                 ))}
@@ -121,7 +137,7 @@ export default function ProofRail({ record, activeReceipt, onSelectReceipt }) {
           {shouldShowStatus(selectedReceipt?.status) && (
             <div className='mt-4 flex items-center gap-2'>
               <span className='text-[9px] uppercase tracking-[0.13em] text-[#11100d]/26'>Status</span>
-              <span className='rounded-full border border-[#11100d]/8 bg-[#f7f1e7] px-2 py-0.5 text-[9px] text-[#11100d]/42'>
+              <span className='border-l border-[#11100d]/12 pl-2 text-[9px] uppercase tracking-[0.1em] text-[#11100d]/42'>
                 {displayStatus(selectedReceipt?.status)}
               </span>
             </div>

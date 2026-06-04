@@ -186,7 +186,7 @@ function Label({ children, className = "" }) {
 
 function StatusPill({ children }) {
   return (
-    <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-[#11100d]/10 bg-[#f7f1e7] px-2 py-0.5 text-[9px] uppercase tracking-[0.08em] text-[#11100d]/52">
+    <span className="inline-flex shrink-0 items-center gap-1.5 border-l border-[#11100d]/12 pl-2 text-[9px] uppercase tracking-[0.12em] text-[#11100d]/42">
       <AccentDot />
       {children}
     </span>
@@ -483,13 +483,13 @@ function CompactPreview({ receiptBodyType, preview, body }) {
 function LogicMapBody({ body }) {
   return (
     <div className="space-y-3">
-      <section className="rounded-[14px] border border-[#11100d]/10 bg-[#fffaf1] p-3">
+      <section className="border border-[#11100d]/10 bg-[#fffaf1] p-3">
         <div className="grid grid-cols-1 gap-3 md:grid-cols-[0.72fr_16px_0.9fr_16px_1.12fr] md:items-stretch">
-          <div className="rounded-[10px] border border-[#11100d]/8 bg-[#f7f1e7] p-3">
+          <div className="border-l border-[#11100d]/14 bg-[#f7f1e7]/70 p-3">
             <Label className="mb-2">Raw inputs</Label>
             <div className="grid grid-cols-2 gap-1.5">
               {body.inputs.map((input) => (
-                <div key={input} className="min-h-9 rounded-[7px] border border-[#11100d]/8 bg-[#fffaf1] px-2 py-2 text-[11px] leading-4 text-[#11100d]/66">
+                <div key={input} className="min-h-9 border-b border-[#11100d]/10 bg-[#fffaf1] px-2 py-2 text-[11px] leading-4 text-[#11100d]/66 last:border-b-0">
                   {input}
                 </div>
               ))}
@@ -500,7 +500,7 @@ function LogicMapBody({ body }) {
             -&gt;
           </div>
 
-          <div className="rounded-[10px] border border-[#11100d]/8 bg-[#f7f1e7] p-3">
+          <div className="border-l border-[#11100d]/14 bg-[#f7f1e7]/70 p-3">
             <Label className="mb-2">Normalized ranges</Label>
             <div className="space-y-1.5">
               {body.ranges.map((range) => (
@@ -516,7 +516,7 @@ function LogicMapBody({ body }) {
             -&gt;
           </div>
 
-          <div className="relative rounded-[10px] border border-[#11100d]/10 bg-[#fffaf1] p-3">
+          <div className="relative border border-[#11100d]/10 bg-[#fffaf1] p-3">
             <div className="mb-2 flex items-center justify-between gap-3">
               <Label>Priority resolver</Label>
               <span className="text-[9px] uppercase tracking-[0.12em] text-[#11100d]/34">deterministic</span>
@@ -526,10 +526,10 @@ function LogicMapBody({ body }) {
               <ol className="space-y-1.5">
                 {body.resolver.map((state, index) => (
                   <li key={state} className="relative grid grid-cols-[32px_1fr] items-center gap-2">
-                    <span className="z-[1] flex h-7 w-7 items-center justify-center rounded-full border border-[#11100d]/10 bg-[#f7f1e7] font-mono text-[10px] tabular-nums text-[#11100d]/58">
+                    <span className="z-[1] flex h-7 w-7 items-center justify-center border border-[#11100d]/10 bg-[#f7f1e7] font-mono text-[10px] tabular-nums text-[#11100d]/58">
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <span className="rounded-[7px] border border-[#11100d]/8 bg-[#f7f1e7] px-2 py-1.5 text-[10px] leading-4 text-[#11100d]/66">
+                    <span className="border-b border-[#11100d]/10 bg-[#f7f1e7] px-2 py-1.5 text-[10px] leading-4 text-[#11100d]/66">
                       {state}
                     </span>
                   </li>
@@ -540,12 +540,12 @@ function LogicMapBody({ body }) {
         </div>
       </section>
 
-      <section className="rounded-[14px] border border-[#11100d]/10 bg-[#f7f1e7] p-3">
+      <section className="border border-[#11100d]/10 bg-[#f7f1e7] p-3">
         <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
           <Label>Output strip</Label>
           <span className="text-[9px] uppercase tracking-[0.12em] text-[#11100d]/34">state -&gt; confidence -&gt; next move</span>
         </div>
-        <div className="grid grid-cols-1 overflow-hidden rounded-[10px] border border-[#11100d]/10 bg-[#fffaf1] md:grid-cols-4">
+        <div className="grid grid-cols-1 overflow-hidden border border-[#11100d]/10 bg-[#fffaf1] md:grid-cols-4">
           {body.outputs.map((output) => (
             <div key={output.label} className="border-b border-[#11100d]/8 p-3 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0">
               <div className="text-[9px] uppercase tracking-[0.12em] text-[#11100d]/36">{output.label}</div>
@@ -1037,7 +1037,7 @@ function TypedReceiptVisual({
 }) {
   if (displayMode === "compact") {
     return (
-      <article className="w-full overflow-hidden rounded-[14px] border border-[#11100d]/10 bg-[#fffaf1] text-[#11100d]">
+      <article className="w-full overflow-hidden rounded-[8px] border border-l-2 border-[#11100d]/10 border-l-[#c7b2ff]/70 bg-[#fffaf1] text-[#11100d]">
         <div className="border-b border-[#11100d]/8 px-3.5 py-3">
           <div className="flex items-center justify-between gap-3">
             <span className="text-[9px] uppercase tracking-[0.14em] text-[#11100d]/36">Receipt {receiptNumber}</span>
@@ -1047,7 +1047,7 @@ function TypedReceiptVisual({
           <div className="mt-1 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/42">{type}</div>
         </div>
 
-        <div className="border-b border-[#11100d]/8 bg-[#f7f1e7]/58 px-3.5 py-3">
+        <div className="border-b border-[#11100d]/8 bg-[#fffaf1] px-3.5 py-3">
           <CompactPreview receiptBodyType={receiptBodyType} preview={preview} body={body} />
         </div>
 
@@ -1060,8 +1060,8 @@ function TypedReceiptVisual({
   }
 
   return (
-    <article className="w-full overflow-hidden rounded-[16px] border border-[#11100d]/10 bg-[#fffaf1] text-[#11100d]">
-      <div className="border-b border-[#11100d]/8 px-4 py-3 sm:px-5">
+    <article className="w-full overflow-hidden rounded-[8px] border border-t-2 border-[#11100d]/10 border-t-[#c7b2ff]/70 bg-[#fffaf1] text-[#11100d]">
+      <div className="border-b border-[#11100d]/10 px-4 py-4 sm:px-5">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
@@ -1077,13 +1077,14 @@ function TypedReceiptVisual({
         {claim && <p className="mt-3 text-[12px] leading-5 text-[#11100d]/62">{claim}</p>}
       </div>
 
-      <div className="bg-[#f7f1e7]/38 p-3 sm:p-4">
+      <div className="bg-[#f7f1e7]/30 p-3 sm:p-4">
         <ArtifactBody receiptBodyType={receiptBodyType} body={body} />
       </div>
 
       {footerNote && (
-        <div className="border-t border-[#11100d]/8 px-4 py-3 text-[11px] leading-5 text-[#11100d]/54 sm:px-5">
-          {footerNote}
+        <div className="border-t border-[#11100d]/10 px-4 py-3 text-[11px] leading-5 text-[#11100d]/54 sm:px-5">
+          <span className="block text-[9px] uppercase tracking-[0.14em] text-[#11100d]/34">Evidence note</span>
+          <span className="mt-1 block">{footerNote.replace(/^What this proves:\s*/i, "")}</span>
         </div>
       )}
     </article>
