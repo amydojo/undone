@@ -8,27 +8,27 @@ export const records = [
     status: 'shipped',
     timeline: '2023 / 2024',
     accent: '#c8ff62',
-    thesis: 'A clinic brand rebuilt as operating infrastructure, not campaign decoration.',
-    oneLine: 'Brand, lifecycle, CRM, and offer logic unified into one clinic growth system.',
-    role: 'Brand systems designer',
+    thesis: 'A clinic brand rebuilt as growth infrastructure.',
+    oneLine: 'Brand, lifecycle, CRM, Instagram proof, and campaigns became one system for routing, launches, follow up, and performance reads.',
+    role: 'Brand systems strategist',
     tools: ['Figma', 'Airtable', 'Mailchimp', 'Webflow', 'Zapier', 'Meta Ads'],
     hiringTranslation:
-      'This case proves strategy, creative leadership, lifecycle system design, campaign architecture, and performance interpretation by translating messy clinic signals into reusable brand architecture, CRM logic, offer systems, and campaign decisions.',
+      'This case proves brand systems strategy, creative leadership, lifecycle/system design, CRM logic design, campaign architecture, and performance interpretation by turning fragmented clinic marketing into reusable growth infrastructure.',
     metrics: [
       { value: '6+', label: 'service lines unified' },
       { value: '+40%', label: 'lead conversion lift' },
       { value: '3.2x', label: 'ROAS on offer test' }
     ],
-    path: ['positioning', 'service logic', 'lead source', 'CRM state', 'lifecycle', 'measurement'],
-    signal: 'Scattered service promos, inconsistent service hierarchy, unclear lifecycle handoff, and disconnected CRM/campaign logic were making growth harder to operate.',
-    system: 'A unified operating layer connected positioning, service hierarchy, repeatable offer logic, CRM/lifecycle routing, campaign production, and measurable handoff.',
-    owned: ['strategy', 'creative leadership', 'brand systems design', 'lifecycle/system design', 'campaign architecture', 'workflow design', 'performance interpretation'],
-    nextProof: ['Brand operating framework', 'Lifecycle routing map', 'CRM status model', 'Instagram rebuild proof', 'Campaign launch kit'],
+    path: ['positioning', 'service hierarchy', 'offer architecture', 'consult path', 'CRM state', 'performance read'],
+    signal: 'Smooth MD had strong services, offers, social content, ads, CRM follow-up, and patient touchpoints, but they were not operating from one shared framework.',
+    system: 'A clinic growth operating system connected service hierarchy, consult language, offer architecture, Instagram proof, lifecycle routing, CRM status logic, and campaign performance reads.',
+    owned: ['brand systems strategy', 'creative leadership', 'lifecycle/system design', 'CRM logic design', 'campaign architecture', 'workflow design', 'performance interpretation'],
+    nextProof: ['Brand operating framework', 'Patient lifecycle map', 'CRM status logic', 'Instagram proof system', 'Campaign launch kit'],
     decisions: [
-      { label: 'constraint', body: 'Clinical category, high competition, promo fatigue, inconsistent service hierarchy, and limited team bandwidth.' },
-      { label: 'move', body: 'Replace one-off promo work with reusable brand, offer, lifecycle, and campaign logic by service line.' },
-      { label: 'tradeoff', body: 'More upfront system definition, less downstream campaign and follow-up chaos.' },
-      { label: 'principle', body: 'Operating clarity over isolated visuals. Consistency over one-off campaign expression.' }
+      { label: 'constraint', body: 'Multiple service lines, offers, ads, Instagram proof, consult paths, CRM follow-up, and patient touchpoints were competing for clarity.' },
+      { label: 'move', body: 'Rebuild the clinic brand as a growth operating system: service hierarchy, offer architecture, lifecycle routing, CRM status logic, Instagram proof, and campaign launch rules.' },
+      { label: 'tradeoff', body: 'More upfront system definition so campaigns, content, and follow-up could reuse the same logic instead of restarting from scratch.' },
+      { label: 'principle', body: 'Public-facing brand clarity has to connect to operational follow-through: what service, what offer, what next step, what performance read.' }
     ],
     receipts: [
       {
@@ -37,8 +37,8 @@ export const records = [
         name: 'Smooth MD brand framework',
         format: 'strategy system',
         status: 'ready',
-        claim: "Proves Smooth MD's brand was rebuilt as a reusable operating framework across positioning, services, offers, trust language, and campaign rules.",
-        proof: '+40% lead conversion lift in Q1 and 3.2x ROAS on microneedling offer testing, framed as outputs of clearer brand and offer logic.',
+        claim: 'Proves the brand was rebuilt as a reusable operating framework across positioning, service hierarchy, offer logic, trust language, and visual rules.',
+        proof: '+40% lead conversion lift and 3.2x ROAS on offer testing are framed as outputs of clearer service, consult, and offer logic.',
         contents: ['positioning spine', 'service hierarchy', 'trust language', 'offer architecture', 'visual rules', 'proof pillars'],
         visualAssets: [
           {
@@ -54,8 +54,8 @@ export const records = [
         name: 'Lifecycle map',
         format: 'journey flow',
         status: 'ready',
-        claim: 'Proves acquisition, nurture, booking, treatment, retention, and reactivation were connected into one lifecycle operating path.',
-        proof: 'Welcome, service interest, follow-up timing, booking behavior, and Day 21 reactivation paths connected to CRM and lifecycle routing.',
+        claim: 'Proves lead source, service intent, consult path, follow-up timing, treatment state, retention, and reactivation were connected into one patient journey.',
+        proof: 'Welcome, service interest, consult CTA, two-day follow-up, provider-name follow-up, and Day 21 reactivation paths connected to CRM and lifecycle routing.',
         contents: ['Meta lead', 'website lead', 'Instagram inquiry', 'consult CTA', '2-day follow-up', 'Day 21 reactivation', 'retention logic'],
         visualAssets: [
           {
@@ -71,7 +71,7 @@ export const records = [
         name: 'CRM status logic',
         format: 'ops map',
         status: 'ready',
-        claim: 'Proves lead follow-up, booking state, arrival, conversion, and revenue handoff were modeled as operations logic, not tracked ad hoc.',
+        claim: 'Proves follow-up, booking state, arrival, conversion, and revenue handoff were modeled as repeatable clinic ops logic.',
         proof: 'Lead source, service interest, follow-up date, owner, booked date, arrival, conversion, revenue value, and attribution review mapped into a status model.',
         contents: ['new lead', 'contacted', 'booked', 'no-show', 'arrived', 'converted', 'revenue handoff', 'reactivation'],
         visualAssets: [
@@ -88,8 +88,8 @@ export const records = [
         name: 'Instagram identity rebuild',
         format: 'visual system',
         status: 'ready',
-        claim: 'Proves the Instagram presence moved from generic medspa visibility to a clearer skin + laser identity with service proof, trust signals, and measurable audience movement.',
-        proof: 'Before/after profile and grid evidence, service proof, location trust signals, messaging/contact insight, and follower movement captured from existing screenshots.',
+        claim: 'Proves Instagram moved from generic medspa visibility to clearer service proof, local trust signals, and inquiry behavior.',
+        proof: 'Before/after profile and grid evidence, service proof, location trust signals, messaging/contact insight, and follower movement from 57 to 2,043 are supported by existing screenshots.',
         contents: ['before profile', 'after profile', 'grid evolution', 'service proof', 'message/contact proof', 'follower movement'],
         visualAssets: [
           {
@@ -105,8 +105,8 @@ export const records = [
         name: 'Campaign toolkit',
         format: 'creative system',
         status: 'ready',
-        claim: 'Proves Smooth MD campaigns were built from reusable offer logic, creative modules, CTA paths, lead capture, follow-up, and performance interpretation.',
-        proof: 'Ad hooks, offer modules, proof layouts, CTA logic, lead capture, follow-up path, +40% lead conversion lift, and 3.2x ROAS on offer testing.',
+        claim: 'Proves campaigns were built from reusable offer logic, creative modules, CTA paths, lead capture, follow-up, and performance interpretation.',
+        proof: 'Ad hooks, offer modules, proof layouts, CTA logic, lead capture, follow-up path, +40% lead conversion lift, and 3.2x ROAS on offer testing were treated as campaign-system evidence.',
         contents: ['offer module', 'audience angle', 'creative modules', 'CTA', 'lead capture', 'follow-up path', 'performance read'],
         visualAssets: [
           {

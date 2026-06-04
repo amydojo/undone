@@ -7,7 +7,7 @@ import OverviewArtifact from "./OverviewArtifact";
 
 const DECODER_LINES = {
   mirror: 'emotional inputs → usable product logic.',
-  'smooth-md-growth-os': '6 service lines. one operating layer.',
+  'smooth-md-growth-os': 'scattered clinic marketing → repeatable growth infrastructure.',
   'meta-airtable-dashboard': 'ad spend → booking behavior → revenue decisions.',
   'snip-provider-pipeline': '200+ profiles. one repeatable sourcing system.',
   'guardrail-hr': '22 questions. one risk score. clearer next steps.',
