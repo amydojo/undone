@@ -29,6 +29,31 @@ const metaCardTargets = [
   }
 ];
 
+const snipCardTargets = [
+  {
+    caseSlug: 'snip-provider-pipeline',
+    receiptTestId: 'snip-nppes-provider-pull',
+    filename: 'snip-nppes-provider-pull-card.png'
+  },
+  {
+    caseSlug: 'snip-provider-pipeline',
+    receiptTestId: 'snip-image-sourcing',
+    filename: 'snip-image-sourcing-card.png'
+  },
+  {
+    caseSlug: 'snip-provider-pipeline',
+    receiptTestId: 'snip-opencv-face-validation',
+    filename: 'snip-face-validation-card.png'
+  },
+  {
+    caseSlug: 'snip-provider-pipeline',
+    receiptTestId: 'snip-structured-asset-folders',
+    filename: 'snip-asset-folders-card.png'
+  }
+];
+
+const cardTargets = [...metaCardTargets, ...snipCardTargets];
+
 const modalTargets = [
   {
     caseSlug: 'smooth-md-growth-os',
@@ -84,6 +109,16 @@ const modalTargets = [
     caseSlug: 'snip-provider-pipeline',
     receiptTestId: 'snip-nppes-provider-pull',
     filename: 'snip-nppes-provider-pull-modal.png'
+  },
+  {
+    caseSlug: 'snip-provider-pipeline',
+    receiptTestId: 'snip-image-sourcing',
+    filename: 'snip-image-sourcing-modal.png'
+  },
+  {
+    caseSlug: 'snip-provider-pipeline',
+    receiptTestId: 'snip-opencv-face-validation',
+    filename: 'snip-face-validation-modal.png'
   },
   {
     caseSlug: 'snip-provider-pipeline',
@@ -183,7 +218,7 @@ test.describe('receipt visual QA screenshots', () => {
     await saveFullPageScreenshot(page, 'receipts-mobile.png');
   });
 
-  for (const target of metaCardTargets) {
+  for (const target of cardTargets) {
     test(`captures ${target.receiptTestId} compact card`, async ({ page }) => {
       await preparePage(page, { width: 1440, height: 1200 });
       await openCase(page, target.caseSlug);
