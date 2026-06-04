@@ -31,6 +31,26 @@ const metaCardTargets = [
 
 const modalTargets = [
   {
+    caseSlug: 'smooth-md-growth-os',
+    receiptTestId: 'smooth-md-brand-framework',
+    filename: 'smooth-brand-framework-modal.png'
+  },
+  {
+    caseSlug: 'smooth-md-growth-os',
+    receiptTestId: 'smooth-md-crm-status-logic',
+    filename: 'smooth-crm-status-logic-modal.png'
+  },
+  {
+    caseSlug: 'smooth-md-growth-os',
+    receiptTestId: 'smooth-md-instagram-identity-rebuild',
+    filename: 'smooth-instagram-rebuild-modal.png'
+  },
+  {
+    caseSlug: 'smooth-md-growth-os',
+    receiptTestId: 'smooth-md-campaign-toolkit',
+    filename: 'smooth-campaign-toolkit-modal.png'
+  },
+  {
     caseSlug: 'mirror',
     receiptTestId: 'mirror-signal-interpretation-map',
     filename: 'mirror-signal-interpretation-modal.png'

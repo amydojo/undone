@@ -10,161 +10,111 @@ export const records = [
     accent: '#c8ff62',
     thesis: 'A clinic brand rebuilt as operating infrastructure, not campaign decoration.',
     oneLine: 'Brand, lifecycle, CRM, and offer logic unified into one clinic growth system.',
-    role: 'Lead systems designer',
+    role: 'Brand systems designer',
     tools: ['Figma', 'Airtable', 'Mailchimp', 'Webflow', 'Zapier', 'Meta Ads'],
     hiringTranslation:
-      'This case proves systems thinking and lifecycle strategy relevance for design technologist and growth designer roles by translating messy clinic signals into reusable brand architecture, CRM logic, and campaign decisions.',
+      'This case proves strategy, creative leadership, lifecycle system design, campaign architecture, and performance interpretation by translating messy clinic signals into reusable brand architecture, CRM logic, offer systems, and campaign decisions.',
     metrics: [
       { value: '6+', label: 'service lines unified' },
       { value: '+40%', label: 'lead conversion lift' },
       { value: '3.2x', label: 'ROAS on offer test' }
     ],
     path: ['positioning', 'service logic', 'lead source', 'CRM state', 'lifecycle', 'measurement'],
-    signal: 'Ads, pages, consult language, follow up, and reporting were telling different stories.',
-    system: 'A unified operating layer connected positioning, offer structure, lifecycle messaging, CRM states, and measurement.',
-    owned: ['positioning', 'system architecture', 'copywriting', 'visual direction', 'workflow design', 'analytics interpretation'],
-    nextProof: ['Add campaign dashboard screenshot', 'Add email screenshot', 'Add Airtable CRM map'],
+    signal: 'Scattered service promos, inconsistent service hierarchy, unclear lifecycle handoff, and disconnected CRM/campaign logic were making growth harder to operate.',
+    system: 'A unified operating layer connected positioning, service hierarchy, repeatable offer logic, CRM/lifecycle routing, campaign production, and measurable handoff.',
+    owned: ['strategy', 'creative leadership', 'brand systems design', 'lifecycle/system design', 'campaign architecture', 'workflow design', 'performance interpretation'],
+    nextProof: ['Brand operating framework', 'Lifecycle routing map', 'CRM status model', 'Instagram rebuild proof', 'Campaign launch kit'],
     decisions: [
-      { label: 'constraint', body: 'Clinical category, high competition, promo fatigue, limited team bandwidth.' },
-      { label: 'move', body: 'Replace one-off promo work with reusable offer logic by service line.' },
-      { label: 'tradeoff', body: 'More upfront alignment, less downstream chaos.' },
-      { label: 'principle', body: 'Clarity over cleverness. Consistency over isolated expression.' }
+      { label: 'constraint', body: 'Clinical category, high competition, promo fatigue, inconsistent service hierarchy, and limited team bandwidth.' },
+      { label: 'move', body: 'Replace one-off promo work with reusable brand, offer, lifecycle, and campaign logic by service line.' },
+      { label: 'tradeoff', body: 'More upfront system definition, less downstream campaign and follow-up chaos.' },
+      { label: 'principle', body: 'Operating clarity over isolated visuals. Consistency over one-off campaign expression.' }
     ],
     receipts: [
       {
         id: 'smooth-md-brand-framework',
+        testId: 'smooth-md-brand-framework',
         name: 'Smooth MD brand framework',
         format: 'strategy system',
-        status: 'needs screenshot',
-        claim: 'Shows the shift from service promos to a unified product marketing system.',
-        proof: '+40% lead conversion lift in Q1 and 3.2x ROAS on microneedling offer testing.',
-        contents: ['Skin to the Future', 'Progress > Perfection', 'Aesthetic Advocacy', 'service offer hierarchy', 'clinical minimal visual rules'],
-        artifacts: [
+        status: 'ready',
+        claim: "Proves Smooth MD's brand was rebuilt as a reusable operating framework across positioning, services, offers, trust language, and campaign rules.",
+        proof: '+40% lead conversion lift in Q1 and 3.2x ROAS on microneedling offer testing, framed as outputs of clearer brand and offer logic.',
+        contents: ['positioning spine', 'service hierarchy', 'trust language', 'offer architecture', 'visual rules', 'proof pillars'],
+        visualAssets: [
           {
-            id: 'smooth-md-brand-framework-page',
-            type: 'document',
-            label: 'Brand framework page',
-            src: '',
-            caption: 'Shows the positioning architecture and visual rules that drove campaign consistency.',
-            status: 'needs screenshot'
+            kind: 'component',
+            componentKey: 'smooth-md-brand-framework'
           }
-        ]
+        ],
+        artifacts: []
       },
       {
         id: 'lifecycle-map',
+        testId: 'smooth-md-lifecycle-map',
         name: 'Lifecycle map',
         format: 'journey flow',
-        status: 'needs polish',
-        claim: 'Shows acquisition, nurture, and booking behavior connected as one system.',
-        proof: 'Welcome, service interest, abandonment, and Day 21 reactivation paths.',
-        contents: ['Meta lead to Airtable', 'website lead to CRM', 'Mailchimp service tags', '2 day follow up', 'Day 21 reactivation'],
-        artifacts: [
+        status: 'ready',
+        claim: 'Proves acquisition, nurture, booking, treatment, retention, and reactivation were connected into one lifecycle operating path.',
+        proof: 'Welcome, service interest, follow-up timing, booking behavior, and Day 21 reactivation paths connected to CRM and lifecycle routing.',
+        contents: ['Meta lead', 'website lead', 'Instagram inquiry', 'consult CTA', '2-day follow-up', 'Day 21 reactivation', 'retention logic'],
+        visualAssets: [
           {
-            id: 'smooth-md-flow-map',
-            type: 'flow',
-            label: 'Flow map',
-            src: '',
-            caption: 'Proves lifecycle routing from lead source to reactivation windows.',
-            status: 'needs polish'
+            kind: 'component',
+            componentKey: 'smooth-md-lifecycle-map'
           }
-        ]
+        ],
+        artifacts: []
       },
       {
         id: 'crm-status-logic',
+        testId: 'smooth-md-crm-status-logic',
         name: 'CRM status logic',
         format: 'ops map',
-        status: 'needs metric',
-        claim: 'Shows the operational layer behind the creative system.',
-        proof: 'Lead source, service interest, booking stage, and revenue signal mapped for follow up.',
-        contents: ['lead source', 'brand tag', 'booked', 'arrived', 'converted', 'revenue attribution'],
-        artifacts: [
+        status: 'ready',
+        claim: 'Proves lead follow-up, booking state, arrival, conversion, and revenue handoff were modeled as operations logic, not tracked ad hoc.',
+        proof: 'Lead source, service interest, follow-up date, owner, booked date, arrival, conversion, revenue value, and attribution review mapped into a status model.',
+        contents: ['new lead', 'contacted', 'booked', 'no-show', 'arrived', 'converted', 'revenue handoff', 'reactivation'],
+        visualAssets: [
           {
-            id: 'smooth-md-airtable-crm-status-map',
-            type: 'dashboard',
-            label: 'Airtable CRM status map',
-            src: '',
-            caption: 'Shows state-level CRM logic and revenue attribution fields used for follow-up.',
-            status: 'needs metric'
+            kind: 'component',
+            componentKey: 'smooth-md-crm-status-logic'
           }
-        ]
+        ],
+        artifacts: []
       },
       {
         id: 'instagram-identity-rebuild',
+        testId: 'smooth-md-instagram-identity-rebuild',
         name: 'Instagram identity rebuild',
         format: 'visual system',
         status: 'ready',
-        claim: 'Shows the shift from generic medspa presence to a clearer skin + laser brand with real treatment proof.',
-        proof: 'Historical profile and grid snapshots showing the identity shift across positioning, service clarity, and clinic-specific proof.',
-        contents: ['Before profile snapshot', 'After profile snapshot', 'Grid evolution', 'Service proof', 'Location and booking clarity'],
+        claim: 'Proves the Instagram presence moved from generic medspa visibility to a clearer skin + laser identity with service proof, trust signals, and measurable audience movement.',
+        proof: 'Before/after profile and grid evidence, service proof, location trust signals, messaging/contact insight, and follower movement captured from existing screenshots.',
+        contents: ['before profile', 'after profile', 'grid evolution', 'service proof', 'message/contact proof', 'follower movement'],
         visualAssets: [
           {
-            src: '/receipts/smooth-md/instagram-identity-rebuild/instagram-before-profile.jpeg',
-            alt: 'Smooth MD Instagram before profile snapshot',
-            caption: 'Historical profile snapshot showing generic medical spa positioning, low content depth, and limited service clarity.'
-          },
-          {
-            src: '/receipts/smooth-md/instagram-identity-rebuild/instagram-after-profile.jpeg',
-            alt: 'Smooth MD Instagram after profile snapshot',
-            caption: 'Updated profile snapshot showing clearer skin + laser positioning, stronger local trust signals, and a more complete brand presence.'
-          },
-          {
-            src: '/receipts/smooth-md/instagram-identity-rebuild/instagram-before-grid.jpeg',
-            alt: 'Smooth MD Instagram before grid snapshot',
-            caption: 'Earlier grid state with stock-heavy beauty imagery and weaker connection to real services, staff, and treatment proof.'
-          },
-          {
-            src: '/receipts/smooth-md/instagram-identity-rebuild/instagram-after-grid.jpeg',
-            alt: 'Smooth MD Instagram after grid snapshot',
-            caption: 'Updated grid showing real treatments, staff presence, service education, and clinic-specific visual proof.'
+            kind: 'component',
+            componentKey: 'smooth-md-instagram-identity-rebuild'
           }
         ],
         artifacts: []
       },
       {
         id: 'campaign-toolkit',
+        testId: 'smooth-md-campaign-toolkit',
         name: 'Campaign toolkit',
         format: 'creative system',
         status: 'ready',
-        claim: 'Shows how the brand system became repeatable production infrastructure across paid ads, offer creative, and service-specific campaign assets.',
-        proof: 'Ad hooks, landing sections, email blocks, CTA logic, and proof layouts.',
-        contents: ['Meta ad hooks', 'Offer modules', 'Hydrafacial promo system', 'Before/after proof', 'Mobile-native CTA'],
+        claim: 'Proves Smooth MD campaigns were built from reusable offer logic, creative modules, CTA paths, lead capture, follow-up, and performance interpretation.',
+        proof: 'Ad hooks, offer modules, proof layouts, CTA logic, lead capture, follow-up path, +40% lead conversion lift, and 3.2x ROAS on offer testing.',
+        contents: ['offer module', 'audience angle', 'creative modules', 'CTA', 'lead capture', 'follow-up path', 'performance read'],
         visualAssets: [
           {
-            src: '/receipts/smooth-md/campaign-toolkit/stretch-mark-meta-ad-preview.jpeg',
-            alt: 'Smooth MD stretch mark Meta ad preview',
-            caption: 'Meta lead ad creative using direct-response problem framing, before/after proof, and a first-area discount offer.'
-          },
-          {
-            src: '/receipts/smooth-md/campaign-toolkit/hydrafacial-meta-ad-preview.jpeg',
-            alt: 'Smooth MD Hydrafacial Meta ad preview',
-            caption: 'Hydrafacial offer creative built around a clear monthly promo, treatment positioning, and conversion CTA.'
-          },
-          {
-            src: '/receipts/smooth-md/campaign-toolkit/brazilian-laser-hair-removal-ad-preview.jpeg',
-            alt: 'Smooth MD Brazilian laser hair removal ad preview',
-            caption: 'Paid social ad creative using a direct problem hook, clear Brazilian laser hair removal offer, price anchor, and mobile-native CTA.'
-          },
-          {
-            src: '/receipts/smooth-md/campaign-toolkit/hydrafacial-reset-tan-model.jpeg',
-            alt: 'Smooth MD Hydrafacial reset campaign asset with tan model',
-            caption: 'Hydrafacial campaign asset using reusable reset language and premium skin-health positioning.'
-          },
-          {
-            src: '/receipts/smooth-md/campaign-toolkit/hydrafacial-reset-dark-skin-model.jpeg',
-            alt: 'Smooth MD Hydrafacial reset campaign asset with dark skin model',
-            caption: 'Creative variation showing the campaign system could flex across imagery while keeping the same core message.'
+            kind: 'component',
+            componentKey: 'smooth-md-campaign-toolkit'
           }
         ],
-        artifacts: [
-          {
-            id: 'smooth-md-landing-page-section',
-            type: 'prototype',
-            label: 'Landing page section',
-            src: '',
-            caption: 'Proves modular creative components used across campaign launches.',
-            status: 'ready'
-          }
-        ]
+        artifacts: []
       }
     ]
   },

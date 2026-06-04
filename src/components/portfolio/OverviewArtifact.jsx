@@ -14,13 +14,13 @@ const SYSTEM_OBJECTS = {
   },
   'smooth-md-growth-os': {
     title: 'Operating Layer',
-    purpose: 'Turns scattered campaign work into repeatable clinic growth logic.',
-    flow: ['Position', 'Offer', 'Lead', 'CRM', 'Lifecycle', 'Measure'],
+    purpose: 'Turns scattered service promos into repeatable brand, lifecycle, CRM, and campaign logic.',
+    flow: ['Position', 'Service', 'Offer', 'CRM', 'Lifecycle', 'Measure'],
     contrast: {
       leftLabel: 'Before',
-      left: ['Scattered promos', 'Inconsistent follow-up'],
+      left: ['Scattered service promos', 'Unclear lifecycle handoff'],
       rightLabel: 'After',
-      right: ['Unified offer logic', 'Lifecycle routing', 'Measurable handoff'],
+      right: ['Unified service hierarchy', 'CRM/lifecycle routing', 'Measurable campaign handoff'],
     },
   },
   'meta-airtable-dashboard': {

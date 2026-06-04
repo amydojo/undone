@@ -15,14 +15,14 @@ const CASE_COPY_BY_SLUG = {
   'smooth-md-growth-os': {
     thesis: 'A clinic brand rebuilt as operating infrastructure.',
     summary:
-      'Smooth MD did not need more isolated campaign assets. It needed one operating layer connecting positioning, offer logic, lifecycle messaging, CRM states, and measurement.',
+      'Smooth MD did not need more isolated social posts or promos. It needed one operating layer connecting positioning, service hierarchy, offer logic, CRM/lifecycle routing, campaign production, and measurement.',
     problem:
-      'The clinic had strong services, but the customer experience was fragmented across ads, service pages, intake, follow up, and reporting. Each touchpoint created slightly different expectations, which made the brand harder to trust and the team harder to coordinate.',
-    systemIntro: 'The system turned scattered campaign work into reusable brand and growth infrastructure.',
+      'The clinic had strong services, but the growth system was fragmented across ads, service pages, consult language, Instagram proof, CRM follow-up, lifecycle timing, and reporting. Each touchpoint created slightly different expectations, which made the brand harder to operate and the team harder to coordinate.',
+    systemIntro: 'The system turned scattered service promos into reusable brand, lifecycle, CRM, campaign, and measurement infrastructure.',
     designMove:
-      'I treated the clinic brand like a product system. The goal was not just to make the brand look consistent. It was to make every touchpoint clarify what the lead wanted, what they needed next, and how the campaign was performing.',
+      'I treated the clinic brand like an operating system. The goal was not only visual consistency; it was to make every touchpoint clarify what service the lead wanted, what should happen next, and how the campaign was performing.',
     outcomeIntro:
-      'The work created a cleaner handoff between brand, acquisition, CRM, lifecycle messaging, and reporting.',
+      'The work created a cleaner handoff between brand strategy, service logic, acquisition, CRM, lifecycle messaging, campaign production, and reporting.',
     outcomes: [
       'Service lines and offer language were aligned into one repeatable operating structure.',
       'Lifecycle and CRM behavior became easier to coordinate across acquisition and follow up.',
@@ -88,12 +88,12 @@ const CASE_COPY_BY_SLUG = {
 
 const SYSTEM_MODEL_BY_SLUG = {
   'smooth-md-growth-os': [
-    { label: 'brand position', meaning: 'Define the promise and trust language before campaign execution.' },
-    { label: 'offer architecture', meaning: 'Turn services into clear decision paths instead of isolated promotions.' },
-    { label: 'lead context', meaning: 'Separate passive ad leads from high-intent website and consult behavior.' },
-    { label: 'CRM state', meaning: 'Track where each person is in the booking journey.' },
-    { label: 'lifecycle message', meaning: 'Send the right explanation and CTA based on stage.' },
-    { label: 'measurement', meaning: 'Connect campaign performance to booking and revenue signals.' }
+    { label: 'brand position', meaning: 'Define the skin + laser promise, trust language, and consult path before campaign execution.' },
+    { label: 'service hierarchy', meaning: 'Organize skin health, laser, injectables, body, membership, and wellness add-ons into a clearer system.' },
+    { label: 'offer architecture', meaning: 'Turn services into first-time offers, member pricing, lead magnets, seasonal campaigns, and follow-up paths.' },
+    { label: 'CRM state', meaning: 'Track where each person is in the booking journey from new lead to revenue handoff.' },
+    { label: 'lifecycle message', meaning: 'Send the right explanation and CTA based on source, service interest, timing, and stage.' },
+    { label: 'performance read', meaning: 'Connect campaign output to booking behavior, lead conversion lift, and offer-test ROAS.' }
   ],
   mirror: [
     { label: 'input signals', meaning: 'Capture energy, tension, clarity, and sleep with low-effort check-ins.' },
@@ -136,8 +136,8 @@ const SYSTEM_MODEL_BY_SLUG = {
 
 const PROBLEM_CONTEXT_BY_SLUG = {
   'smooth-md-growth-os': {
-    before: ['scattered campaign assets', 'inconsistent CRM logic', 'uneven follow-up timing'],
-    after: ['one operating layer', 'clear offer architecture', 'connected lifecycle and measurement']
+    before: ['scattered service promos', 'inconsistent service hierarchy', 'unclear lifecycle handoff', 'disconnected CRM and campaign logic'],
+    after: ['unified operating layer', 'clear service hierarchy', 'repeatable offer logic', 'CRM/lifecycle routing', 'measurable campaign handoff']
   },
   mirror: {
     before: ['vague emotional check-in output', 'pressure loops from streak-oriented UX', 'low trust in interpretation logic'],
@@ -164,7 +164,8 @@ const PROBLEM_CONTEXT_BY_SLUG = {
 const OUTCOME_BY_SLUG = {
   'smooth-md-growth-os': [
     'Service lines and offer language were aligned into one repeatable operating structure.',
-    'Lifecycle and CRM behavior became easier to coordinate across acquisition and follow-up.',
+    'Lifecycle and CRM behavior became easier to coordinate across acquisition, booking, retention, and reactivation.',
+    'Instagram and campaign assets carried service proof, local trust, and clearer conversion paths.',
     'Campaign decisions used clearer downstream signals instead of isolated creative performance.'
   ],
   mirror: [

@@ -3,9 +3,11 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import MirrorReceiptVisual from "./receipt-visuals/MirrorReceiptVisual";
 import MetaAirtableReceiptVisual from "./receipt-visuals/MetaAirtableReceiptVisual";
 import SnipReceiptVisual from "./receipt-visuals/SnipReceiptVisual";
+import SmoothMdReceiptVisual from "./receipt-visuals/SmoothMdReceiptVisual";
 import { getMirrorReceiptVisual } from "../../data/mirrorReceiptVisuals";
 import { getMetaAirtableReceiptVisual } from "../../data/metaAirtableReceiptVisuals";
 import { getSnipReceiptVisual } from "../../data/snipReceiptVisuals";
+import { getSmoothMdReceiptVisual } from "../../data/smoothMdReceiptVisuals";
 
 function resolvePublicSrc(src) {
   if (!src.startsWith("/")) return src;
@@ -27,6 +29,9 @@ function getAssetKey(asset, index) {
 
 function getComponentAsset(asset) {
   if (asset.kind !== "component") return null;
+
+  const smoothDefinition = getSmoothMdReceiptVisual(asset.componentKey);
+  if (smoothDefinition) return { definition: smoothDefinition, renderer: "smooth" };
 
   const snipDefinition = getSnipReceiptVisual(asset.componentKey);
   if (snipDefinition) return { definition: snipDefinition, renderer: "snip" };
@@ -80,7 +85,7 @@ export default function ReceiptVisualGallery({
   const activeCaption = activeAsset ? getAssetCaption(activeAsset) : "";
   const shouldShowActiveCaption = Boolean(
     activeCaption &&
-      !(activeComponentAsset?.renderer === "meta" && activeComponentAsset.definition?.receiptBodyType)
+      !((activeComponentAsset?.renderer === "meta" || activeComponentAsset?.renderer === "smooth") && activeComponentAsset.definition?.receiptBodyType)
   );
 
   useEffect(() => {
@@ -126,12 +131,16 @@ export default function ReceiptVisualGallery({
       const Component =
         componentAsset.renderer === "snip"
           ? SnipReceiptVisual
+          : componentAsset.renderer === "smooth"
+            ? SmoothMdReceiptVisual
           : componentAsset.renderer === "meta"
             ? MetaAirtableReceiptVisual
             : MirrorReceiptVisual;
       const maxWidth =
         componentAsset.renderer === "snip"
           ? "max-w-[860px]"
+          : componentAsset.renderer === "smooth"
+            ? "max-w-[960px]"
           : componentAsset.renderer === "meta"
             ? "max-w-[940px]"
             : "max-w-[760px]";
