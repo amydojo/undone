@@ -94,9 +94,10 @@ const modalTargets = [
 
 async function preparePage(page, viewport) {
   await page.setViewportSize(viewport);
-  await page.goto('/');
+  await page.goto('./');
   await page.waitForLoadState('networkidle');
   await expect(page.locator('body')).toBeVisible();
+}
 }
 
 function visibleTestId(page, testId) {
