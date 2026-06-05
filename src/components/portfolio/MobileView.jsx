@@ -299,7 +299,7 @@ export default function MobileView({
 
       {/* Tab content */}
       {activeMobileTab === "overview" && (
-        <OverviewTab record={record} mode={mode} openWorkspace={openWorkspace} />
+        <OverviewTab record={record} openWorkspace={openWorkspace} />
       )}
       {activeMobileTab === "proof" && (
         <ProofTab
