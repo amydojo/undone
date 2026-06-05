@@ -36,7 +36,7 @@ function getReceiptTestId(receipt) {
 
 // ─── Overview Tab ─────────────────────────────────────────────────────────────
 
-function OverviewTab({ record, mode, openWorkspace }) {
+function OverviewTab({ record, openWorkspace }) {
   return (
     <div className="mx-auto max-w-[780px] space-y-6 px-4 py-4 sm:space-y-7 sm:py-5">
       {/* Top bar */}
