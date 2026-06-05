@@ -13,14 +13,14 @@ const SECTIONS = [
 
 const CASE_COPY_BY_SLUG = {
   'smooth-md-growth-os': {
-    thesis: 'A clinic brand rebuilt as growth infrastructure.',
+    headline: 'From scattered service promos to a repeatable growth system',
     summary:
-      'Smooth MD had services, offers, social content, ads, CRM follow-up, and patient touchpoints, but no shared operating framework. I rebuilt the marketing layer so brand, lifecycle, CRM logic, Instagram proof, and campaign execution could work from one clinic growth system.',
+      "I organized Smooth MD's services, offers, follow-up, Instagram proof, and campaign logic into one system the clinic could reuse.",
     problem:
-      'The clinic had multiple service lines and real demand signals, but the operating logic was fragmented. Service hierarchy, consult language, promotional logic, Instagram proof, lead follow-up, booking behavior, and performance reads were not tied to one shared model, so every campaign or content push had to rebuild context.',
-    systemIntro: 'The intervention was a clinic growth operating system: clearer service hierarchy, positioning language, offer architecture, Instagram identity, campaign toolkit, lifecycle journey, and CRM status logic.',
+      'Before, services and promos were scattered across social content, ads, and follow-up. Service hierarchy, consult language, promotional logic, Instagram proof, lead follow-up, booking behavior, and performance reads were not tied to one shared model.',
+    systemIntro: 'I clarified the service hierarchy, offer logic, content system, CRM states, lifecycle journey, and campaign toolkit so marketing and follow-up worked together.',
     designMove:
-      'I treated the clinic brand as operational infrastructure. Every public-facing touchpoint had to clarify the service, the offer, the consult path, the follow-up state, and the performance read behind the campaign.',
+      'Every public-facing touchpoint had to clarify the service, the offer, the consult path, the follow-up state, and the performance read behind the campaign.',
     outcomeIntro:
       'The brand became easier to understand, campaigns became easier to launch, leads became easier to route, and performance signals became easier to interpret.',
     outcomes: [
@@ -31,40 +31,40 @@ const CASE_COPY_BY_SLUG = {
     ]
   },
   mirror: {
-    thesis: 'Emotional signal translated into calm, readable state logic.',
+    headline: 'Turning emotional check-ins into product logic',
     summary:
-      'Mirror translated low-effort self reporting into calm state logic so emotional context could be readable under cognitive load.',
+      'I designed a prototype that turns mood, sleep, clarity, and context inputs into readable states and gentle next steps.',
     problem:
-      'Emotional check-ins are often either vague or gamified. Both patterns create pressure and reduce trust in the interface.',
-    systemIntro: 'The system converted fuzzy input into explainable state output without pretending to diagnose mood.',
+      "People's emotional check-ins are messy. Many wellness tools either return vague mood labels or add pressure through streaks and scores.",
+    systemIntro: 'Mirror turns those inputs into states, explains why a state was detected, compares similar days, and ranks helpful next moves based on feedback.',
     designMove:
-      'I treated emotional UX as signal interpretation, not mood tracking. The interface needed to translate messy self reporting into something calm, explainable, and useful without turning self awareness into another performance loop.',
+      'I treated emotional UX as product logic, not mood decoration. The interface needed to translate messy self-reporting into something calm, explainable, and useful without turning self-awareness into another performance loop.',
     outcomeIntro: 'The product became clearer, calmer, and easier to trust when the user needed support most.'
   },
   'meta-airtable-dashboard': {
-    thesis: 'From lead volume to revenue-informed campaign decisions.',
+    headline: 'Connecting ad spend to booking and revenue signals',
     summary:
-      'Meta Ads carried spend and lead volume. Airtable held Leads_Master records and CRM movement. I connected those fragments into a reporting layer that could judge campaigns by lead quality, booking behavior, revenue signals, and attribution confidence.',
+      'I connected Meta Ads, Airtable lead records, CRM status, booking behavior, and revenue signals so campaign decisions were based on more than CPL.',
     problem:
-      'Campaign reads were split across systems. Meta showed spend and lead volume, Airtable held lead and CRM state, and booking, arrival, conversion, and revenue evidence lived downstream. Without a shared reporting layer, the team could see activity but not clearly judge campaign quality.',
-    systemIntro: 'The system joined Meta campaign data, Airtable Leads_Master records, CRM status updates, booking behavior, arrival and conversion state, revenue value, attribution confidence, and decision recommendations.',
+      'Meta Ads showed spend and leads. Airtable held lead records. Booking and revenue lived downstream. Without a shared reporting layer, the team could see activity but not clearly judge campaign quality.',
+    systemIntro: 'I organized Meta campaign data, Airtable Leads_Master records, CRM status updates, booking behavior, arrival and conversion state, revenue value, attribution confidence, and recommended actions.',
     designMove:
-      'I treated reporting as marketing operations system design: model the lead record first, normalize downstream behavior, then design a decision layer that could separate scale, maintain, review, and tracking repair.',
+      'I modeled the lead record first, then connected downstream behavior so the dashboard could separate scale, maintain, review, and tracking-repair actions.',
     outcomeIntro: 'The work made campaign conversations less about isolated platform metrics and more about what moved through the business.'
   },
   'snip-provider-pipeline': {
-    thesis: 'Provider sourcing rebuilt as a quality-controlled production pipeline.',
+    headline: 'Turning provider research into publish-ready profiles',
     summary:
-      'The workflow turned repetitive provider sourcing into a quality-controlled production pipeline for profile publishing.',
+      'I built a repeatable process to pull provider records, source images, validate assets, and hand off structured profile folders.',
     problem:
-      'Manual provider research and media handling consumed team time and introduced avoidable quality inconsistencies.',
-    systemIntro: 'The system removed sourcing drag while preserving quality gates and human judgment where needed.',
+      'Provider research was messy and manual. Repeated searching, checking, downloading, renaming, and organizing created slow handoffs and uneven quality.',
+    systemIntro: 'I structured the process around NPPES records, normalized fields, image sourcing, OpenCV validation, source notes, and publishing handoff folders.',
     designMove:
-      'I treated automation as a quality controlled workflow, not a shortcut. The system removed repetitive sourcing drag while preserving human review where trust mattered.',
+      'I treated automation as a quality-controlled workflow, not a shortcut. The process removed repetitive sourcing work while preserving human review where trust mattered.',
     outcomeIntro: 'Operations became faster and more reliable because automation was paired with structured QA.'
   },
   'guardrail-hr': {
-    thesis: 'A compliance product that turned HR risk into a guided assessment system.',
+    headline: 'A compliance product that turned HR risk into a guided assessment system',
     summary:
       'A compliance product that turned HR risk into a guided assessment system.',
     problem:
@@ -75,14 +75,14 @@ const CASE_COPY_BY_SLUG = {
     outcomeIntro: 'The concept defined a clearer self-serve compliance triage experience.'
   },
   'multi-brand-retention': {
-    thesis: 'A retention model that makes follow-up timing feel relevant, not generic.',
+    headline: 'Routing follow-up by brand, service, and lead status',
     summary:
-      'The retention model separated intent and service context so follow-up timing felt relevant instead of generic.',
+      'I designed email and follow-up paths that changed based on brand, service interest, source, CRM status, and timing.',
     problem:
-      'Leads with very different readiness levels were receiving nearly identical communication rhythms.',
-    systemIntro: 'The system turned lifecycle messaging into a timing-aware operating model across brands.',
+      'Leads came from different brands, services, sources, and levels of intent, but too many were moving through the same follow-up rhythm.',
+    systemIntro: 'I organized Mailchimp tags, CRM status, follow-up timing, and email production rules so each lead could receive a more relevant message path.',
     designMove:
-      'I treated timing as part of the message. The system separated intent, service interest, and lead readiness so follow up could feel relevant instead of generic.',
+      'I treated timing as part of the message. The routing separated intent, service interest, and lead readiness so follow-up could feel relevant instead of generic.',
     outcomeIntro: 'Follow-up became easier to coordinate and more useful to leads across the full lifecycle.'
   }
 }
@@ -94,24 +94,24 @@ const SYSTEM_MODEL_BY_SLUG = {
     { label: 'offer architecture', meaning: 'Turn service lines into first-time offers, member pricing, seasonal campaigns, lead magnets, and follow-up paths.' },
     { label: 'Instagram proof', meaning: 'Use profile, grid, treatment proof, education, and contact signals to make the public brand easier to understand before a lead enters the CRM.' },
     { label: 'CRM status logic', meaning: 'Model follow-up, booked, arrived, converted, no-show, lost, reactivation, and revenue handoff as repeatable clinic operations.' },
-    { label: 'performance read', meaning: 'Interpret campaign results through lead conversion lift, offer-test ROAS, booking behavior, and follow-up state instead of isolated creative output.' }
+    { label: 'performance read', meaning: 'Read campaign results through lead conversion lift, offer-test ROAS, booking behavior, and follow-up state instead of isolated creative output.' }
   ],
   mirror: [
     { label: 'input signals', meaning: 'Capture energy, tension, clarity, and sleep with low-effort check-ins.' },
     { label: 'normalization', meaning: 'Translate self-reports into comparable ranges without fake medical precision.' },
-    { label: 'state matching', meaning: 'Map recurring signal combinations to calm, human-readable states.' },
-    { label: 'explanation layer', meaning: 'Explain why the reading appeared and which signals contributed most.' },
-    { label: 'next move', meaning: 'Return one grounded action with no streak pressure or productivity loop.' }
+    { label: 'state detection', meaning: 'Map recurring signal combinations to calm, human-readable states.' },
+    { label: 'plain explanation', meaning: 'Explain why the reading appeared and which signals contributed most.' },
+    { label: 'next move ranking', meaning: 'Rank one grounded action using state fit, signal fit, and past feedback.' }
   ],
   'meta-airtable-dashboard': [
     { label: 'Meta campaign data', meaning: 'Preserve spend, lead volume, campaign, ad set, ad name, and form context from the acquisition source.' },
     { label: 'Leads_Master record', meaning: 'Hold identity, source, service interest, CRM state, booking behavior, outcome, and attribution fields in one shared record.' },
     { label: 'CRM status updates', meaning: 'Track owner, follow-up timing, booked status, appointment state, arrival, and conversion readiness.' },
     { label: 'Revenue attribution', meaning: 'Attach revenue value with confidence rules instead of pretending every outcome maps perfectly.' },
-    { label: 'Decision recommendations', meaning: 'Turn campaign evidence into scale, maintain, review, fix tracking, refresh creative, or nurture actions.' }
+    { label: 'Recommended action', meaning: 'Turn campaign evidence into scale, maintain, review, fix tracking, refresh creative, or nurture actions.' }
   ],
   'snip-provider-pipeline': [
-    { label: 'source', meaning: 'Pull provider data from reliable public records and source systems.' },
+    { label: 'source', meaning: 'Pull provider data from reliable public records and source references.' },
     { label: 'enrich', meaning: 'Add metadata and media candidates required for publish-ready profiles.' },
     { label: 'validate', meaning: 'Run quality gates to flag weak, missing, or incorrect assets.' },
     { label: 'organize', meaning: 'Standardize files, naming, and review states for handoff.' },
@@ -129,7 +129,7 @@ const SYSTEM_MODEL_BY_SLUG = {
     { label: 'source', meaning: 'Capture lead origin to preserve intent context from first touch.' },
     { label: 'intent', meaning: 'Classify readiness so low and high intent do not share the same cadence.' },
     { label: 'service', meaning: 'Route people into the right service pathway and offer language.' },
-    { label: 'timing', meaning: 'Trigger lifecycle moments at behavior-based intervals, not fixed blasts.' },
+    { label: 'timing', meaning: 'Trigger follow-up at behavior-based intervals, not fixed blasts.' },
     { label: 'message', meaning: 'Deliver explanation and proof matched to where they are in the journey.' },
     { label: 'booking', meaning: 'Drive toward conversion while preserving trust and brand consistency.' }
   ]
@@ -138,27 +138,27 @@ const SYSTEM_MODEL_BY_SLUG = {
 const PROBLEM_CONTEXT_BY_SLUG = {
   'smooth-md-growth-os': {
     before: ['scattered service promos', 'service hierarchy unclear across channels', 'consult language and offers handled case by case', 'Instagram proof disconnected from lead follow-up', 'CRM and campaign logic operating separately'],
-    after: ['clinic growth operating system', 'shared service hierarchy and consult path', 'repeatable offer architecture and campaign launch kit', 'lifecycle routing from source to retention', 'CRM status logic connected to performance interpretation']
+    after: ['shared service hierarchy and consult path', 'repeatable offer logic and campaign launch kit', 'Instagram proof connected to lead follow-up', 'lifecycle routing from source to retention', 'CRM status logic connected to performance reads']
   },
   mirror: {
-    before: ['vague emotional check-in output', 'pressure loops from streak-oriented UX', 'low trust in interpretation logic'],
-    after: ['readable signal model', 'clear explanation layer', 'one calm next move']
+    before: ['messy emotional inputs', 'vague mood labels', 'pressure loops from streak-oriented UX'],
+    after: ['state detection from mood, sleep, clarity, and context', 'plain explanation for why a state appeared', 'similar days and next moves ranked by feedback']
   },
   'meta-airtable-dashboard': {
     before: ['spend and lead volume isolated in Meta Ads', 'lead and CRM state split across Airtable updates', 'booking, conversion, and revenue signals downstream without a decision path'],
     after: ['shared Leads_Master reporting model', 'campaign logic tied to booked, arrived, converted, and revenue state', 'decision categories for scale, maintain, review, and tracking repair']
   },
   'snip-provider-pipeline': {
-    before: ['manual provider sourcing drag', 'uneven image quality and metadata', 'fragile handoff structure'],
-    after: ['repeatable sourcing workflow', 'quality gates before publish', 'structured handoff system']
+    before: ['manual provider research', 'uneven image quality and metadata', 'fragile handoff folders'],
+    after: ['NPPES records normalized into profile fields', 'image sourcing with OpenCV validation gates', 'structured profile folders with source notes and publish status']
   },
   'guardrail-hr': {
     before: ['unclear HR risk', 'manual policy interpretation', 'no guided next step'],
     after: ['22-question assessment', 'risk score output', 'traceable answer logic', 'structured resource path']
   },
   'multi-brand-retention': {
-    before: ['generic lifecycle blasts', 'intent and service mixed together', 'timing disconnected from readiness'],
-    after: ['intent-aware routing', 'service-specific cadence', 'timing aligned to booking behavior']
+    before: ['generic email rhythm', 'brand, service, and intent mixed together', 'timing disconnected from CRM status'],
+    after: ['Mailchimp tags organized by brand, service, source, and status', 'service-specific follow-up paths', '2-day follow-up and Day 21 reactivation tied to booking behavior']
   }
 }
 
@@ -170,20 +170,20 @@ const OUTCOME_BY_SLUG = {
     'Campaign reads tied creative and offer performance to lead conversion lift, 3.2x offer-test ROAS, booking behavior, and follow-up context.'
   ],
   mirror: [
-    'Signal states became readable without turning reflection into a performance loop.',
+    'State detection made emotional check-ins readable without turning reflection into a performance loop.',
     'Component behavior and state logic were production-oriented, not just conceptual screens.',
-    'The product could explain why a reading appeared and suggest one grounded next action.'
+    'The product could explain why a reading appeared, compare similar days, and suggest one grounded next action.'
   ],
   'meta-airtable-dashboard': [
     'The shared lead model gave campaign reports source, intent, CRM state, booking behavior, outcome, and attribution context.',
     'Campaign performance reads used downstream behavior instead of stopping at spend, lead volume, or CPL.',
     'Revenue attribution used confidence and manual review states where source evidence was incomplete.',
-    'The decision layer turned scattered signals into scale, maintain, review, and fix-tracking queues.'
+    'The dashboard turned scattered signals into scale, maintain, review, and fix-tracking queues.'
   ],
   'snip-provider-pipeline': [
-    'Manual sourcing overhead dropped through automation and validation gates.',
+    'Manual sourcing overhead dropped because provider records, image candidates, validation, and handoff were handled in one repeatable process.',
     'Quality checks improved consistency before assets reached publication workflows.',
-    'Handoff moved from ad hoc file dumps to a reliable, structured pipeline.'
+    'Handoff moved from ad hoc file dumps to structured profile folders with profile.json, source notes, and publish status.'
   ],
   'guardrail-hr': [
     'Defined a 22-question assessment model.',
@@ -191,17 +191,17 @@ const OUTCOME_BY_SLUG = {
     'Created a structured result UX for self-serve compliance triage.'
   ],
   'multi-brand-retention': [
-    'Follow-up timing reflected intent and service context instead of batch email cadence.',
-    'Lifecycle communication became more consistent across multi-brand operations.',
-    'Retention flows emphasized trust and booking progress over promotional noise.'
+    'Follow-up timing reflected brand, service interest, source, CRM status, and readiness instead of batch email cadence.',
+    'Communication became easier to coordinate across multi-brand operations.',
+    'Email production used reusable Mailchimp modules, a 600px wrapper, dark mode meta, VML Outlook support, and clear CTA paths.'
   ]
 }
 
 const OUTCOME_INTRO_BY_SLUG = {
-  mirror: 'The system made emotional signal feedback calmer, clearer, and more actionable.',
+  mirror: 'The product logic made emotional signal feedback calmer, clearer, and more actionable.',
   'meta-airtable-dashboard': 'The reporting layer created a tighter bridge between marketing signals, CRM movement, and business decisions.',
   'snip-provider-pipeline': 'The workflow reduced manual overhead and improved quality consistency in production handoff.',
-  'multi-brand-retention': 'Lifecycle behavior became easier to orchestrate across services, brands, and intent levels.'
+  'multi-brand-retention': 'Follow-up became easier to coordinate across services, brands, and intent levels.'
 }
 
 function sectionDomId(slug, sectionId) {
@@ -211,13 +211,13 @@ function sectionDomId(slug, sectionId) {
 function getCaseCopy(workspace) {
   const mapped = CASE_COPY_BY_SLUG[workspace.slug] ?? {}
   return {
-    thesis: mapped.thesis ?? workspace.thesis,
+    headline: mapped.headline ?? workspace.headline ?? workspace.title,
     summary: mapped.summary ?? workspace.oneLine,
     problem: mapped.problem ?? workspace.signal,
     systemIntro: mapped.systemIntro ?? workspace.system,
     designMove:
       mapped.designMove ??
-      'I treated the project as an operating system, not a static deliverable, so each touchpoint could drive clearer decisions and cleaner handoff.',
+      'I connected the moving parts into a repeatable workflow so each touchpoint could drive clearer decisions and cleaner handoff.',
     outcomeIntro: mapped.outcomeIntro ?? OUTCOME_INTRO_BY_SLUG[workspace.slug] ?? workspace.hiringTranslation
   }
 }
@@ -252,7 +252,7 @@ function BriefSection({ workspace }) {
         <h3
           className='text-[40px] leading-[1.02] tracking-[-0.035em] text-[#11100d] sm:text-[50px] lg:text-[58px]'
         >
-          {copy.thesis}
+          {copy.headline}
         </h3>
         <div>
           <div className='mb-3 text-[10px] uppercase tracking-[0.15em] text-[#11100d]/38'>Summary</div>

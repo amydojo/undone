@@ -3,31 +3,31 @@ export const records = [
     id: '01',
     slug: 'smooth-md-growth-os',
     title: 'Smooth MD Growth Operating System',
+    headline: 'From scattered service promos to a repeatable growth system',
     category: 'brand operations',
     type: 'brand system',
     status: 'shipped',
     timeline: '2023 / 2024',
     accent: '#c8ff62',
-    thesis: 'A clinic brand rebuilt as growth infrastructure.',
-    oneLine: 'Brand, lifecycle, CRM, Instagram proof, and campaigns became one system for routing, launches, follow up, and performance reads.',
-    role: 'Brand systems strategist',
+    oneLine: "I organized Smooth MD's services, offers, follow-up, Instagram proof, and campaign logic into one reusable clinic system.",
+    role: 'Brand and lifecycle strategy lead',
     tools: ['Figma', 'Airtable', 'Mailchimp', 'Webflow', 'Zapier', 'Meta Ads'],
     hiringTranslation:
-      'This case proves brand systems strategy, creative leadership, lifecycle/system design, CRM logic design, campaign architecture, and performance interpretation by turning fragmented clinic marketing into reusable growth infrastructure.',
+      'This case proves brand systems strategy, creative leadership, lifecycle design, CRM logic, campaign architecture, and performance interpretation by turning fragmented clinic marketing into a reusable operating model.',
     metrics: [
       { value: '6+', label: 'service lines unified' },
       { value: '+40%', label: 'lead conversion lift' },
       { value: '3.2x', label: 'ROAS on offer test' }
     ],
     path: ['positioning', 'service hierarchy', 'offer architecture', 'consult path', 'CRM state', 'performance read'],
-    signal: 'Smooth MD had strong services, offers, social content, ads, CRM follow-up, and patient touchpoints, but they were not operating from one shared framework.',
-    system: 'A clinic growth operating system connected service hierarchy, consult language, offer architecture, Instagram proof, lifecycle routing, CRM status logic, and campaign performance reads.',
-    owned: ['brand systems strategy', 'creative leadership', 'lifecycle/system design', 'CRM logic design', 'campaign architecture', 'workflow design', 'performance interpretation'],
+    signal: 'Smooth MD had strong services, offers, social content, ads, CRM follow-up, and patient touchpoints, but each channel used its own logic.',
+    system: 'I connected service hierarchy, consult language, offer logic, Instagram proof, lifecycle routing, CRM status logic, and campaign performance reads so the clinic could reuse the same model across marketing and follow-up.',
+    owned: ['brand systems strategy', 'creative leadership', 'lifecycle design', 'CRM logic design', 'campaign architecture', 'workflow design', 'performance interpretation'],
     nextProof: ['Brand operating framework', 'Patient lifecycle map', 'CRM status logic', 'Instagram proof system', 'Campaign launch kit'],
     decisions: [
       { label: 'constraint', body: 'Multiple service lines, offers, ads, Instagram proof, consult paths, CRM follow-up, and patient touchpoints were competing for clarity.' },
-      { label: 'move', body: 'Rebuild the clinic brand as a growth operating system: service hierarchy, offer architecture, lifecycle routing, CRM status logic, Instagram proof, and campaign launch rules.' },
-      { label: 'tradeoff', body: 'More upfront system definition so campaigns, content, and follow-up could reuse the same logic instead of restarting from scratch.' },
+      { label: 'move', body: 'Clarify the service hierarchy, offer architecture, lifecycle routing, CRM status logic, Instagram proof, and campaign launch rules so each channel worked from the same plan.' },
+      { label: 'tradeoff', body: 'More upfront definition so campaigns, content, and follow-up could reuse the same logic instead of restarting from scratch.' },
       { label: 'principle', body: 'Public-facing brand clarity has to connect to operational follow-through: what service, what offer, what next step, what performance read.' }
     ],
     receipts: [
@@ -37,8 +37,8 @@ export const records = [
         name: 'Smooth MD brand framework',
         format: 'strategy system',
         status: 'ready',
-        claim: 'Proves the brand was rebuilt as a reusable operating framework across positioning, service hierarchy, offer logic, trust language, and visual rules.',
-        proof: '+40% lead conversion lift and 3.2x ROAS on offer testing are framed as outputs of clearer service, consult, and offer logic.',
+        claim: 'Proves the brand work covered positioning, service hierarchy, offer logic, trust language, and visual rules in one reusable framework.',
+        proof: '+40% lead conversion lift and 3.2x ROAS on offer testing were tied to clearer service, consult, and offer logic.',
         contents: ['positioning spine', 'service hierarchy', 'trust language', 'offer architecture', 'visual rules', 'proof pillars'],
         visualAssets: [
           {
@@ -54,7 +54,7 @@ export const records = [
         name: 'Lifecycle map',
         format: 'journey flow',
         status: 'ready',
-        claim: 'Proves lead source, service intent, consult path, follow-up timing, treatment state, retention, and reactivation were connected into one patient journey.',
+        claim: 'Proves lead source, service intent, consult path, follow-up timing, treatment state, retention, and reactivation were mapped as one patient journey.',
         proof: 'Welcome, service interest, consult CTA, two-day follow-up, provider-name follow-up, and Day 21 reactivation paths connected to CRM and lifecycle routing.',
         contents: ['Meta lead', 'website lead', 'Instagram inquiry', 'consult CTA', '2-day follow-up', 'Day 21 reactivation', 'retention logic'],
         visualAssets: [
@@ -71,7 +71,7 @@ export const records = [
         name: 'CRM status logic',
         format: 'ops map',
         status: 'ready',
-        claim: 'Proves follow-up, booking state, arrival, conversion, and revenue handoff were modeled as repeatable clinic ops logic.',
+        claim: 'Proves follow-up, booking state, arrival, conversion, and revenue handoff were defined as repeatable clinic operations.',
         proof: 'Lead source, service interest, follow-up date, owner, booked date, arrival, conversion, revenue value, and attribution review mapped into a status model.',
         contents: ['new lead', 'contacted', 'booked', 'no-show', 'arrived', 'converted', 'revenue handoff', 'reactivation'],
         visualAssets: [
@@ -88,7 +88,7 @@ export const records = [
         name: 'Instagram identity rebuild',
         format: 'visual system',
         status: 'ready',
-        claim: 'Proves Instagram moved from generic medspa visibility to clearer service proof, local trust signals, and inquiry behavior.',
+        claim: 'Proves Instagram moved from generic medspa promotion to clearer service proof, local trust signals, and inquiry behavior.',
         proof: 'Before/after profile and grid evidence, service proof, location trust signals, messaging/contact insight, and follower movement from 57 to 2,043 are supported by existing screenshots.',
         contents: ['before profile', 'after profile', 'grid evolution', 'service proof', 'message/contact proof', 'follower movement'],
         visualAssets: [
@@ -105,8 +105,8 @@ export const records = [
         name: 'Campaign toolkit',
         format: 'creative system',
         status: 'ready',
-        claim: 'Proves campaigns were built from reusable offer logic, creative modules, CTA paths, lead capture, follow-up, and performance interpretation.',
-        proof: 'Ad hooks, offer modules, proof layouts, CTA logic, lead capture, follow-up path, +40% lead conversion lift, and 3.2x ROAS on offer testing were treated as campaign-system evidence.',
+        claim: 'Proves campaigns were built from reusable offer logic, creative modules, CTA paths, lead capture, follow-up, and performance reads.',
+        proof: 'Ad hooks, offer modules, proof layouts, CTA logic, lead capture, follow-up path, +40% lead conversion lift, and 3.2x ROAS on offer testing were documented together.',
         contents: ['offer module', 'audience angle', 'creative modules', 'CTA', 'lead capture', 'follow-up path', 'performance read'],
         visualAssets: [
           {
@@ -122,14 +122,14 @@ export const records = [
     id: '02',
     slug: 'mirror',
     title: 'Mirror',
+    headline: 'Turning emotional check-ins into product logic',
     category: 'product ux',
     type: 'product system',
     status: 'prototype',
     timeline: '2024',
     accent: '#c7b2ff',
-    thesis: 'An emotional signal system designed to stay usable under cognitive load.',
-    oneLine: 'Affective UX, signal logic, Storybook states, and calm product language.',
-    role: 'Systems designer',
+    oneLine: 'I designed a prototype that turns mood, sleep, clarity, and context inputs into readable states and gentle next steps.',
+    role: 'Product logic and component QA designer',
     tools: ['Figma', 'Storybook', 'React', 'Replit', 'localStorage', 'AI workflows'],
     hiringTranslation:
       'This case is relevant to design technologist and creative technologist roles because it demonstrates interface logic for sensitive contexts, component state governance, and usable product feedback systems.',
@@ -139,8 +139,8 @@ export const records = [
       { value: '12', label: 'responsive states' }
     ],
     path: ['check in', 'normalize', 'detect', 'explain', 'suggest', 'learn'],
-    signal: 'Most wellness products turn self-awareness into another performance loop.',
-    system: 'A signal interpretation layer translated fuzzy mood inputs into calm feedback, confidence language, and reusable UI states.',
+    signal: "People's emotional check-ins are messy, and many wellness tools either flatten that mess into vague labels or turn it into a performance loop.",
+    system: 'Mirror turns mood, sleep, clarity, and context inputs into detected states, explains why a state appeared, compares similar days, and ranks gentle next moves based on feedback.',
     owned: ['interaction model', 'state taxonomy', 'component QA workflow', 'prototype logic', 'visual direction'],
     nextProof: ['Add Storybook component state screenshot', 'Add debug overlay screenshot', 'Add product state flow map'],
     decisions: [
@@ -156,8 +156,8 @@ export const records = [
         name: 'Signal Interpretation Map',
         format: 'Logic diagram',
         status: 'ready',
-        claim: 'Proves Mirror converts raw emotional inputs into deterministic body weather states.',
-        proof: 'Priority resolver, normalized signal ranges, body weather state, confidence label, and gentle next move.',
+        claim: 'Proves Mirror converts raw emotional inputs into defined body weather states with a clear priority order.',
+        proof: 'Normalized signal ranges, priority resolver, body weather state, confidence label, and gentle next move.',
         contents: ['raw inputs', 'normalized ranges', 'priority resolver', 'body weather state', 'confidence label', 'gentle next move'],
         visualAssets: [
           {
@@ -207,7 +207,7 @@ export const records = [
         name: 'Similar Days Matcher',
         format: 'Pattern matching trace',
         status: 'ready',
-        claim: "Proves Mirror can compare today's signals against previous check ins and surface useful memory.",
+        claim: "Proves Mirror can compare today's signals against previous check-ins and surface useful memory.",
         proof: "Ranked match trace using today's fingerprint, overlap criteria, and mirror_checkins history.",
         contents: ['current check-in', 'mirror_checkins', 'signal overlap', 'context overlap', 'ranked similar days', 'helpful past actions'],
         visualAssets: [
@@ -292,17 +292,17 @@ export const records = [
     id: '03',
     slug: 'meta-airtable-dashboard',
     title: 'Meta + Airtable Intelligence Layer',
+    headline: 'Connecting ad spend to booking and revenue signals',
     category: 'marketing operations',
     type: 'reporting layer',
     status: 'built',
     timeline: '2025',
     accent: '#b6f3d4',
-    thesis: 'From lead volume to revenue-informed campaign decisions.',
-    oneLine: 'A reporting layer connecting Meta spend, Airtable lead records, CRM state, booking behavior, and revenue confidence.',
+    oneLine: 'I connected Meta Ads, Airtable lead records, CRM status, booking behavior, and revenue signals so campaign decisions were based on more than CPL.',
     role: 'Marketing operations systems designer',
     tools: ['React', 'Airtable', 'Meta Marketing API', 'Zapier', 'Replit', 'OpenAI'],
     hiringTranslation:
-      'This case is relevant to growth systems, product marketing, and design technologist roles because it demonstrates strategy, data modeling, CRM logic, reporting structure, campaign performance interpretation, workflow design, and decision layer design.',
+      'This case is relevant to growth systems, product marketing, and design technologist roles because it demonstrates strategy, data modeling, CRM logic, reporting structure, campaign performance interpretation, workflow design, and decision design.',
     metrics: [
       { value: 'Meta', label: 'campaign signal' },
       { value: 'CRM', label: 'booking behavior' },
@@ -310,8 +310,8 @@ export const records = [
     ],
     path: ['Meta campaign', 'lead record', 'CRM state', 'booking', 'revenue', 'decision'],
     signal: 'Meta Ads showed spend and lead volume. Airtable held lead records and CRM movement. Booking, arrival, conversion, and revenue signals lived downstream, so campaign reads were missing the behavior that made them useful.',
-    system: 'I designed a reporting layer that connected Meta campaign data, Airtable Leads_Master records, CRM status updates, booking behavior, revenue value, attribution confidence, and decision recommendations.',
-    owned: ['strategy', 'systems design', 'data modeling', 'CRM logic', 'reporting structure', 'campaign performance interpretation', 'workflow design', 'decision layer design'],
+    system: 'I organized Meta campaign data, Airtable Leads_Master records, CRM status updates, booking behavior, revenue value, attribution confidence, and recommended actions into one reporting layer.',
+    owned: ['strategy', 'systems design', 'data modeling', 'CRM logic', 'reporting structure', 'campaign performance interpretation', 'workflow design', 'decision design'],
     nextProof: ['Add campaign dashboard screenshot', 'Add Meta ads performance view', 'Add revenue attribution table snapshot'],
     decisions: [
       { label: 'constraint', body: 'Spend, lead volume, CRM state, booking outcomes, and revenue context were split across tools, which made campaign quality hard to interpret.' },
@@ -378,7 +378,7 @@ export const records = [
         format: 'interface system',
         status: 'ready',
         claim: 'Proves scattered campaign, CRM, and revenue signals became action categories like scale, maintain, review, and fix tracking.',
-        proof: 'The decision layer grouped evidence into operational queues so campaign conversations could move from reporting to next action.',
+        proof: 'The dashboard grouped evidence into operational queues so campaign conversations could move from reporting to next action.',
         contents: ['Can Scale', 'Needs Review', 'Tracking Repair', 'Follow Up Risk', 'Recommended Action', 'Confidence'],
         visualAssets: [
           {
@@ -394,25 +394,25 @@ export const records = [
     id: '04',
     slug: 'snip-provider-pipeline',
     title: 'Snip Snip Provider Data Pipeline',
+    headline: 'Turning provider research into publish-ready profiles',
     category: 'operations',
-    type: 'growth system',
+    type: 'profile workflow',
     status: 'scaled',
     timeline: '2024',
     accent: '#9fe7ff',
-    thesis: 'A messy research process turned into a repeatable provider acquisition pipeline.',
-    oneLine: 'Provider research, image sourcing, validation, and publishing handoff automated with quality gates.',
-    role: 'Workflow designer',
+    oneLine: 'I built a repeatable process to pull provider records, source images, validate assets, and hand off structured profile folders.',
+    role: 'Automation and workflow designer',
     tools: ['Python', 'NPPES API', 'OpenCV', 'Bing search', 'Google Maps', 'spreadsheets'],
     hiringTranslation:
       'This case is relevant to AI workflow designer and creative technologist roles because it demonstrates real automation scripts, quality gate design, and reliable human-in-the-loop operations for production handoff.',
     metrics: [
       { value: '200+', label: 'profiles processed' },
       { value: '90%', label: 'manual sourcing reduced' },
-      { value: '1', label: 'repeatable pipeline' }
+      { value: '1', label: 'repeatable process' }
     ],
     path: ['source', 'enrich', 'validate', 'score', 'organize', 'publish'],
-    signal: 'Every provider profile required repeated searching, checking, downloading, renaming, and organizing.',
-    system: 'A repeatable workflow handled provider discovery, data enrichment, headshot sourcing, face validation, and asset organization.',
+    signal: 'Provider research was messy and manual: every profile required repeated searching, checking, downloading, renaming, and organizing.',
+    system: 'I structured the process around NPPES records, normalized fields, image sourcing, OpenCV validation, source notes, and publishing handoff folders.',
     owned: ['automation architecture', 'validation logic', 'data cleanup', 'QA criteria', 'handoff workflow'],
     nextProof: ['Add provider sourcing script screenshot', 'Add OpenCV validation output', 'Add structured handoff folder map'],
     decisions: [
@@ -429,8 +429,8 @@ export const records = [
         format: 'Python workflow',
         receiptBodyType: 'providerPullTrace',
         status: 'ready',
-        claim: 'NPPES provider records were pulled, normalized, and queued into a repeatable acquisition workflow.',
-        proof: 'API sourced candidates normalized into profile fields.',
+        claim: 'Proves NPPES provider records could be pulled, normalized, and queued for profile production.',
+        proof: 'API-sourced candidates were normalized into profile fields with source references preserved.',
         contents: ['provider name', 'NPI', 'taxonomy', 'practice location', 'phone', 'credential', 'organization', 'source reference'],
         visualAssets: [
           {
@@ -447,8 +447,8 @@ export const records = [
         format: 'Asset pipeline',
         receiptBodyType: 'imageSourcingPipeline',
         status: 'ready',
-        claim: 'Headshot and clinic image sourcing followed fallback logic so missing provider images did not block progress.',
-        proof: 'Provider image candidates were routed by confidence and availability.',
+        claim: 'Proves image sourcing had fallback logic when a reliable provider headshot was not available.',
+        proof: 'Provider image candidates were routed by source confidence, face presence, and availability.',
         contents: ['provider headshots', 'clinic exterior photos', 'source confidence', 'image quality', 'face presence', 'image source pending'],
         visualAssets: [
           {
@@ -465,8 +465,8 @@ export const records = [
         format: 'Quality gate',
         receiptBodyType: 'faceValidationGate',
         status: 'ready',
-        claim: 'OpenCV validation acted as a quality gate before images entered the publishable asset set.',
-        proof: 'Candidate images passed through approve, reject, or fallback decisions.',
+        claim: 'Proves OpenCV validation checked images before they entered the publishable asset set.',
+        proof: 'Candidate images passed through approve, reject, fallback, or manual-review decisions.',
         contents: ['face detected', 'single subject preferred', 'resolution acceptable', 'crop usable', 'not logo only', 'manual review'],
         visualAssets: [
           {
@@ -483,8 +483,8 @@ export const records = [
         format: 'Handoff system',
         receiptBodyType: 'assetHandoffMap',
         status: 'ready',
-        claim: 'Provider data, image assets, source notes, and validation status were organized into structured handoff folders.',
-        proof: 'Each provider had source notes, asset status, and profile data preserved.',
+        claim: 'Proves provider data, image assets, source notes, and validation status were preserved for publishing handoff.',
+        proof: 'Each provider folder kept profile.json, source notes, asset status, and publishing state together.',
         contents: ['provider folders', 'profile.json', 'headshot.jpg', 'clinic-fallback.jpg', 'source notes', 'publish status'],
         visualAssets: [
           {
@@ -500,13 +500,13 @@ export const records = [
     id: '05',
     slug: 'guardrail-hr',
     title: 'Guardrail HR Compliance Assessment Platform',
+    headline: 'A compliance product that turned HR risk into a guided assessment system',
     category: 'product ux',
     type: 'compliance workflow',
     status: 'prototype',
     visible: false,
     timeline: '2024',
     accent: '#d7e8ff',
-    thesis: 'A compliance product that turned HR risk into a guided assessment system.',
     oneLine: 'A self-serve HR compliance concept translating messy policy risk into score-based triage, answer traceability, and structured guidance.',
     role: 'Product UX, systems design, assessment logic, interface strategy',
     tools: ['Figma', 'Product strategy', 'Assessment logic', 'UX writing', 'Systems mapping'],
@@ -534,7 +534,7 @@ export const records = [
         name: 'Assessment flow logic',
         format: 'assessment system',
         status: 'needs visual',
-        claim: 'Shows how user answers move through a 22-question compliance assessment into score-based triage.',
+        claim: 'Proves user answers move through a 22-question compliance assessment into score-based triage.',
         proof: '22-question flow, answer options, risk drivers, score tiers, and result routing.',
         contents: ['22-question flow', 'answer options', 'risk drivers', 'score tiers', 'result routing'],
         artifacts: []
@@ -544,7 +544,7 @@ export const records = [
         name: 'Risk score model',
         format: 'scoring logic',
         status: 'needs visual',
-        claim: 'Shows how policy uncertainty is translated into a readable risk score without pretending to be legal advice.',
+        claim: 'Proves policy uncertainty can be translated into a readable risk score without pretending to be legal advice.',
         proof: 'Risk weight, answer value, score range, severity tier, and recommendation boundary.',
         contents: ['risk weight', 'answer value', 'score range', 'severity tier', 'recommendation boundary'],
         artifacts: []
@@ -554,7 +554,7 @@ export const records = [
         name: 'Answer traceability map',
         format: 'logic transparency',
         status: 'needs visual',
-        claim: "Shows how each result can be traced back to the user's selected answers and risk drivers.",
+        claim: "Proves each result can be traced back to the user's selected answers and risk drivers.",
         proof: 'Selected answers, risk driver labels, score contribution, result explanation, and review path.',
         contents: ['selected answers', 'risk driver labels', 'score contribution', 'result explanation', 'review path'],
         artifacts: []
@@ -564,7 +564,7 @@ export const records = [
         name: 'Results UX framework',
         format: 'product interface',
         status: 'needs visual',
-        claim: 'Shows how assessment output becomes a structured user-facing result with next steps.',
+        claim: 'Proves assessment output becomes a structured user-facing result with next steps.',
         proof: 'Risk tier, summary, why-this-appeared explanation, recommended resource, and action path.',
         contents: ['risk tier', 'summary', 'why this appeared', 'recommended resource', 'action path'],
         artifacts: []
@@ -575,25 +575,25 @@ export const records = [
     id: '06',
     slug: 'multi-brand-retention',
     title: 'Multi Brand Retention Engine',
+    headline: 'Routing follow-up by brand, service, and lead status',
     category: 'retention',
-    type: 'lifecycle system',
+    type: 'lifecycle routing',
     status: 'live',
     timeline: '2024',
     accent: '#ffd1a1',
-    thesis: 'A lifecycle system built around timing, intent, and trust instead of generic email blasts.',
-    oneLine: 'Service-specific nurture logic for multi-brand lead follow up and reactivation.',
-    role: 'Lifecycle systems lead',
+    oneLine: 'I designed email and follow-up paths that changed based on brand, service interest, source, CRM status, and timing.',
+    role: 'Lifecycle routing and email production lead',
     tools: ['Mailchimp', 'Airtable', 'Zapier', 'Figma', 'HTML email'],
     hiringTranslation:
-      'This case is relevant to growth designer and product marketing designer roles because it demonstrates segmentation strategy, production email systems, and lifecycle timing logic tied to measurable retention behavior.',
+      'This case is relevant to growth designer, lifecycle designer, and design technologist roles because it demonstrates segmentation strategy, production email systems, CRM routing, and timing logic for follow-up.',
     metrics: [
       { value: '4', label: 'flow types' },
       { value: '21d', label: 'reactivation window' },
       { value: 'multi', label: 'brand logic' }
     ],
     path: ['source', 'intent', 'service', 'timing', 'message', 'booking'],
-    signal: 'Website leads, Meta leads, consult inquiries, and abandoned interest signals were collapsing into one generic rhythm.',
-    system: 'Welcome, interest-based, abandonment-style, and promotional lifecycle logic connected to brand tags and CRM status.',
+    signal: 'Leads came from different brands, services, sources, and levels of intent, but too many were moving through the same follow-up rhythm.',
+    system: 'I organized Mailchimp tags, CRM status, follow-up timing, and email production rules so each lead could receive a more relevant message path.',
     owned: ['segmentation architecture', 'lifecycle flow strategy', 'email production design', 'crm tagging model', 'performance analysis'],
     nextProof: ['Lifecycle flow model', 'Mailchimp routing map', 'Follow-up timing protocol', 'Email production system'],
     decisions: [
@@ -609,7 +609,7 @@ export const records = [
         name: 'Lifecycle Flow Model',
         format: 'lifecycle router',
         status: 'ready',
-        claim: 'Proves welcome, service interest, abandonment-style, and weekly educational promo paths were structured as one lifecycle router.',
+        claim: 'Proves welcome, service interest, abandonment-style, and weekly educational promo paths were routed by source, intent, service, timing, and booking readiness.',
         proof: 'Source, intent, service, timing, message, and booking readiness were treated as routing inputs instead of isolated email topics.',
         contents: ['welcome flow', 'service interest', 'abandonment-style flow', 'weekly educational promo', 'source', 'intent', 'booking'],
         visualAssets: [
@@ -626,7 +626,7 @@ export const records = [
         name: 'Mailchimp Tag + Routing Map',
         format: 'CRM routing map',
         status: 'ready',
-        claim: 'Proves brand, service, source, CRM status, lead intent, and follow-up state were sortable routing inputs.',
+        claim: 'Proves brand, service, source, CRM status, lead intent, and follow-up state were usable routing inputs.',
         proof: 'Smooth MD, Dr. Vigor, Dr. Neo, Dr. Food, Dr. Freeze, and Dr. Sculpt leads were separated by routing fields and send/suppress logic.',
         contents: ['brand tag', 'service tag', 'source label', 'CRM status', 'lead intent', 'follow-up state'],
         visualAssets: [
@@ -643,7 +643,7 @@ export const records = [
         name: 'Follow-Up Timing Protocol',
         format: 'timing rules',
         status: 'ready',
-        claim: 'Proves timing was handled as operational rules: 2-day follow-up, provider-named reminder, Day 21 reactivation, and status exclusions.',
+        claim: 'Proves timing was handled with clear rules: 2-day follow-up, provider-named reminder, Day 21 reactivation, and status exclusions.',
         proof: 'Follow-up timing controlled when to nurture, remind, suppress, or reactivate based on CRM state.',
         contents: ['new lead', '2-day follow-up', 'provider-named reminder', 'Day 21 reactivation', 'status exclusions'],
         visualAssets: [

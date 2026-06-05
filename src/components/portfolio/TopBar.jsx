@@ -69,7 +69,7 @@ export default function TopBar() {
           </div>
           <span className="pl-5 text-[9px] text-[#11100d]/36 lg:pl-0">Design Technologist</span>
           <span className="max-w-[360px] pl-5 text-[9px] leading-4 text-[#11100d]/36 lg:pl-0">
-            Product-minded creative strategist for brand, growth, and AI systems.
+            Product-minded design technologist building brand, growth, AI, and workflow systems.
           </span>
         </div>
         {/* Mobile-only: résumé + contact always visible */}
@@ -155,7 +155,7 @@ export default function TopBar() {
               Undone Design
             </span>
             <span className="mt-1 block text-[11px] leading-4 text-[#11100d]/42">
-              Design work, packaging, and visual systems
+              Design work, systems, and proof-backed execution
             </span>
           </a>
         </div>

@@ -3,7 +3,7 @@ import React from 'react'
 const SYSTEM_OBJECTS = {
   mirror: {
     title: 'Signal Inspector',
-    purpose: 'Turns low-effort self-reporting into calm product logic.',
+    purpose: 'Turns mood, sleep, clarity, and context inputs into readable states and gentle next moves.',
     flow: ['Input', 'Normalize', 'Match', 'Explain', 'Respond'],
     contrast: {
       leftLabel: 'Input',
@@ -13,9 +13,9 @@ const SYSTEM_OBJECTS = {
     },
   },
   'smooth-md-growth-os': {
-    title: 'Clinic Growth OS',
-    purpose: 'Connects brand clarity, service hierarchy, consult path, CRM state, lifecycle routing, and campaign reads.',
-    flow: ['Service', 'Position', 'Offer', 'Consult', 'CRM', 'Lifecycle', 'Read'],
+    title: 'Clinic Growth System',
+    purpose: 'Connects service hierarchy, offers, Instagram proof, consult path, CRM state, follow-up, and campaign reads.',
+    flow: ['Service', 'Offer', 'Proof', 'Consult', 'CRM', 'Follow-up', 'Read'],
     contrast: {
       leftLabel: 'Before',
       left: ['Scattered service promos', 'Consult and follow-up disconnected'],
@@ -24,9 +24,9 @@ const SYSTEM_OBJECTS = {
     },
   },
   'meta-airtable-dashboard': {
-    title: 'Reporting Layer',
-    purpose: 'Connects Meta spend, Airtable lead state, booking behavior, and revenue confidence.',
-    flow: ['Meta', 'Leads_Master', 'CRM State', 'Booking', 'Revenue', 'Decision'],
+    title: 'Booking + Revenue Reporting',
+    purpose: 'Connects Meta spend, Airtable lead records, CRM status, booking behavior, and revenue confidence.',
+    flow: ['Meta', 'Leads_Master', 'CRM State', 'Booking', 'Revenue', 'Action'],
     contrast: {
       leftLabel: 'Before',
       left: ['Spend and leads in Meta', 'CRM and revenue downstream'],
@@ -35,14 +35,14 @@ const SYSTEM_OBJECTS = {
     },
   },
   'snip-provider-pipeline': {
-    title: 'Provider Pipeline',
-    purpose: 'Turns manual provider sourcing into a quality-checked workflow.',
+    title: 'Provider Profile Workflow',
+    purpose: 'Turns manual provider research into structured profile folders with validation gates.',
     flow: ['Source', 'Enrich', 'Validate', 'Organize', 'Publish'],
     contrast: {
       leftLabel: 'Before',
       left: ['Repeated search', 'Manual asset cleanup'],
       rightLabel: 'After',
-      right: ['Structured profiles', 'Review-ready assets'],
+      right: ['Structured profiles', 'Validated assets'],
     },
   },
   'guardrail-hr': {
@@ -57,14 +57,14 @@ const SYSTEM_OBJECTS = {
     },
   },
   'multi-brand-retention': {
-    title: 'Lifecycle Router',
-    purpose: 'Turns mixed lead intent into service-specific follow-up.',
+    title: 'Follow-Up Router',
+    purpose: 'Routes follow-up by brand, service interest, source, CRM status, and timing.',
     flow: ['Source', 'Intent', 'Service', 'Timing', 'Message', 'Booking'],
     contrast: {
       leftLabel: 'Before',
-      left: ['Generic promo rhythm', 'Same follow-up for every lead'],
+      left: ['Generic email rhythm', 'Same follow-up for every lead'],
       rightLabel: 'After',
-      right: ['Relevant timing', 'Service-specific messaging'],
+      right: ['Relevant timing', 'Service-specific follow-up'],
     },
   },
 }

@@ -39,7 +39,7 @@ export const metaAirtableReceiptVisuals = {
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
     claim: 'Proves the shared lead record carried source, intent, CRM state, booking behavior, outcome, and attribution fields together.',
-    operationalSignal: 'Meta Lead Form context and CRM Status Updates were normalized into one Leads_Master record that downstream attribution could read.',
+    operationalSignal: 'Meta Lead Form context and CRM status updates were normalized into one Leads_Master record for downstream attribution.',
     receiptBodyType: 'airtableSchemaMap',
     preview: {
       rows: [
@@ -71,7 +71,7 @@ export const metaAirtableReceiptVisuals = {
       downstreamUsage: ['Campaign_Performance', 'Revenue_Attribution', 'Decision Dashboard UI', 'Manual Review Queue']
     },
     footerNote:
-      'One lead record carried source, booking, outcome, and attribution context together instead of scattering acquisition and revenue evidence across disconnected systems.'
+      'One lead record carried source, booking, outcome, and attribution context together instead of scattering acquisition and revenue evidence across separate tools.'
   },
   'meta-campaign-performance-logic': {
     receiptNumber: '02',
@@ -80,7 +80,7 @@ export const metaAirtableReceiptVisuals = {
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
     claim: 'Proves campaign performance was evaluated through downstream behavior, not just spend, leads, or CPL.',
-    operationalSignal: 'Campaign reads combined Meta inputs with booked, arrived, converted, and revenue signals so decisions did not stop at lead volume.',
+    operationalSignal: 'Campaign reads combined Meta inputs with booked, arrived, converted, and revenue signals so decisions did not stop at lead volume or CPL.',
     receiptBodyType: 'campaignFormulaSheet',
     preview: {
       formulas: ['CPL', 'Booked', 'Show', 'Convert', 'ROAS'],
@@ -160,7 +160,7 @@ export const metaAirtableReceiptVisuals = {
       ]
     },
     footerNote:
-      'Campaign performance was interpreted as a model of lead quality, booking movement, and revenue context, not a platform metric screenshot.'
+      'Campaign performance was read through lead quality, booking movement, and revenue context, not only a platform metric screenshot.'
   },
   'meta-revenue-attribution-model': {
     receiptNumber: '03',
@@ -231,7 +231,7 @@ export const metaAirtableReceiptVisuals = {
       ]
     },
     footerNote:
-      'Attribution was handled as a confidence path with review conditions, not as a fake precision machine.'
+      'Attribution used confidence levels and review conditions instead of pretending every revenue event mapped perfectly.'
   },
   'meta-decision-dashboard-ui': {
     receiptNumber: '04',
@@ -240,7 +240,7 @@ export const metaAirtableReceiptVisuals = {
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
     claim: 'Proves scattered campaign, CRM, and revenue signals became action categories like scale, maintain, review, and fix tracking.',
-    operationalSignal: 'The interface organized scale, maintenance, review, and tracking repair actions from the same underlying campaign evidence.',
+    operationalSignal: 'The interface grouped scale, maintain, review, and tracking-repair actions from the same campaign evidence.',
     receiptBodyType: 'decisionQueueConsole',
     preview: {
       sections: [
@@ -303,7 +303,7 @@ export const metaAirtableReceiptVisuals = {
       ]
     },
     footerNote:
-      'The system translated Meta, Airtable, CRM, and revenue context into operational decisions instead of passive reporting.'
+      'The dashboard translated Meta, Airtable, CRM, and revenue context into next actions instead of passive reporting.'
   }
 };
 

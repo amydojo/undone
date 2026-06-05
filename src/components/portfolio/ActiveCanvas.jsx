@@ -6,12 +6,12 @@ import ProfileStrip from "./ProfileStrip";
 import OverviewArtifact from "./OverviewArtifact";
 
 const DECODER_LINES = {
-  mirror: 'emotional inputs → usable product logic.',
-  'smooth-md-growth-os': 'scattered clinic marketing → repeatable growth infrastructure.',
-  'meta-airtable-dashboard': 'ad spend → booking behavior → revenue decisions.',
-  'snip-provider-pipeline': '200+ profiles. one repeatable sourcing system.',
+  mirror: 'mood, sleep, clarity, and context → readable product states.',
+  'smooth-md-growth-os': 'scattered clinic marketing → reusable service, CRM, and campaign logic.',
+  'meta-airtable-dashboard': 'ad spend → booking behavior → revenue-informed decisions.',
+  'snip-provider-pipeline': 'provider records → validated profiles → handoff folders.',
   'guardrail-hr': '22 questions. one risk score. clearer next steps.',
-  'multi-brand-retention': 'lead intent routed into the right next message.',
+  'multi-brand-retention': 'brand, service, and status → the right follow-up path.',
 };
 
 export default function ActiveCanvas({ record, mode, openWorkspace }) {
@@ -57,7 +57,7 @@ export default function ActiveCanvas({ record, mode, openWorkspace }) {
                   ))}
                 </div>
                 <h1 className="mt-5 w-full max-w-[880px] text-[44px] font-normal leading-[1.00] tracking-[-0.035em] text-[#11100d] [text-wrap:balance] lg:text-[56px] xl:text-[72px]">
-                  {mode === "proof" ? record.title : record.thesis}
+                  {record.headline ?? record.title}
                 </h1>
                 {DECODER_LINES[record.slug] && (
                   <p className="mt-4 max-w-[640px] text-[22px] leading-[1.3] tracking-[-0.02em] text-[#11100d]/76 lg:text-[26px]">

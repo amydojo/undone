@@ -5,7 +5,7 @@ export const multiBrandRetentionReceiptVisuals = {
     type: 'Lifecycle router',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    claim: 'Proves welcome, service interest, abandonment-style, and weekly educational promo paths were structured as one lifecycle router.',
+    claim: 'Proves welcome, service interest, abandonment-style, and weekly educational promo paths were routed by source, intent, service, timing, and booking readiness.',
     operationalSignal: 'Website leads, Meta leads, consult inquiries, and abandoned interest signals were separated by source, intent, service, timing, message, and booking readiness.',
     receiptBodyType: 'lifecycleFlowMap',
     preview: {
@@ -60,7 +60,7 @@ export const multiBrandRetentionReceiptVisuals = {
       ]
     },
     footerNote:
-      'Lifecycle messaging was organized as a routing system across source, intent, service, timing, message, and booking readiness.'
+      'Lifecycle messaging was organized around source, intent, service, timing, message, and booking readiness.'
   },
   'multi-brand-mailchimp-routing-map': {
     receiptNumber: '02',
@@ -68,7 +68,7 @@ export const multiBrandRetentionReceiptVisuals = {
     type: 'CRM routing map',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    claim: 'Proves brand, service, source, CRM status, lead intent, and follow-up state were sortable routing inputs.',
+    claim: 'Proves brand, service, source, CRM status, lead intent, and follow-up state were usable routing inputs.',
     operationalSignal: 'Smooth MD, Dr. Vigor, Dr. Neo, Dr. Food, Dr. Freeze, and Dr. Sculpt leads were kept readable through brand tags, service tags, source labels, CRM status, and follow-up state.',
     receiptBodyType: 'mailchimpRoutingMap',
     preview: {
@@ -94,7 +94,7 @@ export const multiBrandRetentionReceiptVisuals = {
       exclusionLogic: ['already booked', 'converted or closed', 'wrong brand tag', 'missing service intent']
     },
     footerNote:
-      'Multi-brand nurture became sortable operations logic instead of one shared email list with loose labels.'
+      'Multi-brand nurture became sortable routing logic instead of one shared email list with loose labels.'
   },
   'multi-brand-follow-up-timing-protocol': {
     receiptNumber: '03',
@@ -102,8 +102,8 @@ export const multiBrandRetentionReceiptVisuals = {
     type: 'Timing rules',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    claim: 'Proves timing was handled as operational rules: 2-day follow-up, provider-named reminder, Day 21 reactivation, and status exclusions.',
-    operationalSignal: 'Follow-up timing was treated as part of the system logic, with status-based exclusions so booked or closed leads did not receive the wrong prompt.',
+    claim: 'Proves timing was handled with clear rules: 2-day follow-up, provider-named reminder, Day 21 reactivation, and status exclusions.',
+    operationalSignal: 'Follow-up timing used status-based exclusions so booked or closed leads did not receive the wrong prompt.',
     receiptBodyType: 'followUpTimingRules',
     preview: {
       rules: ['new lead', '2-day', 'provider name', 'Day 21'],
@@ -141,7 +141,7 @@ export const multiBrandRetentionReceiptVisuals = {
       handoffs: ['Mailchimp tag', 'Airtable status', 'front desk follow-up', 'campaign retargeting']
     },
     footerNote:
-      'Timing became a controlled part of lifecycle logic, not just a calendar note inside campaign copy.'
+      'Timing became part of the routing rules, not just a calendar note inside campaign copy.'
   },
   'multi-brand-email-production-system': {
     receiptNumber: '04',
@@ -175,7 +175,7 @@ export const multiBrandRetentionReceiptVisuals = {
       reusableFor: ['welcome flow', 'service interest flow', 'weekly promo', 'reactivation message']
     },
     footerNote:
-      'Email work was built as reusable lifecycle infrastructure with production constraints, not one-off promotional HTML.'
+      'Email work used reusable lifecycle modules with production constraints, not one-off promotional HTML.'
   }
 };
 
