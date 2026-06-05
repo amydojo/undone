@@ -1,5 +1,5 @@
 export function resolvePublicSrc(src) {
-  if (!src?.startsWith("/")) return src;
+  if (!src || !src.startsWith("/")) return src;
 
   const base = import.meta.env.BASE_URL || "/";
   if (base === "/") return src;

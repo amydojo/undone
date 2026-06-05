@@ -64,7 +64,7 @@ function getImageFrameClass({ layout, role, isSideBySide, display }) {
   return "aspect-[1.15/1]";
 }
 
-function getDefaultPosition({ layout, role, display }) {
+function getDefaultPosition({ role, display }) {
   if (display === "brandSplit") {
     return "center top";
   }
@@ -73,7 +73,7 @@ function getDefaultPosition({ layout, role, display }) {
     return role === "primary" ? "left top" : "center top";
   }
 
-  if (layout === "single") {
+  if (display === "productSingle") {
     return "center 38%";
   }
 
@@ -87,7 +87,6 @@ function getImageStyle(image, visual) {
       image.position ??
       visual.position ??
       getDefaultPosition({
-        layout: visual.layout,
         role: image.role,
         display: visual.display,
       }),
