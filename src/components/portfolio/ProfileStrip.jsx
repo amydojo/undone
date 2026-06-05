@@ -20,7 +20,10 @@ export default function ProfileStrip({ className }) {
 
   async function copyEmail() {
     try {
-      if (!navigator.clipboard?.writeText) return;
+      if (!navigator.clipboard?.writeText) {
+        window.location.href = `mailto:${profile.contact}`;
+        return;
+      }
       await navigator.clipboard.writeText(profile.contact);
       setCopied(true);
     } catch {
