@@ -146,7 +146,7 @@ export const records = [
     status: 'prototype',
     timeline: '2024',
     accent: '#c7b2ff',
-    oneLine: 'I designed a prototype that turns mood, sleep, clarity, and context inputs into readable states and gentle next steps.',
+    oneLine: 'Mood, sleep, clarity, and context become readable states and gentle next steps.',
     overviewVisual: {
       label: 'PRODUCT SURFACE',
       caption: 'Product surface: check-in signals translated into a readable weather field.',
@@ -163,33 +163,33 @@ export const records = [
     role: 'Product logic and component QA designer',
     tools: ['Figma', 'Storybook', 'React', 'Replit', 'localStorage', 'AI workflows'],
     hiringTranslation:
-      'This case is relevant to design technologist and creative technologist roles because it demonstrates interface logic for sensitive contexts, component state governance, and usable product feedback systems.',
+      'This case is relevant to design technologist and creative technologist roles because it demonstrates product logic for sensitive contexts, component state coverage, QA thinking, and prototype implementation.',
     metrics: [
       { value: '8', label: 'signal states' },
       { value: '10', label: 'test scenarios' },
       { value: '12', label: 'responsive states' }
     ],
-    path: ['check in', 'normalize', 'detect', 'explain', 'suggest', 'learn'],
-    signal: "People's emotional check-ins are messy, and many wellness tools either flatten that mess into vague labels or turn it into a performance loop.",
-    system: 'Mirror turns mood, sleep, clarity, and context inputs into detected states, explains why a state appeared, compares similar days, and ranks gentle next moves based on feedback.',
-    owned: ['interaction model', 'state taxonomy', 'component QA workflow', 'prototype logic', 'visual direction'],
-    nextProof: ['Add Storybook component state screenshot', 'Add debug overlay screenshot', 'Add product state flow map'],
+    path: ['check in', 'normalize', 'read state', 'explain', 'suggest', 'test'],
+    signal: 'People do not always know what they feel. A check-in can include a mood word, poor sleep, low clarity, and a stressful context all at once.',
+    system: 'Mirror turns those messy inputs into readable states, explains the reason in plain language, and offers a gentle next step without pretending to diagnose the user.',
+    owned: ['interaction model', 'state taxonomy', 'product logic', 'component QA workflow', 'prototype implementation', 'visual direction'],
+    nextProof: ['Signal Interpretation Engine', 'Body Weather State System', 'Debug Overlay + Test Bench', 'Storybook Component Environment'],
     decisions: [
-      { label: 'constraint', body: 'Sensitive emotional context with prototype-level engineering limits.' },
-      { label: 'move', body: 'Prioritize calm feedback over gamified progress.' },
-      { label: 'tradeoff', body: 'Less novelty, more trust and legibility.' },
-      { label: 'principle', body: 'Make the system understandable before making it expressive.' }
+      { label: 'constraint', body: 'The product handles sensitive self-reporting, but it is a prototype and should never imply medical certainty.' },
+      { label: 'move', body: 'Translate mood, sleep, clarity, and context into a readable state, a plain explanation, and one low-friction next step.' },
+      { label: 'tradeoff', body: 'Less novelty and fewer proof objects so the product logic is easier to understand quickly.' },
+      { label: 'principle', body: 'Make the system readable, testable, and gentle before making it expressive.' }
     ],
     receipts: [
       {
         id: 'signal-interpretation-map',
         testId: 'mirror-signal-interpretation-map',
-        name: 'Signal Interpretation Map',
-        format: 'Logic diagram',
+        name: 'Signal Interpretation Engine',
+        format: 'logic diagram',
         status: 'ready',
-        claim: 'Proves Mirror converts raw emotional inputs into defined body weather states with a clear priority order.',
-        proof: 'Normalized signal ranges, priority resolver, body weather state, confidence label, and gentle next move.',
-        contents: ['raw inputs', 'normalized ranges', 'priority resolver', 'body weather state', 'confidence label', 'gentle next move'],
+        claim: 'Proves Mirror turns mood, sleep, clarity, and tension/context into readable product states before any suggestion is shown.',
+        proof: 'Input model, normalization, state detection order, confidence language, similar-day context, and one gentle next move in one logic diagram.',
+        contents: ['mood', 'sleep', 'clarity', 'tension/context', 'normalization', 'state detection', 'confidence', 'gentle next move'],
         visualAssets: [
           {
             kind: 'component',
@@ -199,31 +199,14 @@ export const records = [
         artifacts: []
       },
       {
-        id: 'check-in-data-model',
-        testId: 'mirror-check-in-data-model',
-        name: 'Check In Data Model',
-        format: 'Data schema',
-        status: 'ready',
-        claim: 'Proves the product has structured inputs rather than vague mood journaling.',
-        proof: 'Field map for signals, context profile, reflection note, and mirror_checkins storage.',
-        contents: ['energy', 'tension', 'clarity', 'sleep', 'contextProfile', 'note', 'mirror_checkins'],
-        visualAssets: [
-          {
-            kind: 'component',
-            componentKey: 'check-in-data-model'
-          }
-        ],
-        artifacts: []
-      },
-      {
         id: 'body-weather-state-system',
         testId: 'mirror-body-weather-state-system',
         name: 'Body Weather State System',
-        format: 'State model',
+        format: 'product state model',
         status: 'ready',
-        claim: 'Proves the product has a defined emotional state language and not random mood labels.',
-        proof: 'Eight body weather states with trigger pattern, user meaning, and interaction tone.',
-        contents: ['Frayed', 'Compressed', 'Sparked', 'Clear', 'Fog Forming', 'Drifting', 'Restoring', 'Settled'],
+        claim: 'Proves the product has a human-readable mental model instead of random mood labels.',
+        proof: 'Weather Field surface, state labels, confidence/texture language, interpretation copy, and non-diagnostic tone.',
+        contents: ['Weather Field', 'Settled', 'Frayed', 'Drifting', 'confidence language', 'interpretation copy', 'gentle tone'],
         visualAssets: [
           {
             kind: 'component',
@@ -233,65 +216,14 @@ export const records = [
         artifacts: []
       },
       {
-        id: 'similar-days-matcher',
-        testId: 'mirror-similar-days-matcher',
-        name: 'Similar Days Matcher',
-        format: 'Pattern matching trace',
-        status: 'ready',
-        claim: "Proves Mirror can compare today's signals against previous check-ins and surface useful memory.",
-        proof: "Ranked match trace using today's fingerprint, overlap criteria, and mirror_checkins history.",
-        contents: ['current check-in', 'mirror_checkins', 'signal overlap', 'context overlap', 'ranked similar days', 'helpful past actions'],
-        visualAssets: [
-          {
-            kind: 'component',
-            componentKey: 'similar-days-matcher'
-          }
-        ],
-        artifacts: []
-      },
-      {
-        id: 'gentle-next-move-ranking',
-        testId: 'mirror-gentle-next-move-ranking',
-        name: 'Gentle Next Move Ranking',
-        format: 'Recommendation logic',
-        status: 'ready',
-        claim: 'Proves suggestions are not random wellness advice. They are sorted by state, signal fit, and past feedback.',
-        proof: 'Internal ranking ledger for candidate moves, triggers, friction, feedback weight, and final order.',
-        contents: ['state fit', 'signal match', 'prior feedback', 'friction level', 'suggestion order'],
-        visualAssets: [
-          {
-            kind: 'component',
-            componentKey: 'gentle-next-move-ranking'
-          }
-        ],
-        artifacts: []
-      },
-      {
-        id: 'feedback-memory-loop',
-        testId: 'mirror-feedback-memory-loop',
-        name: 'Feedback Memory Loop',
-        format: 'Adaptive behavior log',
-        status: 'ready',
-        claim: 'Proves the product can learn which suggestions help without needing a heavy account system.',
-        proof: 'Suggestion response loop stored in mirror_feedback and applied to future ranking.',
-        contents: ['suggestion shown', 'user response', 'mirror_feedback', 'future ranking adjusted', 'similar days'],
-        visualAssets: [
-          {
-            kind: 'component',
-            componentKey: 'feedback-memory-loop'
-          }
-        ],
-        artifacts: []
-      },
-      {
         id: 'debug-overlay-test-bench',
         testId: 'mirror-debug-overlay-test-bench',
-        name: 'Debug Overlay Test Bench',
-        format: 'QA console',
+        name: 'Debug Overlay + Test Bench',
+        format: 'QA artifact',
         status: 'ready',
         claim: 'Proves the system was testable and inspectable during development.',
-        proof: 'Internal debug overlay with pipeline visibility, demo controls, and state test cases.',
-        contents: ['Debug Overlay', 'triple click current patterns header', 'Esc', 'pipeline visibility', 'suggestion ranking', 'feedback store'],
+        proof: 'Scenario matrix with inputs, expected state, actual state, confidence/pass result, similar-day checks, suggestion ranking, and feedback store visibility.',
+        contents: ['test scenarios', 'expected state', 'actual state', 'confidence', 'pass/fail', 'similar-day checks', 'feedback store'],
         visualAssets: [
           {
             kind: 'component',
@@ -304,11 +236,11 @@ export const records = [
         id: 'storybook-component-environment',
         testId: 'mirror-storybook-component-environment',
         name: 'Storybook Component Environment',
-        format: 'Component QA',
+        format: 'component catalog',
         status: 'ready',
-        claim: 'Proves the product interface was broken into reusable, inspectable components and documented states.',
-        proof: 'Static Storybook coverage matrix for primitives, data display, product patterns, QA, and pages.',
-        contents: ['SignalSparkline', 'BodyWeatherHero', 'SimilarDays', 'GentleNextMove', 'DebugPanel', 'MSW', 'Vitest', 'Playwright prepared'],
+        claim: 'Proves the interface was broken into reusable components with visible variants and interaction states.',
+        proof: 'Component catalog for check-in inputs, weather surfaces, similar-day memory, gentle next move feedback, debug panels, and page states.',
+        contents: ['CheckIn', 'BodyWeatherHero', 'SimilarDays', 'GentleNextMove', 'DebugPanel', 'interaction states', 'story coverage'],
         visualAssets: [
           {
             kind: 'component',

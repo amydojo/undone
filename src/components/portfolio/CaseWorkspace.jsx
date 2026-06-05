@@ -33,13 +33,13 @@ const CASE_COPY_BY_SLUG = {
   mirror: {
     headline: 'Turning emotional check-ins into product logic',
     summary:
-      'I designed a prototype that turns mood, sleep, clarity, and context inputs into readable states and gentle next steps.',
+      'Mood, sleep, clarity, and context become readable states and gentle next steps.',
     problem:
-      "People's emotional check-ins are messy. Many wellness tools either return vague mood labels or add pressure through streaks and scores.",
-    systemIntro: 'Mirror turns those inputs into states, explains why a state was detected, compares similar days, and ranks helpful next moves based on feedback.',
+      'People do not always know what they feel. A check-in may be part mood, part bad sleep, part low clarity, and part stressful context. Many wellness tools flatten that into vague labels or pressure-heavy scores.',
+    systemIntro: 'Mirror turns those inputs into readable states, explains why a state appeared, and suggests one gentle next step without pretending to diagnose the user.',
     designMove:
-      'I treated emotional UX as product logic, not mood decoration. The interface needed to translate messy self-reporting into something calm, explainable, and useful without turning self-awareness into another performance loop.',
-    outcomeIntro: 'The product became clearer, calmer, and easier to trust when the user needed support most.'
+      'I treated the check-in as product logic: inputs, interpretation, confidence, explanation copy, and component states all had to be inspectable and calm.',
+    outcomeIntro: 'The product became easier to understand quickly because the logic, state language, suggestions, and test surfaces were visible.'
   },
   'meta-airtable-dashboard': {
     headline: 'Connecting ad spend to booking and revenue signals',
@@ -97,11 +97,11 @@ const SYSTEM_MODEL_BY_SLUG = {
     { label: 'performance read', meaning: 'Read campaign results through lead conversion lift, offer-test ROAS, booking behavior, and follow-up state instead of isolated creative output.' }
   ],
   mirror: [
-    { label: 'input signals', meaning: 'Capture energy, tension, clarity, and sleep with low-effort check-ins.' },
+    { label: 'check-in signals', meaning: 'Capture mood, sleep, clarity, and tension or context with low-effort inputs.' },
     { label: 'normalization', meaning: 'Translate self-reports into comparable ranges without fake medical precision.' },
-    { label: 'state detection', meaning: 'Map recurring signal combinations to calm, human-readable states.' },
-    { label: 'plain explanation', meaning: 'Explain why the reading appeared and which signals contributed most.' },
-    { label: 'next move ranking', meaning: 'Rank one grounded action using state fit, signal fit, and past feedback.' }
+    { label: 'state reading', meaning: 'Map recurring signal combinations to readable states like Settled, Frayed, Drifting, and Restoring.' },
+    { label: 'gentle next move', meaning: 'Offer one low-friction action using state fit, signal fit, and lightweight feedback.' },
+    { label: 'test surface', meaning: 'Expose scenarios, expected states, component variants, and interaction states through debug logic and Storybook.' }
   ],
   'meta-airtable-dashboard': [
     { label: 'Meta campaign data', meaning: 'Preserve spend, lead volume, campaign, ad set, ad name, and form context from the acquisition source.' },
@@ -141,8 +141,8 @@ const PROBLEM_CONTEXT_BY_SLUG = {
     after: ['shared service hierarchy and consult path', 'repeatable offer logic and campaign launch kit', 'Instagram proof connected to lead follow-up', 'lifecycle routing from source to retention', 'CRM status logic connected to performance reads']
   },
   mirror: {
-    before: ['messy emotional inputs', 'vague mood labels', 'pressure loops from streak-oriented UX'],
-    after: ['state detection from mood, sleep, clarity, and context', 'plain explanation for why a state appeared', 'similar days and next moves ranked by feedback']
+    before: ['messy emotional inputs', 'unclear mood labels', 'pressure loops from streak-oriented UX', 'hidden logic that was hard to test'],
+    after: ['mood, sleep, clarity, and context translated into readable states', 'plain explanation for why a state appeared', 'one gentle next step without diagnosis', 'debug and Storybook coverage for state behavior']
   },
   'meta-airtable-dashboard': {
     before: ['spend and lead volume isolated in Meta Ads', 'lead and CRM state split across Airtable updates', 'booking, conversion, and revenue signals downstream without a decision path'],
@@ -170,9 +170,9 @@ const OUTCOME_BY_SLUG = {
     'Campaign reads tied creative and offer performance to lead conversion lift, 3.2x offer-test ROAS, booking behavior, and follow-up context.'
   ],
   mirror: [
-    'State detection made emotional check-ins readable without turning reflection into a performance loop.',
-    'Component behavior and state logic were production-oriented, not just conceptual screens.',
-    'The product could explain why a reading appeared, compare similar days, and suggest one grounded next action.'
+    'State detection made messy check-ins readable without turning reflection into a performance loop.',
+    'The product could explain why a reading appeared and suggest one grounded next action without claiming diagnosis.',
+    'Debug logic and Storybook components made the state behavior testable instead of purely conceptual.'
   ],
   'meta-airtable-dashboard': [
     'The shared lead model gave campaign reports source, intent, CRM state, booking behavior, outcome, and attribution context.',
@@ -198,7 +198,7 @@ const OUTCOME_BY_SLUG = {
 }
 
 const OUTCOME_INTRO_BY_SLUG = {
-  mirror: 'The product logic made emotional signal feedback calmer, clearer, and more actionable.',
+  mirror: 'The product logic made check-in feedback calmer, clearer, and easier to test.',
   'meta-airtable-dashboard': 'The reporting layer created a tighter bridge between marketing signals, CRM movement, and business decisions.',
   'snip-provider-pipeline': 'The workflow reduced manual overhead and improved quality consistency in production handoff.',
   'multi-brand-retention': 'Follow-up became easier to coordinate across services, brands, and intent levels.'

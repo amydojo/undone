@@ -184,9 +184,9 @@ function Label({ children, className = "" }) {
   );
 }
 
-function StatusPill({ children }) {
+function StatusPill({ children, dark = false }) {
   return (
-    <span className="inline-flex shrink-0 items-center gap-1.5 border-l border-[#11100d]/12 pl-2 text-[9px] uppercase tracking-[0.12em] text-[#11100d]/42">
+    <span className={`inline-flex shrink-0 items-center gap-1.5 border-l pl-2 text-[9px] uppercase tracking-[0.12em] ${dark ? "border-[#f7f1e7]/14 text-[#f7f1e7]/48" : "border-[#11100d]/12 text-[#11100d]/42"}`}>
       <AccentDot />
       {children}
     </span>
@@ -236,36 +236,44 @@ function StrengthDots({ strength = 1, dark = false }) {
 }
 
 function MiniLogicMap({ preview = {} }) {
-  const nodes = preview.flow ?? ["inputs", "normalize", "resolver", "output"];
+  const inputs = preview.inputs ?? ["mood", "sleep", "clarity", "context"];
 
   return (
-    <div className="space-y-2 py-0.5">
-      <div className="grid grid-cols-[1fr_10px_1fr_10px_1.15fr_10px_1fr] items-center gap-1">
-        {nodes.map((node, index) => (
-          <React.Fragment key={node}>
-            {index > 0 && <span className="h-px bg-[#11100d]/18" aria-hidden="true" />}
-            {node === "resolver" ? (
-              <div className="min-w-0 rounded-[8px] border border-[#11100d]/12 bg-[#fffaf1] px-1.5 py-1.5 text-center">
-                <div className="text-[8px] leading-3 text-[#11100d]/60">resolver</div>
-                <div className="mt-1 grid grid-cols-3 gap-0.5">
-                  {[1, 2, 3].map((rank) => (
-                    <span key={rank} className="rounded-[4px] border border-[#11100d]/10 bg-[#f7f1e7] py-0.5 font-mono text-[7px] tabular-nums text-[#11100d]/38">
-                      {rank}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <span className="min-w-0 rounded-[7px] border border-[#11100d]/10 bg-[#f7f1e7] px-1.5 py-1.5 text-center text-[8px] leading-3 text-[#11100d]/58">
-                {node}
-              </span>
-            )}
-          </React.Fragment>
-        ))}
+    <div className="py-0.5">
+      <div className="relative grid min-h-[116px] grid-cols-[46px_18px_24px_18px_1fr] items-center gap-1.5">
+        <span className="absolute left-[48px] right-[76px] top-1/2 h-px bg-[#11100d]/14" aria-hidden="true" />
+        <span className="absolute right-[71px] top-1/2 -mt-[3px] h-1.5 w-1.5 rotate-45 border-r border-t border-[#11100d]/18" aria-hidden="true" />
+        <div className="space-y-1">
+          {inputs.slice(0, 4).map((input, index) => (
+            <div key={input} className="grid grid-cols-[6px_1fr] items-center gap-1">
+              <span className={index === 1 || index === 3 ? "h-1.5 w-1.5 rounded-full bg-[#c7b2ff]" : "h-1.5 w-1.5 rounded-full bg-[#11100d]/26"} aria-hidden="true" />
+              <span className="truncate text-[8px] leading-3 text-[#11100d]/52">{input}</span>
+            </div>
+          ))}
+        </div>
+
+        <span className="h-px bg-[#11100d]/18" aria-hidden="true" />
+
+        <div className="relative z-[1] flex h-[88px] items-center justify-center border-x border-[#11100d]/12 bg-[#f7f1e7]">
+          <span className="rotate-180 font-mono text-[7px] uppercase tracking-[0.12em] text-[#11100d]/34 [writing-mode:vertical-rl]">
+            normalize
+          </span>
+        </div>
+
+        <span className="h-px bg-[#11100d]/18" aria-hidden="true" />
+
+        <div className="relative z-[1] border border-[#11100d]/12 bg-[#151410] p-2 text-[#f7f1e7]">
+          <div className="text-[7px] uppercase tracking-[0.14em] text-[#f7f1e7]/36">readable state</div>
+          <div className="mt-2 text-[17px] leading-none tracking-[-0.02em] text-[#f7f1e7]">Frayed</div>
+          <div className="mt-2 h-px w-full bg-[#f7f1e7]/12" />
+          <div className="mt-2 text-[8px] leading-3 text-[#f7f1e7]/52">tension + low clarity</div>
+        </div>
       </div>
-      <div className="grid grid-cols-[1fr_1fr] gap-1.5">
-        <div className="rounded-[6px] border border-[#11100d]/8 bg-[#fffaf1] px-2 py-1 text-[8px] text-[#11100d]/42">confidence</div>
-        <div className="rounded-[6px] border border-[#11100d]/8 bg-[#fffaf1] px-2 py-1 text-[8px] text-[#11100d]/42">next move</div>
+
+      <div className="mt-2 grid grid-cols-[1fr_16px_1fr] items-center border-t border-[#11100d]/8 pt-2 text-[8px] uppercase tracking-[0.1em] text-[#11100d]/42">
+        <span className="truncate">explain</span>
+        <span className="text-center text-[#11100d]/22">-&gt;</span>
+        <span className="truncate text-right">next move</span>
       </div>
     </div>
   );
@@ -325,19 +333,33 @@ function MiniRankingPreview({ preview = {} }) {
 
 function MiniCoveragePreview({ rows = [] }) {
   return (
-    <div className="overflow-hidden rounded-[8px] border border-[#11100d]/8 bg-[#fffaf1]">
-      <div className="grid grid-cols-[1fr_48px_28px] border-b border-[#11100d]/8 bg-[#f7f1e7] px-2 py-1 text-[8px] uppercase tracking-[0.1em] text-[#11100d]/34">
-        <span>Component</span>
-        <span>Variants</span>
-        <span>Status</span>
+    <div className="grid min-h-[118px] grid-cols-[52px_1fr] overflow-hidden border border-[#11100d]/10 bg-[#fffaf1]">
+      <div className="border-r border-[#11100d]/8 bg-[#151410] p-1.5 text-[#f7f1e7]">
+        <div className="mb-2 text-[7px] uppercase tracking-[0.14em] text-[#f7f1e7]/36">stories</div>
+        {["Input", "State", "QA"].map((category) => (
+          <div key={category} className="border-t border-[#f7f1e7]/10 py-1 text-[7px] leading-3 text-[#f7f1e7]/58 first:border-t-0">
+            {category}
+          </div>
+        ))}
       </div>
-      {rows.slice(0, 3).map((row) => (
-        <div key={row.component} className="grid grid-cols-[1fr_48px_28px] items-center gap-2 border-b border-[#11100d]/6 px-2 py-1.5 text-[9px] last:border-b-0">
-          <span className="truncate text-[#11100d]/62">{row.component}</span>
-          <span className="truncate text-[#11100d]/36">{row.variants.split(",")[0]}</span>
-          <AccentDot />
+      <div className="bg-[#fffaf1] p-1.5">
+        <div className="border-b border-[#11100d]/8 pb-1 text-[7px] uppercase tracking-[0.1em] text-[#11100d]/34">component coverage</div>
+        <div className="mt-1.5 space-y-1.5">
+          {rows.slice(0, 3).map((row) => (
+            <div key={row.component} className="grid grid-cols-[1fr_34px] items-center gap-2 border-l border-[#11100d]/10 pl-2">
+              <div className="min-w-0">
+                <div className="truncate text-[8px] leading-3 text-[#11100d]/66">{row.component}</div>
+                <div className="mt-1 flex items-center gap-0.5" aria-hidden="true">
+                  {[0, 1, 2].map((index) => (
+                    <span key={index} className={`h-1 w-4 ${index === 0 ? "bg-[#c7b2ff]" : "bg-[#11100d]/14"}`} />
+                  ))}
+                </div>
+              </div>
+              <div className="font-mono text-[7px] leading-3 text-[#11100d]/34">{row.storyCoverage ?? row.statesCovered}</div>
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   );
 }
@@ -413,19 +435,32 @@ function MiniRows({ rows = [] }) {
   );
 }
 
-function MiniStateMatrix({ states = [] }) {
-  const abbreviations = {
-    "Fog Forming": "Fog",
-    Restoring: "Restore"
-  };
+function MiniStateMatrix({ states = [], featuredState }) {
+  const visibleStates = states.slice(0, 4);
 
   return (
-    <div className="grid grid-cols-4 gap-1.5">
-      {states.slice(0, 8).map((state) => (
-        <div key={state} className="flex h-[34px] items-center justify-center rounded-[7px] border border-[#11100d]/9 bg-[#fffaf1] px-1 text-center">
-          <span className="truncate text-[8px] leading-3 text-[#11100d]/62">{abbreviations[state] ?? state}</span>
+    <div className="overflow-hidden border border-[#11100d]/10 bg-[#151410] p-2 text-[#f7f1e7]">
+      <div className="relative flex min-h-[72px] flex-col justify-between overflow-hidden border border-[#f7f1e7]/10 bg-[#211f1a] p-2">
+        <span className="absolute left-1/2 top-2 bottom-2 w-px bg-[#f7f1e7]/6" aria-hidden="true" />
+        <span className="absolute left-3 right-3 top-1/2 h-px bg-[#f7f1e7]/6" aria-hidden="true" />
+        <span className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#c7b2ff]/70" aria-hidden="true" />
+        <span className="text-[7px] uppercase tracking-[0.14em] text-[#f7f1e7]/34">Weather Field</span>
+        <div>
+          <div className="text-[18px] leading-none tracking-[-0.02em] text-[#f7f1e7]">{featuredState ?? visibleStates[0]}</div>
+          <div className="mt-2 flex items-center gap-1.5">
+            <span className="h-px flex-1 bg-[#f7f1e7]/12" />
+            <span className="h-1.5 w-8 bg-[#c7b2ff]" />
+            <span className="h-px flex-1 bg-[#f7f1e7]/12" />
+          </div>
         </div>
-      ))}
+      </div>
+      <div className="mt-1.5 grid grid-cols-4 gap-1">
+        {visibleStates.map((state) => (
+          <span key={state} className="truncate border-t border-[#f7f1e7]/10 px-1 py-1 text-center text-[7px] leading-3 text-[#f7f1e7]/52">
+            {state}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
@@ -434,22 +469,30 @@ function MiniFeedbackLoop({ nodes = [] }) {
   return <MiniFeedbackStepper nodes={nodes} />;
 }
 
-function MiniQaConsole({ rows = [] }) {
-  const labels = rows.length > 0 ? rows : ["trigger", "pipeline", "tests", "pass"];
+function MiniQaConsole({ body }) {
+  const tests = body?.testCases?.slice(0, 3) ?? [];
 
   return (
-    <div className="rounded-[10px] border border-[#11100d]/15 bg-[#151410] p-2.5 font-mono text-[#f7f1e7]">
+    <div className="border border-[#11100d]/15 bg-[#151410] p-2.5 font-mono text-[#f7f1e7]">
       <div className="flex items-center justify-between border-b border-[#f7f1e7]/12 pb-1.5">
         <span className="text-[9px] text-[#f7f1e7]/68">QA test bench</span>
-        <span className="h-1.5 w-1.5 rounded-full bg-[#c7b2ff]" />
+        <span className="text-[8px] uppercase tracking-[0.12em] text-[#c7b2ff]">pass</span>
       </div>
-      <div className="mt-2 space-y-1">
-        {labels.slice(0, 4).map((row, index) => (
-          <div key={row} className="grid grid-cols-[1fr_22px] items-center gap-2 rounded-[5px] border border-[#f7f1e7]/8 bg-[#211f1a] px-1.5 py-1 text-[8px] leading-3 text-[#f7f1e7]/58">
-            <span>{row}</span>
-            <span className="inline-flex items-center justify-end gap-1">
+      <div className="mt-2">
+        <div className="grid grid-cols-[1fr_0.66fr_0.66fr_24px] gap-1 border-b border-[#f7f1e7]/10 pb-1 text-[7px] uppercase tracking-[0.09em] text-[#f7f1e7]/30">
+          <span>scenario</span>
+          <span>exp</span>
+          <span>act</span>
+          <span className="text-right">ok</span>
+        </div>
+        {tests.map((test) => (
+          <div key={test.scenario} className="grid grid-cols-[1fr_0.66fr_0.66fr_24px] gap-1 border-b border-[#f7f1e7]/8 py-1.5 text-[8px] leading-3 last:border-b-0">
+            <span className="truncate text-[#f7f1e7]/58">{test.inputs.split(",")[0]}</span>
+            <span className="truncate text-[#f7f1e7]/50">{test.expected}</span>
+            <span className="truncate text-[#f7f1e7]/70">{test.actual}</span>
+            <span className="flex items-center justify-end gap-1 text-[7px] uppercase tracking-[0.08em] text-[#c7b2ff]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#c7b2ff]" aria-hidden="true" />
-              {index === 3 ? "ok" : ""}
+              pass
             </span>
           </div>
         ))}
@@ -461,9 +504,9 @@ function MiniQaConsole({ rows = [] }) {
 function CompactPreview({ receiptBodyType, preview, body }) {
   if (receiptBodyType === "logicMap") return <MiniLogicMap preview={preview} />;
   if (receiptBodyType === "schemaTable") return <MiniSchemaPreview rows={preview?.rows} groups={preview?.groups} />;
-  if (receiptBodyType === "stateMatrix") return <MiniStateMatrix states={preview?.states} />;
+  if (receiptBodyType === "stateMatrix") return <MiniStateMatrix states={preview?.states} featuredState={preview?.featuredState} />;
   if (receiptBodyType === "feedbackLoop") return <MiniFeedbackLoop nodes={preview?.nodes} />;
-  if (receiptBodyType === "qaConsole") return <MiniQaConsole rows={preview?.rows} />;
+  if (receiptBodyType === "qaConsole") return <MiniQaConsole body={body} />;
 
   if (receiptBodyType === "matcherTrace") {
     return <MiniMatcherTrace matches={body?.matches ?? []} />;
@@ -481,81 +524,118 @@ function CompactPreview({ receiptBodyType, preview, body }) {
 }
 
 function LogicMapBody({ body }) {
+  const stages = [
+    { id: "01", label: "raw signals", value: "mood / sleep / clarity / context" },
+    { id: "02", label: "normalize", value: "compare ranges without medical certainty" },
+    { id: "03", label: "detect state", value: "Frayed" },
+    { id: "04", label: "explain", value: "show why this reading appeared" },
+    { id: "05", label: "next move", value: "offer one low-friction suggestion" }
+  ];
+
   return (
     <div className="space-y-3">
-      <section className="border border-[#11100d]/10 bg-[#fffaf1] p-3">
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-[0.72fr_16px_0.9fr_16px_1.12fr] md:items-stretch">
-          <div className="border-l border-[#11100d]/14 bg-[#f7f1e7]/70 p-3">
-            <Label className="mb-2">Raw inputs</Label>
-            <div className="grid grid-cols-2 gap-1.5">
-              {body.inputs.map((input) => (
-                <div key={input} className="min-h-9 border-b border-[#11100d]/10 bg-[#fffaf1] px-2 py-2 text-[11px] leading-4 text-[#11100d]/66 last:border-b-0">
-                  {input}
-                </div>
-              ))}
+      <section className="overflow-hidden border border-[#11100d]/12 bg-[#151410] text-[#f7f1e7]">
+        <div className="grid grid-cols-1 border-b border-[#f7f1e7]/12 lg:grid-cols-[1fr_210px]">
+          <div className="p-4">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <div className="text-[9px] uppercase tracking-[0.16em] text-[#f7f1e7]/38">Pipeline trace</div>
+                <div className="mt-2 text-[18px] leading-6 text-[#f7f1e7]">Raw check-in to readable state</div>
+              </div>
+              <span className="border-l border-[#f7f1e7]/14 pl-2 text-[9px] uppercase tracking-[0.12em] text-[#f7f1e7]/42">
+                product logic / no diagnosis
+              </span>
             </div>
+
+            <ol className="mt-4 border-y border-[#f7f1e7]/10">
+              {stages.map((stage) => (
+                <li key={stage.id} className="grid grid-cols-[36px_116px_1fr] items-center gap-3 border-b border-[#f7f1e7]/10 py-2 last:border-b-0">
+                  <span className="font-mono text-[9px] tabular-nums text-[#f7f1e7]/30">{stage.id}</span>
+                  <span className="text-[9px] uppercase tracking-[0.13em] text-[#f7f1e7]/40">{stage.label}</span>
+                  <span className={`text-[12px] leading-5 ${stage.label === "detect state" ? "text-[#f7f1e7]" : "text-[#f7f1e7]/62"}`}>
+                    {stage.value}
+                  </span>
+                </li>
+              ))}
+            </ol>
           </div>
 
-          <div className="flex items-center justify-center text-[11px] text-[#11100d]/26 md:py-0" aria-hidden="true">
-            -&gt;
-          </div>
+          <aside className="border-t border-[#f7f1e7]/12 bg-[#211f1a] p-4 lg:border-l lg:border-t-0">
+            <div className="text-[9px] uppercase tracking-[0.15em] text-[#f7f1e7]/36">State output</div>
+            <div className="mt-4 text-[36px] leading-none tracking-[-0.03em] text-[#f7f1e7]">Frayed</div>
+            <div className="mt-4 h-px bg-[#f7f1e7]/12" />
+            <div className="mt-4 grid grid-cols-[78px_1fr] gap-y-2 text-[10px] leading-4">
+              <span className="uppercase tracking-[0.12em] text-[#f7f1e7]/30">Reason</span>
+              <span className="text-[#f7f1e7]/62">high tension + low clarity</span>
+              <span className="uppercase tracking-[0.12em] text-[#f7f1e7]/30">Output</span>
+              <span className="text-[#f7f1e7]/62">explain, then suggest</span>
+            </div>
+          </aside>
+        </div>
 
-          <div className="border-l border-[#11100d]/14 bg-[#f7f1e7]/70 p-3">
-            <Label className="mb-2">Normalized ranges</Label>
+        <div className="grid grid-cols-1 bg-[#fffaf1] text-[#11100d] lg:grid-cols-[0.86fr_1.14fr]">
+          <section className="border-b border-[#11100d]/10 p-3 lg:border-b-0 lg:border-r">
+            <Label className="mb-2">Signal notes</Label>
             <div className="space-y-1.5">
-              {body.ranges.map((range) => (
-                <div key={range.label} className="grid grid-cols-[70px_1fr] gap-2 border-b border-[#11100d]/8 pb-1.5 last:border-b-0 last:pb-0">
-                  <span className="text-[10px] leading-4 text-[#11100d]/68">{range.label}</span>
-                  <span className="min-w-0 text-[10px] leading-4 text-[#11100d]/48">{range.value}</span>
+              {body.inputs.map((input) => (
+                <div key={input.label} className="grid grid-cols-[84px_1fr] gap-2 border-t border-[#11100d]/8 pt-1.5 first:border-t-0 first:pt-0">
+                  <span className="text-[11px] leading-5 text-[#11100d]/66">{input.label}</span>
+                  <span className="text-[11px] leading-5 text-[#11100d]/46">{input.value}</span>
                 </div>
               ))}
             </div>
-          </div>
+          </section>
 
-          <div className="flex items-center justify-center text-[11px] text-[#11100d]/26 md:py-0" aria-hidden="true">
-            -&gt;
-          </div>
-
-          <div className="relative border border-[#11100d]/10 bg-[#fffaf1] p-3">
+          <section className="p-3">
             <div className="mb-2 flex items-center justify-between gap-3">
-              <Label>Priority resolver</Label>
-              <span className="text-[9px] uppercase tracking-[0.12em] text-[#11100d]/34">deterministic</span>
+              <Label>Rule trace</Label>
+              <span className="text-[9px] uppercase tracking-[0.12em] text-[#11100d]/34">plain rule trace</span>
             </div>
-            <div className="relative">
-              <span className="absolute bottom-2 left-[15px] top-2 w-px bg-[#c7b2ff]/70" aria-hidden="true" />
-              <ol className="space-y-1.5">
-                {body.resolver.map((state, index) => (
-                  <li key={state} className="relative grid grid-cols-[32px_1fr] items-center gap-2">
-                    <span className="z-[1] flex h-7 w-7 items-center justify-center border border-[#11100d]/10 bg-[#f7f1e7] font-mono text-[10px] tabular-nums text-[#11100d]/58">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <span className="border-b border-[#11100d]/10 bg-[#f7f1e7] px-2 py-1.5 text-[10px] leading-4 text-[#11100d]/66">
-                      {state}
-                    </span>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </div>
+            <ol className="grid grid-cols-1 gap-x-4 gap-y-1 sm:grid-cols-2">
+              {body.resolver.slice(0, 4).map((entry, index) => (
+                <li key={entry.state} className="grid grid-cols-[28px_1fr] border-t border-[#11100d]/8 pt-1.5 first:border-t-0 first:pt-0 sm:[&:nth-child(2)]:border-t-0 sm:[&:nth-child(2)]:pt-0">
+                  <span className="font-mono text-[10px] tabular-nums text-[#11100d]/30">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <div className="text-[12px] leading-4 text-[#11100d]/72">{entry.state}</div>
+                    <div className="mt-1 text-[10px] leading-4 text-[#11100d]/48">{entry.rule}</div>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
         </div>
       </section>
 
-      <section className="border border-[#11100d]/10 bg-[#f7f1e7] p-3">
-        <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
-          <Label>Output strip</Label>
-          <span className="text-[9px] uppercase tracking-[0.12em] text-[#11100d]/34">state -&gt; confidence -&gt; next move</span>
-        </div>
-        <div className="grid grid-cols-1 overflow-hidden border border-[#11100d]/10 bg-[#fffaf1] md:grid-cols-4">
-          {body.outputs.map((output) => (
-            <div key={output.label} className="border-b border-[#11100d]/8 p-3 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0">
-              <div className="text-[9px] uppercase tracking-[0.12em] text-[#11100d]/36">{output.label}</div>
-              <div className="mt-1 text-[12px] leading-5 text-[#11100d]/68">{output.value}</div>
+      <section className="overflow-hidden border border-[#11100d]/10 bg-[#fffaf1]">
+        <div className="grid grid-cols-1 md:grid-cols-[1.08fr_0.92fr]">
+          <div className="border-b border-[#11100d]/10 p-3 md:border-b-0 md:border-r">
+            <Label className="mb-2">Product response</Label>
+            <div className="space-y-1.5">
+              {body.outputs.map((output) => (
+                <div key={output.label} className="grid grid-cols-[106px_1fr] gap-2 border-t border-[#11100d]/8 pt-1.5 first:border-t-0 first:pt-0">
+                  <span className="text-[9px] uppercase tracking-[0.12em] text-[#11100d]/36">{output.label}</span>
+                  <span className="text-[11px] leading-4 text-[#11100d]/62">{output.value}</span>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {body.foldedLogic && (
+            <div className="p-3">
+              <Label className="mb-2">Supporting proof</Label>
+              <div className="space-y-2">
+                {body.foldedLogic.map((item) => (
+                  <div key={item.label} className="border-t border-[#11100d]/8 pt-2 first:border-t-0 first:pt-0">
+                    <div className="text-[11px] leading-4 text-[#11100d]/70">{item.label}</div>
+                    <p className="mt-0.5 text-[10px] leading-4 text-[#11100d]/50">{item.value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
-        <p className="mt-2 text-[10px] leading-4 text-[#11100d]/48">
-          Normalized signals pass through priority order before a confidence label is shown.
-        </p>
       </section>
     </div>
   );
@@ -652,32 +732,66 @@ function SchemaTableBody({ body }) {
 }
 
 function StateMatrixBody({ body }) {
+  const featured = body.weatherField;
+
   return (
-    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-      {body.states.map((state, index) => (
-        <section key={state.name} className="rounded-[12px] border border-[#11100d]/10 bg-[#fffaf1] p-3">
-          <div className="flex items-start gap-2">
-            <span className="mt-0.5 w-7 shrink-0 font-mono text-[10px] tabular-nums text-[#11100d]/34">
-              {String(index + 1).padStart(2, "0")}
-            </span>
-            <div className="min-w-0">
-              <h4 className="text-[14px] font-medium leading-5 text-[#11100d]">{state.name}</h4>
-              <div className="mt-2 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/38">Input signature</div>
-              <p className="mt-1 text-[11px] leading-5 text-[#11100d]/64">{state.trigger}</p>
+    <div className="space-y-3">
+      {featured && (
+        <section className="grid grid-cols-1 overflow-hidden border border-[#11100d]/12 bg-[#151410] text-[#f7f1e7] md:grid-cols-[0.82fr_1.18fr]">
+          <div className="min-h-[230px] border-b border-[#f7f1e7]/10 bg-[#211f1a] p-4 md:border-b-0 md:border-r">
+            <div className="flex h-full min-h-[198px] flex-col justify-between">
+              <div className="flex items-center justify-between gap-3">
+                <span className="text-[9px] uppercase tracking-[0.16em] text-[#f7f1e7]/42">{featured.label}</span>
+                <span className="border-l border-[#f7f1e7]/14 pl-2 text-[9px] uppercase tracking-[0.12em] text-[#f7f1e7]/48">live state</span>
+              </div>
+              <div>
+                <div className="text-[34px] leading-none tracking-[-0.03em] text-[#f7f1e7]">{featured.state}</div>
+                <div className="mt-5 flex items-center gap-2">
+                  <span className="h-px flex-1 bg-[#f7f1e7]/12" aria-hidden="true" />
+                  <span className="h-1.5 w-24 bg-[#c7b2ff]" aria-hidden="true" />
+                  <span className="h-px flex-1 bg-[#f7f1e7]/12" aria-hidden="true" />
+                </div>
+                <div className="mt-5 grid grid-cols-[92px_1fr] gap-x-3 gap-y-2 border-t border-[#f7f1e7]/10 pt-3 text-[10px] leading-4">
+                  <span className="uppercase tracking-[0.12em] text-[#f7f1e7]/30">Texture</span>
+                  <span className="text-[#f7f1e7]/62">{featured.texture}</span>
+                  <span className="uppercase tracking-[0.12em] text-[#f7f1e7]/30">Confidence</span>
+                  <span className="text-[#f7f1e7]/62">{featured.confidence}</span>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="mt-3 space-y-2 border-t border-[#11100d]/8 pt-3">
-            <div>
-              <div className="text-[9px] uppercase tracking-[0.13em] text-[#11100d]/38">Meaning</div>
-              <p className="mt-1 text-[11px] leading-5 text-[#11100d]/62">{state.meaning}</p>
-            </div>
-            <div className="grid grid-cols-[54px_1fr] gap-2 rounded-[8px] border border-[#11100d]/8 bg-[#f7f1e7] px-2 py-1.5">
-              <span className="text-[9px] uppercase tracking-[0.12em] text-[#11100d]/36">Tone</span>
-              <span className="text-[11px] leading-4 text-[#11100d]/66">{state.tone}</span>
+
+          <div className="p-4">
+            <Label className="text-[#f7f1e7]/38">Interpretation copy</Label>
+            <p className="mt-2 text-[14px] leading-6 text-[#f7f1e7]/74">{featured.interpretation}</p>
+            <div className="mt-5 border-t border-[#f7f1e7]/10 pt-4">
+              <div className="text-[9px] uppercase tracking-[0.13em] text-[#f7f1e7]/36">Gentle next step</div>
+              <p className="mt-1 text-[12px] leading-5 text-[#f7f1e7]/68">{featured.nextMove}</p>
             </div>
           </div>
         </section>
-      ))}
+      )}
+
+      <section className="overflow-hidden border border-[#11100d]/10 bg-[#fffaf1]">
+        <div className="border-b border-[#11100d]/8 bg-[#f7f1e7] px-3 py-2">
+          <Label>State language set</Label>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2">
+          {body.states.map((state) => (
+            <article key={state.name} className="border-b border-[#11100d]/8 px-3 py-2.5 last:border-b-0 sm:border-r sm:[&:nth-child(2n)]:border-r-0">
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <h4 className="text-[13px] font-medium leading-5 text-[#11100d]">{state.name}</h4>
+                  <p className="mt-0.5 text-[10px] leading-4 text-[#11100d]/44">{state.texture}</p>
+                </div>
+                <span className="mt-1 h-px w-8 shrink-0 bg-[#11100d]/18" aria-hidden="true" />
+              </div>
+              <p className="mt-2 text-[11px] leading-5 text-[#11100d]/60">{state.copy}</p>
+              <p className="mt-1.5 border-t border-[#11100d]/8 pt-1.5 text-[10px] leading-4 text-[#11100d]/46">{state.nextMove}</p>
+            </article>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
@@ -868,144 +982,152 @@ function FeedbackLoopBody({ body }) {
 
 function QaConsoleBody({ body }) {
   return (
-    <div className="overflow-hidden rounded-[14px] border border-[#11100d]/15 bg-[#151410] font-mono text-[#f7f1e7]">
-      <div className="grid grid-cols-1 gap-2 border-b border-[#f7f1e7]/12 px-3 py-3 sm:grid-cols-[1fr_auto_auto] sm:items-center">
+    <div className="space-y-3">
+      <section className="overflow-hidden border border-[#11100d]/15 bg-[#151410] font-mono text-[#f7f1e7]">
+      <div className="grid grid-cols-1 gap-2 border-b border-[#f7f1e7]/12 px-3 py-3 sm:grid-cols-[1fr_auto] sm:items-center">
         <div className="min-w-0">
           <div className="text-[12px] leading-5 text-[#f7f1e7]/86">{body.header}</div>
-          <div className="mt-0.5 text-[9px] uppercase tracking-[0.12em] text-[#f7f1e7]/36">inspection bench</div>
+          <div className="mt-0.5 text-[9px] uppercase tracking-[0.12em] text-[#f7f1e7]/36">scenario / expected / actual / result</div>
         </div>
-        <div className="rounded-[8px] border border-[#f7f1e7]/10 bg-[#211f1a] px-2 py-1.5">
-          <span className="block text-[8px] uppercase tracking-[0.12em] text-[#f7f1e7]/30">Trigger</span>
-          <span className="text-[10px] leading-4 text-[#f7f1e7]/62">{body.trigger}</span>
-        </div>
-        <div className="rounded-[8px] border border-[#f7f1e7]/10 bg-[#211f1a] px-2 py-1.5">
-          <span className="block text-[8px] uppercase tracking-[0.12em] text-[#f7f1e7]/30">Close</span>
-          <span className="text-[10px] leading-4 text-[#f7f1e7]/62">{body.close}</span>
+        <div className="grid grid-cols-[1fr_1fr] gap-3 text-[9px] leading-4 text-[#f7f1e7]/42">
+          <span>open: {body.trigger}</span>
+          <span className="text-right">close: {body.close}</span>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-3 p-3 md:grid-cols-[0.86fr_1.14fr]">
-        <section>
-          <div className="mb-2 text-[9px] uppercase tracking-[0.13em] text-[#f7f1e7]/36">Pipeline visibility modules</div>
-          <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2 md:grid-cols-1">
-            {body.sections.map((section, index) => (
-              <div key={section} className="grid grid-cols-[24px_1fr_42px] items-center gap-2 rounded-[8px] border border-[#f7f1e7]/10 bg-[#211f1a] px-2 py-1.5">
-                <span className="font-mono text-[9px] tabular-nums text-[#f7f1e7]/32">{String(index + 1).padStart(2, "0")}</span>
-                <span className="min-w-0 text-[10px] leading-4 text-[#f7f1e7]/62">{section}</span>
-                <span className="text-right text-[9px] text-[#f7f1e7]/38">visible</span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <div className="mb-2 text-[9px] uppercase tracking-[0.13em] text-[#f7f1e7]/36">Compact test cases</div>
-          <div className="overflow-hidden rounded-[10px] border border-[#f7f1e7]/10">
+      <div className="p-3">
+          <div className="overflow-hidden border border-[#f7f1e7]/10">
+            <div className="hidden grid-cols-[1.2fr_0.72fr_0.72fr_58px_46px] gap-2 border-b border-[#f7f1e7]/10 bg-[#211f1a] px-2 py-2 text-[8px] uppercase tracking-[0.12em] text-[#f7f1e7]/32 md:grid">
+              <span>Scenario</span>
+              <span>Expected</span>
+              <span>Actual</span>
+              <span>Conf.</span>
+              <span className="text-right">Result</span>
+            </div>
             {body.testCases.map((test, index) => (
-              <div key={test} className="grid grid-cols-[28px_1fr_54px] items-center gap-2 border-b border-[#f7f1e7]/10 px-2 py-1.5 last:border-b-0">
-                <span className="font-mono text-[9px] tabular-nums text-[#f7f1e7]/30">{String(index + 1).padStart(2, "0")}</span>
-                <span className="min-w-0 text-[10px] leading-4 text-[#f7f1e7]/62">{test}</span>
-                <span className="inline-flex items-center justify-end gap-1.5 text-[9px] text-[#f7f1e7]/48">
+              <div key={test.scenario} className={`grid grid-cols-1 gap-1 border-b border-[#f7f1e7]/10 px-2 py-2 last:border-b-0 md:grid-cols-[1.2fr_0.72fr_0.72fr_58px_46px] md:items-center md:gap-2 ${index === 0 ? "bg-[#211f1a]" : ""}`}>
+                <div className="min-w-0">
+                  <div className="flex items-start gap-2">
+                    <span className="w-5 shrink-0 text-[9px] tabular-nums text-[#f7f1e7]/30">{String(index + 1).padStart(2, "0")}</span>
+                    <div className="min-w-0">
+                      <div className="text-[10px] leading-4 text-[#f7f1e7]/68">{test.scenario}</div>
+                      <div className="mt-0.5 text-[8px] leading-3 text-[#f7f1e7]/34">{test.inputs}</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="text-[10px] leading-4 text-[#f7f1e7]/58">
+                  <span className="mr-1 text-[8px] uppercase tracking-[0.1em] text-[#f7f1e7]/28 md:hidden">Expected</span>
+                  {test.expected}
+                </div>
+                <div className="text-[10px] leading-4 text-[#f7f1e7]/58">
+                  <span className="mr-1 text-[8px] uppercase tracking-[0.1em] text-[#f7f1e7]/28 md:hidden">Actual</span>
+                  {test.actual}
+                </div>
+                <div className="text-[10px] leading-4 text-[#f7f1e7]/46">{test.confidence}</div>
+                <div className="inline-flex items-center gap-1.5 text-[9px] text-[#c7b2ff] md:justify-end">
                   <AccentDot className="h-1.5 w-1.5" />
-                  pass
-                </span>
+                  {test.status}
+                </div>
               </div>
             ))}
           </div>
-        </section>
       </div>
-    </div>
+      </section>
+
+      <section className="grid grid-cols-1 gap-2 border border-[#11100d]/10 bg-[#fffaf1] p-3 md:grid-cols-[1fr_1fr]">
+        <div>
+          <Label className="mb-2">Inspectable modules</Label>
+          <div className="flex flex-wrap gap-x-3 gap-y-1.5">
+            {body.sections.map((section) => (
+              <span key={section} className="border-l border-[#11100d]/12 pl-2 text-[10px] leading-4 text-[#11100d]/52">{section}</span>
+            ))}
+          </div>
+        </div>
+
+        {body.assertions && (
+          <div className="border-t border-[#11100d]/10 pt-3 md:border-l md:border-t-0 md:pl-3 md:pt-0">
+            <Label className="mb-2">Guard checks</Label>
+            <div className="space-y-1">
+              {body.assertions.map((assertion) => (
+                <div key={assertion.label} className="grid grid-cols-[1fr_42px] gap-2 text-[10px] leading-4 text-[#11100d]/56">
+                  <span>{assertion.label}</span>
+                  <span className="text-right text-[#11100d]/40">{assertion.result}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
+      </div>
   );
 }
 
 function CoverageMatrixBody({ body }) {
-  const categoryOrder = ["Primitive", "Data display", "Product pattern", "QA", "Page"];
-  const groupedRows = categoryOrder
+  const categoryOrder = ["Input", "State surface", "Memory", "Action", "QA", "Page"];
+  const extraCategories = body.rows
+    .map((row) => row.category)
+    .filter((category) => !categoryOrder.includes(category));
+  const orderedCategories = [...categoryOrder, ...Array.from(new Set(extraCategories))];
+  const groupedRows = orderedCategories
     .map((category) => ({ category, rows: body.rows.filter((row) => row.category === category) }))
     .filter(({ rows }) => rows.length > 0);
+  const visibleRows = body.rows.slice(0, 6);
 
   return (
-    <div className="space-y-3">
-      <section className="grid grid-cols-1 overflow-hidden rounded-[13px] border border-[#11100d]/10 bg-[#fffaf1] md:grid-cols-3">
-        {body.metadata.map((item) => (
-          <div key={item.label} className="border-b border-[#11100d]/8 px-3 py-2 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0">
-            <div className="text-[9px] uppercase tracking-[0.13em] text-[#11100d]/36">{item.label}</div>
-            <div className="mt-1 text-[11px] leading-5 text-[#11100d]/62">{item.value}</div>
-          </div>
-        ))}
-      </section>
+    <section className="overflow-hidden border border-[#11100d]/12 bg-[#fffaf1]">
+      <div className="grid grid-cols-1 md:grid-cols-[180px_1fr]">
+        <aside className="border-b border-[#11100d]/10 bg-[#151410] p-3 text-[#f7f1e7] md:border-b-0 md:border-r">
+          <div className="text-[9px] uppercase tracking-[0.16em] text-[#f7f1e7]/36">Storybook</div>
+          <div className="mt-2 text-[16px] leading-5 text-[#f7f1e7]">Component environment</div>
 
-      <div className="hidden overflow-x-auto md:block">
-        <table className="min-w-[640px] w-full border-collapse overflow-hidden rounded-[13px] border border-[#11100d]/10 bg-[#fffaf1] text-left">
-          <thead className="bg-[#f7f1e7]">
-            <tr>
-              {["Component", "Category", "Variants", "States covered", "Status"].map((column) => (
-                <th key={column} className="border-b border-[#11100d]/10 px-3 py-2 text-[9px] font-normal uppercase tracking-[0.13em] text-[#11100d]/40">
-                  {column}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-[#11100d]/8">
+          <div className="mt-4 space-y-2">
             {groupedRows.map(({ category, rows }) => (
-              <React.Fragment key={category}>
-                {rows.map((row, rowIndex) => (
-                  <tr key={row.component}>
-                    <td className="px-3 py-2.5 text-[12px] text-[#11100d]/72">{row.component}</td>
-                    {rowIndex === 0 && (
-                      <td rowSpan={rows.length} className="w-[108px] border-l border-r border-[#11100d]/8 bg-[#f7f1e7]/70 px-3 py-2.5 align-top">
-                        <div className="flex items-start gap-2">
-                          <span className="mt-0.5 h-8 w-1 rounded-full bg-[#c7b2ff]/70" aria-hidden="true" />
-                          <span className="text-[10px] leading-4 text-[#11100d]/50">{category}</span>
-                        </div>
-                      </td>
-                    )}
-                    <td className="px-3 py-2.5 text-[11px] leading-4 text-[#11100d]/58">{row.variants}</td>
-                    <td className="px-3 py-2.5 font-mono text-[11px] text-[#11100d]/56">{row.statesCovered}</td>
-                    <td className="px-3 py-2.5 text-[10px] text-[#11100d]/52">
-                      <span className="inline-flex items-center gap-1.5">
-                        <AccentDot />
-                        {row.status}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </React.Fragment>
+              <div key={category} className="grid grid-cols-[1fr_24px] border-t border-[#f7f1e7]/10 pt-2 text-[10px] leading-4 first:border-t-0 first:pt-0">
+                <span className="text-[#f7f1e7]/58">{category}</span>
+                <span className="text-right font-mono text-[#f7f1e7]/34">{rows.length}</span>
+              </div>
             ))}
-          </tbody>
-        </table>
-      </div>
+          </div>
+        </aside>
 
-      <div className="space-y-2 md:hidden">
-        {body.rows.map((row) => (
-          <article key={row.component} className="grid grid-cols-[5px_1fr] overflow-hidden rounded-[11px] border border-[#11100d]/10 bg-[#fffaf1]">
-            <span className="bg-[#c7b2ff]/70" aria-hidden="true" />
-            <div className="min-w-0 p-3">
-              <div className="flex flex-wrap items-start justify-between gap-2">
-                <div className="min-w-0">
-                  <div className="text-[13px] leading-5 text-[#11100d]/74">{row.component}</div>
-                  <div className="mt-1 text-[9px] uppercase tracking-[0.12em] text-[#11100d]/36">{row.category}</div>
-                </div>
-                <span className="inline-flex items-center gap-1.5 text-[10px] text-[#11100d]/52">
-                  <AccentDot />
-                  {row.status}
-                </span>
+        <div className="min-w-0">
+          <div className="grid grid-cols-1 border-b border-[#11100d]/10 bg-[#f7f1e7] md:grid-cols-3">
+            {body.metadata.map((item) => (
+              <div key={item.label} className="border-b border-[#11100d]/8 px-3 py-2 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0">
+                <div className="text-[9px] uppercase tracking-[0.13em] text-[#11100d]/36">{item.label}</div>
+                <div className="mt-1 text-[11px] leading-5 text-[#11100d]/62">{item.value}</div>
               </div>
-              <div className="mt-3 grid grid-cols-1 gap-2 text-[10px] leading-4 text-[#11100d]/56">
-                <div>
-                  <Label>Variants</Label>
-                  <p className="mt-1">{row.variants}</p>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2">
+            {visibleRows.map((row) => (
+              <article key={row.component} className="border-b border-[#11100d]/8 px-3 py-3.5 sm:border-r sm:[&:nth-child(2n)]:border-r-0">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <h4 className="truncate text-[13px] font-medium leading-5 text-[#11100d]/78">{row.component}</h4>
+                    <div className="mt-1 text-[9px] uppercase tracking-[0.12em] text-[#11100d]/36">{row.category}</div>
+                  </div>
+                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c7b2ff]" aria-label={row.status} />
                 </div>
-                <div>
-                  <Label>States covered</Label>
-                  <p className="mt-1 font-mono">{row.statesCovered}</p>
+
+                <p className="mt-2.5 border-t border-[#11100d]/8 pt-2.5 text-[10px] leading-4 text-[#11100d]/58">{row.variants}</p>
+                <div className="mt-2.5 grid grid-cols-2 gap-3 text-[10px] leading-4">
+                  <div>
+                    <span className="block text-[9px] uppercase tracking-[0.11em] text-[#11100d]/32">Coverage</span>
+                    <span className="mt-0.5 block font-mono text-[#11100d]/58">{row.storyCoverage ?? row.statesCovered}</span>
+                  </div>
+                  <div>
+                    <span className="block text-[9px] uppercase tracking-[0.11em] text-[#11100d]/32">Interactions</span>
+                    <span className="mt-0.5 block text-[#11100d]/58">{row.interactions ?? 'states covered'}</span>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </article>
-        ))}
+              </article>
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -1019,6 +1141,56 @@ function ArtifactBody({ receiptBodyType, body }) {
   if (receiptBodyType === "qaConsole") return <QaConsoleBody body={body} />;
   if (receiptBodyType === "coverageMatrix") return <CoverageMatrixBody body={body} />;
   return null;
+}
+
+function getCompactFrameClass(receiptBodyType) {
+  const base = "w-full overflow-hidden rounded-[8px] border text-[#11100d]";
+
+  if (receiptBodyType === "stateMatrix") {
+    return `${base} border-[#11100d]/12 bg-[#151410]`;
+  }
+
+  if (receiptBodyType === "qaConsole") {
+    return `${base} border-[#11100d]/16 bg-[#11100d]`;
+  }
+
+  if (receiptBodyType === "coverageMatrix") {
+    return `${base} border-[#11100d]/10 bg-[#f7f1e7]`;
+  }
+
+  return `${base} border-l-2 border-[#11100d]/10 border-l-[#c7b2ff]/70 bg-[#fffaf1]`;
+}
+
+function getCompactHeaderClass(receiptBodyType) {
+  if (receiptBodyType === "stateMatrix" || receiptBodyType === "qaConsole") {
+    return "border-b border-[#f7f1e7]/10 px-3.5 py-3 text-[#f7f1e7]";
+  }
+
+  if (receiptBodyType === "coverageMatrix") {
+    return "border-b border-[#11100d]/8 bg-[#fffaf1] px-3.5 py-3";
+  }
+
+  return "border-b border-[#11100d]/8 px-3.5 py-3";
+}
+
+function getCompactPreviewClass(receiptBodyType) {
+  if (receiptBodyType === "stateMatrix" || receiptBodyType === "qaConsole") {
+    return "border-b border-[#f7f1e7]/10 bg-[#151410] px-3.5 py-3";
+  }
+
+  if (receiptBodyType === "coverageMatrix") {
+    return "border-b border-[#11100d]/8 bg-[#fffaf1] px-3.5 py-3";
+  }
+
+  return "border-b border-[#11100d]/8 bg-[#fffaf1] px-3.5 py-3";
+}
+
+function getCompactFooterClass(receiptBodyType) {
+  if (receiptBodyType === "stateMatrix" || receiptBodyType === "qaConsole") {
+    return "flex items-center justify-between gap-3 px-3.5 py-2.5 text-[#f7f1e7]";
+  }
+
+  return "flex items-center justify-between gap-3 px-3.5 py-2.5";
 }
 
 function TypedReceiptVisual({
@@ -1036,24 +1208,26 @@ function TypedReceiptVisual({
   ctaLabel = "Inspect receipt"
 }) {
   if (displayMode === "compact") {
+    const darkCompact = receiptBodyType === "stateMatrix" || receiptBodyType === "qaConsole";
+
     return (
-      <article className="w-full overflow-hidden rounded-[8px] border border-l-2 border-[#11100d]/10 border-l-[#c7b2ff]/70 bg-[#fffaf1] text-[#11100d]">
-        <div className="border-b border-[#11100d]/8 px-3.5 py-3">
+      <article className={getCompactFrameClass(receiptBodyType)}>
+        <div className={getCompactHeaderClass(receiptBodyType)}>
           <div className="flex items-center justify-between gap-3">
-            <span className="text-[9px] uppercase tracking-[0.14em] text-[#11100d]/36">Receipt {receiptNumber}</span>
-            <StatusPill>{status}</StatusPill>
+            <span className={`text-[9px] uppercase tracking-[0.14em] ${darkCompact ? "text-[#f7f1e7]/38" : "text-[#11100d]/36"}`}>Receipt {receiptNumber}</span>
+            <StatusPill dark={darkCompact}>{status}</StatusPill>
           </div>
-          <h3 className="mt-2.5 text-[15px] font-medium leading-5 text-[#11100d]">{title}</h3>
-          <div className="mt-1 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/42">{type}</div>
+          <h3 className={`mt-2.5 text-[15px] font-medium leading-5 ${darkCompact ? "text-[#f7f1e7]" : "text-[#11100d]"}`}>{title}</h3>
+          <div className={`mt-1 text-[9px] uppercase tracking-[0.13em] ${darkCompact ? "text-[#f7f1e7]/42" : "text-[#11100d]/42"}`}>{type}</div>
         </div>
 
-        <div className="border-b border-[#11100d]/8 bg-[#fffaf1] px-3.5 py-3">
+        <div className={getCompactPreviewClass(receiptBodyType)}>
           <CompactPreview receiptBodyType={receiptBodyType} preview={preview} body={body} />
         </div>
 
-        <div className="flex items-center justify-between gap-3 px-3.5 py-2.5">
-          <span className="truncate text-[9px] uppercase tracking-[0.13em] text-[#11100d]/38">{privacyLabel}</span>
-          <span className="shrink-0 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/48">{ctaLabel}</span>
+        <div className={getCompactFooterClass(receiptBodyType)}>
+          <span className={`truncate text-[9px] uppercase tracking-[0.13em] ${darkCompact ? "text-[#f7f1e7]/34" : "text-[#11100d]/38"}`}>{privacyLabel}</span>
+          <span className={`shrink-0 text-[9px] uppercase tracking-[0.13em] ${darkCompact ? "text-[#f7f1e7]/48" : "text-[#11100d]/48"}`}>{ctaLabel}</span>
         </div>
       </article>
     );
