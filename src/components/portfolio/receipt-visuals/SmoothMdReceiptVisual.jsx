@@ -1,15 +1,6 @@
 import React from "react";
 import MirrorReceiptVisual from "./MirrorReceiptVisual";
-
-
-function resolvePublicSrc(src) {
-  if (!src || !src.startsWith("/")) return src;
-
-  const base = import.meta.env.BASE_URL || "/";
-  if (base === "/") return src;
-
-  return `${base.replace(/\/$/, "")}${src}`;
-}
+import { resolvePublicSrc } from "../../../utils/resolvePublicSrc";
 
 function Dot({ className = "h-1.5 w-1.5" }) {
   return <span className={`${className} shrink-0 rounded-full bg-[#c8ff62]`} aria-hidden="true" />;

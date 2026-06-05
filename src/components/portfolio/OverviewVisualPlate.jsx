@@ -1,14 +1,6 @@
 import React from "react";
 import { cx } from "../../utils/cx";
-
-function resolvePublicSrc(src) {
-  if (!src?.startsWith("/")) return src;
-
-  const base = import.meta.env.BASE_URL || "/";
-  if (base === "/") return src;
-
-  return `${base.replace(/\/$/, "")}${src}`;
-}
+import { resolvePublicSrc } from "../../utils/resolvePublicSrc";
 
 function getSplitGridClass(slug) {
   if (slug === "snip-provider-pipeline") {
@@ -48,7 +40,7 @@ function getSideBySideHeight(display, width) {
   return Math.round(Math.min(500, Math.max(380, width * 0.56)));
 }
 
-function getImageFrameClass({ layout, role, isSideBySide, display }, slug) {
+function getImageFrameClass({ layout, role, isSideBySide, display }) {
   if (layout === "single") {
     return "aspect-[1.08/1] sm:aspect-[1.28/1] lg:aspect-[1.42/1] xl:aspect-[1.5/1]";
   }
@@ -57,13 +49,13 @@ function getImageFrameClass({ layout, role, isSideBySide, display }, slug) {
     return "h-full";
   }
 
-  if (display === "brandSplit" || slug === "smooth-md-growth-os") {
+  if (display === "brandSplit") {
     return role === "primary"
       ? "aspect-[0.78/1] sm:aspect-[0.86/1] lg:aspect-[0.9/1]"
       : "aspect-[1.05/1] sm:aspect-[1.16/1] lg:aspect-[1.28/1]";
   }
 
-  if (display === "publishedSplit" || slug === "snip-provider-pipeline") {
+  if (display === "publishedSplit") {
     return role === "primary"
       ? "aspect-[1.38/1] sm:aspect-[1.5/1] lg:aspect-[1.58/1]"
       : "aspect-[0.74/1] sm:aspect-[0.9/1] lg:aspect-[1.12/1]";
@@ -72,15 +64,13 @@ function getImageFrameClass({ layout, role, isSideBySide, display }, slug) {
   return "aspect-[1.15/1]";
 }
 
-function getDefaultPosition({ layout, role, isSideBySide, display }, slug) {
-  if (display === "brandSplit" || slug === "smooth-md-growth-os") {
-    if (role === "primary") return "center top";
+function getDefaultPosition({ layout, role, display }) {
+  if (display === "brandSplit") {
     return "center top";
   }
 
-  if (display === "publishedSplit" || slug === "snip-provider-pipeline") {
-    if (role === "primary") return "left top";
-    return "center top";
+  if (display === "publishedSplit") {
+    return role === "primary" ? "left top" : "center top";
   }
 
   if (layout === "single") {
@@ -90,21 +80,17 @@ function getDefaultPosition({ layout, role, isSideBySide, display }, slug) {
   return "center top";
 }
 
-function getImageStyle(image, visual, slug) {
+function getImageStyle(image, visual) {
   return {
     objectFit: image.fit ?? visual.fit ?? "cover",
     objectPosition:
       image.position ??
       visual.position ??
-      getDefaultPosition(
-        {
-          layout: visual.layout,
-          role: image.role,
-          isSideBySide: visual.isSideBySide,
-          display: visual.display,
-        },
-        slug
-      ),
+      getDefaultPosition({
+        layout: visual.layout,
+        role: image.role,
+        display: visual.display,
+      }),
   };
 }
 
@@ -112,7 +98,7 @@ function useElementWidth(active) {
   const ref = React.useRef(null);
   const [width, setWidth] = React.useState(null);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     if (!active) {
       setWidth(null);
       return undefined;
@@ -184,7 +170,7 @@ export default function OverviewVisualPlate({ visual, slug, variant = "canvas" }
               key={image.src}
               className={cx(
                 "min-w-0 overflow-hidden",
-                getImageFrameClass({ layout, role: image.role, isSideBySide, display }, slug)
+                getImageFrameClass({ layout, role: image.role, isSideBySide, display })
               )}
             >
               <img
@@ -192,7 +178,7 @@ export default function OverviewVisualPlate({ visual, slug, variant = "canvas" }
                 alt={image.alt ?? ""}
                 loading="lazy"
                 className="h-full w-full"
-                style={getImageStyle(image, { ...visual, layout, display, isSideBySide }, slug)}
+                style={getImageStyle(image, { ...visual, layout, display, isSideBySide })}
               />
             </figure>
           ))}

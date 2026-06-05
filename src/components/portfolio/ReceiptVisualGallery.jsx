@@ -10,15 +10,7 @@ import { getMetaAirtableReceiptVisual } from "../../data/metaAirtableReceiptVisu
 import { getMultiBrandRetentionReceiptVisual } from "../../data/multiBrandRetentionReceiptVisuals";
 import { getSnipReceiptVisual } from "../../data/snipReceiptVisuals";
 import { getSmoothMdReceiptVisual } from "../../data/smoothMdReceiptVisuals";
-
-function resolvePublicSrc(src) {
-  if (!src.startsWith("/")) return src;
-
-  const base = import.meta.env.BASE_URL || "/";
-  if (base === "/") return src;
-
-  return `${base.replace(/\/$/, "")}${src}`;
-}
+import { resolvePublicSrc } from "../../utils/resolvePublicSrc";
 
 function formatIndex(index, total) {
   const width = Math.max(2, String(total).length);
