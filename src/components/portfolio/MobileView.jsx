@@ -8,7 +8,7 @@ import ReceiptVisualGallery from "./ReceiptVisualGallery";
 import OverviewVisualPlate from "./OverviewVisualPlate";
 
 const DECODER_LINES = {
-  mirror: 'mood, sleep, clarity, and context → readable product states.',
+  mirror: 'A product logic prototype for messy check-ins.',
   'smooth-md-growth-os': 'scattered clinic marketing → reusable service, CRM, and campaign logic.',
   'meta-airtable-dashboard': 'ad spend → booking behavior → revenue-informed decisions.',
   'snip-provider-pipeline': 'provider records → validated profiles → handoff folders.',
