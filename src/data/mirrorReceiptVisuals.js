@@ -5,7 +5,7 @@ export const mirrorReceiptVisuals = {
     type: 'Logic diagram',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    claim: 'Proves Mirror converts raw emotional inputs into deterministic body weather states.',
+    claim: 'Proves Mirror converts raw emotional inputs into defined body weather states with a clear priority order.',
     receiptBodyType: 'logicMap',
     preview: {
       flow: ['inputs', 'normalize', 'resolver', 'output']
@@ -27,7 +27,7 @@ export const mirrorReceiptVisuals = {
       ]
     },
     footerNote:
-      'Priority order is intentional. More severe states are checked first so the product does not flatten high tension days into generic wellness copy.'
+      'Priority order is intentional. Higher-tension states are checked first so the product does not flatten hard days into generic wellness copy.'
   },
   'check-in-data-model': {
     receiptNumber: '02',
@@ -67,7 +67,7 @@ export const mirrorReceiptVisuals = {
       }
     },
     footerNote:
-      "This artifact shows that Mirror's emotional UX is powered by structured signals, not loose inspirational copy."
+      "Mirror's emotional UX is powered by structured signals, not loose inspirational copy."
   },
   'body-weather-state-system': {
     receiptNumber: '03',
@@ -149,7 +149,7 @@ export const mirrorReceiptVisuals = {
     type: 'Pattern matching trace',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    claim: "Proves Mirror can compare today's signals against previous check ins and surface useful memory.",
+    claim: "Proves Mirror can compare today's signals against previous check-ins and surface useful memory.",
     receiptBodyType: 'matcherTrace',
     preview: {
       rows: ['today: low / elevated / foggy', '01 strong match', '02 likely match', '03 possible match']
@@ -171,7 +171,7 @@ export const mirrorReceiptVisuals = {
       ]
     },
     footerNote:
-      'This receipt shows how Mirror turns repeated personal patterns into practical product memory.'
+      'Mirror turns repeated personal patterns into practical product memory.'
   },
   'gentle-next-move-ranking': {
     receiptNumber: '05',
@@ -195,7 +195,7 @@ export const mirrorReceiptVisuals = {
       ]
     },
     footerNote:
-      'The next move system translates emotional state into a low friction action instead of overwhelming the user with choices.'
+      'The next move logic translates emotional state into a low-friction action instead of overwhelming the user with choices.'
   },
   'feedback-memory-loop': {
     receiptNumber: '06',
@@ -225,7 +225,7 @@ export const mirrorReceiptVisuals = {
       ]
     },
     footerNote:
-      'This artifact shows how Mirror gets more useful over time through lightweight feedback, not surveillance heavy tracking.'
+      'Mirror gets more useful over time through lightweight feedback, not surveillance-heavy tracking.'
   },
   'debug-overlay-test-bench': {
     receiptNumber: '07',

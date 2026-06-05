@@ -5,9 +5,9 @@ export const snipReceiptVisuals = {
     type: 'Python workflow',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    whatItProves: 'Public provider records were converted into a structured acquisition queue.',
+    whatItProves: 'Public provider records were converted into a structured profile-production queue.',
     operationalSignal: 'NPPES candidates moved through request, response, normalization, taxonomy gate, and profile queue.',
-    description: 'NPPES provider records were pulled, normalized, and queued into a repeatable provider acquisition workflow.',
+    description: 'NPPES provider records were pulled, normalized, and queued into a repeatable profile workflow.',
     receiptBodyType: 'providerPullTrace',
     contents: ['NPPES API', 'request inputs', 'response records', 'normalized fields', 'taxonomy gate', 'candidate queue', 'source reference'],
     preview: {
@@ -55,7 +55,7 @@ export const snipReceiptVisuals = {
       ]
     },
     footerNote:
-      'What this proves: public provider records were converted into a structured acquisition queue instead of manual copy-paste research.'
+      'Public provider records were converted into a structured profile queue instead of manual copy-paste research.'
   },
   'headshot-and-clinic-image-sourcing': {
     receiptNumber: '02',
@@ -63,7 +63,7 @@ export const snipReceiptVisuals = {
     type: 'Asset pipeline',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    whatItProves: 'Missing provider headshots did not block the provider acquisition pipeline.',
+    whatItProves: 'Missing provider headshots did not block profile production.',
     operationalSignal: 'Image candidates were routed by source confidence, availability, and review state.',
     description: 'Headshot and clinic image sourcing followed fallback logic so provider imagery could move to validation or review.',
     receiptBodyType: 'imageSourcingPipeline',
@@ -94,7 +94,7 @@ export const snipReceiptVisuals = {
       ]
     },
     footerNote:
-      'What this proves: missing provider headshots did not block the pipeline because fallback logic routed assets by confidence and availability.'
+      'Missing provider headshots did not block profile production because fallback logic routed assets by confidence and availability.'
   },
   'opencv-face-validation': {
     receiptNumber: '03',
@@ -104,7 +104,7 @@ export const snipReceiptVisuals = {
     privacyLabel: 'sanitized reconstruction',
     whatItProves: 'Provider imagery was checked before it entered the publishable asset set.',
     operationalSignal: 'Image candidates passed through OpenCV detection, QC checks, and decision lanes.',
-    description: 'OpenCV validation acted as a computer vision quality gate before images were handed off for publishing.',
+    description: 'OpenCV validation acted as a computer-vision quality gate before images were handed off for publishing.',
     receiptBodyType: 'faceValidationGate',
     contents: ['image candidate', 'face detection', 'QC checks', 'approved lane', 'manual review lane', 'clinic fallback', 'rejected lane'],
     preview: {
@@ -145,7 +145,7 @@ export const snipReceiptVisuals = {
       ]
     },
     footerNote:
-      'What this proves: provider imagery was checked before publishing so profile assets were not blindly collected.'
+      'Provider imagery was checked before publishing so profile assets were not blindly collected.'
   },
   'structured-asset-folders': {
     receiptNumber: '04',
@@ -191,7 +191,7 @@ export const snipReceiptVisuals = {
       publishingStates: ['publish-ready', 'manual review', 'image source pending', 'source incomplete']
     },
     footerNote:
-      'What this proves: provider data, imagery, validation status, and source notes were preserved as a structured publishing handoff instead of a messy folder dump.'
+      'Provider data, imagery, validation status, and source notes were preserved as a structured publishing handoff instead of a messy folder dump.'
   }
 };
 

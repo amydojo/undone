@@ -7,8 +7,8 @@ export const smoothMdReceiptVisuals = {
     type: 'Strategy system',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    claim: 'Proves the brand was rebuilt as a reusable operating framework across positioning, service hierarchy, offer logic, trust language, and visual rules.',
-    operationalSignal: 'Service hierarchy, consult language, visual rules, offer logic, and campaign decisions were brought into one clinic growth framework.',
+    claim: 'Proves the brand work covered positioning, service hierarchy, offer logic, trust language, and visual rules in one reusable framework.',
+    operationalSignal: 'Service hierarchy, consult language, visual rules, offer logic, and campaign decisions were connected to the same clinic model.',
     receiptBodyType: 'brandSystemMap',
     preview: {
       nodes: ['positioning', 'service hierarchy', 'offer logic', 'trust signals', 'visual rules', 'proof pillars']
@@ -38,7 +38,7 @@ export const smoothMdReceiptVisuals = {
       ]
     },
     footerNote:
-      "What this proves: Smooth MD's identity became a repeatable growth framework, not a one-off campaign look."
+      "Smooth MD's identity became reusable brand and offer rules, not a one-off campaign look."
   },
   'smooth-md-lifecycle-map': {
     receiptNumber: '02',
@@ -46,7 +46,7 @@ export const smoothMdReceiptVisuals = {
     type: 'Journey flow',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    claim: 'Proves lead source, service intent, consult path, follow-up timing, treatment state, retention, and reactivation were connected into one patient journey.',
+    claim: 'Proves lead source, service intent, consult path, follow-up timing, treatment state, retention, and reactivation were mapped as one patient journey.',
     operationalSignal: 'Lead source, service intent, consult CTA, follow-up timing, booking behavior, and retention logic were treated as one connected route.',
     receiptBodyType: 'lifecycleJourneyMap',
     preview: {
@@ -100,7 +100,7 @@ export const smoothMdReceiptVisuals = {
       handoffs: ['Airtable', 'Mailchimp tag', 'front desk follow-up', 'campaign retargeting']
     },
     footerNote:
-      'What this proves: The growth system connected lead source, service intent, consult path, follow-up timing, booking behavior, retention, and reactivation.'
+      'Lead source, service intent, consult path, follow-up timing, booking behavior, retention, and reactivation were connected in one route.'
   },
   'smooth-md-crm-status-logic': {
     receiptNumber: '03',
@@ -108,7 +108,7 @@ export const smoothMdReceiptVisuals = {
     type: 'Ops map',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    claim: 'Proves follow-up, booking state, arrival, conversion, and revenue handoff were modeled as repeatable clinic ops logic.',
+    claim: 'Proves follow-up, booking state, arrival, conversion, and revenue handoff were defined as repeatable clinic operations.',
     operationalSignal: 'Follow-up and booking work moved through named states with clear side paths for no-show, lost, reactivation, manual review, and revenue handoff.',
     receiptBodyType: 'crmStatusFlow',
     preview: {
@@ -128,7 +128,7 @@ export const smoothMdReceiptVisuals = {
       ]
     },
     footerNote:
-      "What this proves: Smooth MD's follow-up and booking system became repeatable status logic instead of ad hoc lead handling."
+      "Smooth MD's follow-up and booking work became named CRM states instead of ad hoc lead handling."
   },
   'smooth-md-instagram-identity-rebuild': {
     receiptNumber: '04',
@@ -136,7 +136,7 @@ export const smoothMdReceiptVisuals = {
     type: 'Visual system',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    claim: 'Proves Instagram moved from generic medspa visibility to clearer service proof, local trust signals, and inquiry behavior.',
+    claim: 'Proves Instagram moved from generic medspa promotion to clearer service proof, local trust signals, and inquiry behavior.',
     operationalSignal: 'Profile, grid, content proof, service clarity, local trust, and contact signals were rebuilt as one public-facing proof system.',
     receiptBodyType: 'instagramRebuildProof',
     preview: {
@@ -169,7 +169,7 @@ export const smoothMdReceiptVisuals = {
       insightImage: `${imageBase}/instagram-identity-rebuild/messaging-metric-insight.jpeg`
     },
     footerNote:
-      'What this proves: The Instagram rebuild connected identity clarity, service proof, local trust, and inquiry behavior instead of only changing aesthetics.'
+      'The Instagram rebuild connected identity clarity, service proof, local trust, and inquiry behavior instead of only changing aesthetics.'
   },
   'smooth-md-campaign-toolkit': {
     receiptNumber: '05',
@@ -177,7 +177,7 @@ export const smoothMdReceiptVisuals = {
     type: 'Creative system',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    claim: 'Proves campaigns were built from reusable offer logic, creative modules, CTA paths, lead capture, follow-up, and performance interpretation.',
+    claim: 'Proves campaigns were built from reusable offer logic, creative modules, CTA paths, lead capture, follow-up, and performance reads.',
     operationalSignal: 'Campaign assets were organized as a launch kit with offer logic, audience angle, capture path, follow-up path, and performance read.',
     receiptBodyType: 'campaignToolkitSystem',
     preview: {
@@ -198,7 +198,7 @@ export const smoothMdReceiptVisuals = {
       ]
     },
     footerNote:
-      'What this proves: Campaigns became reusable launch systems with offer logic, creative structure, lead capture, follow-up paths, and performance reads.'
+      'Campaigns became reusable launch kits with offer logic, creative structure, lead capture, follow-up paths, and performance reads.'
   }
 };
 
