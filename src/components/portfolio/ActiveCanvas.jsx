@@ -4,6 +4,7 @@ import { ArrowUpRight, Layers } from "lucide-react";
 import MetricPill from "../ui/MetricPill";
 import ProfileStrip from "./ProfileStrip";
 import OverviewArtifact from "./OverviewArtifact";
+import OverviewVisualPlate from "./OverviewVisualPlate";
 
 const DECODER_LINES = {
   mirror: 'mood, sleep, clarity, and context → readable product states.',
@@ -79,6 +80,8 @@ export default function ActiveCanvas({ record, mode, openWorkspace }) {
                 ))}
               </div>
             </div>
+
+            <OverviewVisualPlate visual={record.overviewVisual} slug={record.slug} />
 
             {/* ── BEAT 03 · SYSTEM OBJECT ─────────────────────────── */}
             <div className="border-t border-[#11100d]/8 px-5 pb-12 pt-10 xl:px-10 xl:pb-16 xl:pt-14">

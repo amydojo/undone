@@ -10,6 +10,24 @@ export const records = [
     timeline: '2023 / 2024',
     accent: '#c8ff62',
     oneLine: "I organized Smooth MD's services, offers, follow-up, Instagram proof, and campaign logic into one reusable clinic system.",
+    overviewVisual: {
+      label: 'BRAND SURFACE',
+      caption: 'Public surface: service positioning, offer language, and visual proof rebuilt into a clearer clinic brand system.',
+      layout: 'split',
+      display: 'brandSplit',
+      images: [
+        {
+          src: '/overview/smooth-hydrafacial-campaign.png',
+          alt: 'Smooth MD Hydrafacial campaign creative showing service positioning and offer language.',
+          role: 'primary'
+        },
+        {
+          src: '/overview/smooth-instagram-profile.png',
+          alt: 'Smooth MD Instagram profile showing clinic proof and social identity.',
+          role: 'secondary'
+        }
+      ]
+    },
     role: 'Brand and lifecycle strategy lead',
     tools: ['Figma', 'Airtable', 'Mailchimp', 'Webflow', 'Zapier', 'Meta Ads'],
     hiringTranslation:
@@ -129,6 +147,19 @@ export const records = [
     timeline: '2024',
     accent: '#c7b2ff',
     oneLine: 'I designed a prototype that turns mood, sleep, clarity, and context inputs into readable states and gentle next steps.',
+    overviewVisual: {
+      label: 'PRODUCT SURFACE',
+      caption: 'Product surface: check-in signals translated into a readable weather field.',
+      layout: 'single',
+      display: 'productSingle',
+      images: [
+        {
+          src: '/overview/mirror-weather-field.png',
+          alt: "Mirror Weather Field interface showing a dark texture field used to describe the user's current state.",
+          role: 'primary'
+        }
+      ]
+    },
     role: 'Product logic and component QA designer',
     tools: ['Figma', 'Storybook', 'React', 'Replit', 'localStorage', 'AI workflows'],
     hiringTranslation:
@@ -401,6 +432,24 @@ export const records = [
     timeline: '2024',
     accent: '#9fe7ff',
     oneLine: 'I built a repeatable process to pull provider records, source images, validate assets, and hand off structured profile folders.',
+    overviewVisual: {
+      label: 'PUBLISHED SURFACE',
+      caption: 'Published surface: structured provider data turned into searchable profile cards.',
+      layout: 'split',
+      display: 'publishedSplit',
+      images: [
+        {
+          src: '/overview/snip-provider-cards.png',
+          alt: 'Snip Snip provider directory screenshot showing searchable provider cards.',
+          role: 'primary'
+        },
+        {
+          src: '/overview/snip-search-home.png',
+          alt: 'Snip Snip search landing page for finding vasectomy providers.',
+          role: 'secondary'
+        }
+      ]
+    },
     role: 'Automation and workflow designer',
     tools: ['Python', 'NPPES API', 'OpenCV', 'Bing search', 'Google Maps', 'spreadsheets'],
     hiringTranslation:
