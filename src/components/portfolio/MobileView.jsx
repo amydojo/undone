@@ -5,6 +5,7 @@ import ProfileStrip from "./ProfileStrip";
 import OverviewArtifact from "./OverviewArtifact";
 import { cx } from "../../utils/cx";
 import ReceiptVisualGallery from "./ReceiptVisualGallery";
+import OverviewVisualPlate from "./OverviewVisualPlate";
 
 const DECODER_LINES = {
   mirror: 'mood, sleep, clarity, and context → readable product states.',
@@ -82,6 +83,8 @@ function OverviewTab({ record, openWorkspace }) {
           ))}
         </div>
       </div>
+
+      <OverviewVisualPlate visual={record.overviewVisual} slug={record.slug} variant="inline" />
 
       {/* System object */}
       <OverviewArtifact record={record} />
