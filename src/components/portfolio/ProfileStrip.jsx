@@ -3,31 +3,50 @@ import { profile } from "../../data/profile";
 import { cx } from "../../utils/cx";
 import { resolvePublicSrc } from "../../utils/resolvePublicSrc";
 
-const positioning = "I turn messy business and product problems into clear systems, interfaces, and proof-backed execution.";
-const focus = "Design systems · AI prototyping · workflow logic · proof artifacts";
-const tools = "Figma · React · Airtable · Storybook · Playwright · OpenAI · Replit";
+function canWriteToClipboard() {
+  if (typeof window === "undefined" || typeof navigator === "undefined") {
+    return false;
+  }
+
+  return Boolean(window.isSecureContext && typeof navigator.clipboard?.writeText === "function");
+}
 
 export default function ProfileStrip({ className }) {
   const [expanded, setExpanded] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [clipboardSupported, setClipboardSupported] = useState(() => canWriteToClipboard());
+  const [copyStatus, setCopyStatus] = useState("idle");
   const resumeHref = resolvePublicSrc(profile.resumeHref);
+  const copyButtonLabel =
+    copyStatus === "copied"
+      ? "Copied"
+      : copyStatus === "error"
+        ? "Copy failed"
+        : clipboardSupported
+          ? "Copy email"
+          : "Copy unavailable";
 
   useEffect(() => {
-    if (!copied) return undefined;
-    const timeout = window.setTimeout(() => setCopied(false), 1600);
+    setClipboardSupported(canWriteToClipboard());
+  }, []);
+
+  useEffect(() => {
+    if (copyStatus === "idle") return undefined;
+    const timeout = window.setTimeout(() => setCopyStatus("idle"), copyStatus === "copied" ? 1600 : 2400);
     return () => window.clearTimeout(timeout);
-  }, [copied]);
+  }, [copyStatus]);
 
   async function copyEmail() {
+    if (!canWriteToClipboard()) {
+      setClipboardSupported(false);
+      setCopyStatus("error");
+      return;
+    }
+
     try {
-      if (!navigator.clipboard?.writeText) {
-        window.location.href = `mailto:${profile.contact}`;
-        return;
-      }
       await navigator.clipboard.writeText(profile.contact);
-      setCopied(true);
+      setCopyStatus("copied");
     } catch {
-      setCopied(false);
+      setCopyStatus("error");
     }
   }
 
@@ -35,10 +54,9 @@ export default function ProfileStrip({ className }) {
     <div className={cx("", className)}>
       {/* Identity + action row */}
       <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
-        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-          <span className="text-[12px] font-medium text-[#11100d]/68">{profile.name}</span>
-          <span className="text-[#11100d]/18" aria-hidden="true">·</span>
-          <span className="text-[11px] text-[#11100d]/38">Design Technologist</span>
+        <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+          <span className="text-[13px] font-medium leading-none text-[#11100d]/78">{profile.name}</span>
+          <span className="text-[10px] leading-none text-[#11100d]/42">Design Technologist</span>
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <a
@@ -74,7 +92,7 @@ export default function ProfileStrip({ className }) {
           <div className="grid gap-4 lg:grid-cols-[1.12fr_0.86fr_1fr]">
             <div className="border-b border-[#11100d]/8 pb-3 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-4">
               <div className="mb-2 text-[9px] uppercase tracking-[0.15em] text-[#11100d]/34">Positioning</div>
-              <p className="text-[12px] leading-[1.6] text-[#11100d]/62">{positioning}</p>
+              <p className="text-[12px] leading-[1.6] text-[#11100d]/62">{profile.detailsPositioning}</p>
             </div>
 
             <div className="border-b border-[#11100d]/8 pb-3 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-4">
@@ -86,21 +104,32 @@ export default function ProfileStrip({ className }) {
                 <button
                   type="button"
                   onClick={copyEmail}
-                  className="text-[9px] uppercase tracking-[0.13em] text-[#11100d]/42 transition hover:text-[#11100d]"
+                  disabled={!clipboardSupported}
+                  aria-label={clipboardSupported ? "Copy email address" : "Copy email unavailable; email address is visible"}
+                  aria-describedby={clipboardSupported ? undefined : "profile-copy-email-support"}
+                  className={cx(
+                    "text-[9px] uppercase tracking-[0.13em] text-[#11100d]/42 transition hover:text-[#11100d]",
+                    !clipboardSupported && "cursor-not-allowed text-[#11100d]/24 hover:text-[#11100d]/24"
+                  )}
                 >
-                  {copied ? "Copied" : "Copy email"}
+                  <span aria-live="polite">{copyButtonLabel}</span>
                 </button>
+                {!clipboardSupported && (
+                  <span id="profile-copy-email-support" className="sr-only">
+                    Clipboard copying is unavailable in this browser. The email address is visible above.
+                  </span>
+                )}
               </div>
             </div>
 
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
               <div>
                 <div className="mb-1.5 text-[9px] uppercase tracking-[0.15em] text-[#11100d]/34">Focus</div>
-                <p className="text-[11px] leading-5 text-[#11100d]/54">{focus}</p>
+                <p className="text-[11px] leading-5 text-[#11100d]/54">{profile.detailsFocus}</p>
               </div>
               <div>
                 <div className="mb-1.5 text-[9px] uppercase tracking-[0.15em] text-[#11100d]/34">Tools</div>
-                <p className="text-[11px] leading-5 text-[#11100d]/54">{tools}</p>
+                <p className="text-[11px] leading-5 text-[#11100d]/54">{profile.detailsTools}</p>
               </div>
             </div>
           </div>
