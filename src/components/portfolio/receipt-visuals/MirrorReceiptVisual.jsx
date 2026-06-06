@@ -108,6 +108,7 @@ function LegacyReceiptVisual({
   claim,
   sections = [],
   footerNote,
+  privacyLabel = "sanitized reconstruction",
   accentColor = ACCENT,
   displayMode = "full",
   ctaLabel = "Inspect receipt",
@@ -145,20 +146,9 @@ function LegacyReceiptVisual({
   }
 
   return (
-    <article className="w-full overflow-hidden rounded-[16px] border border-[#f7f1e7]/12 bg-[#151410] text-[#f7f1e7]">
+    <article className="w-full bg-[#151410] text-[#f7f1e7]">
       <div className="border-b border-[#f7f1e7]/12 bg-[#1d1b17] px-4 py-3">
-        <div className="flex items-center justify-between gap-3">
-          <div className="flex min-w-0 items-center gap-2">
-            <AccentDot color={accentColor} />
-            <span className="truncate text-[9px] uppercase tracking-[0.16em] text-[#f7f1e7]/48">{eyebrow}</span>
-          </div>
-          <span className="shrink-0 rounded-full border border-[#f7f1e7]/12 bg-[#211f1a] px-2 py-0.5 text-[9px] uppercase tracking-[0.1em] text-[#f7f1e7]/48">
-            {status}
-          </span>
-        </div>
-        <h3 className="mt-3 text-[17px] font-medium leading-5 text-[#f7f1e7]">{title}</h3>
-        <div className="mt-1 text-[9px] uppercase tracking-[0.14em] text-[#f7f1e7]/42">{type}</div>
-        <p className="mt-2 text-[12px] leading-5 text-[#f7f1e7]/62">{claim}</p>
+        <p className="text-[12px] leading-5 text-[#f7f1e7]/64">{claim}</p>
       </div>
 
       <div className="space-y-3 bg-[#151410] p-3">
@@ -167,11 +157,17 @@ function LegacyReceiptVisual({
         ))}
       </div>
 
-      {footerNote && (
-        <div className="border-t border-[#f7f1e7]/12 bg-[#1d1b17] px-4 py-3 text-[11px] leading-5 text-[#f7f1e7]/56">
-          {footerNote}
+      <div className="border-t border-[#f7f1e7]/12 bg-[#1d1b17] px-4 py-3 text-[11px] leading-5 text-[#f7f1e7]/56">
+        {footerNote && (
+          <>
+          <span className="block text-[9px] uppercase tracking-[0.14em] text-[#f7f1e7]/34">Evidence note</span>
+          <span className="mt-1 block">{footerNote}</span>
+          </>
+        )}
+        <div className={`${footerNote ? "mt-3 " : ""}flex flex-wrap items-center gap-x-2 gap-y-1 text-[9px] uppercase tracking-[0.13em] text-[#f7f1e7]/34`}>
+          <span>{privacyLabel}</span>
         </div>
-      )}
+      </div>
     </article>
   );
 }
@@ -1234,33 +1230,26 @@ function TypedReceiptVisual({
   }
 
   return (
-    <article className="w-full overflow-hidden rounded-[8px] border border-t-2 border-[#11100d]/10 border-t-[#c7b2ff]/70 bg-[#fffaf1] text-[#11100d]">
-      <div className="border-b border-[#11100d]/10 px-4 py-4 sm:px-5">
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="text-[9px] uppercase tracking-[0.15em] text-[#11100d]/38">Receipt {receiptNumber}</span>
-              <span className="h-1 w-1 rounded-full bg-[#11100d]/18" aria-hidden="true" />
-              <span className="text-[9px] uppercase tracking-[0.15em] text-[#11100d]/38">{privacyLabel}</span>
-            </div>
-            <h3 className="mt-2.5 text-[18px] font-medium leading-6 text-[#11100d]">{title}</h3>
-            <div className="mt-1 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/42">{type}</div>
-          </div>
-          <StatusPill>{status}</StatusPill>
-        </div>
-        {claim && <p className="mt-3 text-[12px] leading-5 text-[#11100d]/62">{claim}</p>}
+    <article className="w-full border-t border-t-[#c7b2ff]/60 text-[#11100d]">
+      <div className="border-b border-[#11100d]/10 px-4 py-3.5 sm:px-5">
+        {claim && <p className="text-[13px] leading-6 text-[#11100d]/68">{claim}</p>}
       </div>
 
       <div className="bg-[#f7f1e7]/30 p-3 sm:p-4">
         <ArtifactBody receiptBodyType={receiptBodyType} body={body} />
       </div>
 
-      {footerNote && (
-        <div className="border-t border-[#11100d]/10 px-4 py-3 text-[11px] leading-5 text-[#11100d]/54 sm:px-5">
+      <div className="border-t border-[#11100d]/10 px-4 py-3 text-[11px] leading-5 text-[#11100d]/54 sm:px-5">
+        {footerNote && (
+          <>
           <span className="block text-[9px] uppercase tracking-[0.14em] text-[#11100d]/34">Evidence note</span>
           <span className="mt-1 block">{footerNote.replace(/^What this proves:\s*/i, "")}</span>
+          </>
+        )}
+        <div className={`${footerNote ? "mt-3 " : ""}flex flex-wrap items-center gap-x-2 gap-y-1 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/34`}>
+          <span>{privacyLabel}</span>
         </div>
-      )}
+      </div>
     </article>
   );
 }

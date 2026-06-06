@@ -42,6 +42,14 @@ function getComponentAsset(asset) {
   return null;
 }
 
+function getComponentViewerMaxWidth(renderer) {
+  if (renderer === "snip") return "max-w-[980px]";
+  if (renderer === "smooth") return "max-w-[960px]";
+  if (renderer === "multi") return "max-w-[940px]";
+  if (renderer === "meta") return "max-w-[940px]";
+  return "max-w-[760px]";
+}
+
 function getAssetDefinition(asset) {
   return getComponentAsset(asset)?.definition ?? null;
 }
@@ -76,9 +84,16 @@ export default function ReceiptVisualGallery({
   const isMobile = variant === "mobile";
   const activeAsset = activeIndex === null ? null : visibleAssets[activeIndex];
   const activeComponentAsset = activeAsset ? getComponentAsset(activeAsset) : null;
+  const activeIsComponentAsset = Boolean(activeComponentAsset);
+  const activeModalMaxWidth = activeComponentAsset ? getComponentViewerMaxWidth(activeComponentAsset.renderer) : "max-w-[90vw]";
   const featuredAsset = visibleAssets[0];
   const isComponentSet = visibleAssets.every((asset) => isComponentAsset(asset));
   const activeLabel = activeIndex === null ? null : `${formatIndex(activeIndex, visibleAssets.length)} / ${formatIndex(visibleAssets.length - 1, visibleAssets.length)}`;
+  const activeReceiptReference = activeComponentAsset?.definition?.receiptNumber
+    ? `Receipt ${activeComponentAsset.definition.receiptNumber}`
+    : visibleAssets.length > 1 && activeLabel
+      ? activeLabel
+      : "Receipt";
   const activeCaption = activeAsset ? getAssetCaption(activeAsset) : "";
   const shouldShowActiveCaption = Boolean(
     activeCaption &&
@@ -135,16 +150,7 @@ export default function ReceiptVisualGallery({
           : componentAsset.renderer === "meta"
             ? MetaAirtableReceiptVisual
             : MirrorReceiptVisual;
-      const maxWidth =
-        componentAsset.renderer === "snip"
-          ? "max-w-[980px]"
-          : componentAsset.renderer === "smooth"
-            ? "max-w-[960px]"
-          : componentAsset.renderer === "multi"
-            ? "max-w-[940px]"
-          : componentAsset.renderer === "meta"
-            ? "max-w-[940px]"
-            : "max-w-[760px]";
+      const maxWidth = getComponentViewerMaxWidth(componentAsset.renderer);
 
       return (
         <div className={mode === "viewer" ? `w-full ${maxWidth}` : "w-full"}>
@@ -306,50 +312,56 @@ export default function ReceiptVisualGallery({
 
       {activeAsset && (
         <div
-          className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-[#11100d]/88 px-3 py-4 sm:items-center sm:px-5 sm:py-6"
+          className="fixed inset-0 z-50 flex items-start justify-center overflow-hidden bg-[#11100d]/88 px-3 py-4 sm:items-center sm:px-5 sm:py-6"
           role="dialog"
           aria-modal="true"
           aria-label={`${receiptName} proof set viewer`}
+          onClick={() => setActiveIndex(null)}
         >
-          <button
-            type="button"
-            data-testid="receipt-modal-close"
-            aria-label="Close proof set viewer"
-            onClick={() => setActiveIndex(null)}
-            className="absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center border border-[#fffaf1]/24 bg-[#fffaf1] text-[#11100d] transition hover:bg-[#f7f1e7] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fffaf1]/80"
-          >
-            <X className="h-4 w-4" />
-          </button>
-
           {visibleAssets.length > 1 && (
             <button
               type="button"
               aria-label="Previous image"
-              onClick={showPrevious}
+              onClick={(event) => {
+                event.stopPropagation();
+                showPrevious();
+              }}
               className="absolute left-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center border border-[#fffaf1]/20 bg-[#fffaf1] text-[#11100d] transition hover:bg-[#f7f1e7] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fffaf1]/80 sm:inline-flex"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
           )}
 
-          <figure data-testid="receipt-modal" className="flex max-h-[calc(100dvh-2rem)] w-full max-w-[90vw] flex-col overflow-hidden rounded-[8px] border border-[#fffaf1]/22 bg-[#fffaf1] sm:max-h-[90vh]">
-            <div className="flex items-center justify-between gap-4 border-b border-[#11100d]/10 px-4 py-3 sm:px-5">
+          <figure
+            data-testid="receipt-modal"
+            onClick={(event) => event.stopPropagation()}
+            className={`relative flex max-h-[calc(100dvh-2rem)] w-full ${activeModalMaxWidth} flex-col overflow-hidden rounded-[8px] border border-[#fffaf1]/22 bg-[#fffaf1] sm:max-h-[90vh]`}
+          >
+            <header className="flex shrink-0 items-start justify-between gap-3 border-b border-[#11100d]/10 bg-[#fffaf1] px-3.5 py-3 sm:px-5 sm:py-3.5">
               <div className="min-w-0">
-                <div className="truncate text-[13px] font-medium leading-5 text-[#11100d]">
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[9px] uppercase tracking-[0.14em] text-[#11100d]/38">
+                  <span className="tabular-nums">{activeReceiptReference}</span>
+                </div>
+                <div className="mt-1.5 truncate text-[13px] font-medium leading-5 text-[#11100d] sm:text-[14px]">
                   {receiptName}
                 </div>
-                <div className="mt-0.5 text-[9px] uppercase tracking-[0.14em] text-[#11100d]/38">
+                <div className="mt-0.5 truncate text-[9px] uppercase tracking-[0.13em] text-[#11100d]/40">
                   {receiptFormat}
                 </div>
               </div>
-              {activeLabel && (
-                <div className="shrink-0 border-l border-[#11100d]/12 pl-3 text-[10px] tabular-nums tracking-[0.08em] text-[#11100d]/48">
-                  {activeLabel}
-                </div>
-              )}
-            </div>
-            <div className="flex min-h-0 flex-1 items-center justify-center bg-[#f7f1e7] p-3 sm:p-4">
-              <div className="flex max-h-[calc(100dvh-12rem)] w-full justify-center overflow-auto pb-2 sm:max-h-[78vh] sm:pb-0">
+              <button
+                type="button"
+                data-testid="receipt-modal-close"
+                aria-label="Close proof set viewer"
+                onClick={() => setActiveIndex(null)}
+                className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#11100d]/12 bg-[#fffaf1] text-[#11100d]/64 transition-colors hover:bg-[#f0eadf] hover:text-[#11100d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/25"
+              >
+                <X className="h-[15px] w-[15px]" />
+              </button>
+            </header>
+
+            <div className={activeIsComponentAsset ? "min-h-0 flex-1 overflow-y-auto bg-[#fffaf1]" : "flex min-h-0 flex-1 items-center justify-center overflow-y-auto bg-[#f7f1e7] p-3 sm:p-4"}>
+              <div className={activeIsComponentAsset ? "w-full min-w-0" : "flex w-full justify-center pb-2 sm:pb-0"}>
                 {renderAsset(activeAsset, "viewer")}
               </div>
             </div>
@@ -384,7 +396,10 @@ export default function ReceiptVisualGallery({
             <button
               type="button"
               aria-label="Next image"
-              onClick={showNext}
+              onClick={(event) => {
+                event.stopPropagation();
+                showNext();
+              }}
               className="absolute right-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center border border-[#fffaf1]/20 bg-[#fffaf1] text-[#11100d] transition hover:bg-[#f7f1e7] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fffaf1]/80 sm:inline-flex"
             >
               <ChevronRight className="h-4 w-4" />

@@ -508,39 +508,26 @@ export default function MultiBrandRetentionReceiptVisual({
   }
 
   return (
-    <article className="w-full overflow-hidden rounded-[8px] border border-t-2 border-[#11100d]/10 border-t-[#ffd1a1]/85 bg-[#fffaf1] text-[#11100d]">
-      <div className="border-b border-[#11100d]/10 px-4 py-4 sm:px-5">
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="text-[9px] uppercase tracking-[0.15em] text-[#11100d]/38">Receipt {receiptNumber}</span>
-              <span className="h-1 w-1 rounded-full bg-[#11100d]/18" aria-hidden="true" />
-              <span className="text-[9px] uppercase tracking-[0.15em] text-[#11100d]/38">{privacyLabel}</span>
-            </div>
-            <h3 className="mt-2.5 text-[18px] font-medium leading-6 text-[#11100d]">{title}</h3>
-            <div className="mt-1 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/42">{type}</div>
-          </div>
-          <StatusPill>{status}</StatusPill>
-        </div>
-        {claim && <p className="mt-3 text-[12px] leading-5 text-[#11100d]/62">{claim}</p>}
-        {operationalSignal && (
-          <div className="mt-3 border-l border-[#11100d]/16 bg-[#f7f1e7]/58 px-3 py-2">
-            <Label>Operational signal</Label>
-            <div className="mt-1 text-[12px] leading-5 text-[#11100d]/64">{operationalSignal}</div>
-          </div>
-        )}
+    <article className="w-full border-t border-t-[#ffd1a1]/70 text-[#11100d]">
+      <div className="border-b border-[#11100d]/10 px-4 py-3.5 sm:px-5">
+        {claim && <p className="text-[13px] leading-6 text-[#11100d]/68">{claim}</p>}
       </div>
 
       <div className="bg-[#f7f1e7]/30 p-2.5 sm:p-3">
         <ArtifactBody receiptBodyType={receiptBodyType} body={body} />
       </div>
 
-      {footerNote && (
-        <div className="border-t border-[#11100d]/10 px-4 py-3 text-[11px] leading-5 text-[#11100d]/54 sm:px-5">
+      <div className="border-t border-[#11100d]/10 px-4 py-3 text-[11px] leading-5 text-[#11100d]/54 sm:px-5">
+        {footerNote && (
+          <>
           <span className="block text-[9px] uppercase tracking-[0.14em] text-[#11100d]/34">Evidence note</span>
           <span className="mt-1 block">{footerNote}</span>
+          </>
+        )}
+        <div className={`${footerNote ? "mt-3 " : ""}flex flex-wrap items-center gap-x-2 gap-y-1 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/34`}>
+          <span>{privacyLabel}</span>
         </div>
-      )}
+      </div>
     </article>
   );
 }
