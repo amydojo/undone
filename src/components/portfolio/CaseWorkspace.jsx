@@ -448,7 +448,7 @@ function OutcomeSection({ workspace }) {
 export default function CaseWorkspace({ workspace, closeWorkspace }) {
   const sidebarContext = workspace ? getSidebarContext(workspace) : null
   const headerMetadata = workspace
-    ? [formatMetadataLabel(workspace.category), workspace.timeline, formatMetadataLabel(workspace.status), workspace.role]
+    ? [formatMetadataLabel(workspace.category), workspace.timeline, formatMetadataLabel(workspace.status)]
     : []
 
   return (
