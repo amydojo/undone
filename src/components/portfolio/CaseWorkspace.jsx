@@ -1,6 +1,7 @@
 import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { X } from 'lucide-react'
+import { formatMetadataLabel } from '../../utils/caseMetadata'
 
 const SECTIONS = [
   { id: 'brief', label: 'brief' },
@@ -10,6 +11,29 @@ const SECTIONS = [
   { id: 'decisions', label: 'decisions' },
   { id: 'outcome', label: 'outcome' }
 ]
+
+const SIDEBAR_CONTEXT_BY_SLUG = {
+  'smooth-md-growth-os': {
+    type: 'Clinic Growth System',
+    scope: 'Brand, follow-up, and campaign systems'
+  },
+  mirror: {
+    type: 'Product Prototype',
+    scope: 'State logic and QA system design'
+  },
+  'meta-airtable-dashboard': {
+    type: 'Campaign Reporting System',
+    scope: 'Ads, CRM, booking, and revenue reporting'
+  },
+  'snip-provider-pipeline': {
+    type: 'Provider Profile Workflow',
+    scope: 'Research, validation, and handoff system'
+  },
+  'multi-brand-retention': {
+    type: 'Email Follow-Up System',
+    scope: 'Mailchimp routing and production'
+  }
+}
 
 const CASE_COPY_BY_SLUG = {
   'smooth-md-growth-os': {
@@ -235,6 +259,13 @@ function getOutcomeItems(workspace) {
   return workspace.metrics.map((metric) => `${metric.value} ${metric.label}`)
 }
 
+function getSidebarContext(workspace) {
+  return SIDEBAR_CONTEXT_BY_SLUG[workspace.slug] ?? {
+    type: formatMetadataLabel(workspace.type),
+    scope: workspace.role
+  }
+}
+
 function scrollToSection(workspace, sectionId) {
   const node = document.getElementById(sectionDomId(workspace.slug, sectionId))
   if (node) node.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -427,7 +458,7 @@ function OutcomeSection({ workspace }) {
       </ol>
 
       <p className='mt-6 text-[12px] leading-6 text-[#11100d]/44'>
-        Related proof lives in the archive inspector.
+        Supporting work is shown in the receipt inspector.
       </p>
     </section>
   )
@@ -436,6 +467,11 @@ function OutcomeSection({ workspace }) {
 /* ─────────────────────────── Main component ─────────────────────────────── */
 
 export default function CaseWorkspace({ workspace, closeWorkspace }) {
+  const sidebarContext = workspace ? getSidebarContext(workspace) : null
+  const headerMetadata = workspace
+    ? [formatMetadataLabel(workspace.category), workspace.timeline, formatMetadataLabel(workspace.status), workspace.role]
+    : []
+
   return (
     <AnimatePresence>
       {workspace ? (
@@ -455,17 +491,17 @@ export default function CaseWorkspace({ workspace, closeWorkspace }) {
             className='mx-auto flex h-full w-full max-w-[1160px] flex-col overflow-hidden rounded-[28px] border border-[#11100d]/12 bg-[#f7f1e7] shadow-[0_48px_130px_rgba(17,16,13,0.28)]'
             role='dialog'
             aria-modal='true'
-            aria-label={`${workspace.title} case file workspace`}
+            aria-label={`${workspace.title} case file`}
           >
             {/* ── Header ── */}
             <header className='flex shrink-0 items-start justify-between gap-4 border-b border-[#11100d]/10 px-6 py-5 lg:px-8 lg:py-6'>
               <div>
-                <div className='text-[9px] uppercase tracking-[0.18em] text-[#11100d]/38'>case file workspace</div>
+                <div className='text-[9px] uppercase tracking-[0.18em] text-[#11100d]/38'>case file</div>
                 <h2 className='mt-1.5 text-[18px] font-medium leading-tight tracking-[-0.022em] text-[#11100d] lg:text-[20px]'>
                   {workspace.title}
                 </h2>
-                <div className='mt-2.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] uppercase tracking-[0.12em] text-[#11100d]/40'>
-                  {[workspace.category, workspace.timeline, workspace.status, workspace.role]
+                <div className='mt-2.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] tracking-[0.01em] text-[#11100d]/44'>
+                  {headerMetadata
                     .filter(Boolean)
                     .map((item, index) => (
                       <React.Fragment key={item}>
@@ -504,15 +540,15 @@ export default function CaseWorkspace({ workspace, closeWorkspace }) {
                       </button>
                     ))}
                   </div>
-                  <div className='mt-7 border-t border-[#11100d]/10 pt-6 text-[11px] leading-[1.6] text-[#11100d]/40'>
-                    <p className='font-medium tracking-[0.08em] text-[#11100d]/50'>{workspace.type}</p>
-                    <p className='mt-1'>{workspace.role}</p>
+                  <div className='mt-7 border-t border-[#11100d]/10 pt-6 text-[11px] leading-[1.55] text-[#11100d]/44'>
+                    <p className='font-medium text-[#11100d]/62'>{sidebarContext.type}</p>
+                    <p className='mt-1 text-[#11100d]/42'>{sidebarContext.scope}</p>
                   </div>
                 </nav>
               </aside>
 
               {/* Main scrollable area */}
-              <main className='flex-1 overflow-y-auto'>
+              <main className='scrollbar-portfolio flex-1 overflow-y-auto'>
                 <div className='mx-auto max-w-[940px] px-6 py-10 lg:px-10 lg:py-12'>
                   <BriefSection workspace={workspace} />
                   <ProblemSection workspace={workspace} />

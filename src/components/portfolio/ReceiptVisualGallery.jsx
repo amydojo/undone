@@ -59,6 +59,10 @@ function getComponentAccentColor(renderer) {
   return "#d8c7ae";
 }
 
+function getCompactPrivacyLabel(label) {
+  return label?.toLowerCase() === "sanitized reconstruction" ? "sanitized" : label;
+}
+
 function getAssetDefinition(asset) {
   return getComponentAsset(asset)?.definition ?? null;
 }
@@ -161,10 +165,20 @@ export default function ReceiptVisualGallery({
             ? MetaAirtableReceiptVisual
             : MirrorReceiptVisual;
       const maxWidth = getComponentViewerMaxWidth(componentAsset.renderer);
+      const compactMode = mode !== "viewer";
+      const ctaLabel = compactMode && isMobile ? "Inspect" : "Inspect receipt";
+      const privacyLabel = compactMode
+        ? getCompactPrivacyLabel(definition.privacyLabel ?? "sanitized reconstruction")
+        : definition.privacyLabel;
 
       return (
         <div className={mode === "viewer" ? `w-full ${maxWidth}` : "w-full"}>
-          <Component {...definition} displayMode={mode === "viewer" ? "full" : "compact"} ctaLabel="Inspect receipt" />
+          <Component
+            {...definition}
+            privacyLabel={privacyLabel}
+            displayMode={compactMode ? "compact" : "full"}
+            ctaLabel={ctaLabel}
+          />
         </div>
       );
     }
@@ -371,7 +385,7 @@ export default function ReceiptVisualGallery({
             </header>
             <div className="h-px shrink-0" style={{ backgroundColor: activeAccentColor, opacity: 0.72 }} aria-hidden="true" />
 
-            <div className={activeIsComponentAsset ? "min-h-0 flex-1 overflow-y-auto bg-[#fffaf1]" : "flex min-h-0 flex-1 items-center justify-center overflow-y-auto bg-[#f7f1e7] p-3 sm:p-4"}>
+            <div className={activeIsComponentAsset ? "scrollbar-portfolio min-h-0 flex-1 overflow-y-auto bg-[#fffaf1]" : "scrollbar-portfolio flex min-h-0 flex-1 items-center justify-center overflow-y-auto bg-[#f7f1e7] p-3 sm:p-4"}>
               <div className={activeIsComponentAsset ? "w-full min-w-0" : "flex w-full justify-center pb-2 sm:pb-0"}>
                 {renderAsset(activeAsset, "viewer")}
               </div>

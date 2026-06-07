@@ -1211,7 +1211,7 @@ function TypedReceiptVisual({
         <div className={getCompactHeaderClass(receiptBodyType)}>
           <div className="flex items-center justify-between gap-3">
             <span className={`text-[9px] uppercase tracking-[0.14em] ${darkCompact ? "text-[#f7f1e7]/38" : "text-[#11100d]/36"}`}>Receipt {receiptNumber}</span>
-            <StatusPill dark={darkCompact}>{status}</StatusPill>
+            {status && status !== "ready" && <StatusPill dark={darkCompact}>{status}</StatusPill>}
           </div>
           <h3 className={`mt-2.5 text-[15px] font-medium leading-5 ${darkCompact ? "text-[#f7f1e7]" : "text-[#11100d]"}`}>{title}</h3>
           <div className={`mt-1 text-[9px] uppercase tracking-[0.13em] ${darkCompact ? "text-[#f7f1e7]/42" : "text-[#11100d]/42"}`}>{type}</div>

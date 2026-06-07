@@ -568,7 +568,7 @@ export default function SmoothMdReceiptVisual({
         <div className="border-b border-[#11100d]/8 px-3.5 py-2.5">
           <div className="flex items-center justify-between gap-3">
             <span className="text-[9px] uppercase tracking-[0.14em] text-[#11100d]/36">Receipt {receiptNumber}</span>
-            <StatusPill>{status}</StatusPill>
+            {status && status !== "ready" && <StatusPill>{status}</StatusPill>}
           </div>
           <h3 className="mt-2 text-[14px] font-medium leading-5 text-[#11100d]">{title}</h3>
           <div className="mt-0.5 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/42">{type}</div>

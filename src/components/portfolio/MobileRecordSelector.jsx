@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { ChevronDown, X } from "lucide-react";
 import AccentDot from "../ui/AccentDot";
 import { filters } from "../../data/records";
+import { formatMetadataLabel } from "../../utils/caseMetadata";
 import { cx } from "../../utils/cx";
 
 export default function MobileRecordSelector({
@@ -10,6 +11,7 @@ export default function MobileRecordSelector({
   setActiveRecord,
   activeFilter,
   setActiveFilter,
+  caseNumbers,
   isOpen,
   setIsOpen,
 }) {
@@ -40,6 +42,10 @@ export default function MobileRecordSelector({
     setIsOpen(false);
   }
 
+  function getCaseNumber(record) {
+    return caseNumbers?.get(record.slug) ?? record.id;
+  }
+
   return (
     <>
       {/* Compact selector bar — sticky so the active case is always visible */}
@@ -57,14 +63,14 @@ export default function MobileRecordSelector({
               <div className="truncate text-[11px] font-medium tracking-[-0.01em] text-[#11100d]">
                 {activeRecord.title}
               </div>
-              <div className="truncate text-[9px] uppercase tracking-[0.14em] text-[#11100d]/48">
-                {activeRecord.status} / {activeRecord.category}
+              <div className="truncate text-[10px] tracking-[0.01em] text-[#11100d]/48">
+                {formatMetadataLabel(activeRecord.status)} / {formatMetadataLabel(activeRecord.type)}
               </div>
             </div>
           </div>
           <div className="flex shrink-0 items-center gap-2">
             <span className="text-[9px] uppercase tracking-[0.14em] text-[#11100d]/40">
-              {activeRecord.id}
+              {getCaseNumber(activeRecord)}
             </span>
             <ChevronDown className="h-4 w-4 text-[#11100d]/40" />
           </div>
@@ -77,7 +83,7 @@ export default function MobileRecordSelector({
           className="fixed inset-0 z-50 lg:hidden"
           role="dialog"
           aria-modal="true"
-          aria-label="Record selector"
+          aria-label="Case selector"
         >
           {/* Backdrop */}
           <div
@@ -91,7 +97,7 @@ export default function MobileRecordSelector({
             <div className="flex items-center justify-between px-5 pt-4 pb-3">
               <div className="mx-auto mb-1 h-1 w-10 rounded-full bg-[#11100d]/14 absolute left-1/2 top-3 -translate-x-1/2" />
               <div className="text-[9px] uppercase tracking-[0.22em] text-[#11100d]/42 mt-1">
-                Records
+                Cases
               </div>
               <button
                 type="button"
@@ -105,27 +111,30 @@ export default function MobileRecordSelector({
 
             {/* Filters */}
             <div className="flex gap-1.5 overflow-x-auto px-5 pb-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-              {filters.map((filter) => (
+              {filters.map((filter) => {
+                const filterLabel = formatMetadataLabel(filter);
+                return (
                 <button
                   key={filter}
                   type="button"
-                  aria-label={`Filter by ${filter}`}
+                  aria-label={`Filter by ${filterLabel}`}
                   aria-pressed={activeFilter === filter}
                   onClick={() => setActiveFilter(filter)}
                   className={cx(
-                    "shrink-0 rounded-full border px-3 py-1.5 text-[9px] uppercase tracking-[0.15em] transition",
+                    "shrink-0 rounded-full border px-3 py-1.5 text-[10px] tracking-[0.01em] transition",
                     activeFilter === filter
                       ? "border-[#11100d] bg-[#11100d] text-[#f7f1e7]"
                       : "border-[#11100d]/10 text-[#11100d]/44"
                   )}
                 >
-                  {filter}
+                  {filterLabel}
                 </button>
-              ))}
+                );
+              })}
             </div>
 
             {/* Record rows */}
-            <div className="overflow-y-auto px-4 pb-6">
+            <div className="scrollbar-portfolio overflow-y-auto px-4 pb-6">
               {recordsList.length > 0 ? (
                 <div className="space-y-2">
                   {recordsList.map((record) => {
@@ -155,11 +164,11 @@ export default function MobileRecordSelector({
                           </div>
                           <div
                             className={cx(
-                              "truncate text-[9px] uppercase tracking-[0.12em]",
+                              "truncate text-[10px] tracking-[0.01em]",
                               active ? "text-[#f7f1e7]/50" : "text-[#11100d]/42"
                             )}
                           >
-                            {record.type} / {record.category}
+                            {formatMetadataLabel(record.status)} / {formatMetadataLabel(record.type)}
                           </div>
                         </div>
                         <span
@@ -168,7 +177,7 @@ export default function MobileRecordSelector({
                             active ? "text-[#f7f1e7]/50" : "text-[#11100d]/38"
                           )}
                         >
-                          {record.id}
+                          {getCaseNumber(record)}
                         </span>
                       </button>
                     );

@@ -26,6 +26,10 @@ export default function UndonePortfolioV10() {
     });
   }, [activeFilter, visibleRecords]);
 
+  const visibleCaseNumbers = useMemo(() => {
+    return new Map(visibleRecords.map((record, index) => [record.slug, String(index + 1).padStart(2, "0")]));
+  }, [visibleRecords]);
+
   const activeRecord = useMemo(
     () => records.find((record) => record.slug === activeRecordSlug) || defaultRecord,
     [activeRecordSlug, defaultRecord]
@@ -114,6 +118,7 @@ export default function UndonePortfolioV10() {
             setActiveRecord={(record) => setActiveRecordSlug(record.slug)}
             activeFilter={activeFilter}
             setActiveFilter={setActiveFilter}
+            caseNumbers={visibleCaseNumbers}
             isOpen={mobileSheetOpen}
             setIsOpen={setMobileSheetOpen}
           />
@@ -136,6 +141,7 @@ export default function UndonePortfolioV10() {
               openWorkspace={openWorkspace}
               activeFilter={activeFilter}
               setActiveFilter={setActiveFilter}
+              caseNumbers={visibleCaseNumbers}
             />
             <ActiveCanvas record={activeRecord} mode="overview" openWorkspace={openWorkspace} />
             <ProofRail

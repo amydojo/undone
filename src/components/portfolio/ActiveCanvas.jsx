@@ -5,14 +5,15 @@ import MetricPill from "../ui/MetricPill";
 import ProfileStrip from "./ProfileStrip";
 import OverviewArtifact from "./OverviewArtifact";
 import OverviewVisualPlate from "./OverviewVisualPlate";
+import { formatMetadataLabel } from "../../utils/caseMetadata";
 
 const DECODER_LINES = {
-  mirror: 'A product logic prototype for messy check-ins.',
-  'smooth-md-growth-os': 'scattered clinic marketing → reusable service, CRM, and campaign logic.',
-  'meta-airtable-dashboard': 'ad spend → booking behavior → revenue-informed decisions.',
-  'snip-provider-pipeline': 'provider records → validated profiles → handoff folders.',
+  mirror: 'Mood, sleep, clarity, and context → readable states and one next step.',
+  'smooth-md-growth-os': 'Scattered clinic marketing → reusable service, CRM, and campaign logic.',
+  'meta-airtable-dashboard': 'Ad spend → booking behavior → revenue-informed decisions.',
+  'snip-provider-pipeline': 'Provider records → validated profiles → handoff folders.',
   'guardrail-hr': '22 questions. one risk score. clearer next steps.',
-  'multi-brand-retention': 'brand, service, and status → the right follow-up path.',
+  'multi-brand-retention': 'Brand, service, and status → the right follow-up path.',
 };
 
 export default function ActiveCanvas({ record, mode, openWorkspace }) {
@@ -32,9 +33,7 @@ export default function ActiveCanvas({ record, mode, openWorkspace }) {
               <div className="flex items-center justify-between gap-4">
                 <div className="flex items-center gap-3 text-[9px] uppercase tracking-[0.22em] text-[#11100d]/44">
                   <Layers className="h-3.5 w-3.5" />
-                  <span>Currently inspecting</span>
-                  <span className="hidden h-px w-8 bg-[#11100d]/14 sm:block" />
-                  <span className="hidden sm:block">active case file</span>
+                  <span>Active case file</span>
                 </div>
                 <button
                   type="button"
@@ -49,11 +48,11 @@ export default function ActiveCanvas({ record, mode, openWorkspace }) {
               <div className="flex-1" />
 
               <div>
-                <div className="flex flex-wrap items-center gap-3 text-[10px] uppercase tracking-[0.15em] text-[#11100d]/40">
+                <div className="flex flex-wrap items-center gap-3 text-[11px] tracking-[0.01em] text-[#11100d]/42">
                   {[record.category, record.timeline, record.status].map((item, index) => (
                     <React.Fragment key={item}>
                       {index > 0 ? <span className="h-1 w-1 rounded-full bg-[#11100d]/18" aria-hidden="true" /> : null}
-                      <span>{item}</span>
+                      <span>{index === 1 ? item : formatMetadataLabel(item)}</span>
                     </React.Fragment>
                   ))}
                 </div>
@@ -83,9 +82,9 @@ export default function ActiveCanvas({ record, mode, openWorkspace }) {
 
             <OverviewVisualPlate visual={record.overviewVisual} slug={record.slug} />
 
-            {/* ── BEAT 03 · SYSTEM OBJECT ─────────────────────────── */}
+            {/* ── BEAT 03 · SYSTEM MODEL ──────────────────────────── */}
             <div className="border-t border-[#11100d]/8 px-5 pb-12 pt-10 xl:px-10 xl:pb-16 xl:pt-14">
-              <div className="mb-7 text-[10px] uppercase tracking-[0.15em] text-[#11100d]/38">System object</div>
+              <div className="mb-7 text-[10px] uppercase tracking-[0.15em] text-[#11100d]/38">System model</div>
               <OverviewArtifact record={record} />
             </div>
           </motion.div>

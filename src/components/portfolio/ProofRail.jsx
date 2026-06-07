@@ -35,7 +35,7 @@ export default function ProofRail({ record, activeReceipt, onSelectReceipt }) {
       <div className='flex items-center justify-between border-b border-[#11100d]/8 px-4 py-4 lg:px-5'>
         <span className='text-[9px] uppercase tracking-[0.2em] text-[#11100d]/44'>Receipt Inspector</span>
         <span className='border-l border-[#11100d]/12 pl-2 text-[9px] uppercase tracking-[0.12em] text-[#11100d]/34'>
-          {receipts.length} proof {receipts.length === 1 ? 'object' : 'objects'}
+          {receipts.length} {receipts.length === 1 ? 'receipt' : 'receipts'}
         </span>
       </div>
 

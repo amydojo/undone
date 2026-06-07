@@ -4,16 +4,17 @@ import MetricPill from "../ui/MetricPill";
 import ProfileStrip from "./ProfileStrip";
 import OverviewArtifact from "./OverviewArtifact";
 import { cx } from "../../utils/cx";
+import { formatMetadataLabel } from "../../utils/caseMetadata";
 import ReceiptVisualGallery from "./ReceiptVisualGallery";
 import OverviewVisualPlate from "./OverviewVisualPlate";
 
 const DECODER_LINES = {
-  mirror: 'A product logic prototype for messy check-ins.',
-  'smooth-md-growth-os': 'scattered clinic marketing → reusable service, CRM, and campaign logic.',
-  'meta-airtable-dashboard': 'ad spend → booking behavior → revenue-informed decisions.',
-  'snip-provider-pipeline': 'provider records → validated profiles → handoff folders.',
+  mirror: 'Mood, sleep, clarity, and context → readable states and one next step.',
+  'smooth-md-growth-os': 'Scattered clinic marketing → reusable service, CRM, and campaign logic.',
+  'meta-airtable-dashboard': 'Ad spend → booking behavior → revenue-informed decisions.',
+  'snip-provider-pipeline': 'Provider records → validated profiles → handoff folders.',
   'guardrail-hr': '22 questions. one risk score. clearer next steps.',
-  'multi-brand-retention': 'brand, service, and status → the right follow-up path.',
+  'multi-brand-retention': 'Brand, service, and status → the right follow-up path.',
 };
 
 const TABS = [
@@ -55,11 +56,11 @@ function OverviewTab({ record, openWorkspace }) {
 
       {/* Hero */}
       <div className="max-w-[700px]">
-        <div className="flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.15em] text-[#11100d]/42">
+        <div className="flex flex-wrap items-center gap-2 text-[11px] tracking-[0.01em] text-[#11100d]/42">
           {[record.category, record.timeline, record.status].map((item, index) => (
             <React.Fragment key={item}>
               {index > 0 ? <span className="h-1 w-1 rounded-full bg-[#11100d]/18" aria-hidden="true" /> : null}
-              <span>{item}</span>
+              <span>{index === 1 ? item : formatMetadataLabel(item)}</span>
             </React.Fragment>
           ))}
         </div>
@@ -86,7 +87,7 @@ function OverviewTab({ record, openWorkspace }) {
 
       <OverviewVisualPlate visual={record.overviewVisual} slug={record.slug} variant="inline" />
 
-      {/* System object */}
+      {/* System model */}
       <OverviewArtifact record={record} />
 
       <ProfileStrip />
@@ -110,7 +111,7 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
         <div>
           <div className="text-[9px] uppercase tracking-[0.18em] text-[#11100d]/38">Receipts</div>
           <div className="mt-1 text-[18px] leading-none tracking-[-0.02em] text-[#11100d]">
-            {receipts.length} proof {receipts.length === 1 ? "object" : "objects"}
+            {receipts.length} {receipts.length === 1 ? "receipt" : "receipts"}
           </div>
         </div>
       </header>

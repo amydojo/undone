@@ -2,6 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  @media (hover: hover) and (pointer: fine) {
+    .scrollbar-portfolio {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(15, 15, 15, 0.22) transparent;
+    }
+
+    .scrollbar-portfolio::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    .scrollbar-portfolio::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .scrollbar-portfolio::-webkit-scrollbar-thumb {
+      background-color: rgba(15, 15, 15, 0.18);
+      border-radius: 999px;
+      border: 3px solid transparent;
+      background-clip: content-box;
+    }
+
+    .scrollbar-portfolio::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(15, 15, 15, 0.28);
+    }
+  }
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }

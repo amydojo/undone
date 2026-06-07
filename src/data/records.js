@@ -2,14 +2,14 @@ export const records = [
   {
     id: '01',
     slug: 'smooth-md-growth-os',
-    title: 'Smooth MD Growth Operating System',
-    headline: 'From scattered service promos to a repeatable growth system',
-    category: 'brand operations',
+    title: 'Smooth MD Clinic Growth System',
+    headline: 'Turning scattered clinic marketing into one reusable system.',
+    category: 'brand systems',
     type: 'brand system',
     status: 'shipped',
     timeline: '2023 / 2024',
     accent: '#c8ff62',
-    oneLine: "I organized Smooth MD's services, offers, follow-up, Instagram proof, and campaign logic into one reusable clinic system.",
+    oneLine: "I organized Smooth MD's services, offers, Instagram proof, CRM follow-up, and campaign reads so the clinic could launch campaigns and route leads from the same plan.",
     overviewVisual: {
       label: 'BRAND SURFACE',
       caption: 'Public surface: service positioning, offer language, and visual proof rebuilt into a clearer clinic brand system.',
@@ -28,24 +28,24 @@ export const records = [
         }
       ]
     },
-    role: 'Brand and lifecycle strategy lead',
+    role: 'Brand, follow-up, and campaign systems lead',
     tools: ['Figma', 'Airtable', 'Mailchimp', 'Webflow', 'Zapier', 'Meta Ads'],
     hiringTranslation:
-      'This case proves brand systems strategy, creative leadership, lifecycle design, CRM logic, campaign architecture, and performance interpretation by turning fragmented clinic marketing into a reusable operating model.',
+      'This case shows how clinic services, offers, Instagram proof, CRM follow-up, and campaign reads can become one reusable launch system.',
     metrics: [
       { value: '6+', label: 'service lines unified' },
       { value: '+40%', label: 'lead conversion lift' },
       { value: '3.2x', label: 'ROAS on offer test' }
     ],
-    path: ['positioning', 'service hierarchy', 'offer architecture', 'consult path', 'CRM state', 'performance read'],
-    signal: 'Smooth MD had strong services, offers, social content, ads, CRM follow-up, and patient touchpoints, but each channel used its own logic.',
-    system: 'I connected service hierarchy, consult language, offer logic, Instagram proof, lifecycle routing, CRM status logic, and campaign performance reads so the clinic could reuse the same model across marketing and follow-up.',
-    owned: ['brand systems strategy', 'creative leadership', 'lifecycle design', 'CRM logic design', 'campaign architecture', 'workflow design', 'performance interpretation'],
+    path: ['positioning', 'service hierarchy', 'offer rules', 'consult path', 'CRM status', 'campaign read'],
+    signal: 'Smooth MD had strong services, offers, content, ads, CRM follow-up, and patient touchpoints, but each channel used different rules.',
+    system: 'I connected the clinic service hierarchy, consult language, offer rules, Instagram proof, CRM status logic, and campaign performance reads so marketing and follow-up could reuse the same plan.',
+    owned: ['brand systems strategy', 'creative leadership', 'CRM follow-up design', 'offer and campaign planning', 'workflow design', 'performance interpretation'],
     nextProof: ['Brand operating framework', 'Patient lifecycle map', 'CRM status logic', 'Instagram proof system', 'Campaign launch kit'],
     decisions: [
-      { label: 'constraint', body: 'Multiple service lines, offers, ads, Instagram proof, consult paths, CRM follow-up, and patient touchpoints were competing for clarity.' },
-      { label: 'move', body: 'Clarify the service hierarchy, offer architecture, lifecycle routing, CRM status logic, Instagram proof, and campaign launch rules so each channel worked from the same plan.' },
-      { label: 'tradeoff', body: 'More upfront definition so campaigns, content, and follow-up could reuse the same logic instead of restarting from scratch.' },
+      { label: 'constraint', body: 'Multiple service lines, offers, ads, Instagram proof, consult paths, CRM follow-up, and patient touchpoints were using different messages and rules.' },
+      { label: 'move', body: 'Clarify the service hierarchy, offer rules, consult path, CRM status logic, Instagram proof, and campaign launch rules so each channel worked from the same plan.' },
+      { label: 'tradeoff', body: 'More upfront definition so campaigns, content, and follow-up could move faster instead of restarting from scratch.' },
       { label: 'principle', body: 'Public-facing brand clarity has to connect to operational follow-through: what service, what offer, what next step, what performance read.' }
     ],
     receipts: [
@@ -140,13 +140,13 @@ export const records = [
     id: '02',
     slug: 'mirror',
     title: 'Mirror',
-    headline: 'Turning emotional check-ins into product logic',
+    headline: 'Turning messy check-ins into calm product feedback.',
     category: 'product ux',
     type: 'product system',
     status: 'prototype',
     timeline: '2024',
     accent: '#c7b2ff',
-    oneLine: 'Mood, sleep, clarity, and context become readable states and gentle next steps.',
+    oneLine: 'Mirror turns mood, sleep, clarity, and context into readable states, plain explanations, and one gentle next step.',
     overviewVisual: {
       label: 'PRODUCT SURFACE',
       caption: 'Product surface: check-in signals translated into a readable weather field.',
@@ -160,10 +160,10 @@ export const records = [
         }
       ]
     },
-    role: 'Product logic and component QA designer',
+    role: 'Product state and component QA designer',
     tools: ['Figma', 'Storybook', 'React', 'Replit', 'localStorage', 'AI workflows'],
     hiringTranslation:
-      'This case is relevant to design technologist and creative technologist roles because it demonstrates product logic for sensitive contexts, component state coverage, QA thinking, and prototype implementation.',
+      'This case is relevant to design technologist and creative technologist roles because it demonstrates sensitive product states, response rules, component coverage, QA thinking, and prototype implementation.',
     metrics: [
       { value: '8', label: 'signal states' },
       { value: '10', label: 'test scenarios' },
@@ -172,12 +172,12 @@ export const records = [
     path: ['check in', 'normalize', 'read state', 'explain', 'suggest', 'test'],
     signal: 'People do not always know what they feel. A check-in can include a mood word, poor sleep, low clarity, and a stressful context all at once.',
     system: 'Mirror turns those messy inputs into readable states, explains the reason in plain language, and offers a gentle next step without pretending to diagnose the user.',
-    owned: ['interaction model', 'state taxonomy', 'product logic', 'component QA workflow', 'prototype implementation', 'visual direction'],
+    owned: ['interaction model', 'state taxonomy', 'response rules', 'component QA workflow', 'prototype implementation', 'visual direction'],
     nextProof: ['Signal Interpretation Engine', 'Body Weather State System', 'Debug Overlay + Test Bench', 'Storybook Component Environment'],
     decisions: [
       { label: 'constraint', body: 'The product handles sensitive self-reporting, but it is a prototype and should never imply medical certainty.' },
       { label: 'move', body: 'Translate mood, sleep, clarity, and context into a readable state, a plain explanation, and one low-friction next step.' },
-      { label: 'tradeoff', body: 'Less novelty and fewer proof objects so the product logic is easier to understand quickly.' },
+      { label: 'tradeoff', body: 'Less novelty and fewer extra artifacts so the product behavior is easier to understand quickly.' },
       { label: 'principle', body: 'Make the system readable, testable, and gentle before making it expressive.' }
     ],
     receipts: [
@@ -254,31 +254,31 @@ export const records = [
   {
     id: '03',
     slug: 'meta-airtable-dashboard',
-    title: 'Meta + Airtable Intelligence Layer',
-    headline: 'Connecting ad spend to booking and revenue signals',
-    category: 'marketing operations',
-    type: 'reporting layer',
+    title: 'Meta + Airtable Campaign Reporting System',
+    headline: 'Connecting ad spend to bookings and revenue.',
+    category: 'campaign reporting',
+    type: 'campaign reporting',
     status: 'built',
     timeline: '2025',
     accent: '#b6f3d4',
-    oneLine: 'I connected Meta Ads, Airtable lead records, CRM status, booking behavior, and revenue signals so campaign decisions were based on more than CPL.',
-    role: 'Marketing operations systems designer',
+    oneLine: 'I connected Meta Ads, Airtable lead records, CRM status, booking behavior, and revenue evidence so campaign decisions went beyond CPL.',
+    role: 'Campaign reporting systems designer',
     tools: ['React', 'Airtable', 'Meta Marketing API', 'Zapier', 'Replit', 'OpenAI'],
     hiringTranslation:
-      'This case is relevant to growth systems, product marketing, and design technologist roles because it demonstrates strategy, data modeling, CRM logic, reporting structure, campaign performance interpretation, workflow design, and decision design.',
+      'This case is relevant to growth, marketing operations, and design technologist roles because it connects Meta Ads, Airtable lead records, CRM status, booking behavior, and revenue context into reporting that guides campaign actions.',
     metrics: [
-      { value: 'Meta', label: 'campaign signal' },
+      { value: 'Meta', label: 'ad spend signal' },
       { value: 'CRM', label: 'booking behavior' },
-      { value: 'Revenue', label: 'confidence view' }
+      { value: 'Revenue', label: 'revenue context' }
     ],
-    path: ['Meta campaign', 'lead record', 'CRM state', 'booking', 'revenue', 'decision'],
-    signal: 'Meta Ads showed spend and lead volume. Airtable held lead records and CRM movement. Booking, arrival, conversion, and revenue signals lived downstream, so campaign reads were missing the behavior that made them useful.',
-    system: 'I organized Meta campaign data, Airtable Leads_Master records, CRM status updates, booking behavior, revenue value, attribution confidence, and recommended actions into one reporting layer.',
-    owned: ['strategy', 'systems design', 'data modeling', 'CRM logic', 'reporting structure', 'campaign performance interpretation', 'workflow design', 'decision design'],
+    path: ['Meta Ads', 'Airtable lead', 'CRM status', 'booking', 'revenue context', 'campaign call'],
+    signal: 'Meta Ads showed spend and lead cost. Airtable held lead records and CRM movement. Booking, arrival, conversion, and revenue signals lived downstream, so campaign reads were missing the behavior that made them useful.',
+    system: 'I organized Meta campaign data, Airtable lead records, CRM status updates, booking behavior, revenue context, attribution confidence, and action categories into one campaign reporting system.',
+    owned: ['campaign reporting strategy', 'data modeling', 'CRM status rules', 'booking and revenue mapping', 'campaign performance reads', 'action category design'],
     nextProof: ['Add campaign dashboard screenshot', 'Add Meta ads performance view', 'Add revenue attribution table snapshot'],
     decisions: [
       { label: 'constraint', body: 'Spend, lead volume, CRM state, booking outcomes, and revenue context were split across tools, which made campaign quality hard to interpret.' },
-      { label: 'move', body: 'Model one shared lead record, then roll campaign performance through booked, arrived, converted, revenue value, and attribution confidence fields.' },
+      { label: 'move', body: 'Model one shared lead record, then roll campaign performance through booked, arrived, converted, revenue value, attribution confidence, and action categories.' },
       { label: 'tradeoff', body: 'Use qualitative confidence and manual review states instead of pretending every revenue event had perfect attribution.' },
       { label: 'principle', body: 'Reporting should change the next action, not just confirm activity.' }
     ],
@@ -356,14 +356,14 @@ export const records = [
   {
     id: '04',
     slug: 'snip-provider-pipeline',
-    title: 'Snip Snip Provider Data Pipeline',
-    headline: 'Turning provider research into publish-ready profiles',
-    category: 'operations',
-    type: 'profile workflow',
+    title: 'Snip Snip Provider Profile Workflow',
+    headline: 'Turning provider research into publish-ready profiles.',
+    category: 'provider systems',
+    type: 'provider profile workflow',
     status: 'scaled',
     timeline: '2024',
     accent: '#9fe7ff',
-    oneLine: 'I built a repeatable process to pull provider records, source images, validate assets, and hand off structured profile folders.',
+    oneLine: 'I built a repeatable workflow to pull provider records, source images, validate assets, and hand off publish-ready profile folders.',
     overviewVisual: {
       label: 'PUBLISHED SURFACE',
       caption: 'Published surface: structured provider data turned into searchable profile cards.',
@@ -385,7 +385,7 @@ export const records = [
     role: 'Automation and workflow designer',
     tools: ['Python', 'NPPES API', 'OpenCV', 'Bing search', 'Google Maps', 'spreadsheets'],
     hiringTranslation:
-      'This case is relevant to AI workflow designer and creative technologist roles because it demonstrates real automation scripts, quality gate design, and reliable human-in-the-loop operations for production handoff.',
+      'This case is relevant to AI workflow designer and creative technologist roles because it demonstrates automation workflows, quality gates, and reliable human-in-the-loop operations for production handoff.',
     metrics: [
       { value: '200+', label: 'profiles processed' },
       { value: '90%', label: 'manual sourcing reduced' },
@@ -393,8 +393,8 @@ export const records = [
     ],
     path: ['source', 'enrich', 'validate', 'score', 'organize', 'publish'],
     signal: 'Provider research was messy and manual: every profile required repeated searching, checking, downloading, renaming, and organizing.',
-    system: 'I structured the process around NPPES records, normalized fields, image sourcing, OpenCV validation, source notes, and publishing handoff folders.',
-    owned: ['automation architecture', 'validation logic', 'data cleanup', 'QA criteria', 'handoff workflow'],
+    system: 'I built a repeatable workflow around NPPES records, normalized fields, image sourcing, OpenCV validation, source notes, and publishing handoff folders.',
+    owned: ['automation workflow', 'validation logic', 'data cleanup', 'QA criteria', 'handoff workflow'],
     nextProof: ['Add provider sourcing script screenshot', 'Add OpenCV validation output', 'Add structured handoff folder map'],
     decisions: [
       { label: 'constraint', body: 'Variable public data, inconsistent image quality, trust-critical provider info.' },
@@ -555,33 +555,33 @@ export const records = [
   {
     id: '06',
     slug: 'multi-brand-retention',
-    title: 'Multi Brand Retention Engine',
-    headline: 'Routing follow-up by brand, service, and lead status',
-    category: 'retention',
-    type: 'lifecycle routing',
+    title: 'Multi-Brand Email Follow-Up System',
+    headline: 'The right follow-up for the right lead.',
+    category: 'email follow-up',
+    type: 'email follow-up system',
     status: 'live',
     timeline: '2024',
     accent: '#ffd1a1',
-    oneLine: 'I designed email and follow-up paths that changed based on brand, service interest, source, CRM status, and timing.',
-    role: 'Lifecycle routing and email production lead',
+    oneLine: 'I built a multi-brand email follow-up system that used lead source, service interest, brand, and booking status to route people into more relevant Mailchimp journeys.',
+    role: 'Email follow-up and Mailchimp production lead',
     tools: ['Mailchimp', 'Airtable', 'Zapier', 'Figma', 'HTML email'],
     hiringTranslation:
-      'This case is relevant to growth designer, lifecycle designer, and design technologist roles because it demonstrates segmentation strategy, production email systems, CRM routing, and timing logic for follow-up.',
+      'This case is relevant to growth designer, email systems, and design technologist roles because it demonstrates Mailchimp journey design, lead tag strategy, booking-status rules, email production, and follow-up timing logic.',
     metrics: [
-      { value: '4', label: 'flow types' },
-      { value: '21d', label: 'reactivation window' },
-      { value: 'multi', label: 'brand logic' }
+      { value: '4', label: 'Mailchimp paths' },
+      { value: '21d', label: 'reactivation timing' },
+      { value: 'multi', label: 'brand send rules' }
     ],
-    path: ['source', 'intent', 'service', 'timing', 'message', 'booking'],
-    signal: 'Leads came from different brands, services, sources, and levels of intent, but too many were moving through the same follow-up rhythm.',
-    system: 'I organized Mailchimp tags, CRM status, follow-up timing, and email production rules so each lead could receive a more relevant message path.',
-    owned: ['segmentation architecture', 'lifecycle flow strategy', 'email production design', 'crm tagging model', 'performance analysis'],
+    path: ['source', 'brand', 'service interest', 'booking status', 'timing', 'email path'],
+    signal: 'Leads came in from different brands, services, and campaigns, but too many were receiving the same generic email follow-up.',
+    system: 'I organized Mailchimp tags, service interest, source, booking status, send rules, suppression rules, and follow-up timing so each lead could receive the right email path.',
+    owned: ['email follow-up strategy', 'Mailchimp journey design', 'lead tag model', 'send and suppression rules', 'email production design', 'performance analysis'],
     nextProof: ['Lifecycle flow model', 'Mailchimp routing map', 'Follow-up timing protocol', 'Email production system'],
     decisions: [
-      { label: 'constraint', body: 'Mixed lead intent and uneven booking readiness across service lines.' },
-      { label: 'move', body: 'Separate passive Meta leads from higher-intent website leads.' },
-      { label: 'tradeoff', body: 'More segmentation meant more setup discipline.' },
-      { label: 'principle', body: 'Timing is part of the message.' }
+      { label: 'constraint', body: 'Leads entered through different brands, services, campaigns, and booking states, but the follow-up email path was too generic.' },
+      { label: 'move', body: 'Use Mailchimp tags, service interest, source, booking status, send rules, and suppression rules to route each lead into the right email path.' },
+      { label: 'tradeoff', body: 'More tag discipline and timing rules meant less generic blasting and easier follow-up management.' },
+      { label: 'principle', body: 'The right email depends on what someone asked for, where they came from, and whether they already booked.' }
     ],
     receipts: [
       {
@@ -656,6 +656,6 @@ export const records = [
   }
 ]
 
-export const filters = ['all', 'brand operations', 'product ux', 'analytics', 'operations', 'retention']
+export const filters = ['all', 'brand systems', 'product ux', 'campaign reporting', 'email follow-up', 'provider systems']
 
 export default records

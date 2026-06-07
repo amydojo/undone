@@ -87,7 +87,7 @@ export default function OverviewArtifact({ record }) {
             {obj.title}
           </span>
         </div>
-        <span className='text-[9px] uppercase tracking-[0.11em] text-[#11100d]/26'>system object</span>
+        <span className='text-[9px] uppercase tracking-[0.11em] text-[#11100d]/26'>system model</span>
       </div>
 
       {/* Purpose */}
