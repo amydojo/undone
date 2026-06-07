@@ -97,7 +97,7 @@ function OverviewTab({ record, openWorkspace }) {
 
 // ─── Proof Tab ───────────────────────────────────────────────────────────────
 
-function ProofTab({ record, activeReceipt, onSelectReceipt }) {
+function ProofTab({ record, activeReceipt, onSelectReceipt, resetSignal }) {
   const receipts = record.receipts;
   const selectedReceipt = activeReceipt;
   const receiptContents = selectedReceipt?.contents ?? [];
@@ -199,6 +199,7 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
             receiptFormat={selectedReceipt.format}
             receiptTestId={getReceiptTestId(selectedReceipt)}
             variant="mobile"
+            resetSignal={resetSignal}
           />
           {showSelectedStatus && (
             <div className="mt-3">
@@ -238,6 +239,7 @@ function ProofTab({ record, activeReceipt, onSelectReceipt }) {
             receiptFormat={selectedReceipt.format}
             receiptTestId={getReceiptTestId(selectedReceipt)}
             variant="mobile"
+            resetSignal={resetSignal}
           />
 
           {showSelectedStatus && (
@@ -263,6 +265,7 @@ export default function MobileView({
   onSelectReceipt,
   mobileTab,
   setMobileTab,
+  resetSignal,
 }) {
   const activeMobileTab = TABS.some(({ id }) => id === mobileTab) ? mobileTab : "overview";
 
@@ -310,6 +313,7 @@ export default function MobileView({
           record={record}
           activeReceipt={activeReceipt}
           onSelectReceipt={onSelectReceipt}
+          resetSignal={resetSignal}
         />
       )}
     </div>

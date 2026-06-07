@@ -2,17 +2,22 @@ import React from "react";
 import { profile } from "../../data/profile";
 import { resolvePublicSrc } from "../../utils/resolvePublicSrc";
 
-export default function TopBar() {
+export default function TopBar({ onHomeReset }) {
   const resumeHref = resolvePublicSrc(profile.resumeHref);
 
   return (
     <header className="relative flex flex-col gap-3 border-b border-[#11100d]/10 bg-[#f7f1e7]/88 px-4 py-4 backdrop-blur-xl lg:flex-row lg:items-center lg:justify-between lg:px-6">
       {/* Identity: mobile = stacked + actions right; desktop = inline */}
       <div className="flex items-start justify-between gap-3 lg:items-center">
-        <div className="flex min-w-0 flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-2.5">
+        <button
+          type="button"
+          aria-label="Reset portfolio to overview"
+          onClick={onHomeReset}
+          className="flex min-w-0 flex-col gap-0.5 rounded-[6px] text-left transition hover:text-[#11100d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/25 sm:flex-row sm:items-baseline sm:gap-2.5"
+        >
           <span className="text-[13px] font-medium leading-none text-[#11100d]/82">Amy Do</span>
           <span className="text-[10px] leading-none text-[#11100d]/44">Design Technologist</span>
-        </div>
+        </button>
         {/* Mobile-only: résumé + contact always visible */}
         <div className="flex shrink-0 items-center gap-1.5 lg:hidden">
           <a

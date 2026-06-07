@@ -76,7 +76,8 @@ export default function ReceiptVisualGallery({
   receiptName = "Selected receipt",
   receiptFormat = "visual proof",
   receiptTestId,
-  variant = "desktop"
+  variant = "desktop",
+  resetSignal
 }) {
   const [failedSrcs, setFailedSrcs] = useState(() => new Set());
   const [activeIndex, setActiveIndex] = useState(null);
@@ -138,6 +139,10 @@ export default function ReceiptVisualGallery({
       setActiveIndex(null);
     }
   }, [activeIndex, visibleAssets.length]);
+
+  useEffect(() => {
+    setActiveIndex(null);
+  }, [resetSignal]);
 
   if (visibleAssets.length === 0) return null;
 

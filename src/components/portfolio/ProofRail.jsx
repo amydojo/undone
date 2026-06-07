@@ -23,7 +23,7 @@ function getReceiptTestId(receipt) {
   return receipt?.testId ?? receipt?.id
 }
 
-export default function ProofRail({ record, activeReceipt, onSelectReceipt }) {
+export default function ProofRail({ record, activeReceipt, onSelectReceipt, resetSignal }) {
   const receipts = record.receipts
   const selectedReceipt = activeReceipt ?? receipts[0]
   const receiptContents = selectedReceipt?.contents ?? []
@@ -132,6 +132,7 @@ export default function ProofRail({ record, activeReceipt, onSelectReceipt }) {
             receiptName={selectedReceipt?.name}
             receiptFormat={selectedReceipt?.format}
             receiptTestId={getReceiptTestId(selectedReceipt)}
+            resetSignal={resetSignal}
           />
 
           {shouldShowStatus(selectedReceipt?.status) && (

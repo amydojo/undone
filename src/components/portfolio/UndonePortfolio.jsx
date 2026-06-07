@@ -18,6 +18,7 @@ export default function UndonePortfolioV10() {
   const [workspaceRecordSlug, setWorkspaceRecordSlug] = useState(null);
   const [mobileSheetOpen, setMobileSheetOpen] = useState(false);
   const [mobileTab, setMobileTab] = useState("overview");
+  const [resetSignal, setResetSignal] = useState(0);
 
   const filteredRecords = useMemo(() => {
     return visibleRecords.filter((record) => {
@@ -94,6 +95,19 @@ export default function UndonePortfolioV10() {
 
   const openWorkspace = (record) => setWorkspaceRecordSlug(record.slug);
 
+  function resetPortfolioHome() {
+    const homeRecord = visibleRecords[0] ?? defaultRecord ?? records[0];
+    if (!homeRecord) return;
+
+    setActiveFilter("all");
+    setActiveRecordSlug(homeRecord.slug);
+    setActiveReceiptId(homeRecord.receipts[0]?.id ?? null);
+    setWorkspaceRecordSlug(null);
+    setMobileSheetOpen(false);
+    setMobileTab("overview");
+    setResetSignal((value) => value + 1);
+  }
+
   // Derive the receipt object for child components
   const activeReceipt = useMemo(
     () => activeRecord.receipts.find((r) => r.id === activeReceiptId) ?? null,
@@ -109,7 +123,7 @@ export default function UndonePortfolioV10() {
       <div className="mx-auto min-h-screen max-w-[1720px] overflow-x-hidden bg-[#f7f1e7] shadow-[0_0_0_1px_rgba(255,255,255,0.08)]">
         <div className="pointer-events-none fixed inset-0 opacity-[0.45] [background-image:radial-gradient(circle_at_18%_8%,rgba(255,255,255,0.85),transparent_28%),linear-gradient(rgba(17,16,13,0.028)_1px,transparent_1px),linear-gradient(90deg,rgba(17,16,13,0.028)_1px,transparent_1px)] [background-size:auto,38px_38px,38px_38px]" />
         <div className="relative z-10">
-          <TopBar />
+          <TopBar onHomeReset={resetPortfolioHome} />
 
           {/* Mobile layout */}
           <MobileRecordSelector
@@ -130,6 +144,7 @@ export default function UndonePortfolioV10() {
             onSelectReceipt={handleSelectReceipt}
             mobileTab={mobileTab}
             setMobileTab={setMobileTab}
+            resetSignal={resetSignal}
           />
 
           {/* Desktop layout */}
@@ -148,6 +163,7 @@ export default function UndonePortfolioV10() {
               record={activeRecord}
               activeReceipt={activeReceipt}
               onSelectReceipt={handleSelectReceipt}
+              resetSignal={resetSignal}
             />
           </div>
         </div>

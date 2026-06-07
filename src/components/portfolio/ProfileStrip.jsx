@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { profile } from "../../data/profile";
 import { cx } from "../../utils/cx";
 import { resolvePublicSrc } from "../../utils/resolvePublicSrc";
@@ -76,12 +77,16 @@ export default function ProfileStrip({ className }) {
           </a>
           <button
             type="button"
-            aria-label={expanded ? "Hide details" : "Show details"}
+            aria-label={expanded ? "Hide profile details" : "Show profile details"}
             aria-expanded={expanded}
             onClick={() => setExpanded((v) => !v)}
-            className="inline-flex h-8 items-center rounded-full border border-[#11100d]/10 px-3.5 text-[9px] uppercase tracking-[0.14em] text-[#11100d]/58"
+            className="inline-flex h-8 items-center gap-1.5 rounded-[6px] px-1.5 text-[9px] uppercase tracking-[0.12em] text-[#11100d]/42 transition hover:text-[#11100d]/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/20"
           >
-            details
+            more
+            <ChevronDown
+              className={cx("h-3 w-3 transition-transform", expanded && "rotate-180")}
+              aria-hidden="true"
+            />
           </button>
         </div>
       </div>
