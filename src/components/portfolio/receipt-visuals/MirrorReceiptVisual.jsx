@@ -2,6 +2,11 @@ import React from "react";
 
 const ACCENT = "#c7b2ff";
 
+const RECEIPT_SUPPORT_LINKS_BY_BODY_TYPE = {
+  logicMap: { label: "Prototype ↗", href: "https://mirror-v0.vercel.app/" },
+  coverageMatrix: { label: "Storybook ↗", href: "https://mirror-storybook.vercel.app/?path=/docs/mirror-design-system--docs" }
+};
+
 function AccentDot({ color = ACCENT, className = "h-1.5 w-1.5" }) {
   return (
     <span
@@ -1203,6 +1208,8 @@ function TypedReceiptVisual({
   displayMode = "full",
   ctaLabel = "Inspect receipt"
 }) {
+  const supportLink = RECEIPT_SUPPORT_LINKS_BY_BODY_TYPE[receiptBodyType];
+
   if (displayMode === "compact") {
     const darkCompact = receiptBodyType === "stateMatrix" || receiptBodyType === "qaConsole";
 
@@ -1246,8 +1253,18 @@ function TypedReceiptVisual({
           <span className="mt-1 block">{footerNote.replace(/^What this proves:\s*/i, "")}</span>
           </>
         )}
-        <div className={`${footerNote ? "mt-3 " : ""}flex flex-wrap items-center gap-x-2 gap-y-1 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/34`}>
-          <span>{privacyLabel}</span>
+        <div className={`${footerNote ? "mt-3 " : ""}flex flex-wrap items-center gap-x-3 gap-y-1 text-[9px] text-[#11100d]/34`}>
+          <span className="uppercase tracking-[0.13em]">{privacyLabel}</span>
+          {supportLink && (
+            <a
+              href={supportLink.href}
+              target="_blank"
+              rel="noreferrer"
+              className="border-b border-[#11100d]/14 pb-0.5 text-[10px] leading-4 text-[#11100d]/46 transition-colors hover:border-[#11100d]/30 hover:text-[#11100d]/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/18 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f7f1e7]"
+            >
+              {supportLink.label}
+            </a>
+          )}
         </div>
       </div>
     </article>

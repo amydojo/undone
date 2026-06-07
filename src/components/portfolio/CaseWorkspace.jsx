@@ -207,6 +207,11 @@ const OUTCOME_INTRO_BY_SLUG = {
   'multi-brand-retention': 'Email follow-up became easier to coordinate across services, brands, booking status, and timing rules.'
 }
 
+const MIRROR_SUPPORT_LINKS = [
+  { label: 'Prototype ↗', href: 'https://mirror-v0.vercel.app/' },
+  { label: 'Storybook ↗', href: 'https://mirror-storybook.vercel.app/?path=/docs/mirror-design-system--docs' }
+]
+
 function sectionDomId(slug, sectionId) {
   return `${slug}-case-${sectionId}`
 }
@@ -252,6 +257,24 @@ function scrollToSection(workspace, sectionId) {
 
 /* ─────────────────────────── Section components ─────────────────────────── */
 
+function MirrorSupportLinks() {
+  return (
+    <div className='mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] leading-5'>
+      {MIRROR_SUPPORT_LINKS.map((link) => (
+        <a
+          key={link.href}
+          href={link.href}
+          target='_blank'
+          rel='noreferrer'
+          className='border-b border-[#11100d]/16 pb-0.5 text-[#11100d]/52 transition-colors hover:border-[#11100d]/34 hover:text-[#11100d]/78 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/18 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f7f1e7]'
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+  )
+}
+
 function BriefSection({ workspace }) {
   const copy = getCaseCopy(workspace)
 
@@ -267,6 +290,7 @@ function BriefSection({ workspace }) {
         <div>
           <div className='mb-3 text-[10px] uppercase tracking-[0.15em] text-[#11100d]/38'>Summary</div>
           <p className='text-[15px] leading-[1.7] text-[#11100d]/66'>{copy.summary}</p>
+          {workspace.slug === 'mirror' && <MirrorSupportLinks />}
         </div>
       </div>
 
@@ -335,14 +359,13 @@ function SystemSection({ workspace }) {
 
   return (
     <section id={sectionDomId(workspace.slug, 'system')} className='border-t border-[#11100d]/10 pt-12 pb-14 lg:pt-16 lg:pb-16'>
-      <div className='text-[10px] uppercase tracking-[0.15em] text-[#11100d]/38'>System</div>
+      <div className='text-[10px] uppercase tracking-[0.15em] text-[#11100d]/38'>System model</div>
       <p className='mt-4 max-w-[680px] text-base leading-[1.65] text-[#11100d]/66'>{copy.systemIntro}</p>
 
       {/* Operating model panel */}
       <div className='mt-8 rounded-[18px] bg-[#171512] text-[#f7f1e7]'>
         {/* Panel header */}
-        <div className='flex items-center justify-between border-b border-[#f7f1e7]/8 px-6 py-5 lg:px-8'>
-          <span className='text-[10px] uppercase tracking-[0.15em] text-[#f7f1e7]/42'>Operating model</span>
+        <div className='flex items-center justify-end border-b border-[#f7f1e7]/8 px-6 py-5 lg:px-8'>
           <span
             className='h-2.5 w-2.5 rounded-full'
             style={{ backgroundColor: workspace.accent ?? '#f7f1e7', boxShadow: `0 0 0 1px rgba(247,241,231,0.15)` }}
