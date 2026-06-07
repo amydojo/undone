@@ -50,6 +50,15 @@ function getComponentViewerMaxWidth(renderer) {
   return "max-w-[760px]";
 }
 
+function getComponentAccentColor(renderer) {
+  if (renderer === "smooth") return "#c8ff62";
+  if (renderer === "multi") return "#ffd1a1";
+  if (renderer === "snip") return "#8be2ff";
+  if (renderer === "meta") return "#b6f3d4";
+  if (renderer === "mirror") return "#c7b2ff";
+  return "#d8c7ae";
+}
+
 function getAssetDefinition(asset) {
   return getComponentAsset(asset)?.definition ?? null;
 }
@@ -86,6 +95,7 @@ export default function ReceiptVisualGallery({
   const activeComponentAsset = activeAsset ? getComponentAsset(activeAsset) : null;
   const activeIsComponentAsset = Boolean(activeComponentAsset);
   const activeModalMaxWidth = activeComponentAsset ? getComponentViewerMaxWidth(activeComponentAsset.renderer) : "max-w-[90vw]";
+  const activeAccentColor = activeComponentAsset?.definition?.accentColor ?? getComponentAccentColor(activeComponentAsset?.renderer);
   const featuredAsset = visibleAssets[0];
   const isComponentSet = visibleAssets.every((asset) => isComponentAsset(asset));
   const activeLabel = activeIndex === null ? null : `${formatIndex(activeIndex, visibleAssets.length)} / ${formatIndex(visibleAssets.length - 1, visibleAssets.length)}`;
@@ -337,7 +347,7 @@ export default function ReceiptVisualGallery({
             onClick={(event) => event.stopPropagation()}
             className={`relative flex max-h-[calc(100dvh-2rem)] w-full ${activeModalMaxWidth} flex-col overflow-hidden rounded-[8px] border border-[#fffaf1]/22 bg-[#fffaf1] sm:max-h-[90vh]`}
           >
-            <header className="flex shrink-0 items-start justify-between gap-3 border-b border-[#11100d]/10 bg-[#fffaf1] px-3.5 py-3 sm:px-5 sm:py-3.5">
+            <header className="flex shrink-0 items-start justify-between gap-3 bg-[#fffaf1] px-3.5 py-3 sm:px-5 sm:py-3.5">
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[9px] uppercase tracking-[0.14em] text-[#11100d]/38">
                   <span className="tabular-nums">{activeReceiptReference}</span>
@@ -359,6 +369,7 @@ export default function ReceiptVisualGallery({
                 <X className="h-[15px] w-[15px]" />
               </button>
             </header>
+            <div className="h-px shrink-0" style={{ backgroundColor: activeAccentColor, opacity: 0.72 }} aria-hidden="true" />
 
             <div className={activeIsComponentAsset ? "min-h-0 flex-1 overflow-y-auto bg-[#fffaf1]" : "flex min-h-0 flex-1 items-center justify-center overflow-y-auto bg-[#f7f1e7] p-3 sm:p-4"}>
               <div className={activeIsComponentAsset ? "w-full min-w-0" : "flex w-full justify-center pb-2 sm:pb-0"}>

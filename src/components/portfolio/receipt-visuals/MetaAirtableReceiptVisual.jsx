@@ -63,14 +63,37 @@ function groupFields(fields = []) {
 
 function MiniSchemaInspector({ preview = {} }) {
   const rows = preview.rows ?? [];
+  const groups = groupOrder(rows).slice(0, 3);
+  const fieldsByGroup = groupFields(rows);
 
   return (
-    <div className="grid grid-cols-[46px_1fr] gap-2">
-      <div className="flex min-h-[118px] flex-col justify-between border border-[#11100d]/10 bg-[#151410] p-1.5 text-[#fffaf1]">
-        <span className="vertical-rl font-mono text-[7px] uppercase tracking-[0.12em] text-[#fffaf1]/58 [writing-mode:vertical-rl]">
-          Leads_Master
-        </span>
-        <span className="font-mono text-[8px] text-[#fffaf1]/38">{rows.length} fields</span>
+    <div className="grid grid-cols-[56px_1fr] gap-2">
+      <div className="flex min-h-[118px] flex-col justify-between border border-[#11100d]/10 bg-[#f7f1e7] p-1.5 text-[#11100d]">
+        <div className="space-y-1">
+          <span className="block text-[7px] uppercase tracking-[0.12em] text-[#11100d]/36">schema</span>
+          <span className="block break-words font-mono text-[8px] leading-3 text-[#11100d]/68">Leads_Master</span>
+        </div>
+        <div className="space-y-1">
+          {groups.map((group) => {
+            const groupRows = fieldsByGroup[group] ?? [];
+            const tickColor = group === "Attribution" ? "bg-[#c7b2ff]" : "bg-[#b6f3d4]";
+
+            return (
+              <div key={group} className="space-y-[3px]">
+                <div className="flex items-center justify-between gap-1">
+                  <span className="truncate text-[7px] uppercase tracking-[0.08em] text-[#11100d]/36">{group}</span>
+                  <span className="font-mono text-[7px] text-[#11100d]/30">{groupRows.length}</span>
+                </div>
+                <div className="grid grid-cols-3 gap-[2px]" aria-hidden="true">
+                  {[0, 1, 2].map((tick) => (
+                    <span key={tick} className={`h-[3px] ${tick < groupRows.length ? tickColor : "bg-[#11100d]/8"}`} />
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <span className="font-mono text-[8px] text-[#11100d]/34">{rows.length} fields</span>
       </div>
       <div className="min-w-0 overflow-hidden border border-[#11100d]/10 bg-[#fffaf1]">
         <div className="grid grid-cols-[1fr_34px_14px] border-b border-[#11100d]/8 bg-[#f7f1e7] px-1.5 py-1 text-[7px] uppercase tracking-[0.08em] text-[#11100d]/34">
@@ -768,7 +791,7 @@ export default function MetaAirtableReceiptVisual({
   }
 
   return (
-    <article className="w-full border-t border-t-[#b6f3d4]/70 text-[#11100d]">
+    <article className="w-full text-[#11100d]">
       <div className="border-b border-[#11100d]/10 px-4 py-3.5 sm:px-5">
         {claim && <p className="text-[13px] leading-6 text-[#11100d]/68">{claim}</p>}
       </div>
