@@ -1230,7 +1230,7 @@ function TypedReceiptVisual({
   }
 
   return (
-    <article className="w-full border-t border-t-[#c7b2ff]/60 text-[#11100d]">
+    <article className="w-full text-[#11100d]">
       <div className="border-b border-[#11100d]/10 px-4 py-3.5 sm:px-5">
         {claim && <p className="text-[13px] leading-6 text-[#11100d]/68">{claim}</p>}
       </div>

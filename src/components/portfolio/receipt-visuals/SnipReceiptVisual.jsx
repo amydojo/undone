@@ -224,8 +224,19 @@ function MiniDecisionTree({ preview = {} }) {
 
   return (
     <div className="space-y-2">
-      <div className="border border-[#11100d]/10 bg-[#151410] px-2 py-1.5 text-center font-mono text-[9px] text-[#f7f1e7]">
-        {preview.root ?? "provider candidate"}
+      <div className="border border-[#11100d]/10 bg-[#fffaf1] px-2 py-1.5 font-mono text-[#11100d]">
+        <div className="flex items-center justify-between gap-2 text-[7px] uppercase tracking-[0.1em] text-[#11100d]/34">
+          <span>validation root</span>
+          <span>r00</span>
+        </div>
+        <div className="mt-1 truncate text-center text-[9px] leading-3 text-[#11100d]/66">
+          {preview.root ?? "provider candidate"}
+        </div>
+        <div className="mt-1.5 grid grid-cols-3 gap-1" aria-hidden="true">
+          {[0, 1, 2].map((cue) => (
+            <span key={cue} className={`h-px ${cue < branches.length ? "bg-[#11100d]/22" : "bg-[#11100d]/8"}`} />
+          ))}
+        </div>
       </div>
       <div className="space-y-1 border-l border-[#11100d]/12 pl-2">
         {branches.slice(0, 3).map((branch, index) => (
@@ -666,7 +677,7 @@ export default function SnipReceiptVisual({
   }
 
   return (
-    <article className="w-full border-t border-t-[#8be2ff]/70 text-[#11100d]">
+    <article className="w-full text-[#11100d]">
       <div className="border-b border-[#11100d]/10 px-4 py-3.5 sm:px-5">
         <p className="text-[13px] leading-6 text-[#11100d]/68">{whatItProves}</p>
       </div>

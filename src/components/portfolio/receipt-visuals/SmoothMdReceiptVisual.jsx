@@ -56,12 +56,17 @@ function MiniBrandMap({ preview = {} }) {
   const nodes = preview.nodes ?? [];
 
   return (
-    <div className="grid grid-cols-[34px_1fr] gap-2">
-      <div className="flex min-h-[126px] flex-col justify-between border border-[#11100d]/10 bg-[#151410] p-1.5 text-[#fffaf1]">
-        <span className="font-mono text-[7px] uppercase tracking-[0.12em] text-[#fffaf1]/50 [writing-mode:vertical-rl]">
-          operating map
-        </span>
-        <Dot className="h-2 w-2" />
+    <div className="grid grid-cols-[54px_1fr] gap-2">
+      <div className="min-h-[126px] border border-[#11100d]/10 bg-[#151410] p-1.5 text-[#fffaf1]">
+        <div className="text-[7px] uppercase tracking-[0.12em] text-[#fffaf1]/50">spine</div>
+        <div className="mt-2 space-y-1.5">
+          {["svc", "offer", "trust", "proof"].map((step, index) => (
+            <div key={step} className="border-l border-[#c8ff62]/45 pl-1.5">
+              <div className="font-mono text-[7px] tabular-nums text-[#c8ff62]/58">{String(index + 1).padStart(2, "0")}</div>
+              <div className="truncate text-[7px] uppercase tracking-[0.06em] text-[#fffaf1]/54">{step}</div>
+            </div>
+          ))}
+        </div>
       </div>
       <div className="grid grid-cols-2 gap-1.5">
         {nodes.slice(0, 6).map((node, index) => (
@@ -80,8 +85,11 @@ function MiniLifecycle({ preview = {} }) {
 
   return (
     <div className="space-y-1.5">
-      <div className="border border-[#11100d]/10 bg-[#151410] px-2 py-1 text-[7px] uppercase tracking-[0.1em] text-[#fffaf1]/56">
-        patient / lead lifecycle
+      <div className="border border-[#11100d]/10 bg-[#f7f1e7] px-2 py-1">
+        <div className="flex items-center justify-between text-[7px] uppercase tracking-[0.1em] text-[#11100d]/40">
+          <span>patient route</span>
+          <span>handoff map</span>
+        </div>
       </div>
       <div className="grid grid-cols-[1fr_1fr_1fr] gap-1.5">
         {steps.slice(0, 6).map((step, index) => (
@@ -130,18 +138,21 @@ function MiniInstagramProof({ preview = {} }) {
   return (
     <div className="grid grid-cols-[1fr_1fr_0.8fr] gap-1.5">
       {["before", "after"].map((label) => (
-        <div key={label} className="min-h-[98px] border border-[#11100d]/8 bg-[#151410] p-1.5 text-[#fffaf1]">
-          <div className="h-8 border border-[#fffaf1]/12 bg-[#fffaf1]/8" />
-          <div className="mt-2 space-y-1">
-            <div className="h-1.5 w-10 bg-[#fffaf1]/50" />
-            <div className="h-1.5 w-8 bg-[#fffaf1]/24" />
-            <div className="grid grid-cols-3 gap-1 pt-1">
-              <span className="h-4 bg-[#fffaf1]/8" />
-              <span className="h-4 bg-[#fffaf1]/8" />
-              <span className="h-4 bg-[#fffaf1]/8" />
+        <div key={label} className="min-h-[98px] border border-[#11100d]/8 bg-[#fffaf1] p-1.5">
+          <div className="flex items-center gap-1 border-b border-[#11100d]/8 pb-1">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#c8ff62]" aria-hidden="true" />
+            <span className="text-[7px] uppercase tracking-[0.08em] text-[#11100d]/40">{label}</span>
+          </div>
+          <div className="mt-1.5 border border-[#11100d]/8 bg-[#f7f1e7] p-1">
+            <div className="h-5 border border-[#11100d]/8 bg-[#fffaf1]" />
+            <div className="mt-1 grid grid-cols-3 gap-0.5">
+              <span className="h-3 border border-[#11100d]/6 bg-[#fffaf1]" />
+              <span className="h-3 border border-[#11100d]/6 bg-[#fffaf1]" />
+              <span className="h-3 border border-[#11100d]/6 bg-[#fffaf1]" />
             </div>
           </div>
-          <div className="mt-2 text-[7px] uppercase tracking-[0.08em] text-[#fffaf1]/48">{label} profile</div>
+          <div className="mt-1.5 h-px bg-[#11100d]/10" />
+          <div className="mt-1 text-[7px] uppercase tracking-[0.08em] text-[#11100d]/38">{label} profile</div>
         </div>
       ))}
       <div className="space-y-1">
@@ -169,8 +180,13 @@ function MiniCampaignKit({ preview = {} }) {
           </div>
         ))}
       </div>
-      <div className="border border-[#11100d]/10 bg-[#151410] px-2 py-1 text-[7px] uppercase tracking-[0.09em] text-[#fffaf1]/58">
-        launch kit / performance read
+      <div className="border border-[#11100d]/10 bg-[#f7f1e7] px-2 py-1">
+        <div className="flex items-center gap-1">
+          {steps.slice(0, 6).map((step, index) => (
+            <span key={`${step}-rail`} className="h-1 flex-1 bg-[#11100d]/12" style={index === 0 || index === 3 ? { backgroundColor: "#ffd1a1" } : undefined} aria-hidden="true" />
+          ))}
+        </div>
+        <div className="mt-1 text-[7px] uppercase tracking-[0.09em] text-[#11100d]/42">launch recipe rail</div>
       </div>
     </div>
   );
@@ -185,73 +201,83 @@ function CompactPreview({ receiptBodyType, preview }) {
   return null;
 }
 
-function ModuleList({ items = [], dark = false }) {
-  return (
-    <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
-      {items.map((item) => (
-        <div key={item} className={`grid grid-cols-[6px_1fr] gap-2 border px-2 py-1.5 ${
-          dark
-            ? "border-[#fffaf1]/12 bg-[#fffaf1]/5 text-[#fffaf1]/64"
-            : "border-[#11100d]/8 bg-[#fffaf1] text-[#11100d]/60"
-        }`}>
-          <span className="mt-1 h-3 rounded-full bg-[#c8ff62]" aria-hidden="true" />
-          <span className="text-[11px] leading-4">{item}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 function BrandSystemMapBody({ body }) {
+  const spine = [
+    ["Service hierarchy", body.serviceHierarchy.slice(0, 4).join(" / ")],
+    ["Offer logic", body.offerArchitecture.slice(0, 3).join(" / ")],
+    ["Trust language", body.trustLanguage.slice(0, 3).join(" / ")],
+    ["Visual proof", body.visualRules.slice(0, 3).join(" / ")],
+    ["Campaign read", body.proofPillars.slice(2, 5).join(" / ")]
+  ];
+
   return (
     <div className="overflow-hidden border border-[#11100d]/12 bg-[#fffaf1]">
-      <section className="grid grid-cols-1 border-b border-[#11100d]/10 md:grid-cols-[0.9fr_1.1fr]">
-        <div className="bg-[#151410] p-3 text-[#fffaf1]">
-          <Label className="text-[#fffaf1]/42">Positioning spine</Label>
-          <div className="mt-3 grid grid-cols-[56px_1fr] gap-2">
-            <span className="text-[9px] uppercase tracking-[0.12em] text-[#fffaf1]/36">From</span>
-            <div className="border border-[#fffaf1]/12 bg-[#fffaf1]/5 px-2 py-2 text-[12px] leading-5 text-[#fffaf1]/68">{body.positioning.from}</div>
-            <span className="text-[9px] uppercase tracking-[0.12em] text-[#fffaf1]/36">To</span>
-            <div className="border border-[#fffaf1]/12 bg-[#fffaf1]/5 px-2 py-2 text-[12px] leading-5 text-[#fffaf1]/78">{body.positioning.to}</div>
-            <span className="text-[9px] uppercase tracking-[0.12em] text-[#fffaf1]/36">Role</span>
-            <div className="border border-[#fffaf1]/12 bg-[#fffaf1]/5 px-2 py-2 text-[12px] leading-5 text-[#fffaf1]/62">{body.positioning.role}</div>
-          </div>
+      <section className="border-b border-[#11100d]/10 bg-[#151410] p-3 text-[#fffaf1] sm:p-4">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <Label className="text-[#fffaf1]/42">Operating spine</Label>
+          <span className="border-l border-[#c8ff62]/40 pl-2 text-[9px] uppercase tracking-[0.13em] text-[#fffaf1]/48">skin + laser system</span>
         </div>
 
+        <div className="mt-4 max-w-[760px] text-[19px] leading-[1.2] tracking-[-0.02em] text-[#fffaf1] sm:text-[23px]">
+          <span className="text-[#fffaf1]/46">{body.positioning.from}</span>
+          <span className="mx-2 text-[#c8ff62]/78">{"->"}</span>
+          <span>{body.positioning.to}</span>
+        </div>
+        <p className="mt-3 max-w-[690px] text-[12px] leading-5 text-[#fffaf1]/58">
+          {body.positioning.role}
+        </p>
+
+        <div className="mt-5 grid grid-cols-1 border-y border-[#fffaf1]/10 sm:grid-cols-5">
+          {spine.map(([label, value], index) => (
+            <div key={label} className="border-b border-[#fffaf1]/10 py-3 last:border-b-0 sm:border-b-0 sm:border-r sm:px-3 sm:first:pl-0 sm:last:border-r-0 sm:last:pr-0">
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-[10px] tabular-nums text-[#c8ff62]/56">{String(index + 1).padStart(2, "0")}</span>
+                <span className="text-[9px] uppercase tracking-[0.12em] text-[#fffaf1]/42">{label}</span>
+              </div>
+              <div className="mt-2 text-[11px] leading-4 text-[#fffaf1]/62">{value}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="grid grid-cols-1 border-b border-[#11100d]/10 lg:grid-cols-[0.85fr_1.15fr]">
+        <div className="border-b border-[#11100d]/10 p-3 lg:border-b-0 lg:border-r">
+          <Label className="mb-2">Service families</Label>
+          <div className="flex flex-wrap gap-1.5">
+            {body.serviceHierarchy.map((service) => (
+              <span key={service} className="border border-[#11100d]/10 bg-[#f7f1e7] px-2 py-1.5 text-[11px] leading-4 text-[#11100d]/62">
+                {service}
+              </span>
+            ))}
+          </div>
+        </div>
         <div className="p-3">
-          <Label className="mb-2">Service hierarchy</Label>
-          <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-3">
-            {body.serviceHierarchy.map((service, index) => (
-              <div key={service} className="border border-[#11100d]/8 bg-[#f7f1e7] px-2 py-2">
-                <div className="font-mono text-[10px] tabular-nums text-[#11100d]/30">{String(index + 1).padStart(2, "0")}</div>
-                <div className="mt-1 text-[12px] leading-4 text-[#11100d]/68">{service}</div>
+          <Label className="mb-2">Rules carried across work</Label>
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+            {[
+              ["Trust", body.trustLanguage.slice(0, 3)],
+              ["Offer", body.offerArchitecture.slice(0, 3)],
+              ["Visual", body.visualRules.slice(0, 3)]
+            ].map(([label, items]) => (
+              <div key={label} className="border border-[#11100d]/8 bg-[#fffaf1] p-2">
+                <div className="text-[9px] uppercase tracking-[0.12em] text-[#11100d]/36">{label}</div>
+                <div className="mt-1.5 space-y-1">
+                  {items.map((item) => (
+                    <div key={item} className="text-[11px] leading-4 text-[#11100d]/60">{item}</div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="grid grid-cols-1 gap-0 border-b border-[#11100d]/10 lg:grid-cols-3">
-        <div className="border-b border-[#11100d]/10 p-3 lg:border-b-0 lg:border-r">
-          <Label className="mb-2">Trust language</Label>
-          <ModuleList items={body.trustLanguage} />
-        </div>
-        <div className="border-b border-[#11100d]/10 p-3 lg:border-b-0 lg:border-r">
-          <Label className="mb-2">Offer architecture</Label>
-          <ModuleList items={body.offerArchitecture} />
-        </div>
-        <div className="p-3">
-          <Label className="mb-2">Visual rules</Label>
-          <ModuleList items={body.visualRules} />
-        </div>
-      </section>
-
-      <section className="grid grid-cols-1 gap-0 bg-[#f7f1e7] lg:grid-cols-[1fr_0.9fr]">
+      <section className="grid grid-cols-1 bg-[#f7f1e7] lg:grid-cols-[0.7fr_1fr]">
         <div className="border-b border-[#11100d]/10 p-3 lg:border-b-0 lg:border-r">
           <Label className="mb-2">Proof pillars</Label>
-          <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-5">
+          <div className="space-y-1.5">
             {body.proofPillars.map((pillar) => (
-              <div key={pillar} className="border border-[#11100d]/8 bg-[#fffaf1] px-2 py-2 text-[11px] leading-4 text-[#11100d]/62">
+              <div key={pillar} className="border-l border-[#11100d]/18 bg-[#fffaf1] px-2 py-1.5 text-[11px] leading-4 text-[#11100d]/62">
                 {pillar}
               </div>
             ))}
@@ -271,42 +297,43 @@ function LifecycleJourneyMapBody({ body }) {
   return (
     <div className="overflow-hidden border border-[#11100d]/12 bg-[#fffaf1]">
       <div className="border-b border-[#11100d]/10 bg-[#151410] p-3 text-[#fffaf1]">
-        <Label className="text-[#fffaf1]/42">Patient / lead lifecycle</Label>
-        <div className="mt-2 text-[13px] leading-5 text-[#fffaf1]/72">
-          Acquisition to retention, with timing and handoff points visible.
-        </div>
+        <Label className="text-[#fffaf1]/42">Patient journey route</Label>
+        <div className="mt-2 text-[13px] leading-5 text-[#fffaf1]/72">Acquisition to reactivation, with each handoff kept visible.</div>
       </div>
 
-      <section className="grid grid-cols-1 gap-2 p-3 md:grid-cols-2 xl:grid-cols-7">
-        {body.stages.map((stage, index) => (
-          <div key={stage.name} className="relative border border-[#11100d]/10 bg-[#fffaf1]">
-            {index < body.stages.length - 1 && <span className="hidden xl:block absolute -right-2 top-8 z-10 h-px w-4 bg-[#11100d]/18" aria-hidden="true" />}
-            <div className="border-b border-[#11100d]/8 bg-[#f7f1e7] px-2 py-2">
-              <div className="font-mono text-[10px] tabular-nums text-[#11100d]/30">{String(index + 1).padStart(2, "0")}</div>
-              <div className="mt-1 text-[11px] uppercase tracking-[0.1em] text-[#11100d]/58">{stage.name}</div>
-            </div>
-            <div className="space-y-1.5 p-2">
-              {stage.items.map((item) => (
-                <div key={item} className="border-b border-[#11100d]/7 pb-1 text-[10px] leading-4 text-[#11100d]/58 last:border-b-0">
-                  {item}
+      <section className="p-3">
+        <div className="space-y-2">
+          {body.stages.map((stage, index) => (
+            <div key={stage.name} className="grid grid-cols-[38px_1fr] gap-2">
+              <div className="relative flex flex-col items-center pt-2">
+                <span className="font-mono text-[10px] tabular-nums text-[#11100d]/32">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                {index < body.stages.length - 1 && <span className="mt-2 h-full min-h-10 w-px bg-[#11100d]/14" aria-hidden="true" />}
+              </div>
+              <div className="grid grid-cols-1 border border-[#11100d]/8 bg-[#f7f1e7] sm:grid-cols-[0.8fr_1.2fr_0.72fr]">
+                <div className="border-b border-[#11100d]/8 px-2.5 py-2 sm:border-b-0 sm:border-r">
+                  <div className="text-[12px] font-medium leading-4 text-[#11100d]/76">{stage.name}</div>
+                  <div className="mt-1 text-[10px] leading-4 text-[#11100d]/50">{stage.trigger}</div>
                 </div>
-              ))}
+                <div className="border-b border-[#11100d]/8 px-2.5 py-2 text-[11px] leading-4 text-[#11100d]/62 sm:border-b-0 sm:border-r">
+                  {stage.items.slice(0, 2).join(" / ")}
+                </div>
+                <div className="bg-[#fffaf1] px-2.5 py-2">
+                  <div className="text-[8px] uppercase tracking-[0.12em] text-[#11100d]/32">handoff</div>
+                  <div className="mt-1 text-[10px] leading-4 text-[#11100d]/58">{stage.handoff}</div>
+                </div>
+              </div>
             </div>
-            <div className="border-t border-[#11100d]/8 bg-[#f7f1e7] px-2 py-1.5">
-              <div className="text-[8px] uppercase tracking-[0.12em] text-[#11100d]/32">trigger</div>
-              <div className="mt-0.5 text-[10px] leading-4 text-[#11100d]/56">{stage.trigger}</div>
-              <div className="mt-1 text-[8px] uppercase tracking-[0.12em] text-[#11100d]/32">handoff</div>
-              <div className="mt-0.5 text-[10px] leading-4 text-[#11100d]/60">{stage.handoff}</div>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </section>
 
       <section className="border-t border-[#11100d]/10 bg-[#f7f1e7] p-3">
-        <Label className="mb-2">Handoff points</Label>
-        <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-4">
+        <Label className="mb-2">Handoff checkpoints</Label>
+        <div className="flex flex-wrap gap-1.5">
           {body.handoffs.map((handoff) => (
-            <div key={handoff} className="border border-[#11100d]/8 bg-[#fffaf1] px-2 py-2 text-[11px] leading-4 text-[#11100d]/62">
+            <div key={handoff} className="border border-[#11100d]/8 bg-[#fffaf1] px-2 py-1.5 text-[11px] leading-4 text-[#11100d]/58">
               {handoff}
             </div>
           ))}
@@ -317,53 +344,54 @@ function LifecycleJourneyMapBody({ body }) {
 }
 
 function CrmStatusFlowBody({ body }) {
+  const branchRules = body.rules.filter((rule) => /No-show|lost|review|2 days/i.test(`${rule.from} ${rule.condition} ${rule.action}`));
+  const coreRules = body.rules.filter((rule) => !branchRules.includes(rule));
+
   return (
     <div className="overflow-hidden border border-[#11100d]/12 bg-[#fffaf1]">
-      <section className="border-b border-[#11100d]/10 bg-[#151410] p-3 text-[#fffaf1]">
-        <Label className="mb-2 text-[#fffaf1]/42">Tracked fields</Label>
-        <div className="flex flex-wrap gap-1.5">
-          {body.fields.map((field) => (
-            <Tag key={field} dark>{field}</Tag>
+      <section className="bg-[#151410] p-3 text-[#fffaf1] sm:p-4">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <Label className="text-[#fffaf1]/42">CRM state machine</Label>
+          <span className="border-l border-[#fffaf1]/14 pl-2 text-[9px] uppercase tracking-[0.13em] text-[#fffaf1]/42">lead to revenue handoff</span>
+        </div>
+        <div className="mt-4 grid grid-cols-1 gap-x-3 gap-y-4 md:grid-cols-4">
+          {body.coreStates.map((state, index) => (
+            <div key={state} className="relative border-t border-[#fffaf1]/14 pt-2">
+              {index < body.coreStates.length - 1 && <span className="hidden md:block absolute -right-3 top-2.5 h-px w-3 bg-[#fffaf1]/16" aria-hidden="true" />}
+              <div className="font-mono text-[9px] tabular-nums text-[#c8ff62]/48">{String(index + 1).padStart(2, "0")}</div>
+              <div className="mt-1 text-[12px] font-medium leading-4 text-[#fffaf1]/74">{state}</div>
+            </div>
           ))}
         </div>
       </section>
 
-      <section className="grid grid-cols-1 gap-2 p-3 md:grid-cols-4">
-        {body.coreStates.map((state, index) => (
-          <div key={state} className="relative border border-[#11100d]/10 bg-[#fffaf1] px-2 py-2">
-            {index < body.coreStates.length - 1 && <span className="hidden md:block absolute -right-2 top-1/2 z-10 h-px w-4 bg-[#11100d]/18" aria-hidden="true" />}
-            <div className="flex items-start justify-between gap-2">
-              <span className="text-[11px] leading-4 text-[#11100d]/70">{state}</span>
-              <span className="font-mono text-[9px] tabular-nums text-[#11100d]/28">{String(index + 1).padStart(2, "0")}</span>
-            </div>
-          </div>
-        ))}
+      <section className="border-b border-[#11100d]/10 p-3">
+        <Label className="mb-2">Tracked record fields</Label>
+        <div className="text-[11px] leading-5 text-[#11100d]/58">
+          {body.fields.join(" / ")}
+        </div>
       </section>
 
       <section className="grid grid-cols-1 border-t border-[#11100d]/10 lg:grid-cols-[0.7fr_1.3fr]">
         <div className="border-b border-[#11100d]/10 bg-[#f7f1e7] p-3 lg:border-b-0 lg:border-r">
-          <Label className="mb-2">Side branches</Label>
+          <Label className="mb-2">Branch exits</Label>
           <div className="space-y-1.5">
             {body.sideStates.map((state) => (
-              <div key={state} className="grid grid-cols-[8px_1fr] border border-[#11100d]/8 bg-[#fffaf1]">
-                <span className="h-full min-h-10 bg-[#c8ff62]" aria-hidden="true" />
-                <span className="px-2 py-2 text-[11px] leading-4 text-[#11100d]/62">{state}</span>
+              <div key={state} className="border border-[#11100d]/8 bg-[#fffaf1] px-2 py-2 text-[11px] leading-4 text-[#11100d]/62">
+                {state}
               </div>
             ))}
           </div>
         </div>
 
         <div className="p-3">
-          <Label className="mb-2">Follow-up rules</Label>
-          <div className="space-y-1.5">
-            {body.rules.map((rule, index) => (
-              <div key={`${rule.from}-${rule.action}`} className="grid grid-cols-1 border border-[#11100d]/8 bg-[#fffaf1] sm:grid-cols-[34px_1fr_1fr_1fr]">
-                <span className="border-b border-[#11100d]/8 bg-[#f7f1e7] px-2 py-2 font-mono text-[10px] tabular-nums text-[#11100d]/32 sm:border-b-0 sm:border-r">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
+          <Label className="mb-2">Routing rules</Label>
+          <div className="grid grid-cols-1 gap-2">
+            {[...coreRules, ...branchRules].map((rule) => (
+              <div key={`${rule.from}-${rule.action}`} className="grid grid-cols-1 border border-[#11100d]/8 bg-[#fffaf1] sm:grid-cols-[0.82fr_1fr_0.72fr]">
                 <span className="border-b border-[#11100d]/8 px-2 py-2 text-[11px] leading-4 text-[#11100d]/64 sm:border-b-0 sm:border-r">{rule.from}</span>
                 <span className="border-b border-[#11100d]/8 px-2 py-2 text-[11px] leading-4 text-[#11100d]/52 sm:border-b-0 sm:border-r">{rule.condition}</span>
-                <span className="px-2 py-2 text-[11px] font-medium leading-4 text-[#11100d]/70">{rule.action}</span>
+                <span className="bg-[#f7f1e7] px-2 py-2 text-[11px] font-medium leading-4 text-[#11100d]/70">{rule.action}</span>
               </div>
             ))}
           </div>
@@ -382,15 +410,11 @@ function InstagramRebuildProofBody({ body }) {
             <Label className="mb-2">{block.title}</Label>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {block.images.map((image) => (
-                <ProofImage key={image.src} src={image.src} label={image.label} className="aspect-[4/3]" />
+                <ProofImage key={image.src} src={image.src} label={image.label} className="aspect-[4/3] sm:aspect-[3/4]" />
               ))}
             </div>
-            <div className="mt-2 grid grid-cols-1 gap-1.5">
-              {block.points.map((point) => (
-                <div key={point} className="border border-[#11100d]/8 bg-[#f7f1e7] px-2 py-1.5 text-[11px] leading-4 text-[#11100d]/60">
-                  {point}
-                </div>
-              ))}
+            <div className="mt-2 border border-[#11100d]/8 bg-[#f7f1e7] px-2 py-2 text-[11px] leading-5 text-[#11100d]/60">
+              {block.points.slice(0, 3).join(" / ")}
             </div>
           </div>
         ))}
@@ -399,12 +423,8 @@ function InstagramRebuildProofBody({ body }) {
       <section className="grid grid-cols-1 border-b border-[#11100d]/10 lg:grid-cols-[1fr_0.8fr]">
         <div className="border-b border-[#11100d]/10 p-3 lg:border-b-0 lg:border-r">
           <Label className="mb-2">Content system</Label>
-          <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-3">
-            {body.contentSystem.map((item) => (
-              <div key={item} className="border border-[#11100d]/8 bg-[#f7f1e7] px-2 py-2 text-[11px] leading-4 text-[#11100d]/62">
-                {item}
-              </div>
-            ))}
+          <div className="border border-[#11100d]/8 bg-[#f7f1e7] px-2 py-2 text-[11px] leading-5 text-[#11100d]/62">
+            {body.contentSystem.join(" / ")}
           </div>
         </div>
         <div className="p-3">
@@ -428,28 +448,70 @@ function InstagramRebuildProofBody({ body }) {
 }
 
 function CampaignToolkitSystemBody({ body }) {
-  const zones = [
-    ["Offer module", body.offerModule],
-    ["Audience angle", body.audienceAngles],
-    ["Creative modules", body.creativeModules],
-    ["Capture path", body.capturePath],
-    ["Follow-up path", body.followUpPath],
-    ["Performance read", body.performanceRead]
+  const recipe = [
+    ["Offer", body.offerModule.slice(0, 3).join(" / ")],
+    ["Audience", body.audienceAngles.slice(0, 3).join(" / ")],
+    ["Creative", body.creativeModules.slice(0, 3).join(" / ")],
+    ["Capture", body.capturePath.slice(0, 3).join(" / ")],
+    ["Follow-up", body.followUpPath.slice(0, 3).join(" / ")],
+    ["Read", body.performanceRead.slice(0, 3).join(" / ")]
   ];
 
   return (
     <div className="overflow-hidden border border-[#11100d]/12 bg-[#fffaf1]">
-      <section className="grid grid-cols-1 gap-0 border-b border-[#11100d]/10 lg:grid-cols-3">
-        {zones.map(([label, items]) => (
+      <section className="grid grid-cols-1 border-b border-[#11100d]/10 lg:grid-cols-[0.85fr_1.15fr]">
+        <div className="bg-[#151410] p-3 text-[#fffaf1] sm:p-4">
+          <Label className="text-[#fffaf1]/42">Launch assembly kit</Label>
+          <div className="mt-3 text-[18px] leading-[1.25] tracking-[-0.02em] text-[#fffaf1]/86">
+            Offer logic, audience angle, creative proof, capture path, follow-up, and performance read.
+          </div>
+          <div className="mt-4 border-y border-[#fffaf1]/10 py-3">
+            <div className="grid grid-cols-2 gap-x-3 gap-y-2 sm:grid-cols-3">
+              {recipe.map(([label], index) => (
+                <div key={label} className="border-l border-[#fffaf1]/14 pl-2">
+                  <div className="font-mono text-[9px] tabular-nums text-[#c8ff62]/48">{String(index + 1).padStart(2, "0")}</div>
+                  <div className="mt-1 text-[10px] uppercase tracking-[0.12em] text-[#fffaf1]/54">{label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="p-3">
+          <Label className="mb-2">Campaign recipe</Label>
+          <div className="space-y-2">
+            {recipe.map(([label, value], index) => (
+              <div key={label} className="grid grid-cols-[74px_1fr] border border-[#11100d]/8 bg-[#f7f1e7]">
+                <span className="border-r border-[#11100d]/8 px-2 py-2 font-mono text-[10px] uppercase tracking-[0.08em] text-[#11100d]/38">
+                  {String(index + 1).padStart(2, "0")} {label}
+                </span>
+                <span className="px-2 py-2 text-[11px] leading-5 text-[#11100d]/62">{value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="grid grid-cols-1 border-b border-[#11100d]/10 lg:grid-cols-3">
+        {[
+          ["Inputs", [...body.offerModule.slice(0, 2), ...body.audienceAngles.slice(0, 2)]],
+          ["Production", [...body.creativeModules.slice(0, 2), ...body.capturePath.slice(0, 2)]],
+          ["Outcome", [...body.followUpPath.slice(0, 2), ...body.performanceRead.slice(0, 2)]]
+        ].map(([label, items]) => (
           <div key={label} className="border-b border-[#11100d]/10 p-3 lg:border-b-0 lg:border-r lg:last:border-r-0">
             <Label className="mb-2">{label}</Label>
-            <ModuleList items={items} />
+            <div className="space-y-1.5">
+              {items.map((item) => (
+                <div key={item} className="border-l border-[#11100d]/16 bg-[#f7f1e7] px-2 py-1.5 text-[11px] leading-4 text-[#11100d]/60">
+                  {item}
+                </div>
+              ))}
+            </div>
           </div>
         ))}
       </section>
 
       <section className="bg-[#f7f1e7] p-3">
-        <Label className="mb-2">Campaign proof tiles</Label>
+        <Label className="mb-2">Proof assets tied to launch system</Label>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-4">
           {body.proofTiles.map((tile) => (
             <ProofImage key={tile.src} src={tile.src} label={tile.label} className="aspect-square" />
@@ -525,7 +587,7 @@ export default function SmoothMdReceiptVisual({
   }
 
   return (
-    <article className="w-full border-t border-t-[#c8ff62]/70 text-[#11100d]">
+    <article className="w-full text-[#11100d]">
       <div className="border-b border-[#11100d]/10 px-4 py-3.5 sm:px-5">
         {claim && <p className="text-[13px] leading-6 text-[#11100d]/68">{claim}</p>}
       </div>
