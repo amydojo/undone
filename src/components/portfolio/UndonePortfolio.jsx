@@ -148,7 +148,7 @@ export default function UndonePortfolioV10() {
           />
 
           {/* Desktop layout */}
-          <div className="hidden lg:grid lg:grid-cols-[320px_minmax(0,1fr)_360px]">
+          <div className="hidden lg:grid lg:h-[calc(100vh-73px)] lg:grid-cols-[320px_minmax(0,1fr)_360px] lg:overflow-hidden">
             <RecordRail
               recordsList={filteredRecords}
               activeRecord={activeRecord}

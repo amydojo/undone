@@ -30,7 +30,7 @@ export default function ProofRail({ record, activeReceipt, onSelectReceipt, rese
   const componentVisual = hasComponentVisual(selectedReceipt)
 
   return (
-    <aside className='flex flex-col border-l border-[#11100d]/10 bg-[#f7f1e7]'>
+    <aside className='scrollbar-portfolio flex h-full flex-col overflow-y-auto border-l border-[#11100d]/10 bg-[#f7f1e7]'>
       {/* Header */}
       <div className='flex items-center justify-between border-b border-[#11100d]/8 px-4 py-4 lg:px-5'>
         <span className='text-[9px] uppercase tracking-[0.2em] text-[#11100d]/44'>Receipt Inspector</span>

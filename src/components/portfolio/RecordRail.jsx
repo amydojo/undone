@@ -7,7 +7,7 @@ import { cx } from "../../utils/cx";
 
 export default function RecordRail({ recordsList, activeRecord, setActiveRecord, openWorkspace, activeFilter, setActiveFilter, caseNumbers }) {
   return (
-    <aside className="scrollbar-portfolio border-r border-[#11100d]/10 bg-[#f0eadf]/68 p-4 lg:h-[calc(100vh-73px)] lg:overflow-y-auto" aria-label="Record rail">
+    <aside className="scrollbar-portfolio border-r border-[#11100d]/10 bg-[#f0eadf]/68 p-4 lg:h-full lg:overflow-y-auto" aria-label="Record rail">
       <div className="mb-4 flex items-center justify-between">
         <div className="text-[9px] uppercase tracking-[0.22em] text-[#11100d]/42">Cases</div>
       </div>

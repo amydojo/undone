@@ -6,12 +6,18 @@
   @media (hover: hover) and (pointer: fine) {
     .scrollbar-portfolio {
       scrollbar-width: thin;
-      scrollbar-color: rgba(15, 15, 15, 0.22) transparent;
+      scrollbar-color: transparent transparent;
+    }
+
+    .scrollbar-portfolio:hover,
+    .scrollbar-portfolio:focus,
+    .scrollbar-portfolio:focus-within {
+      scrollbar-color: rgba(69, 63, 53, 0.26) transparent;
     }
 
     .scrollbar-portfolio::-webkit-scrollbar {
-      width: 10px;
-      height: 10px;
+      width: 9px;
+      height: 9px;
     }
 
     .scrollbar-portfolio::-webkit-scrollbar-track {
@@ -19,14 +25,20 @@
     }
 
     .scrollbar-portfolio::-webkit-scrollbar-thumb {
-      background-color: rgba(15, 15, 15, 0.18);
+      background-color: transparent;
       border-radius: 999px;
       border: 3px solid transparent;
       background-clip: content-box;
     }
 
+    .scrollbar-portfolio:hover::-webkit-scrollbar-thumb,
+    .scrollbar-portfolio:focus::-webkit-scrollbar-thumb,
+    .scrollbar-portfolio:focus-within::-webkit-scrollbar-thumb {
+      background-color: rgba(69, 63, 53, 0.2);
+    }
+
     .scrollbar-portfolio::-webkit-scrollbar-thumb:hover {
-      background-color: rgba(15, 15, 15, 0.28);
+      background-color: rgba(69, 63, 53, 0.32);
     }
   }
 }

@@ -18,7 +18,7 @@ const DECODER_LINES = {
 
 export default function ActiveCanvas({ record, mode, openWorkspace }) {
   return (
-    <main className="min-h-[calc(100vh-73px)] overflow-x-hidden bg-[#f7f1e7] p-4 lg:p-6">
+    <main className="scrollbar-portfolio min-h-[calc(100vh-73px)] overflow-x-hidden bg-[#f7f1e7] p-4 lg:h-full lg:min-h-0 lg:overflow-y-auto lg:p-6">
       <section className="w-full min-w-0 overflow-hidden rounded-[28px] border border-[#11100d]/10 bg-[#fffaf1]/44 shadow-[0_30px_120px_rgba(17,16,13,0.06)]">
         <AnimatePresence mode="wait">
           <motion.div
