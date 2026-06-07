@@ -262,7 +262,7 @@ export default function ReceiptVisualGallery({
                 onClick={() => setActiveIndex(index)}
                 className={
                   isComponentAsset(asset)
-                    ? "block w-full bg-[#11100d]/5 p-2 text-left transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/35"
+                    ? "block w-full bg-[#11100d]/5 p-2.5 text-left transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/35"
                     : "block h-[360px] w-full overflow-hidden bg-[#11100d]/5 text-left transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/35"
                 }
               >
@@ -383,7 +383,7 @@ export default function ReceiptVisualGallery({
                 data-testid="receipt-modal-close"
                 aria-label="Close proof set viewer"
                 onClick={() => setActiveIndex(null)}
-                className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#11100d]/12 bg-[#fffaf1] text-[#11100d]/64 transition-colors hover:bg-[#f0eadf] hover:text-[#11100d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/25"
+                className="mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#11100d]/12 bg-[#fffaf1] text-[#11100d]/64 transition-colors hover:bg-[#f0eadf] hover:text-[#11100d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/25 lg:h-9 lg:w-9"
               >
                 <X className="h-[15px] w-[15px]" />
               </button>
@@ -405,7 +405,7 @@ export default function ReceiptVisualGallery({
                 <button
                   type="button"
                   onClick={showPrevious}
-                  className="inline-flex h-9 items-center gap-1 rounded-full border border-[#11100d]/10 px-3 text-[10px] uppercase tracking-[0.12em] text-[#11100d]/62"
+                  className="inline-flex h-11 items-center gap-1 rounded-full border border-[#11100d]/10 px-3.5 text-[10px] uppercase tracking-[0.1em] text-[#11100d]/62"
                 >
                   <ChevronLeft className="h-3.5 w-3.5" />
                   Prev
@@ -413,7 +413,7 @@ export default function ReceiptVisualGallery({
                 <button
                   type="button"
                   onClick={showNext}
-                  className="inline-flex h-9 items-center gap-1 rounded-full border border-[#11100d]/10 px-3 text-[10px] uppercase tracking-[0.12em] text-[#11100d]/62"
+                  className="inline-flex h-11 items-center gap-1 rounded-full border border-[#11100d]/10 px-3.5 text-[10px] uppercase tracking-[0.1em] text-[#11100d]/62"
                 >
                   Next
                   <ChevronRight className="h-3.5 w-3.5" />

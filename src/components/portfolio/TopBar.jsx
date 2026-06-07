@@ -13,7 +13,7 @@ export default function TopBar({ onHomeReset }) {
           type="button"
           aria-label="Reset portfolio to overview"
           onClick={onHomeReset}
-          className="flex min-w-0 flex-col gap-0.5 rounded-[6px] text-left transition hover:text-[#11100d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/25 sm:flex-row sm:items-baseline sm:gap-2.5"
+          className="flex min-h-11 min-w-0 flex-col justify-center gap-0.5 rounded-[6px] text-left transition hover:text-[#11100d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/25 sm:flex-row sm:items-baseline sm:gap-2.5 lg:min-h-0"
         >
           <span className="text-[13px] font-medium leading-none text-[#11100d]/82">Amy Do</span>
           <span className="text-[10px] leading-none text-[#11100d]/44">Design Technologist</span>
@@ -25,13 +25,13 @@ export default function TopBar({ onHomeReset }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Open resume"
-            className="inline-flex h-8 items-center rounded-full bg-[#11100d] px-3 text-[9px] uppercase tracking-[0.13em] text-[#f7f1e7]"
+            className="inline-flex h-11 items-center rounded-full bg-[#11100d] px-4 text-[9px] uppercase tracking-[0.13em] text-[#f7f1e7]"
           >
             résumé
           </a>
           <a
             href={`mailto:${profile.contact}`}
-            className="inline-flex h-8 items-center rounded-full border border-[#11100d]/10 px-3 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/54"
+            className="inline-flex h-11 items-center rounded-full border border-[#11100d]/10 px-4 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/54"
           >
             contact
           </a>

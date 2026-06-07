@@ -76,7 +76,7 @@ export default function OverviewArtifact({ record }) {
   return (
     <div className='overflow-hidden rounded-[18px] border border-[#11100d]/10 bg-[#fffaf1] lg:rounded-[20px]'>
       {/* Header */}
-      <div className='flex items-start justify-between gap-3 px-3.5 py-3.5 sm:px-4 sm:py-4 lg:px-5 lg:py-5'>
+      <div className='flex items-start gap-3 px-3.5 py-3.5 sm:px-4 sm:py-4 lg:px-5 lg:py-5'>
         <div className='flex min-w-0 items-center gap-3'>
           <span
             className='h-2.5 w-2.5 shrink-0 rounded-full'
@@ -87,7 +87,6 @@ export default function OverviewArtifact({ record }) {
             {obj.title}
           </span>
         </div>
-        <span className='text-[9px] uppercase tracking-[0.11em] text-[#11100d]/26'>system model</span>
       </div>
 
       {/* Purpose */}

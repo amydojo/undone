@@ -65,13 +65,13 @@ export default function ProfileStrip({ className }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Open resume"
-            className="inline-flex h-8 items-center justify-center rounded-full bg-[#11100d] px-3.5 text-[9px] uppercase tracking-[0.14em] text-[#f7f1e7]"
+            className="inline-flex h-11 items-center justify-center rounded-full bg-[#11100d] px-4 text-[9px] uppercase tracking-[0.13em] text-[#f7f1e7] lg:h-8 lg:px-3.5 lg:tracking-[0.14em]"
           >
             résumé
           </a>
           <a
             href={`mailto:${profile.contact}`}
-            className="inline-flex h-8 items-center justify-center rounded-full border border-[#11100d]/10 px-3.5 text-[9px] uppercase tracking-[0.14em] text-[#11100d]/58"
+            className="inline-flex h-11 items-center justify-center rounded-full border border-[#11100d]/10 px-4 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/58 lg:h-8 lg:px-3.5 lg:tracking-[0.14em]"
           >
             contact
           </a>
@@ -80,7 +80,7 @@ export default function ProfileStrip({ className }) {
             aria-label={expanded ? "Hide profile details" : "Show profile details"}
             aria-expanded={expanded}
             onClick={() => setExpanded((v) => !v)}
-            className="inline-flex h-8 items-center gap-1.5 rounded-[6px] px-1.5 text-[9px] uppercase tracking-[0.12em] text-[#11100d]/42 transition hover:text-[#11100d]/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/20"
+            className="inline-flex h-11 items-center gap-1.5 rounded-[6px] px-3 text-[9px] uppercase tracking-[0.11em] text-[#11100d]/42 transition hover:text-[#11100d]/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/20 lg:h-8 lg:px-1.5 lg:tracking-[0.12em]"
           >
             more
             <ChevronDown

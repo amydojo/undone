@@ -48,7 +48,7 @@ function OverviewTab({ record, openWorkspace }) {
           type="button"
           aria-label={`Open ${record.title} case file`}
           onClick={() => openWorkspace(record)}
-          className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full border border-[#11100d]/14 bg-[#fffaf1]/70 px-3 text-[9px] uppercase tracking-[0.15em] text-[#11100d]/58 transition active:scale-[0.98]"
+          className="inline-flex h-11 items-center justify-center gap-1.5 rounded-full border border-[#11100d]/14 bg-[#fffaf1]/70 px-3.5 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/58 transition active:scale-[0.98]"
         >
           Open case file <ArrowUpRight className="h-3 w-3" />
         </button>
@@ -117,7 +117,7 @@ function ProofTab({ record, activeReceipt, onSelectReceipt, resetSignal }) {
       </header>
 
       <div className="-mx-4 overflow-x-auto px-4 pb-2 pt-1 [scrollbar-width:none]">
-        <div className="flex snap-x snap-mandatory gap-2 border-y border-[#11100d]/8 bg-[#fffaf1]/30 py-2">
+        <div className="flex snap-x snap-mandatory gap-2 py-2">
           {receipts.map((receipt, i) => {
             const active = selectedReceipt?.id === receipt.id;
             const status = displayStatus(receipt.status);
@@ -132,7 +132,7 @@ function ProofTab({ record, activeReceipt, onSelectReceipt, resetSignal }) {
                 aria-pressed={active}
                 onClick={() => onSelectReceipt(receipt.id)}
                 className={cx(
-                  "relative min-h-[84px] min-w-[188px] snap-start overflow-hidden border px-3 py-2.5 text-left transition active:scale-[0.99]",
+                  "relative min-h-[96px] min-w-[200px] snap-start overflow-hidden border px-3.5 py-3 text-left transition active:scale-[0.99]",
                   active
                     ? "border-[#11100d]/30 bg-[#fffaf1]"
                     : "border-[#11100d]/8 bg-[#f7f1e7]/68"
@@ -171,7 +171,7 @@ function ProofTab({ record, activeReceipt, onSelectReceipt, resetSignal }) {
                 </div>
                 <div
                   className={cx(
-                    "mt-2 line-clamp-2 text-[12px] leading-4",
+                    "mt-2.5 line-clamp-2 text-[13px] leading-[1.35]",
                     active ? "text-[#11100d]" : "text-[#11100d]/72"
                   )}
                 >
@@ -179,7 +179,7 @@ function ProofTab({ record, activeReceipt, onSelectReceipt, resetSignal }) {
                 </div>
                 <div
                   className={cx(
-                    "mt-1.5 truncate text-[9px] uppercase tracking-[0.14em]",
+                    "mt-2 truncate text-[9px] uppercase tracking-[0.11em]",
                     active ? "text-[#11100d]/46" : "text-[#11100d]/34"
                   )}
                 >
@@ -278,7 +278,7 @@ export default function MobileView({
   return (
     <div className="lg:hidden">
       {/* Sticky tab bar — positioned below the sticky case selector (~80 px) */}
-      <div className="sticky top-20 z-20 border-b border-[#11100d]/10 bg-[#f7f1e7]/92 px-4 py-2.5 backdrop-blur-xl">
+      <div className="sticky top-20 z-20 border-b border-[#11100d]/10 bg-[#f7f1e7]/92 px-4 py-2 backdrop-blur-xl">
         <div
           className="grid grid-cols-2 gap-1 rounded-full border border-[#11100d]/10 bg-[#fffaf1]/70 p-1"
           role="group"
@@ -292,7 +292,7 @@ export default function MobileView({
               aria-pressed={activeMobileTab === id}
               onClick={() => setMobileTab(id)}
               className={cx(
-                "rounded-full py-2.5 text-[10px] uppercase tracking-[0.14em] transition",
+                "min-h-11 rounded-full px-3 text-[10px] uppercase tracking-[0.12em] transition",
                 activeMobileTab === id
                   ? "bg-[#11100d] text-[#f7f1e7]"
                   : "text-[#11100d]/46"

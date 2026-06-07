@@ -12,7 +12,7 @@ export const records = [
     oneLine: "I organized Smooth MD's services, offers, Instagram proof, CRM follow-up, and campaign reads so the clinic could launch campaigns and route leads from the same plan.",
     overviewVisual: {
       label: 'BRAND SURFACE',
-      caption: 'Public surface: service positioning, offer language, and visual proof rebuilt into a clearer clinic brand system.',
+      caption: 'Service positioning, offer language, and visual proof rebuilt into a clearer clinic brand system.',
       layout: 'split',
       display: 'brandSplit',
       images: [
@@ -149,7 +149,7 @@ export const records = [
     oneLine: 'Mirror turns mood, sleep, clarity, and context into readable states, plain explanations, and one gentle next step.',
     overviewVisual: {
       label: 'PRODUCT SURFACE',
-      caption: 'Product surface: check-in signals translated into a readable weather field.',
+      caption: 'Check-in signals translated into a readable weather field.',
       layout: 'single',
       display: 'productSingle',
       images: [
@@ -267,9 +267,9 @@ export const records = [
     hiringTranslation:
       'This case is relevant to growth, marketing operations, and design technologist roles because it connects Meta Ads, Airtable lead records, CRM status, booking behavior, and revenue context into reporting that guides campaign actions.',
     metrics: [
-      { value: 'Meta', label: 'ad spend signal' },
-      { value: 'CRM', label: 'booking behavior' },
-      { value: 'Revenue', label: 'revenue context' }
+      { value: 'Meta', label: 'AD PLATFORM' },
+      { value: 'CRM', label: 'BOOKING STATUS' },
+      { value: 'ROAS', label: 'CAMPAIGN READ' }
     ],
     path: ['Meta Ads', 'Airtable lead', 'CRM status', 'booking', 'revenue context', 'campaign call'],
     signal: 'Meta Ads showed spend and lead cost. Airtable held lead records and CRM movement. Booking, arrival, conversion, and revenue signals lived downstream, so campaign reads were missing the behavior that made them useful.',
@@ -366,7 +366,7 @@ export const records = [
     oneLine: 'I built a repeatable workflow to pull provider records, source images, validate assets, and hand off publish-ready profile folders.',
     overviewVisual: {
       label: 'PUBLISHED SURFACE',
-      caption: 'Published surface: structured provider data turned into searchable profile cards.',
+      caption: 'Structured provider data turned into searchable profile cards.',
       layout: 'split',
       display: 'publishedSplit',
       images: [
@@ -568,9 +568,9 @@ export const records = [
     hiringTranslation:
       'This case is relevant to growth designer, email systems, and design technologist roles because it demonstrates Mailchimp journey design, lead tag strategy, booking-status rules, email production, and follow-up timing logic.',
     metrics: [
-      { value: '4', label: 'Mailchimp paths' },
-      { value: '21d', label: 'reactivation timing' },
-      { value: 'multi', label: 'brand send rules' }
+      { value: '4', label: 'MAILCHIMP PATHS' },
+      { value: '21d', label: 'REACTIVATION TIMING' },
+      { value: '5', label: 'WELLNESS BRANDS' }
     ],
     path: ['source', 'brand', 'service interest', 'booking status', 'timing', 'email path'],
     signal: 'Leads came in from different brands, services, and campaigns, but too many were receiving the same generic email follow-up.',

@@ -103,7 +103,7 @@ export default function MobileRecordSelector({
                 type="button"
                 aria-label="Close record selector"
                 onClick={() => setIsOpen(false)}
-                className="rounded-full border border-[#11100d]/12 bg-[#fffaf1] p-1.5 text-[#11100d]/60"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#11100d]/12 bg-[#fffaf1] text-[#11100d]/60"
               >
                 <X className="h-3.5 w-3.5" />
               </button>
@@ -121,7 +121,7 @@ export default function MobileRecordSelector({
                   aria-pressed={activeFilter === filter}
                   onClick={() => setActiveFilter(filter)}
                   className={cx(
-                    "shrink-0 rounded-full border px-3 py-1.5 text-[10px] tracking-[0.01em] transition",
+                    "flex h-11 shrink-0 items-center rounded-full border px-3.5 text-[10px] tracking-[0.01em] transition",
                     activeFilter === filter
                       ? "border-[#11100d] bg-[#11100d] text-[#f7f1e7]"
                       : "border-[#11100d]/10 text-[#11100d]/44"
@@ -146,7 +146,7 @@ export default function MobileRecordSelector({
                         aria-label={`Select ${record.title}`}
                         onClick={() => selectRecord(record)}
                         className={cx(
-                          "flex w-full items-center gap-3 rounded-[16px] border px-4 py-3 text-left transition",
+                          "flex min-h-[64px] w-full items-center gap-3 rounded-[16px] border px-4 py-3 text-left transition",
                           active
                             ? "border-[#11100d] bg-[#11100d] text-[#f7f1e7]"
                             : "border-[#11100d]/10 bg-[#fffaf1]/60 text-[#11100d]"

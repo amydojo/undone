@@ -7,9 +7,9 @@ export const profile = {
   intro:
     "I work in the messy middle between product, brand, growth, and operations. My edge is turning scattered business problems into clear systems people can actually use.",
   detailsPositioning:
-    "I turn messy business and product problems into clear systems, interfaces, and proof-backed execution.",
-  detailsFocus: "Design systems · AI prototyping · workflow logic · proof artifacts",
-  detailsTools: "Figma · React · Airtable · Storybook · Playwright · OpenAI · Replit",
+    "I design systems that make messy work easier to understand, ship, and improve.",
+  detailsFocus: "Design systems · growth workflows · product prototypes · campaign reporting",
+  detailsTools: "Figma · React · Airtable · Storybook · Playwright · GitHub · Vercel",
   roleFits: [
     "design technologist",
     "creative technologist",

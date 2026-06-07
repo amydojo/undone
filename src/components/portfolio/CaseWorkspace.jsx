@@ -483,20 +483,20 @@ export default function CaseWorkspace({ workspace, closeWorkspace }) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.18 }}
-          className='fixed inset-0 z-50 bg-[#11100d]/48 p-3 lg:p-8'
+          className='fixed inset-0 z-50 bg-[#11100d]/48 p-2.5 sm:p-3 lg:p-8'
         >
           <motion.div
             initial={{ y: 14, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 8, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 210, damping: 24 }}
-            className='mx-auto flex h-full w-full max-w-[1160px] flex-col overflow-hidden rounded-[28px] border border-[#11100d]/12 bg-[#f7f1e7] shadow-[0_48px_130px_rgba(17,16,13,0.28)]'
+            className='mx-auto flex h-full w-full max-w-[1160px] flex-col overflow-hidden rounded-[24px] border border-[#11100d]/12 bg-[#f7f1e7] shadow-[0_48px_130px_rgba(17,16,13,0.28)] sm:rounded-[28px]'
             role='dialog'
             aria-modal='true'
             aria-label={`${workspace.title} case file`}
           >
             {/* ── Header ── */}
-            <header className='flex shrink-0 items-start justify-between gap-4 border-b border-[#11100d]/10 px-6 py-5 lg:px-8 lg:py-6'>
+            <header className='flex shrink-0 items-start justify-between gap-4 border-b border-[#11100d]/10 px-5 py-4 sm:px-6 sm:py-5 lg:px-8 lg:py-6'>
               <div>
                 <div className='text-[9px] uppercase tracking-[0.18em] text-[#11100d]/38'>case file</div>
                 <h2 className='mt-1.5 text-[18px] font-medium leading-tight tracking-[-0.022em] text-[#11100d] lg:text-[20px]'>
@@ -519,7 +519,7 @@ export default function CaseWorkspace({ workspace, closeWorkspace }) {
                 type='button'
                 aria-label='Close case file'
                 onClick={closeWorkspace}
-                className='mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#11100d]/12 bg-[#fffaf1] text-[#11100d]/54 transition-colors hover:bg-[#f0eadf] hover:text-[#11100d]'
+                className='mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#11100d]/12 bg-[#fffaf1] text-[#11100d]/54 transition-colors hover:bg-[#f0eadf] hover:text-[#11100d] lg:h-10 lg:w-10'
               >
                 <X className='h-[15px] w-[15px]' />
               </button>
@@ -551,7 +551,7 @@ export default function CaseWorkspace({ workspace, closeWorkspace }) {
 
               {/* Main scrollable area */}
               <main className='scrollbar-portfolio flex-1 overflow-y-auto'>
-                <div className='mx-auto max-w-[940px] px-6 py-10 lg:px-10 lg:py-12'>
+                <div className='mx-auto max-w-[940px] px-5 py-8 sm:px-6 sm:py-10 lg:px-10 lg:py-12'>
                   <BriefSection workspace={workspace} />
                   <ProblemSection workspace={workspace} />
                   <SystemSection workspace={workspace} />
