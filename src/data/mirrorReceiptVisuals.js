@@ -280,6 +280,26 @@ export const mirrorReceiptVisuals = {
           interactions: 'responsive, empty state',
           status: 'ready'
         }
+      ],
+      liveStorybookLinks: [
+        {
+          type: 'DEBUG',
+          primary: 'DebugPanel',
+          secondary: 'With Pipeline',
+          href: 'https://mirror-storybook.vercel.app/?path=/story/app-components-debug-debugpanel--with-pipeline'
+        },
+        {
+          type: 'STATE',
+          primary: 'BodyWeatherHero',
+          secondary: 'Compressed',
+          href: 'https://mirror-storybook.vercel.app/?path=/story/patterns-bodyweatherhero--compressed'
+        },
+        {
+          type: 'ACTION',
+          primary: 'GentleNextMove',
+          secondary: 'Suggestion',
+          href: 'https://mirror-storybook.vercel.app/?path=/story/patterns-gentlenextmove--suggestion-with-rationale'
+        }
       ]
     },
     footerNote:

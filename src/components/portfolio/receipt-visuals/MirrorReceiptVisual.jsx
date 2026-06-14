@@ -1063,6 +1063,48 @@ function QaConsoleBody({ body }) {
   );
 }
 
+function LiveStorybookSection({ links = [] }) {
+  if (links.length === 0) return null;
+
+  return (
+    <section className="border-b border-[#11100d]/10 bg-[#fffaf1] p-2.5 sm:p-3">
+      <div className="grid grid-cols-1 overflow-hidden border border-[#11100d]/10 md:grid-cols-[112px_1fr]">
+        <div className="grid grid-cols-[1fr_auto] items-end gap-3 border-b border-[#11100d]/10 bg-[#151410] p-2.5 text-[#f7f1e7] md:block md:border-b-0 md:border-r">
+          <div>
+            <div className="text-[8px] uppercase tracking-[0.14em] text-[#f7f1e7]/36">Live states</div>
+            <div className="mt-1.5 text-[24px] leading-none tracking-[-0.03em] text-[#f7f1e7]">{links.length}</div>
+          </div>
+          <div className="text-right text-[9px] uppercase tracking-[0.12em] text-[#f7f1e7]/46 md:mt-2 md:text-left">
+            Storybook
+          </div>
+        </div>
+
+        <div className="min-w-0 bg-[#fffaf1] px-2.5 py-2">
+          <Label className="mb-1.5">Open in Storybook</Label>
+          <div className="divide-y divide-[#11100d]/8 border-y border-[#11100d]/8">
+            {links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                className="grid min-w-0 grid-cols-[54px_minmax(0,1fr)_auto] items-center gap-2 py-1.5 text-left transition-colors hover:text-[#11100d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/18 focus-visible:ring-offset-2 focus-visible:ring-offset-[#fffaf1]"
+              >
+                <span className="text-[8px] uppercase tracking-[0.1em] text-[#11100d]/36">{link.type}</span>
+                <span className="min-w-0">
+                  <span className="block truncate text-[11px] leading-4 text-[#11100d]/70">{link.primary}</span>
+                  <span className="block truncate text-[9px] leading-3 text-[#11100d]/38">{link.secondary}</span>
+                </span>
+                <span className="text-[11px] leading-none text-[#11100d]/38" aria-hidden="true">↗</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function CoverageMatrixBody({ body }) {
   const categoryOrder = ["Input", "State surface", "Memory", "Action", "QA", "Page"];
   const extraCategories = body.rows
@@ -1100,6 +1142,8 @@ function CoverageMatrixBody({ body }) {
               </div>
             ))}
           </div>
+
+          <LiveStorybookSection links={body.liveStorybookLinks} />
 
           <div className="grid grid-cols-1 sm:grid-cols-2">
             {visibleRows.map((row) => (
