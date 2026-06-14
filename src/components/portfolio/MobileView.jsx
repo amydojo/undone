@@ -1,4 +1,5 @@
 import React from "react";
+import { AnimatePresence, motion, useIsPresent, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import MetricPill from "../ui/MetricPill";
 import ProfileStrip from "./ProfileStrip";
@@ -21,6 +22,41 @@ const TABS = [
   { id: "overview", label: "Overview" },
   { id: "proof", label: "Receipts" },
 ];
+
+const TAB_MOTION = {
+  duration: 0.36,
+  ease: [0.22, 1, 0.36, 1]
+};
+const REDUCED_TAB_MOTION = { duration: 0.12 };
+const TAB_INDEX_BY_ID = TABS.reduce((indexes, tab, index) => {
+  indexes[tab.id] = index;
+  return indexes;
+}, {});
+
+function getTabIndex(tabId) {
+  return TAB_INDEX_BY_ID[tabId] ?? 0;
+}
+
+const TAB_PANE_VARIANTS = {
+  enter: (direction) => ({
+    opacity: 0,
+    x: direction * 18
+  }),
+  center: {
+    opacity: 1,
+    x: 0
+  },
+  exit: (direction) => ({
+    opacity: 0,
+    x: direction * -10
+  })
+};
+
+const REDUCED_TAB_PANE_VARIANTS = {
+  enter: { opacity: 0 },
+  center: { opacity: 1 },
+  exit: { opacity: 0 }
+};
 
 function displayStatus(raw) {
   if (!raw) return null
@@ -255,6 +291,28 @@ function ProofTab({ record, activeReceipt, onSelectReceipt, resetSignal }) {
   );
 }
 
+function MobileTabPane({ children, direction, prefersReducedMotion }) {
+  const isPresent = useIsPresent();
+
+  return (
+    <motion.div
+      custom={direction}
+      variants={prefersReducedMotion ? REDUCED_TAB_PANE_VARIANTS : TAB_PANE_VARIANTS}
+      initial="enter"
+      animate="center"
+      exit="exit"
+      transition={prefersReducedMotion ? REDUCED_TAB_MOTION : TAB_MOTION}
+      className="inset-x-0 top-0 w-full min-w-0"
+      style={{
+        position: isPresent ? "relative" : "absolute",
+        zIndex: isPresent ? 1 : 0
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 // ─── Main MobileView ─────────────────────────────────────────────────────────
 
 export default function MobileView({
@@ -268,6 +326,12 @@ export default function MobileView({
   resetSignal,
 }) {
   const activeMobileTab = TABS.some(({ id }) => id === mobileTab) ? mobileTab : "overview";
+  const prefersReducedMotion = useReducedMotion();
+  const [tabControlPressed, setTabControlPressed] = React.useState(false);
+  const previousTabRef = React.useRef(activeMobileTab);
+  const previousTabIndex = getTabIndex(previousTabRef.current);
+  const activeTabIndex = getTabIndex(activeMobileTab);
+  const tabDirection = activeTabIndex === previousTabIndex ? 0 : activeTabIndex > previousTabIndex ? 1 : -1;
 
   React.useEffect(() => {
     if (activeMobileTab !== mobileTab) {
@@ -275,15 +339,50 @@ export default function MobileView({
     }
   }, [activeMobileTab, mobileTab, setMobileTab]);
 
+  React.useEffect(() => {
+    previousTabRef.current = activeMobileTab;
+  }, [activeMobileTab]);
+
   return (
     <div className="lg:hidden">
       {/* Sticky tab bar — positioned below the sticky case selector (~80 px) */}
       <div className="sticky top-20 z-20 border-b border-[#11100d]/10 bg-[#f7f1e7]/92 px-4 py-2 backdrop-blur-xl">
         <div
-          className="grid grid-cols-2 gap-1 rounded-full border border-[#11100d]/10 bg-[#fffaf1]/70 p-1"
+          className="relative grid grid-cols-2 overflow-hidden rounded-full p-1"
           role="group"
           aria-label="Mobile section tabs"
+          onPointerDown={() => {
+            if (!prefersReducedMotion) setTabControlPressed(true);
+          }}
+          onPointerUp={() => setTabControlPressed(false)}
+          onPointerCancel={() => setTabControlPressed(false)}
+          onPointerLeave={() => setTabControlPressed(false)}
         >
+          <motion.div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 rounded-full border border-[#11100d]/10 bg-[#fffaf1]/72 shadow-[inset_0_1px_0_rgba(255,250,241,0.9),inset_0_-1px_0_rgba(17,16,13,0.035)]"
+            animate={{
+              scale: tabControlPressed && !prefersReducedMotion ? 0.995 : 1,
+              opacity: tabControlPressed && !prefersReducedMotion ? 0.96 : 1
+            }}
+            transition={{ duration: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          />
+          <motion.div
+            aria-hidden="true"
+            className="absolute bottom-1 left-1 top-1 w-[calc(50%-0.25rem)] overflow-hidden rounded-full bg-[#11100d] shadow-[inset_0_1px_0_rgba(247,241,231,0.1),inset_0_-1px_0_rgba(0,0,0,0.24)]"
+            initial={false}
+            animate={{ x: `${activeTabIndex * 100}%` }}
+            transition={prefersReducedMotion ? { duration: 0 } : TAB_MOTION}
+          >
+            <span className="pointer-events-none absolute inset-x-3 top-px h-px bg-[#f7f1e7]/14" aria-hidden="true" />
+            <span
+              className={cx(
+                "pointer-events-none absolute bottom-2 top-2 w-px bg-[#f7f1e7]/18",
+                tabDirection < 0 ? "left-2" : "right-2"
+              )}
+              aria-hidden="true"
+            />
+          </motion.div>
           {TABS.map(({ id, label }) => (
             <button
               key={id}
@@ -292,10 +391,10 @@ export default function MobileView({
               aria-pressed={activeMobileTab === id}
               onClick={() => setMobileTab(id)}
               className={cx(
-                "min-h-11 rounded-full px-3 text-[10px] uppercase tracking-[0.12em] transition",
+                "relative z-10 min-h-11 rounded-full px-3 text-[10px] uppercase tracking-[0.12em] transition-colors duration-[360ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/20",
                 activeMobileTab === id
-                  ? "bg-[#11100d] text-[#f7f1e7]"
-                  : "text-[#11100d]/46"
+                  ? "text-[#f7f1e7]"
+                  : "text-[#11100d]/48 hover:text-[#11100d]/64"
               )}
             >
               {label}
@@ -305,17 +404,26 @@ export default function MobileView({
       </div>
 
       {/* Tab content */}
-      {activeMobileTab === "overview" && (
-        <OverviewTab record={record} openWorkspace={openWorkspace} />
-      )}
-      {activeMobileTab === "proof" && (
-        <ProofTab
-          record={record}
-          activeReceipt={activeReceipt}
-          onSelectReceipt={onSelectReceipt}
-          resetSignal={resetSignal}
-        />
-      )}
+      <div className="relative min-w-0 max-w-full overflow-hidden shadow-[inset_0_10px_18px_rgba(17,16,13,0.025)] before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:z-10 before:h-px before:bg-[#11100d]/5 before:content-['']">
+        <AnimatePresence mode="sync" initial={false} custom={tabDirection}>
+          <MobileTabPane
+            key={activeMobileTab}
+            direction={tabDirection}
+            prefersReducedMotion={prefersReducedMotion}
+          >
+            {activeMobileTab === "overview" ? (
+              <OverviewTab record={record} openWorkspace={openWorkspace} />
+            ) : (
+              <ProofTab
+                record={record}
+                activeReceipt={activeReceipt}
+                onSelectReceipt={onSelectReceipt}
+                resetSignal={resetSignal}
+              />
+            )}
+          </MobileTabPane>
+        </AnimatePresence>
+      </div>
     </div>
   );
 }
