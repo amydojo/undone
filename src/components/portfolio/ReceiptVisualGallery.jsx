@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { createPortal } from "react-dom";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import MirrorReceiptVisual from "./receipt-visuals/MirrorReceiptVisual";
 import MetaAirtableReceiptVisual from "./receipt-visuals/MetaAirtableReceiptVisual";
@@ -144,6 +145,17 @@ export default function ReceiptVisualGallery({
     setActiveIndex(null);
   }, [resetSignal]);
 
+  useEffect(() => {
+    if (!activeAsset || typeof document === "undefined") return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [activeAsset]);
+
   if (visibleAssets.length === 0) return null;
 
   function getAssetCaption(asset) {
@@ -229,6 +241,105 @@ export default function ReceiptVisualGallery({
       return (current + 1) % visibleAssets.length;
     });
   }
+
+  const activeModal = activeAsset ? (
+    <div
+      className="fixed inset-0 z-[999] isolate flex items-start justify-center overflow-hidden overscroll-contain bg-[#11100d]/88 px-3 py-4 sm:items-center sm:px-5 sm:py-6"
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${receiptName} proof set viewer`}
+      onClick={() => setActiveIndex(null)}
+    >
+      {visibleAssets.length > 1 && (
+        <button
+          type="button"
+          aria-label="Previous image"
+          onClick={(event) => {
+            event.stopPropagation();
+            showPrevious();
+          }}
+          className="absolute left-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center border border-[#fffaf1]/20 bg-[#fffaf1] text-[#11100d] transition hover:bg-[#f7f1e7] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fffaf1]/80 sm:inline-flex"
+        >
+          <ChevronLeft className="h-4 w-4" />
+        </button>
+      )}
+
+      <figure
+        data-testid="receipt-modal"
+        onClick={(event) => event.stopPropagation()}
+        className={`relative flex max-h-[calc(100dvh-2rem)] w-full ${activeModalMaxWidth} flex-col overflow-hidden rounded-[8px] border border-[#fffaf1]/22 bg-[#fffaf1] sm:max-h-[90vh]`}
+      >
+        <header className="flex shrink-0 items-start justify-between gap-3 bg-[#fffaf1] px-3.5 py-3 sm:px-5 sm:py-3.5">
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[9px] uppercase tracking-[0.14em] text-[#11100d]/38">
+              <span className="tabular-nums">{activeReceiptReference}</span>
+            </div>
+            <div className="mt-1.5 truncate text-[13px] font-medium leading-5 text-[#11100d] sm:text-[14px]">
+              {receiptName}
+            </div>
+            <div className="mt-0.5 truncate text-[9px] uppercase tracking-[0.13em] text-[#11100d]/40">
+              {receiptFormat}
+            </div>
+          </div>
+          <button
+            type="button"
+            data-testid="receipt-modal-close"
+            aria-label="Close proof set viewer"
+            onClick={() => setActiveIndex(null)}
+            className="mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#11100d]/12 bg-[#fffaf1] text-[#11100d]/64 transition-colors hover:bg-[#f0eadf] hover:text-[#11100d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/25 lg:h-9 lg:w-9"
+          >
+            <X className="h-[15px] w-[15px]" />
+          </button>
+        </header>
+        <div className="h-px shrink-0" style={{ backgroundColor: activeAccentColor, opacity: 0.72 }} aria-hidden="true" />
+
+        <div className={activeIsComponentAsset ? "scrollbar-portfolio min-h-0 flex-1 overflow-y-auto bg-[#fffaf1]" : "scrollbar-portfolio flex min-h-0 flex-1 items-center justify-center overflow-y-auto bg-[#f7f1e7] p-3 sm:p-4"}>
+          <div className={activeIsComponentAsset ? "w-full min-w-0" : "flex w-full justify-center pb-2 sm:pb-0"}>
+            {renderAsset(activeAsset, "viewer")}
+          </div>
+        </div>
+        {shouldShowActiveCaption && (
+          <figcaption className="border-t border-[#11100d]/8 px-4 py-3 text-[12px] leading-5 text-[#11100d]/62 sm:px-5">
+            {activeCaption}
+          </figcaption>
+        )}
+        {visibleAssets.length > 1 && (
+          <div className="flex items-center justify-between border-t border-[#11100d]/8 px-3 py-2 sm:hidden">
+            <button
+              type="button"
+              onClick={showPrevious}
+              className="inline-flex h-11 items-center gap-1 rounded-full border border-[#11100d]/10 px-3.5 text-[10px] uppercase tracking-[0.1em] text-[#11100d]/62"
+            >
+              <ChevronLeft className="h-3.5 w-3.5" />
+              Prev
+            </button>
+            <button
+              type="button"
+              onClick={showNext}
+              className="inline-flex h-11 items-center gap-1 rounded-full border border-[#11100d]/10 px-3.5 text-[10px] uppercase tracking-[0.1em] text-[#11100d]/62"
+            >
+              Next
+              <ChevronRight className="h-3.5 w-3.5" />
+            </button>
+          </div>
+        )}
+      </figure>
+
+      {visibleAssets.length > 1 && (
+        <button
+          type="button"
+          aria-label="Next image"
+          onClick={(event) => {
+            event.stopPropagation();
+            showNext();
+          }}
+          className="absolute right-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center border border-[#fffaf1]/20 bg-[#fffaf1] text-[#11100d] transition hover:bg-[#f7f1e7] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fffaf1]/80 sm:inline-flex"
+        >
+          <ChevronRight className="h-4 w-4" />
+        </button>
+      )}
+    </div>
+  ) : null;
 
   return (
     <div data-testid="receipt-visual-gallery" className={isComponentSet ? "" : "mt-4"}>
@@ -339,104 +450,7 @@ export default function ReceiptVisualGallery({
       </div>
       )}
 
-      {activeAsset && (
-        <div
-          className="fixed inset-0 z-50 flex items-start justify-center overflow-hidden bg-[#11100d]/88 px-3 py-4 sm:items-center sm:px-5 sm:py-6"
-          role="dialog"
-          aria-modal="true"
-          aria-label={`${receiptName} proof set viewer`}
-          onClick={() => setActiveIndex(null)}
-        >
-          {visibleAssets.length > 1 && (
-            <button
-              type="button"
-              aria-label="Previous image"
-              onClick={(event) => {
-                event.stopPropagation();
-                showPrevious();
-              }}
-              className="absolute left-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center border border-[#fffaf1]/20 bg-[#fffaf1] text-[#11100d] transition hover:bg-[#f7f1e7] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fffaf1]/80 sm:inline-flex"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-          )}
-
-          <figure
-            data-testid="receipt-modal"
-            onClick={(event) => event.stopPropagation()}
-            className={`relative flex max-h-[calc(100dvh-2rem)] w-full ${activeModalMaxWidth} flex-col overflow-hidden rounded-[8px] border border-[#fffaf1]/22 bg-[#fffaf1] sm:max-h-[90vh]`}
-          >
-            <header className="flex shrink-0 items-start justify-between gap-3 bg-[#fffaf1] px-3.5 py-3 sm:px-5 sm:py-3.5">
-              <div className="min-w-0">
-                <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[9px] uppercase tracking-[0.14em] text-[#11100d]/38">
-                  <span className="tabular-nums">{activeReceiptReference}</span>
-                </div>
-                <div className="mt-1.5 truncate text-[13px] font-medium leading-5 text-[#11100d] sm:text-[14px]">
-                  {receiptName}
-                </div>
-                <div className="mt-0.5 truncate text-[9px] uppercase tracking-[0.13em] text-[#11100d]/40">
-                  {receiptFormat}
-                </div>
-              </div>
-              <button
-                type="button"
-                data-testid="receipt-modal-close"
-                aria-label="Close proof set viewer"
-                onClick={() => setActiveIndex(null)}
-                className="mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#11100d]/12 bg-[#fffaf1] text-[#11100d]/64 transition-colors hover:bg-[#f0eadf] hover:text-[#11100d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/25 lg:h-9 lg:w-9"
-              >
-                <X className="h-[15px] w-[15px]" />
-              </button>
-            </header>
-            <div className="h-px shrink-0" style={{ backgroundColor: activeAccentColor, opacity: 0.72 }} aria-hidden="true" />
-
-            <div className={activeIsComponentAsset ? "scrollbar-portfolio min-h-0 flex-1 overflow-y-auto bg-[#fffaf1]" : "scrollbar-portfolio flex min-h-0 flex-1 items-center justify-center overflow-y-auto bg-[#f7f1e7] p-3 sm:p-4"}>
-              <div className={activeIsComponentAsset ? "w-full min-w-0" : "flex w-full justify-center pb-2 sm:pb-0"}>
-                {renderAsset(activeAsset, "viewer")}
-              </div>
-            </div>
-            {shouldShowActiveCaption && (
-              <figcaption className="border-t border-[#11100d]/8 px-4 py-3 text-[12px] leading-5 text-[#11100d]/62 sm:px-5">
-                {activeCaption}
-              </figcaption>
-            )}
-            {visibleAssets.length > 1 && (
-              <div className="flex items-center justify-between border-t border-[#11100d]/8 px-3 py-2 sm:hidden">
-                <button
-                  type="button"
-                  onClick={showPrevious}
-                  className="inline-flex h-11 items-center gap-1 rounded-full border border-[#11100d]/10 px-3.5 text-[10px] uppercase tracking-[0.1em] text-[#11100d]/62"
-                >
-                  <ChevronLeft className="h-3.5 w-3.5" />
-                  Prev
-                </button>
-                <button
-                  type="button"
-                  onClick={showNext}
-                  className="inline-flex h-11 items-center gap-1 rounded-full border border-[#11100d]/10 px-3.5 text-[10px] uppercase tracking-[0.1em] text-[#11100d]/62"
-                >
-                  Next
-                  <ChevronRight className="h-3.5 w-3.5" />
-                </button>
-              </div>
-            )}
-          </figure>
-
-          {visibleAssets.length > 1 && (
-            <button
-              type="button"
-              aria-label="Next image"
-              onClick={(event) => {
-                event.stopPropagation();
-                showNext();
-              }}
-              className="absolute right-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center border border-[#fffaf1]/20 bg-[#fffaf1] text-[#11100d] transition hover:bg-[#f7f1e7] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fffaf1]/80 sm:inline-flex"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          )}
-        </div>
-      )}
+      {activeModal && typeof document !== "undefined" ? createPortal(activeModal, document.body) : activeModal}
     </div>
   );
 }
