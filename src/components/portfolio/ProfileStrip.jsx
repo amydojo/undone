@@ -65,13 +65,13 @@ export default function ProfileStrip({ className }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Open resume"
-            className="inline-flex h-11 items-center justify-center rounded-full bg-[#11100d] px-4 text-[9px] uppercase tracking-[0.13em] text-[#f7f1e7] lg:h-8 lg:px-3.5 lg:tracking-[0.14em]"
+            className="inline-flex h-11 items-center justify-center rounded-full bg-[#11100d] px-4 text-[9px] uppercase tracking-[0.13em] text-[#f7f1e7] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f7f1e7] lg:h-8 lg:px-3.5 lg:tracking-[0.14em]"
           >
             résumé
           </a>
           <a
             href={`mailto:${profile.contact}`}
-            className="inline-flex h-11 items-center justify-center rounded-full border border-[#11100d]/10 px-4 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/58 lg:h-8 lg:px-3.5 lg:tracking-[0.14em]"
+            className="inline-flex h-11 items-center justify-center rounded-full border border-[#11100d]/10 px-4 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/58 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f7f1e7] lg:h-8 lg:px-3.5 lg:tracking-[0.14em]"
           >
             contact
           </a>
@@ -102,7 +102,7 @@ export default function ProfileStrip({ className }) {
 
             <div className="border-b border-[#11100d]/8 pb-3 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-4">
               <div className="mb-2 text-[9px] uppercase tracking-[0.15em] text-[#11100d]/34">Email</div>
-              <a href={`mailto:${profile.contact}`} className="text-[12px] leading-5 text-[#11100d]/62 transition hover:text-[#11100d]">
+              <a href={`mailto:${profile.contact}`} className="rounded-[3px] text-[12px] leading-5 text-[#11100d]/62 transition hover:text-[#11100d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/18 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f7f1e7]">
                 {profile.contact}
               </a>
               <div className="mt-2">
@@ -113,7 +113,7 @@ export default function ProfileStrip({ className }) {
                   aria-label={clipboardSupported ? "Copy email address" : "Copy email unavailable; email address is visible"}
                   aria-describedby={clipboardSupported ? undefined : "profile-copy-email-support"}
                   className={cx(
-                    "text-[9px] uppercase tracking-[0.13em] text-[#11100d]/42 transition hover:text-[#11100d]",
+                    "rounded-[3px] text-[9px] uppercase tracking-[0.13em] text-[#11100d]/42 transition hover:text-[#11100d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/18 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f7f1e7]",
                     !clipboardSupported && "cursor-not-allowed text-[#11100d]/24 hover:text-[#11100d]/24"
                   )}
                 >

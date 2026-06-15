@@ -23,7 +23,7 @@ export default function RecordRail({ recordsList, activeRecord, setActiveRecord,
             aria-pressed={activeFilter === filter}
             onClick={() => setActiveFilter(filter)}
             className={cx(
-              "rounded-full border px-3 py-1.5 text-[10px] tracking-[0.01em] transition",
+              "rounded-full border px-3 py-1.5 text-[10px] tracking-[0.01em] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/22 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f0eadf]",
               activeFilter === filter
                 ? "border-[#11100d] bg-[#11100d] text-[#f7f1e7]"
                 : "border-[#11100d]/10 text-[#11100d]/44 hover:border-[#11100d]/24 hover:text-[#11100d]"
@@ -49,8 +49,8 @@ export default function RecordRail({ recordsList, activeRecord, setActiveRecord,
                 onClick={() => setActiveRecord(record)}
                 onDoubleClick={() => openWorkspace(record)}
                 className={cx(
-                  "group w-full rounded-[22px] border p-4 text-left transition",
-                  active ? "border-[#11100d] bg-[#11100d] text-[#f7f1e7]" : "border-[#11100d]/10 bg-[#fffaf1]/50 text-[#11100d] hover:border-[#11100d]/24 hover:bg-[#fffaf1]"
+                  "group w-full rounded-[22px] border p-4 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f0eadf]",
+                  active ? "border-[#11100d] bg-[#11100d] text-[#f7f1e7] focus-visible:ring-[#11100d]/35" : "border-[#11100d]/10 bg-[#fffaf1]/50 text-[#11100d] hover:border-[#11100d]/24 hover:bg-[#fffaf1] focus-visible:ring-[#11100d]/24"
                 )}
               >
                 <div className="mb-5 flex items-center justify-between">

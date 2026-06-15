@@ -267,6 +267,7 @@ function MirrorSupportLinks() {
           href={link.href}
           target='_blank'
           rel='noreferrer'
+          aria-label={`Open ${link.label.replace(' ↗', '')} in a new tab`}
           className='border-b border-[#11100d]/16 pb-0.5 text-[#11100d]/52 transition-colors hover:border-[#11100d]/34 hover:text-[#11100d]/78 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/18 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f7f1e7]'
         >
           {link.label}

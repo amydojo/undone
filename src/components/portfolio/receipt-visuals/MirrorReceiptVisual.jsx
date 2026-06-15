@@ -1088,6 +1088,7 @@ function LiveStorybookSection({ links = [] }) {
                 href={link.href}
                 target="_blank"
                 rel="noreferrer"
+                aria-label={`Open ${link.primary} ${link.secondary} in Storybook in a new tab`}
                 className="grid min-w-0 grid-cols-[54px_minmax(0,1fr)_auto] items-center gap-2 py-1.5 text-left transition-colors hover:text-[#11100d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/18 focus-visible:ring-offset-2 focus-visible:ring-offset-[#fffaf1]"
               >
                 <span className="text-[8px] uppercase tracking-[0.1em] text-[#11100d]/36">{link.type}</span>
@@ -1304,6 +1305,7 @@ function TypedReceiptVisual({
               href={supportLink.href}
               target="_blank"
               rel="noreferrer"
+              aria-label={`Open ${supportLink.label.replace(" ↗", "")} in a new tab`}
               className="border-b border-[#11100d]/14 pb-0.5 text-[10px] leading-4 text-[#11100d]/46 transition-colors hover:border-[#11100d]/30 hover:text-[#11100d]/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/18 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f7f1e7]"
             >
               {supportLink.label}

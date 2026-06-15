@@ -25,13 +25,13 @@ export default function TopBar({ onHomeReset }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Open resume"
-            className="inline-flex h-11 items-center rounded-full bg-[#11100d] px-4 text-[9px] uppercase tracking-[0.13em] text-[#f7f1e7]"
+            className="inline-flex h-11 items-center rounded-full bg-[#11100d] px-4 text-[9px] uppercase tracking-[0.13em] text-[#f7f1e7] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f7f1e7]"
           >
             résumé
           </a>
           <a
             href={`mailto:${profile.contact}`}
-            className="inline-flex h-11 items-center rounded-full border border-[#11100d]/10 px-4 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/54"
+            className="inline-flex h-11 items-center rounded-full border border-[#11100d]/10 px-4 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/54 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f7f1e7]"
           >
             contact
           </a>
@@ -40,9 +40,9 @@ export default function TopBar({ onHomeReset }) {
 
       {/* Desktop right: résumé · contact */}
       <div className="hidden lg:flex lg:items-center lg:gap-3">
-        <a href={resumeHref} target="_blank" rel="noopener noreferrer" aria-label="Open resume" className="text-[9px] uppercase tracking-[0.13em] text-[#11100d]/36 transition hover:text-[#11100d]">résumé</a>
+        <a href={resumeHref} target="_blank" rel="noopener noreferrer" aria-label="Open resume" className="rounded-[4px] text-[9px] uppercase tracking-[0.13em] text-[#11100d]/36 transition hover:text-[#11100d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/18 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f7f1e7]">résumé</a>
         <span className="text-[#11100d]/14" aria-hidden="true">·</span>
-        <a href={`mailto:${profile.contact}`} className="text-[9px] uppercase tracking-[0.13em] text-[#11100d]/36 transition hover:text-[#11100d]">contact</a>
+        <a href={`mailto:${profile.contact}`} className="rounded-[4px] text-[9px] uppercase tracking-[0.13em] text-[#11100d]/36 transition hover:text-[#11100d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/18 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f7f1e7]">contact</a>
       </div>
     </header>
   );
