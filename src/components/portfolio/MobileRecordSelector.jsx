@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useRef } from "react";
 import { ChevronDown, X } from "lucide-react";
 import AccentDot from "../ui/AccentDot";
 import { filters } from "../../data/records";
 import { formatMetadataLabel } from "../../utils/caseMetadata";
 import { cx } from "../../utils/cx";
+import { useOverlayBehavior } from "./useOverlayBehavior";
 
 export default function MobileRecordSelector({
   recordsList,
@@ -15,27 +16,16 @@ export default function MobileRecordSelector({
   isOpen,
   setIsOpen,
 }) {
-  // Close sheet on Escape
-  useEffect(() => {
-    if (!isOpen) return;
-    function onKey(e) {
-      if (e.key === "Escape") setIsOpen(false);
-    }
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [isOpen, setIsOpen]);
+  const overlayRef = useRef(null);
+  const closeButtonRef = useRef(null);
+  const closeSelector = useCallback(() => setIsOpen(false), [setIsOpen]);
 
-  // Prevent body scroll when open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isOpen]);
+  useOverlayBehavior({
+    active: isOpen,
+    overlayRef,
+    initialFocusRef: closeButtonRef,
+    onClose: closeSelector
+  });
 
   function selectRecord(record) {
     setActiveRecord(record);
@@ -80,10 +70,12 @@ export default function MobileRecordSelector({
       {/* Bottom sheet overlay */}
       {isOpen && (
         <div
+          ref={overlayRef}
           className="fixed inset-0 z-50 lg:hidden"
           role="dialog"
           aria-modal="true"
           aria-label="Case selector"
+          tabIndex={-1}
         >
           {/* Backdrop */}
           <div
@@ -100,10 +92,11 @@ export default function MobileRecordSelector({
                 Cases
               </div>
               <button
+                ref={closeButtonRef}
                 type="button"
                 aria-label="Close record selector"
-                onClick={() => setIsOpen(false)}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#11100d]/12 bg-[#fffaf1] text-[#11100d]/60"
+                onClick={closeSelector}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#11100d]/12 bg-[#fffaf1] text-[#11100d]/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/22"
               >
                 <X className="h-3.5 w-3.5" />
               </button>
@@ -121,7 +114,7 @@ export default function MobileRecordSelector({
                   aria-pressed={activeFilter === filter}
                   onClick={() => setActiveFilter(filter)}
                   className={cx(
-                    "flex h-11 shrink-0 items-center rounded-full border px-3.5 text-[10px] tracking-[0.01em] transition",
+                    "flex h-11 shrink-0 items-center rounded-full border px-3.5 text-[10px] tracking-[0.01em] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/20",
                     activeFilter === filter
                       ? "border-[#11100d] bg-[#11100d] text-[#f7f1e7]"
                       : "border-[#11100d]/10 text-[#11100d]/44"
@@ -146,7 +139,7 @@ export default function MobileRecordSelector({
                         aria-label={`Select ${record.title}`}
                         onClick={() => selectRecord(record)}
                         className={cx(
-                          "flex min-h-[64px] w-full items-center gap-3 rounded-[16px] border px-4 py-3 text-left transition",
+                          "flex min-h-[64px] w-full items-center gap-3 rounded-[16px] border px-4 py-3 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/22",
                           active
                             ? "border-[#11100d] bg-[#11100d] text-[#f7f1e7]"
                             : "border-[#11100d]/10 bg-[#fffaf1]/60 text-[#11100d]"

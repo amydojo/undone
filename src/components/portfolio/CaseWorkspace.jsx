@@ -2,6 +2,7 @@ import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { X } from 'lucide-react'
 import { formatMetadataLabel } from '../../utils/caseMetadata'
+import { useOverlayBehavior } from './useOverlayBehavior'
 
 const SECTIONS = [
   { id: 'brief', label: 'brief' },
@@ -469,10 +470,20 @@ function OutcomeSection({ workspace }) {
 /* ─────────────────────────── Main component ─────────────────────────────── */
 
 export default function CaseWorkspace({ workspace, closeWorkspace }) {
+  const dialogRef = React.useRef(null)
+  const closeButtonRef = React.useRef(null)
   const sidebarContext = workspace ? getSidebarContext(workspace) : null
   const headerMetadata = workspace
     ? [formatMetadataLabel(workspace.category), workspace.timeline, formatMetadataLabel(workspace.status)]
     : []
+  const handleClose = React.useCallback(() => closeWorkspace(), [closeWorkspace])
+
+  useOverlayBehavior({
+    active: Boolean(workspace),
+    overlayRef: dialogRef,
+    initialFocusRef: closeButtonRef,
+    onClose: handleClose
+  })
 
   return (
     <AnimatePresence>
@@ -483,9 +494,10 @@ export default function CaseWorkspace({ workspace, closeWorkspace }) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.18 }}
-          className='fixed inset-0 z-50 bg-[#11100d]/48 p-2.5 sm:p-3 lg:p-8'
+          className='fixed inset-0 z-50 overscroll-contain bg-[#11100d]/48 p-2.5 sm:p-3 lg:p-8'
         >
           <motion.div
+            ref={dialogRef}
             initial={{ y: 14, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 8, opacity: 0 }}
@@ -494,6 +506,7 @@ export default function CaseWorkspace({ workspace, closeWorkspace }) {
             role='dialog'
             aria-modal='true'
             aria-label={`${workspace.title} case file`}
+            tabIndex={-1}
           >
             {/* ── Header ── */}
             <header className='flex shrink-0 items-start justify-between gap-4 border-b border-[#11100d]/10 px-5 py-4 sm:px-6 sm:py-5 lg:px-8 lg:py-6'>
@@ -516,10 +529,11 @@ export default function CaseWorkspace({ workspace, closeWorkspace }) {
                 </div>
               </div>
               <button
+                ref={closeButtonRef}
                 type='button'
                 aria-label='Close case file'
-                onClick={closeWorkspace}
-                className='mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#11100d]/12 bg-[#fffaf1] text-[#11100d]/54 transition-colors hover:bg-[#f0eadf] hover:text-[#11100d] lg:h-10 lg:w-10'
+                onClick={handleClose}
+                className='mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#11100d]/12 bg-[#fffaf1] text-[#11100d]/54 transition-colors hover:bg-[#f0eadf] hover:text-[#11100d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/22 lg:h-10 lg:w-10'
               >
                 <X className='h-[15px] w-[15px]' />
               </button>

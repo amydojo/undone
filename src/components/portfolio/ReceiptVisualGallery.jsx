@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import MirrorReceiptVisual from "./receipt-visuals/MirrorReceiptVisual";
@@ -12,6 +12,7 @@ import { getMultiBrandRetentionReceiptVisual } from "../../data/multiBrandRetent
 import { getSnipReceiptVisual } from "../../data/snipReceiptVisuals";
 import { getSmoothMdReceiptVisual } from "../../data/smoothMdReceiptVisuals";
 import { resolvePublicSrc } from "../../utils/resolvePublicSrc";
+import { useOverlayBehavior } from "./useOverlayBehavior";
 
 function formatIndex(index, total) {
   const width = Math.max(2, String(total).length);
@@ -82,6 +83,8 @@ export default function ReceiptVisualGallery({
 }) {
   const [failedSrcs, setFailedSrcs] = useState(() => new Set());
   const [activeIndex, setActiveIndex] = useState(null);
+  const overlayRef = useRef(null);
+  const closeButtonRef = useRef(null);
 
   const assets = useMemo(
     () =>
@@ -115,14 +118,12 @@ export default function ReceiptVisualGallery({
     activeCaption &&
       !activeComponentAsset?.definition?.receiptBodyType
   );
+  const closeModal = useCallback(() => setActiveIndex(null), []);
 
   useEffect(() => {
     if (!activeAsset) return undefined;
 
     function handleKeyDown(event) {
-      if (event.key === "Escape") {
-        setActiveIndex(null);
-      }
       if (event.key === "ArrowLeft" && visibleAssets.length > 1) {
         showPrevious();
       }
@@ -145,16 +146,12 @@ export default function ReceiptVisualGallery({
     setActiveIndex(null);
   }, [resetSignal]);
 
-  useEffect(() => {
-    if (!activeAsset || typeof document === "undefined") return undefined;
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [activeAsset]);
+  useOverlayBehavior({
+    active: Boolean(activeAsset),
+    overlayRef,
+    initialFocusRef: closeButtonRef,
+    onClose: closeModal
+  });
 
   if (visibleAssets.length === 0) return null;
 
@@ -244,11 +241,13 @@ export default function ReceiptVisualGallery({
 
   const activeModal = activeAsset ? (
     <div
+      ref={overlayRef}
       className="fixed inset-0 z-[999] isolate flex items-start justify-center overflow-hidden overscroll-contain bg-[#11100d]/88 px-3 py-4 sm:items-center sm:px-5 sm:py-6"
       role="dialog"
       aria-modal="true"
       aria-label={`${receiptName} proof set viewer`}
-      onClick={() => setActiveIndex(null)}
+      tabIndex={-1}
+      onClick={closeModal}
     >
       {visibleAssets.length > 1 && (
         <button
@@ -282,10 +281,11 @@ export default function ReceiptVisualGallery({
             </div>
           </div>
           <button
+            ref={closeButtonRef}
             type="button"
             data-testid="receipt-modal-close"
             aria-label="Close proof set viewer"
-            onClick={() => setActiveIndex(null)}
+            onClick={closeModal}
             className="mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#11100d]/12 bg-[#fffaf1] text-[#11100d]/64 transition-colors hover:bg-[#f0eadf] hover:text-[#11100d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/25 lg:h-9 lg:w-9"
           >
             <X className="h-[15px] w-[15px]" />
