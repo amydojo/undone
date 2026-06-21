@@ -13,10 +13,16 @@ export default function TopBar({ onHomeReset }) {
           type="button"
           aria-label="Reset portfolio to overview"
           onClick={onHomeReset}
-          className="flex min-h-11 min-w-0 flex-col justify-center gap-0.5 rounded-[6px] text-left transition hover:text-[#11100d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/25 sm:flex-row sm:items-baseline sm:gap-2.5 lg:min-h-0"
+          className="flex min-h-11 min-w-0 flex-col justify-center gap-0.5 rounded-[6px] text-left transition hover:text-[#11100d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/25 lg:min-h-0 lg:flex-row lg:items-baseline lg:gap-2.5"
         >
           <span className="text-[13px] font-medium leading-none text-[#11100d]/82">Amy Do</span>
-          <span className="text-[10px] leading-none text-[#11100d]/44">Design Technologist</span>
+          <span className="hidden text-[10px] leading-none text-[#11100d]/44 lg:inline">
+            Design Technologist · Product systems &amp; growth infrastructure
+          </span>
+          <span className="text-[10px] leading-none text-[#11100d]/44 lg:hidden">Design Technologist</span>
+          <span className="whitespace-nowrap text-[8px] leading-none text-[#11100d]/34 lg:hidden">
+            Product systems &amp; growth infrastructure
+          </span>
         </button>
         {/* Mobile-only: résumé + contact always visible */}
         <div className="flex shrink-0 items-center gap-1.5 lg:hidden">

@@ -324,6 +324,7 @@ export default function MobileView({
   mobileTab,
   setMobileTab,
   resetSignal,
+  onOrientationDismiss,
 }) {
   const activeMobileTab = TABS.some(({ id }) => id === mobileTab) ? mobileTab : "overview";
   const prefersReducedMotion = useReducedMotion();
@@ -389,7 +390,10 @@ export default function MobileView({
               type="button"
               aria-label={`Show ${label} tab`}
               aria-pressed={activeMobileTab === id}
-              onClick={() => setMobileTab(id)}
+              onClick={() => {
+                onOrientationDismiss();
+                setMobileTab(id);
+              }}
               className={cx(
                 "relative z-10 min-h-11 rounded-full px-3 text-[10px] uppercase tracking-[0.12em] transition-colors duration-[360ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/20",
                 activeMobileTab === id

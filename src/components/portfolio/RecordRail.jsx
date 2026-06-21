@@ -2,6 +2,7 @@ import React from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import AccentDot from "../ui/AccentDot";
+import OrientationHint from "./OrientationHint";
 import { filters } from "../../data/records";
 import { formatMetadataLabel } from "../../utils/caseMetadata";
 import { cx } from "../../utils/cx";
@@ -41,12 +42,22 @@ const FILE_STAMP_VARIANTS = {
   }),
 };
 
-export default function RecordRail({ recordsList, activeRecord, setActiveRecord, openWorkspace, activeFilter, setActiveFilter, caseNumbers }) {
+export default function RecordRail({
+  recordsList,
+  activeRecord,
+  setActiveRecord,
+  openWorkspace,
+  activeFilter,
+  setActiveFilter,
+  caseNumbers,
+  orientationHintVisible,
+  onOrientationDismiss,
+}) {
   const prefersReducedMotion = useReducedMotion();
   const [pressedSlug, setPressedSlug] = React.useState(null);
 
   return (
-    <aside className="scrollbar-portfolio border-r border-[#11100d]/10 bg-[#f0eadf]/68 p-4 lg:h-full lg:overflow-y-auto" aria-label="Record rail">
+    <aside className="scrollbar-portfolio relative border-r border-[#11100d]/10 bg-[#f0eadf]/68 p-4 lg:h-full lg:overflow-y-auto" aria-label="Record rail">
       <div className="mb-4 flex items-center justify-between">
         <div className="text-[9px] uppercase tracking-[0.22em] text-[#11100d]/42">Cases</div>
       </div>
@@ -74,6 +85,11 @@ export default function RecordRail({ recordsList, activeRecord, setActiveRecord,
         })}
       </div>
 
+      <OrientationHint
+        visible={orientationHintVisible}
+        onDismiss={onOrientationDismiss}
+      />
+
       <div className="space-y-2">
         {recordsList.length > 0 ? (
           recordsList.map((record) => {
@@ -86,7 +102,10 @@ export default function RecordRail({ recordsList, activeRecord, setActiveRecord,
                 type="button"
                 data-testid={`case-record-${record.slug}`}
                 aria-label={`Select ${record.title}`}
-                onClick={() => setActiveRecord(record)}
+                onClick={() => {
+                  onOrientationDismiss();
+                  setActiveRecord(record);
+                }}
                 onDoubleClick={() => openWorkspace(record)}
                 initial={false}
                 animate={

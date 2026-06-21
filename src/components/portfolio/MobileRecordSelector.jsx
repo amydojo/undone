@@ -1,6 +1,7 @@
 import React, { useCallback, useRef } from "react";
 import { ChevronDown, X } from "lucide-react";
 import AccentDot from "../ui/AccentDot";
+import OrientationHint from "./OrientationHint";
 import { filters } from "../../data/records";
 import { formatMetadataLabel } from "../../utils/caseMetadata";
 import { cx } from "../../utils/cx";
@@ -15,6 +16,8 @@ export default function MobileRecordSelector({
   caseNumbers,
   isOpen,
   setIsOpen,
+  orientationHintVisible,
+  onOrientationDismiss,
 }) {
   const overlayRef = useRef(null);
   const closeButtonRef = useRef(null);
@@ -28,6 +31,7 @@ export default function MobileRecordSelector({
   });
 
   function selectRecord(record) {
+    onOrientationDismiss();
     setActiveRecord(record);
     setIsOpen(false);
   }
@@ -39,12 +43,20 @@ export default function MobileRecordSelector({
   return (
     <>
       {/* Compact selector bar — sticky so the active case is always visible */}
-      <div className="sticky top-0 z-30 border-b border-[#11100d]/10 bg-[#f0eadf]/95 px-4 py-3 backdrop-blur-xl lg:hidden">
+      <div
+        className={cx(
+          "sticky top-0 z-30 border-b border-[#11100d]/10 bg-[#f0eadf]/95 px-4 pt-3 backdrop-blur-xl lg:hidden",
+          orientationHintVisible ? "pb-[48px]" : "pb-3"
+        )}
+      >
         <button
           type="button"
           aria-label="Open record selector"
           aria-expanded={isOpen}
-          onClick={() => setIsOpen(true)}
+          onClick={() => {
+            onOrientationDismiss();
+            setIsOpen(true);
+          }}
           className="flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#11100d]/12 bg-[#fffaf1]/70 px-4 py-3"
         >
           <div className="flex min-w-0 items-center gap-3">
@@ -65,6 +77,12 @@ export default function MobileRecordSelector({
             <ChevronDown className="h-4 w-4 text-[#11100d]/40" />
           </div>
         </button>
+
+        <OrientationHint
+          variant="mobile"
+          visible={orientationHintVisible}
+          onDismiss={onOrientationDismiss}
+        />
       </div>
 
       {/* Bottom sheet overlay */}
@@ -112,7 +130,10 @@ export default function MobileRecordSelector({
                   type="button"
                   aria-label={`Filter by ${filterLabel}`}
                   aria-pressed={activeFilter === filter}
-                  onClick={() => setActiveFilter(filter)}
+                  onClick={() => {
+                    onOrientationDismiss();
+                    setActiveFilter(filter);
+                  }}
                   className={cx(
                     "flex h-11 shrink-0 items-center rounded-full border px-3.5 text-[10px] tracking-[0.01em] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/20",
                     activeFilter === filter

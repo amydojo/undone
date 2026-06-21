@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { records } from "../../data/records";
 import TopBar from "./TopBar";
@@ -8,6 +8,8 @@ import ProofRail from "./ProofRail";
 import CaseWorkspace from "./CaseWorkspace";
 import MobileRecordSelector from "./MobileRecordSelector";
 import MobileView from "./MobileView";
+
+const ORIENTATION_HINT_STORAGE_KEY = "undone_seen_orientation_hint";
 
 export default function UndonePortfolioV10() {
   const visibleRecords = useMemo(() => records.filter((record) => record.visible !== false), []);
@@ -19,6 +21,20 @@ export default function UndonePortfolioV10() {
   const [mobileSheetOpen, setMobileSheetOpen] = useState(false);
   const [mobileTab, setMobileTab] = useState("overview");
   const [resetSignal, setResetSignal] = useState(0);
+  const [orientationHintVisible, setOrientationHintVisible] = useState(false);
+  const orientationHintModeRef = useRef("normal");
+
+  const dismissOrientationHint = useCallback(() => {
+    setOrientationHintVisible(false);
+
+    if (orientationHintModeRef.current !== "normal") return;
+
+    try {
+      window.localStorage.setItem(ORIENTATION_HINT_STORAGE_KEY, "true");
+    } catch {
+      // Persistence is optional; in-memory dismissal still works.
+    }
+  }, []);
 
   const filteredRecords = useMemo(() => {
     return visibleRecords.filter((record) => {
@@ -40,6 +56,44 @@ export default function UndonePortfolioV10() {
     () => records.find((record) => record.slug === workspaceRecordSlug) || null,
     [workspaceRecordSlug]
   );
+
+  useEffect(() => {
+    let hintOverride = null;
+
+    try {
+      const hintParam = new URLSearchParams(window.location.search).get("hint");
+      if (hintParam === "1") hintOverride = "force-visible";
+      if (hintParam === "0") hintOverride = "force-hidden";
+    } catch {
+      // If URL parsing is unavailable, continue with normal first-run behavior.
+    }
+
+    orientationHintModeRef.current = hintOverride ?? "normal";
+
+    if (hintOverride === "force-visible") {
+      setOrientationHintVisible(true);
+      return undefined;
+    }
+
+    if (hintOverride === "force-hidden") {
+      setOrientationHintVisible(false);
+      return undefined;
+    }
+
+    let hasSeenHint = false;
+
+    try {
+      hasSeenHint = window.localStorage.getItem(ORIENTATION_HINT_STORAGE_KEY) === "true";
+    } catch {
+      // If storage is unavailable, show the hint and fail silently.
+    }
+
+    if (hasSeenHint) return undefined;
+
+    setOrientationHintVisible(true);
+    const timeout = window.setTimeout(dismissOrientationHint, 7000);
+    return () => window.clearTimeout(timeout);
+  }, [dismissOrientationHint]);
 
   useEffect(() => {
     if (activeRecord.visible === false) return;
@@ -72,6 +126,7 @@ export default function UndonePortfolioV10() {
 
       if (event.key === "Escape") {
         setWorkspaceRecordSlug(null);
+        dismissOrientationHint();
       }
 
       // Ignore modifier shortcuts to avoid conflicts with browser/system commands.
@@ -85,13 +140,16 @@ export default function UndonePortfolioV10() {
         if (currentIndex === -1) return;
         const direction = event.key === "ArrowDown" ? 1 : -1;
         const next = filteredRecords[(currentIndex + direction + filteredRecords.length) % filteredRecords.length];
-        if (next) setActiveRecordSlug(next.slug);
+        if (next) {
+          dismissOrientationHint();
+          setActiveRecordSlug(next.slug);
+        }
       }
     }
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeRecord.slug, filteredRecords]);
+  }, [activeRecord.slug, dismissOrientationHint, filteredRecords]);
 
   const openWorkspace = (record) => setWorkspaceRecordSlug(record.slug);
 
@@ -135,6 +193,8 @@ export default function UndonePortfolioV10() {
             caseNumbers={visibleCaseNumbers}
             isOpen={mobileSheetOpen}
             setIsOpen={setMobileSheetOpen}
+            orientationHintVisible={orientationHintVisible}
+            onOrientationDismiss={dismissOrientationHint}
           />
           <MobileView
             record={activeRecord}
@@ -145,6 +205,7 @@ export default function UndonePortfolioV10() {
             mobileTab={mobileTab}
             setMobileTab={setMobileTab}
             resetSignal={resetSignal}
+            onOrientationDismiss={dismissOrientationHint}
           />
 
           {/* Desktop layout */}
@@ -157,6 +218,8 @@ export default function UndonePortfolioV10() {
               activeFilter={activeFilter}
               setActiveFilter={setActiveFilter}
               caseNumbers={visibleCaseNumbers}
+              orientationHintVisible={orientationHintVisible}
+              onOrientationDismiss={dismissOrientationHint}
             />
             <ActiveCanvas record={activeRecord} mode="overview" openWorkspace={openWorkspace} />
             <ProofRail
