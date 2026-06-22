@@ -203,7 +203,10 @@ export default function MobileRecordSelector({
                   No matching records.
                 </div>
               )}
-              <div className="mt-5 border-t border-[#11100d]/10 pt-5">
+              <div className="mt-5 border-t border-[#11100d]/10 pt-4">
+                <div className="mb-3 text-[8px] uppercase tracking-[0.2em] text-[#11100d]/34">
+                  Service offer
+                </div>
                 <SprintLinkCard compact />
               </div>
             </div>

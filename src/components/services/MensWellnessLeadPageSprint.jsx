@@ -215,7 +215,7 @@ function usePageMetadata() {
   }, []);
 }
 
-function SectionIntro({ eyebrow, title, copy, dark = false, className = "" }) {
+function SectionIntro({ eyebrow, title, copy, dark = false, className = "", children = null }) {
   return (
     <div className={`grid gap-6 lg:grid-cols-[0.62fr_1.38fr] lg:gap-12 ${className}`}>
       <p className={`text-[10px] uppercase tracking-[0.2em] ${dark ? "text-white/40" : "text-[#111820]/42"}`}>
@@ -238,6 +238,7 @@ function SectionIntro({ eyebrow, title, copy, dark = false, className = "" }) {
             {copy}
           </p>
         ) : null}
+        {children}
       </div>
     </div>
   );
@@ -323,13 +324,13 @@ export default function MensWellnessLeadPageSprint() {
           <div className="relative mx-auto max-w-[1344px]">
             <div className="max-w-[1050px]">
               <p className="mb-7 text-[10px] uppercase tracking-[0.22em] text-[#1e4f84]">
-                One service. One page. One clear next step.
+                Men’s Wellness Lead Page Sprint
               </p>
               <h1 className="max-w-[980px] text-[48px] leading-[0.98] tracking-[-0.055em] sm:text-[72px] lg:text-[92px]">
                 Focused lead pages for men’s wellness clinics.
               </h1>
-              <p className="mt-8 max-w-[850px] text-[19px] leading-8 text-[#111820]/68 sm:text-[22px] sm:leading-9">
-                A focused one-page consult funnel for one high-value service, built to help prospects understand the offer, trust the process, and take the next step.
+              <p className="mt-8 max-w-[900px] text-[19px] leading-8 text-[#111820]/68 sm:text-[22px] sm:leading-9">
+                One clear page for one high-value service, built to help prospects understand the offer, trust the process, and request a consult.
               </p>
               <p className="mt-5 max-w-[760px] border-l-2 border-[#6e9fff] pl-5 text-[16px] leading-7 text-[#111820]/60">
                 Built for TRT, hormone health, ED, weight loss, hair restoration, and performance wellness clinics.
@@ -601,11 +602,19 @@ export default function MensWellnessLeadPageSprint() {
                 <div
                   key={offer}
                   className={`flex min-h-[86px] items-center gap-5 border-b border-[#111820]/10 py-5 text-[16px] leading-6 text-[#111820]/68 sm:px-6 ${
-                    index % 2 === 0 ? "sm:border-r sm:pl-0 lg:pl-6" : ""
-                  } ${index % 3 !== 2 ? "lg:border-r" : "lg:border-r-0"} ${index % 3 === 0 ? "lg:pl-0" : ""}`}
+                    index % 2 === 0 ? "sm:border-r sm:pl-0 sm:pr-6" : "sm:pl-6 sm:pr-0"
+                  } ${index % 3 !== 2 ? "lg:border-r" : "lg:border-r-0"} ${
+                    index % 3 === 0
+                      ? "lg:pl-0 lg:pr-6"
+                      : index % 3 === 1
+                        ? "lg:px-6"
+                        : "lg:pl-6 lg:pr-0"
+                  }`}
                 >
-                  <span className="text-[9px] tracking-[0.15em] text-[#1e4f84]">{String(index + 1).padStart(2, "0")}</span>
-                  {offer}
+                  <span className="w-4 shrink-0 text-[9px] tabular-nums tracking-[0.15em] text-[#1e4f84]">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span>{offer}</span>
                 </div>
               ))}
             </div>
@@ -687,18 +696,17 @@ export default function MensWellnessLeadPageSprint() {
         >
           <div className="mx-auto max-w-[1344px]">
             <SectionIntro
-              eyebrow="REQUEST"
+              eyebrow="Request"
               title="Request a Page Outline"
               copy="Send your service, current website, and booking link. I’ll review the offer and send back a simple page outline showing how I’d structure a clearer consult page before you commit."
-            />
-            <div className="mt-7 lg:ml-[31%]">
-              <p className="text-[13px] font-medium uppercase tracking-[0.13em] text-[#1e4f84]">
+            >
+              <p className="mt-7 text-[13px] font-medium uppercase tracking-[0.13em] text-[#1e4f84]">
                 Takes about 60 seconds. No call required.
               </p>
-              <p className="mt-3 max-w-[700px] text-[15px] leading-7 text-[#111820]/58">
+              <p className="mt-3 max-w-[740px] text-[15px] leading-7 text-[#111820]/58">
                 You do not need polished copy or final assets. A current website and one service to clarify is enough.
               </p>
-            </div>
+            </SectionIntro>
 
             <div className="mt-14 grid items-start gap-7 lg:mt-20 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:gap-9">
               <aside className="rounded-[24px] border border-[#111820]/10 bg-white/74 p-7 shadow-[0_24px_70px_rgba(35,62,91,0.08)] sm:p-9 lg:sticky lg:top-8">

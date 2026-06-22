@@ -174,7 +174,10 @@ export default function RecordRail({
         )}
       </div>
 
-      <div className="mt-8 border-t border-[#11100d]/10 pt-6">
+      <div className="mt-8 border-t border-[#11100d]/10 pt-4">
+        <div className="mb-3 text-[8px] uppercase tracking-[0.2em] text-[#11100d]/34">
+          Service offer
+        </div>
         <SprintLinkCard />
       </div>
     </aside>
