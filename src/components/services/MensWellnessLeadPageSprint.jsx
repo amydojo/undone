@@ -31,7 +31,7 @@ const CONTACT_URL = `mailto:${profile.contact}?subject=${encodeURIComponent(CONT
 const landingPathPoints = [
   "One offer, not your whole site",
   "One clear CTA, not five competing choices",
-  "One consult path built around patient questions",
+  "One consult path built around prospect questions",
 ];
 
 const problemPoints = [
@@ -82,13 +82,13 @@ const justificationPoints = [
   },
   {
     icon: Clock3,
-    title: "Faster turnaround",
-    copy: "A 24–48 hour build after content is received, instead of a drawn-out agency timeline.",
+    title: "Clear timing",
+    copy: "The page outline comes first, and the build timeline is confirmed before work starts.",
   },
   {
     icon: Focus,
     title: "One-offer focus",
-    copy: "The page stays centered on the service, patient questions, and next action.",
+    copy: "The page stays centered on the service, prospect questions, and next action.",
   },
 ];
 
@@ -151,11 +151,11 @@ const pageAnatomy = [
 ];
 
 const sprintSteps = [
-  "Send the service, current site, and booking link",
-  "I map the offer into a focused page outline",
-  "I design and build the one-page lead page",
-  "You review one revision round",
-  "The page is ready to send traffic to or connect to your existing booking flow",
+  "Submit the form with the service, current site, and booking link",
+  "I review the service, current site, and booking path",
+  "I send a simple page outline first",
+  "If it is a fit, we move into the $500 page sprint",
+  "The build timeline is confirmed before work starts",
 ];
 
 function updateMetaTag(name, content) {
@@ -323,23 +323,23 @@ export default function MensWellnessLeadPageSprint() {
           <div className="relative mx-auto max-w-[1344px]">
             <div className="max-w-[1050px]">
               <p className="mb-7 text-[10px] uppercase tracking-[0.22em] text-[#1e4f84]">
-                $500 productized lead page sprint
+                One service. One page. One clear next step.
               </p>
               <h1 className="max-w-[980px] text-[48px] leading-[0.98] tracking-[-0.055em] sm:text-[72px] lg:text-[92px]">
                 Focused lead pages for men’s wellness clinics.
               </h1>
               <p className="mt-8 max-w-[850px] text-[19px] leading-8 text-[#111820]/68 sm:text-[22px] sm:leading-9">
-                A focused one-page consult funnel for one high-value service, built so prospects can understand the offer, trust the process, and take the next step.
+                A focused one-page consult funnel for one high-value service, built to help prospects understand the offer, trust the process, and take the next step.
               </p>
               <p className="mt-5 max-w-[760px] border-l-2 border-[#6e9fff] pl-5 text-[16px] leading-7 text-[#111820]/60">
-                Built for TRT, hormone health, ED, weight loss, hair restoration, and performance clinics.
+                Built for TRT, hormone health, ED, weight loss, hair restoration, and performance wellness clinics.
               </p>
               <div className="mt-9 flex flex-col gap-3 pb-1 sm:flex-row">
                 <PrimaryCta />
                 <SampleCta className="border-[#111820]/14 bg-white/70 text-[#111820]/70 hover:border-[#111820]/30 hover:text-[#111820]" />
               </div>
               <p className="mt-5 text-[10px] uppercase tracking-[0.13em] text-[#111820]/40">
-                $500 founding sprint · 24–48 hour build after content is received · one focused page
+                $500 founding sprint · Outline first · Build timeline confirmed after review
               </p>
             </div>
 
@@ -410,9 +410,9 @@ export default function MensWellnessLeadPageSprint() {
         <section className="bg-[#101a26] px-5 py-20 text-white sm:px-8 sm:py-32 lg:px-12 lg:py-40">
           <div className="mx-auto max-w-[1344px]">
             <SectionIntro
-              eyebrow="Proof of direction"
-              title="Sample Concept: Dr. Vigor Performance Panel"
-              copy="I built this sample performance panel page to show how a men’s wellness offer can feel clinical, premium, and easy to understand without relying on vague wellness claims or aggressive supplement-style language."
+              eyebrow="Sample page"
+              title="Sample Page: Dr. Vigor Performance Panel"
+              copy="This sample performance panel page shows how a men’s wellness offer can feel clinical, premium, and easy to understand without relying on vague wellness claims or aggressive supplement-style language."
               dark
             />
 
@@ -426,7 +426,7 @@ export default function MensWellnessLeadPageSprint() {
             </div>
 
             <div className="mt-14 grid items-start gap-8 lg:mt-20 lg:grid-cols-[minmax(0,1fr)_300px]">
-              <BrowserFrame label="Full desktop concept" dark>
+              <BrowserFrame label="Full desktop page" dark>
                 <div className="scrollbar-portfolio h-[500px] overflow-y-auto bg-white sm:h-[820px]">
                   <img
                     src={`${IMAGE_ROOT}/dr-vigor-desktop-full.png`}
@@ -452,7 +452,7 @@ export default function MensWellnessLeadPageSprint() {
                   </div>
                 </div>
                 <p className="mt-5 text-center text-[9px] uppercase tracking-[0.16em] text-white/34">
-                  Scrollable mobile proof
+                  Scrollable mobile page
                 </p>
               </div>
             </div>
@@ -467,7 +467,7 @@ export default function MensWellnessLeadPageSprint() {
                 className="h-auto w-[128px]"
               />
               <p className="max-w-[690px] text-[16px] leading-7 text-white/64 sm:text-right sm:text-[17px]">
-                This is the kind of focused page a clinic could send ad, email, or social traffic to instead of a general homepage.
+                This is the kind of focused page a clinic could send traffic to from ads, email, or social instead of sending prospects to a general homepage.
               </p>
             </div>
           </div>
@@ -497,7 +497,7 @@ export default function MensWellnessLeadPageSprint() {
           <div className="mx-auto max-w-[1344px]">
             <div className="grid gap-14 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
               <div className="lg:sticky lg:top-10 lg:self-start">
-                <p className="text-[10px] uppercase tracking-[0.2em] text-[#1e4f84]">The $500 deliverable</p>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-[#1e4f84]">What’s included</p>
                 <h2 className="mt-6 max-w-[590px] text-[42px] leading-[1.02] tracking-[-0.045em] sm:text-[60px]">
                   What your clinic gets in one focused sprint
                 </h2>
@@ -531,9 +531,9 @@ export default function MensWellnessLeadPageSprint() {
         <section className="bg-[#f5f7f8] px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-36">
           <div className="mx-auto max-w-[1344px]">
             <SectionIntro
-              eyebrow="The business case"
-              title="Designed to be easy to justify."
-              copy="For many men’s wellness clinics, one qualified consult can be worth more than the cost of the sprint. The goal is not to redesign your entire brand. The goal is to give one offer a cleaner page that helps visitors understand it and take the next step."
+              eyebrow="Why it can make sense"
+              title="Built to be easy to justify."
+              copy="For many men’s wellness clinics, one qualified consult can be worth more than the cost of the page. The goal is not to redesign your entire brand. The goal is to give one offer a cleaner page that helps visitors understand it and take the next step."
             />
             <div className="mt-14 grid gap-5 md:grid-cols-3 lg:mt-20">
               {justificationPoints.map(({ icon: Icon, title, copy }) => (
@@ -567,7 +567,7 @@ export default function MensWellnessLeadPageSprint() {
 
         <section className="border-y border-[#111820]/8 bg-white px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-40">
           <div className="mx-auto max-w-[1344px]">
-            <SectionIntro eyebrow="Conversion anatomy" title="Built around the parts that make a consult feel clear." />
+            <SectionIntro eyebrow="What the page makes clear" title="Built around the parts that make a consult feel clear." />
             <div className="mt-14 grid gap-6 lg:mt-20 lg:grid-cols-3">
               {conversionCards.map((card) => (
                 <article key={card.title} className="rounded-[18px] border border-[#111820]/9 bg-[#f8fafb] p-2.5 sm:p-3">
@@ -610,7 +610,7 @@ export default function MensWellnessLeadPageSprint() {
               ))}
             </div>
             <p className="mt-10 max-w-[780px] text-[17px] leading-7 text-[#111820]/62">
-              If the service is valuable but the current page feels vague, buried, or hard to act on, this is the use case.
+              If the service is valuable but the current page feels vague, buried, or hard to act on, this sprint is a fit.
             </p>
           </div>
         </section>
@@ -618,7 +618,7 @@ export default function MensWellnessLeadPageSprint() {
         <section className="bg-[#111820] px-5 py-24 text-white sm:px-8 sm:py-32 lg:px-12 lg:py-40">
           <div className="mx-auto max-w-[1344px]">
             <SectionIntro
-              eyebrow="The framework"
+              eyebrow="The page structure"
               title="The repeatable structure"
               copy="A defined page sequence keeps the strategy focused and the build fast. The structure repeats; the offer, proof, questions, and clinic voice do not."
               dark
@@ -642,9 +642,9 @@ export default function MensWellnessLeadPageSprint() {
         <section className="bg-white px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-40">
           <div className="mx-auto max-w-[1344px]">
             <SectionIntro
-              eyebrow="The sprint"
-              title="How the sprint works"
-              copy="A small, bounded process keeps the project moving. You bring the existing offer and booking path; I turn them into a focused page."
+              eyebrow="How it works"
+              title="What happens next"
+              copy="Start with the service and booking path you already have. I’ll review them and send a simple outline before any build work starts."
             />
             <ol className="mt-14 border-t border-[#111820]/12 lg:mt-20">
               {sprintSteps.map((step, index) => (
@@ -657,8 +657,13 @@ export default function MensWellnessLeadPageSprint() {
                 </li>
               ))}
             </ol>
-            <div className="mt-8 flex flex-col gap-3 rounded-[14px] border border-[#1e4f84]/16 bg-[#f4f8fc] px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-[15px] font-medium leading-6 text-[#111820]/72">Turnaround: 24–48 hours after content is received.</p>
+            <div className="mt-8 flex flex-col gap-3 rounded-[14px] border border-[#1e4f84]/16 bg-[#f4f8fc] px-6 py-5 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <p className="text-[15px] font-medium leading-6 text-[#111820]/72">First outline: 1–2 business days after I receive the request.</p>
+                <p className="mt-2 max-w-[720px] text-[14px] leading-6 text-[#111820]/58">
+                  The full page build starts after the offer, content, and next step are confirmed.
+                </p>
+              </div>
               <p className="text-[10px] uppercase tracking-[0.14em] text-[#1e4f84]">$500 · one page · one revision</p>
             </div>
           </div>
@@ -697,7 +702,7 @@ export default function MensWellnessLeadPageSprint() {
 
             <div className="mt-14 grid items-start gap-7 lg:mt-20 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:gap-9">
               <aside className="rounded-[24px] border border-[#111820]/10 bg-white/74 p-7 shadow-[0_24px_70px_rgba(35,62,91,0.08)] sm:p-9 lg:sticky lg:top-8">
-                <p className="text-[10px] uppercase tracking-[0.18em] text-[#1e4f84]">Outline review</p>
+                <p className="text-[10px] uppercase tracking-[0.18em] text-[#1e4f84]">What I review</p>
                 <h3 className="mt-5 text-[30px] leading-[1.05] tracking-[-0.04em] text-[#111820]">
                   What I’ll use this for
                 </h3>
@@ -726,7 +731,7 @@ export default function MensWellnessLeadPageSprint() {
 
               <div className="overflow-hidden rounded-[24px] border border-[#111820]/10 bg-[#fbfcfd] shadow-[0_28px_80px_rgba(35,62,91,0.1)]">
                 <div className="flex min-h-[48px] items-center justify-between border-b border-[#111820]/8 bg-white px-5 sm:px-6">
-                  <span className="text-[10px] uppercase tracking-[0.16em] text-[#111820]/48">Secure intake</span>
+                  <span className="text-[10px] uppercase tracking-[0.16em] text-[#111820]/48">Project intake</span>
                   <span className="text-[10px] uppercase tracking-[0.16em] text-[#1e4f84]">60 sec</span>
                 </div>
                 <iframe
