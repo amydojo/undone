@@ -6,6 +6,7 @@ import { filters } from "../../data/records";
 import { formatMetadataLabel } from "../../utils/caseMetadata";
 import { cx } from "../../utils/cx";
 import { useOverlayBehavior } from "./useOverlayBehavior";
+import SprintLinkCard from "./SprintLinkCard";
 
 export default function MobileRecordSelector({
   recordsList,
@@ -202,6 +203,9 @@ export default function MobileRecordSelector({
                   No matching records.
                 </div>
               )}
+              <div className="mt-5 border-t border-[#11100d]/10 pt-5">
+                <SprintLinkCard compact />
+              </div>
             </div>
           </div>
         </div>

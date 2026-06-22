@@ -6,6 +6,7 @@ import OrientationHint from "./OrientationHint";
 import { filters } from "../../data/records";
 import { formatMetadataLabel } from "../../utils/caseMetadata";
 import { cx } from "../../utils/cx";
+import SprintLinkCard from "./SprintLinkCard";
 
 const FILE_SETTLE_MOTION = {
   duration: 0.16,
@@ -171,6 +172,10 @@ export default function RecordRail({
         ) : (
           <div className="rounded-[22px] border border-[#11100d]/10 bg-[#fffaf1]/55 p-4 text-sm leading-6 text-[#11100d]/58">No matching records.</div>
         )}
+      </div>
+
+      <div className="mt-8 border-t border-[#11100d]/10 pt-6">
+        <SprintLinkCard />
       </div>
     </aside>
   );
