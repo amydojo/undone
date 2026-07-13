@@ -18,3 +18,27 @@ source = source.replace(
 )
 
 exec(compile(source, str(source_path), 'exec'), {'__file__': str(source_path), '__name__': '__main__'})
+
+# The portfolio now opens on Featured. QA must deliberately switch to All
+# before selecting non-featured but still discoverable cases.
+qa_path = root / 'tests' / 'receipt-visual-qa.spec.js'
+qa = qa_path.read_text()
+old = """async function openCase(page, caseSlug) {
+  const caseCard = await expectSingleVisibleTestId(page, `case-record-${caseSlug}`);
+  await caseCard.click();
+}"""
+new = """async function openCase(page, caseSlug) {
+  let caseCard = visibleTestId(page, `case-record-${caseSlug}`);
+
+  if (await caseCard.count() === 0) {
+    const allFilter = page.getByRole('button', { name: /filter cases by all/i });
+    await allFilter.click();
+    caseCard = visibleTestId(page, `case-record-${caseSlug}`);
+  }
+
+  await expect(caseCard, `Expected case ${caseSlug} to remain discoverable through All`).toHaveCount(1);
+  await caseCard.click();
+}"""
+if old not in qa:
+    raise RuntimeError('Could not update screenshot QA openCase helper')
+qa_path.write_text(qa.replace(old, new, 1))
