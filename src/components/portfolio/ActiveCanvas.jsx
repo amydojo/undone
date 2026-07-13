@@ -5,9 +5,11 @@ import MetricPill from "../ui/MetricPill";
 import ProfileStrip from "./ProfileStrip";
 import OverviewArtifact from "./OverviewArtifact";
 import OverviewVisualPlate from "./OverviewVisualPlate";
+import CaseLinks from "./CaseLinks";
 import { formatMetadataLabel } from "../../utils/caseMetadata";
 
 const DECODER_LINES = {
+  'interface-behavior-lab': 'Binary buttons → readable intent, consequence, state, assistance, and recovery.',
   mirror: 'Mood, sleep, clarity, and context → readable states and one next step.',
   'smooth-md-growth-os': 'Scattered clinic marketing → reusable service, CRM, and campaign logic.',
   'meta-airtable-dashboard': 'Ad spend → booking behavior → revenue-informed decisions.',
@@ -133,6 +135,7 @@ function CanvasFilePane({ record, openWorkspace, prefersReducedMotion }) {
             <p className="mt-3 max-w-[500px] text-[14px] leading-[1.6] text-[#11100d]/38">
               {record.oneLine}
             </p>
+            <CaseLinks links={record.links} />
           </div>
         </div>
 

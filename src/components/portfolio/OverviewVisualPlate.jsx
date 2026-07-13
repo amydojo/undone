@@ -3,6 +3,7 @@ import { cx } from "../../utils/cx";
 import { resolvePublicSrc } from "../../utils/resolvePublicSrc";
 
 function getSplitGridClass(slug) {
+  if (slug === "interface-behavior-lab") return "grid-cols-[minmax(0,1.45fr)_minmax(0,0.9fr)]";
   if (slug === "snip-provider-pipeline") {
     return "grid-cols-[minmax(0,1.55fr)_minmax(0,0.78fr)]";
   }
@@ -21,6 +22,7 @@ function getDisplay(visual, slug) {
 }
 
 function getSplitThreshold(display) {
+  if (display === "behaviorSplit") return 820;
   if (display === "brandSplit") return 720;
   if (display === "publishedSplit") return 860;
   return 760;
@@ -28,6 +30,7 @@ function getSplitThreshold(display) {
 
 function getSideBySideHeight(display, width) {
   if (!width) return undefined;
+  if (display === "behaviorSplit") return Math.round(Math.min(520, Math.max(400, width * 0.52)));
 
   if (display === "brandSplit") {
     return Math.round(Math.min(560, Math.max(500, width * 0.7)));
@@ -41,6 +44,7 @@ function getSideBySideHeight(display, width) {
 }
 
 function getImageFrameClass({ layout, role, isSideBySide, display }) {
+  if (display === "behaviorSplit" && !isSideBySide) return role === "primary" ? "aspect-[1.8/1]" : "aspect-[1.45/1]";
   if (layout === "single") {
     return "aspect-[1.08/1] sm:aspect-[1.28/1] lg:aspect-[1.42/1] xl:aspect-[1.5/1]";
   }

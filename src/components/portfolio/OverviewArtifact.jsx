@@ -1,6 +1,17 @@
 import React from 'react'
 
 const SYSTEM_OBJECTS = {
+  'interface-behavior-lab': {
+    title: 'Adaptive Action Language',
+    purpose: 'Connects six control behaviors into one readable lifecycle so assistance, intent, consequence, commitment, system state, and recovery remain part of the same action.',
+    flow: ['Approach', 'Clarify', 'Weigh', 'Commit', 'Resolve', 'Recover'],
+    contrast: {
+      leftLabel: 'Conventional control',
+      left: ['One binary tap', 'Same weight for different consequences', 'Generic loading and confirmation'],
+      rightLabel: 'Adaptive control',
+      right: ['Named state and exact consequence', 'Proportionate assistance and friction', 'Recovery attached to the original action'],
+    },
+  },
   mirror: {
     title: 'Signal Inspector',
     purpose: 'Turns mood, sleep, clarity, and context inputs into readable states and gentle next moves.',
@@ -75,7 +86,6 @@ export default function OverviewArtifact({ record }) {
 
   return (
     <div className='overflow-hidden rounded-[18px] border border-[#11100d]/10 bg-[#fffaf1] lg:rounded-[20px]'>
-      {/* Header */}
       <div className='flex items-start gap-3 px-3.5 py-3.5 sm:px-4 sm:py-4 lg:px-5 lg:py-5'>
         <div className='flex min-w-0 items-center gap-3'>
           <span
@@ -89,12 +99,10 @@ export default function OverviewArtifact({ record }) {
         </div>
       </div>
 
-      {/* Purpose */}
       <div className='border-t border-[#11100d]/8 px-3.5 pb-3.5 pt-3 sm:px-4 sm:pb-4 sm:pt-3.5 lg:px-5'>
         <p className='min-w-0 text-[13px] leading-[1.6] text-[#11100d]/54 lg:text-[14px]'>{obj.purpose}</p>
       </div>
 
-      {/* Flow */}
       <div className='border-t border-[#11100d]/8 px-3.5 py-3 sm:px-4 lg:px-5'>
         <div className='flex flex-wrap items-center gap-x-1.5 gap-y-1 min-w-0'>
           <span className='mr-1.5 text-[9px] uppercase tracking-[0.12em] text-[#11100d]/26'>Flow</span>
@@ -109,7 +117,6 @@ export default function OverviewArtifact({ record }) {
         </div>
       </div>
 
-      {/* Before / After or Input / Output */}
       <div className='grid grid-cols-1 border-t border-[#11100d]/8 sm:grid-cols-2'>
         <div className='min-w-0 px-3.5 py-3.5 sm:px-4 sm:py-4 lg:px-5 lg:py-5'>
           <div className='mb-2.5 text-[9px] uppercase tracking-[0.12em] text-[#11100d]/28'>

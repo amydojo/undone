@@ -1,4 +1,81 @@
-export const records = [
+const interfaceBehaviorLabRecord = {
+  id: '01',
+  slug: 'interface-behavior-lab',
+  title: 'Interface Behavior Lab',
+  headline: 'A button should explain what happens next.',
+  category: 'interaction systems',
+  type: 'coded design system',
+  status: 'live',
+  timeline: '2026',
+  accent: '#69dcff',
+  oneLine: 'I designed a speculative control language, formalized it as a Figma system, and built a live React laboratory to test intention, pressure, attention, consequence, and recovery.',
+  overviewVisual: {
+    label: 'LIVE INTERACTION SYSTEM',
+    caption: 'Six behavioral control families translated from speculative interaction research into reusable Figma components and a coded laboratory.',
+    layout: 'split',
+    display: 'behaviorSplit',
+    images: [
+      { src: '/overview/interface-behavior-spatial.svg', alt: 'Spatial mode of the Interface Behavior Lab showing an adaptive control and interaction field.', role: 'primary', position: 'center center' },
+      { src: '/overview/interface-behavior-families.svg', alt: 'Six adaptive control families displayed in the coded laboratory.', role: 'secondary', position: 'center center' }
+    ]
+  },
+  role: 'Interaction systems designer and design technologist',
+  tools: ['Figma', 'React', 'TypeScript', 'Vite', 'CSS', 'GitHub Actions', 'Vercel'],
+  hiringTranslation: 'This case demonstrates interaction systems thinking, accessible component architecture, Figma design-system construction, React and TypeScript prototyping, honest simulation boundaries, and production deployment.',
+  links: [
+    { label: 'Launch live lab', href: 'https://interface-behavior-lab.vercel.app', primary: true },
+    { label: 'View GitHub', href: 'https://github.com/amydojo/interface-behavior-lab' },
+    { label: 'Inspect Figma system', href: 'https://www.figma.com/design/4jIfeqwhalMPugSAuVtvSi' }
+  ],
+  metrics: [
+    { value: '6', label: 'live control families' },
+    { value: '46', label: 'Figma variants' },
+    { value: '95', label: 'design variables' }
+  ],
+  path: ['question', 'behavior model', 'tokens', 'components', 'prototype', 'instrument'],
+  signal: 'Conventional buttons make reversible, destructive, ambient, uncertain, and high consequence actions feel almost identical.',
+  system: 'I created six behavioral control families connected by one action lifecycle, then translated the model into variables, accessible Figma components, written specifications, and a coded interaction laboratory.',
+  owned: ['interaction model', 'design system architecture', 'component design', 'motion language', 'accessibility contract', 'React implementation', 'prototype instrumentation'],
+  nextProof: ['Action Lifecycle Model', 'Adaptive Control Library', 'Accessibility Contract', 'Coded Playground and Instrumentation'],
+  decisions: [
+    { label: 'constraint', body: 'The browser cannot honestly reproduce physical pressure, validated gaze input, or platform haptics, and novel behavior could easily become misleading.' },
+    { label: 'move', body: 'Represent every interaction as named states with stable targets, exact consequence language, and equivalent conventional input paths.' },
+    { label: 'tradeoff', body: 'Simulate only the parts the browser can communicate honestly instead of creating theatrical effects that imply unsupported sensing.' },
+    { label: 'principle', body: 'Adaptive behavior is optional. Understanding, accessibility, and user agency are required.' }
+  ],
+  receipts: [
+    {
+      id: 'action-lifecycle-model', testId: 'interface-behavior-action-lifecycle', name: 'Action Lifecycle Model', format: 'interaction model', status: 'ready',
+      claim: 'Proves the six control families are connected moments in one action language rather than unrelated visual effects.',
+      proof: 'Approach, Clarify, Weigh, Commit, Resolve, and Recover connect Magnetic, Intent, Ethical, Pressure, Breathing, and Reversible controls.',
+      contents: ['Approach', 'Clarify', 'Weigh', 'Commit', 'Resolve', 'Recover', 'Magnetic', 'Intent', 'Ethical', 'Pressure', 'Breathing', 'Reversible'],
+      visualAssets: [{ kind: 'component', componentKey: 'interface-behavior-action-lifecycle' }], artifacts: []
+    },
+    {
+      id: 'adaptive-control-library', testId: 'interface-behavior-control-library', name: 'Adaptive Control Library', format: 'component system', status: 'ready',
+      claim: 'Proves the speculative model was formalized as reusable components, variables, states, sizes, properties, and semantic materials.',
+      proof: '95 variables, 46 variants, six families, three modes, M and L sizes, text properties, boolean properties, and semantic materials.',
+      contents: ['95 variables', '46 variants', '6 families', '3 modes', 'M and L sizes', 'text properties', 'boolean properties', 'semantic materials'],
+      visualAssets: [{ kind: 'component', componentKey: 'interface-behavior-control-library' }], artifacts: []
+    },
+    {
+      id: 'accessibility-contract', testId: 'interface-behavior-accessibility', name: 'Accessibility Contract', format: 'interaction specification', status: 'ready',
+      claim: 'Proves every novel behavior retains a stable target, named state, equivalent input path, reduced-motion substitute, and explicit consequence information.',
+      proof: 'Touch, pointer, gaze, voice, and switch paths are paired with stable targets, named states, reduced motion, and recovery parity.',
+      contents: ['touch', 'pointer', 'gaze', 'voice', 'switch', 'stable target', 'named state', 'equivalent path', 'reduced motion', 'recovery parity'],
+      visualAssets: [{ kind: 'component', componentKey: 'interface-behavior-accessibility' }], artifacts: []
+    },
+    {
+      id: 'coded-playground-instrumentation', testId: 'interface-behavior-playground', name: 'Coded Playground and Instrumentation', format: 'live prototype', status: 'ready',
+      claim: 'Proves all six families were implemented in React and TypeScript with environment controls, responsive behavior, event logging, and honest browser simulation boundaries.',
+      proof: 'Light, Dark, and Spatial modes, Reduce Motion, input modality, assistance strength, state logging, React, TypeScript, and Vercel deployment.',
+      contents: ['Light mode', 'Dark mode', 'Spatial mode', 'Reduce Motion', 'input modality', 'assistance strength', 'state event log', 'React', 'TypeScript', 'Vercel'],
+      visualAssets: [{ kind: 'component', componentKey: 'interface-behavior-playground' }], artifacts: []
+    }
+  ]
+}
+
+const existingRecords = [
   {
     id: '01',
     slug: 'smooth-md-growth-os',
@@ -656,6 +733,11 @@ export const records = [
   }
 ]
 
-export const filters = ['all', 'brand systems', 'product ux', 'campaign reporting', 'email follow-up', 'provider systems']
+export const records = [interfaceBehaviorLabRecord, ...existingRecords].map((item, index) => ({
+  ...item,
+  id: String(index + 1).padStart(2, '0')
+}))
+
+export const filters = ['all', 'interaction systems', 'brand systems', 'product ux', 'campaign reporting', 'email follow-up', 'provider systems']
 
 export default records
