@@ -1,5 +1,6 @@
 name: Refine Interface Behavior Lab case
 
+# Branch-only refinement pass. Removed after successful verification.
 on:
   push:
     branches:
