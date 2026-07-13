@@ -2,18 +2,16 @@ name: Refine Interface Behavior Lab case
 
 # Branch-only refinement pass. Removed after successful verification.
 on:
-  push:
+  pull_request:
     branches:
-      - feature/interface-behavior-lab-case
-    paths:
-      - scripts/refine-interface-behavior-lab-case.mjs
-      - .github/workflows/refine-interface-behavior-lab-case.yml
+      - main
 
 permissions:
   contents: write
 
 jobs:
   refine-and-verify:
+    if: github.head_ref == 'feature/interface-behavior-lab-case'
     runs-on: ubuntu-latest
     steps:
       - name: Check out feature branch
