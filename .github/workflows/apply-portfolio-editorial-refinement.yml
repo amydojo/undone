@@ -44,6 +44,9 @@ jobs:
           git commit -m "Capture portfolio migration failure" || exit 0
           git push origin feature/portfolio-editorial-refinement
 
+      - name: Remove temporary migration output
+        run: rm -f migration-output.txt
+
       - name: Install dependencies
         run: npm ci
 
@@ -63,6 +66,6 @@ jobs:
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add src public/overview/mirror-checkin-flow.svg
+          git add src tests public/overview/mirror-checkin-flow.svg
           git commit -m "Refine portfolio hierarchy and flagship case proof" || exit 0
           git push origin feature/portfolio-editorial-refinement
