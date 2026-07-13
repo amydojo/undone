@@ -1,0 +1,54 @@
+name: Refine Interface Behavior Lab case
+
+on:
+  push:
+    branches:
+      - feature/interface-behavior-lab-case
+    paths:
+      - scripts/refine-interface-behavior-lab-case.mjs
+      - .github/workflows/refine-interface-behavior-lab-case.yml
+
+permissions:
+  contents: write
+
+jobs:
+  refine-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out feature branch
+        uses: actions/checkout@v4
+        with:
+          ref: feature/interface-behavior-lab-case
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Apply visual refinements
+        run: node scripts/refine-interface-behavior-lab-case.mjs
+
+      - name: Install existing dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Screenshot QA
+        run: npm run qa:screens:headless
+
+      - name: Diff check
+        run: git diff --check
+
+      - name: Commit verified refinements
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src public/overview
+          git commit -m "Refine Interface Behavior Lab case visuals"
+          git push origin HEAD:feature/interface-behavior-lab-case
