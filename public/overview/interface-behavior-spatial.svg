@@ -1,1 +1,37 @@
-<svg xmlns='http://www.w3.org/2000/svg' width='1440' height='720' viewBox='0 0 1440 720'><defs><radialGradient id='g'><stop stop-color='#1647a8' stop-opacity='.55'/><stop offset='1' stop-color='#08090b' stop-opacity='0'/></radialGradient><linearGradient id='glass'><stop stop-color='#fff' stop-opacity='.24'/><stop offset='1' stop-color='#7ea7ff' stop-opacity='.1'/></linearGradient></defs><rect width='1440' height='720' fill='#08090b'/><rect width='1440' height='720' fill='url(#g)'/><g opacity='.08' stroke='#fff'><path d='M80 0v720M240 0v720M400 0v720M560 0v720M720 0v720M880 0v720M1040 0v720M1200 0v720M1360 0v720'/><path d='M0 80h1440M0 200h1440M0 320h1440M0 440h1440M0 560h1440M0 680h1440'/></g><text x='70' y='80' fill='#9aa3b1' font-family='Arial' font-size='14' letter-spacing='3'>INTERFACE BEHAVIOR LAB / SPATIAL MODE</text><text x='70' y='190' fill='#fff' font-family='Arial' font-size='72' font-weight='700'>Adaptive Controls</text><text x='74' y='242' fill='#8893a4' font-family='Arial' font-size='18'>intention · pressure · attention · consequence · recovery</text><g transform='translate(700 170)'><ellipse cx='330' cy='190' rx='330' ry='150' fill='none' stroke='#4d83ed' stroke-opacity='.18'/><ellipse cx='330' cy='190' rx='270' ry='120' fill='none' stroke='#4d83ed' stroke-opacity='.25'/><ellipse cx='330' cy='190' rx='210' ry='90' fill='none' stroke='#4d83ed' stroke-opacity='.34'/><rect x='135' y='145' width='390' height='90' rx='45' fill='url(#glass)' stroke='#b9d0ff' stroke-opacity='.72'/><text x='170' y='183' fill='#fff' font-family='Arial' font-size='18' font-weight='600'>Continue with intent</text><text x='170' y='210' fill='#aebbd2' font-family='Arial' font-size='11' letter-spacing='2'>PRESSURE 0.66</text><circle cx='480' cy='190' r='27' fill='#69dcff'/><path d='M470 190h18m-7-7 7 7-7 7' fill='none' stroke='#07101c' stroke-width='2'/><text x='15' y='197' fill='#8d96a5' font-family='Arial' font-size='11' letter-spacing='2'>APPROACH</text><text x='560' y='197' fill='#8d96a5' font-family='Arial' font-size='11' letter-spacing='2'>COMMIT</text></g><text x='74' y='630' fill='#dce2eb' font-family='Arial' font-size='24' font-weight='600'>The button is no longer a shape. It is a behavioral contract.</text></svg>
+<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='1000' viewBox='0 0 1200 1000' role='img' aria-labelledby='title desc'>
+<title id='title'>Adaptive control in Spatial mode</title><desc id='desc'>A cinematic spatial control with concentric assistance fields and named action stages.</desc>
+<defs>
+  <radialGradient id='ambient' cx='52%' cy='45%' r='70%'><stop offset='0' stop-color='#164ba8' stop-opacity='.7'/><stop offset='.42' stop-color='#10264f' stop-opacity='.38'/><stop offset='1' stop-color='#07080b' stop-opacity='0'/></radialGradient>
+  <linearGradient id='glass' x1='0' y1='0' x2='1' y2='1'><stop stop-color='#fff' stop-opacity='.28'/><stop offset='.48' stop-color='#8cb1ff' stop-opacity='.15'/><stop offset='1' stop-color='#69dcff' stop-opacity='.08'/></linearGradient>
+  <filter id='shadow' x='-60%' y='-60%' width='220%' height='220%'><feDropShadow dx='0' dy='30' stdDeviation='34' flood-color='#246fff' flood-opacity='.34'/></filter>
+  <filter id='glow' x='-100%' y='-100%' width='300%' height='300%'><feGaussianBlur stdDeviation='16' result='blur'/><feMerge><feMergeNode in='blur'/><feMergeNode in='SourceGraphic'/></feMerge></filter>
+</defs>
+<rect width='1200' height='1000' fill='#07080b'/><rect width='1200' height='1000' fill='url(#ambient)'/>
+<g opacity='.055' stroke='#fff'><path d='M0 120h1200M0 280h1200M0 440h1200M0 600h1200M0 760h1200M0 920h1200'/><path d='M120 0v1000M280 0v1000M440 0v1000M600 0v1000M760 0v1000M920 0v1000M1080 0v1000'/></g>
+<text x='64' y='72' fill='#8c96a6' font-family='Arial, sans-serif' font-size='13' letter-spacing='3'>INTERFACE BEHAVIOR LAB / SPATIAL MODE</text>
+<text x='64' y='120' fill='#edf3fb' font-family='Arial, sans-serif' font-size='24'>One action. Six readable behaviors.</text>
+<g transform='translate(600 500)'>
+  <ellipse rx='470' ry='260' fill='none' stroke='#3d7fff' stroke-opacity='.12'/>
+  <ellipse rx='390' ry='210' fill='none' stroke='#3d7fff' stroke-opacity='.18'/>
+  <ellipse rx='310' ry='164' fill='none' stroke='#69dcff' stroke-opacity='.24'/>
+  <ellipse rx='235' ry='118' fill='none' stroke='#69dcff' stroke-opacity='.34'/>
+  <g filter='url(#shadow)'>
+    <rect x='-275' y='-68' width='550' height='136' rx='68' fill='url(#glass)' stroke='#c3d7ff' stroke-opacity='.64'/>
+    <rect x='-273.5' y='-66.5' width='547' height='133' rx='66.5' fill='none' stroke='#fff' stroke-opacity='.12'/>
+    <text x='-220' y='-11' fill='#fff' font-family='Arial, sans-serif' font-size='26' font-weight='600'>Continue with intent</text>
+    <text x='-220' y='25' fill='#abb8cb' font-family='Arial, sans-serif' font-size='11' letter-spacing='2.2'>STATE · REVEALED · PRESSURE 0.66</text>
+    <circle cx='210' cy='0' r='43' fill='#69dcff' filter='url(#glow)'/>
+    <path d='M194 0h28m-10-10 10 10-10 10' fill='none' stroke='#061018' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/>
+  </g>
+  <g font-family='Arial, sans-serif' text-anchor='middle'>
+    <g transform='translate(-420 -230)'><circle r='4' fill='#69dcff'/><text y='-18' fill='#8994a5' font-size='9' letter-spacing='1.8'>01 APPROACH</text><text y='27' fill='#eef3f9' font-size='14'>Magnetic</text></g>
+    <g transform='translate(-210 -325)'><circle r='4' fill='#69dcff'/><text y='-18' fill='#8994a5' font-size='9' letter-spacing='1.8'>02 CLARIFY</text><text y='27' fill='#eef3f9' font-size='14'>Intent</text></g>
+    <g transform='translate(0 -360)'><circle r='4' fill='#ffb84d'/><text y='-18' fill='#8994a5' font-size='9' letter-spacing='1.8'>03 WEIGH</text><text y='27' fill='#eef3f9' font-size='14'>Ethical</text></g>
+    <g transform='translate(210 -325)'><circle r='4' fill='#ff625d'/><text y='-18' fill='#8994a5' font-size='9' letter-spacing='1.8'>04 COMMIT</text><text y='27' fill='#eef3f9' font-size='14'>Pressure</text></g>
+    <g transform='translate(420 -230)'><circle r='4' fill='#a489ff'/><text y='-18' fill='#8994a5' font-size='9' letter-spacing='1.8'>05 RESOLVE</text><text y='27' fill='#eef3f9' font-size='14'>Breathing</text></g>
+    <g transform='translate(0 340)'><circle r='4' fill='#38db91'/><text y='-18' fill='#8994a5' font-size='9' letter-spacing='1.8'>06 RECOVER</text><text y='27' fill='#eef3f9' font-size='14'>Reversible</text></g>
+  </g>
+</g>
+<text x='64' y='900' fill='#f2f6fb' font-family='Arial, sans-serif' font-size='28' font-weight='600'>The control is a behavioral contract.</text>
+<text x='64' y='936' fill='#7f8998' font-family='Arial, sans-serif' font-size='13'>Intent, consequence, system state, assistance, and recovery stay visible through the action.</text>
+</svg>
