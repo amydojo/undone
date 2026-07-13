@@ -30,7 +30,7 @@ jobs:
         shell: bash
         run: |
           set +e
-          python scripts/apply-portfolio-editorial-refinement.py > migration-output.txt 2>&1
+          python scripts/run-portfolio-editorial-refinement.py > migration-output.txt 2>&1
           status=$?
           cat migration-output.txt
           exit $status
