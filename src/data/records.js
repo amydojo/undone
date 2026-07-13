@@ -2,6 +2,9 @@ const interfaceBehaviorLabRecord = {
   id: '01',
   slug: 'interface-behavior-lab',
   title: 'Interface Behavior Lab',
+  displayTitle: 'Interface Behavior Lab',
+  featured: true,
+  filters: ['interaction', 'product'],
   headline: 'A button should explain what happens next.',
   category: 'interaction systems',
   type: 'coded design system',
@@ -80,6 +83,9 @@ const existingRecords = [
     id: '01',
     slug: 'smooth-md-growth-os',
     title: 'Smooth MD Clinic Growth System',
+    displayTitle: 'Clinic Growth OS',
+    featured: true,
+    filters: ['growth'],
     headline: 'One reusable system for clinic growth.',
     category: 'brand systems',
     type: 'brand system',
@@ -129,7 +135,7 @@ const existingRecords = [
       {
         id: 'smooth-md-brand-framework',
         testId: 'smooth-md-brand-framework',
-        name: 'Smooth MD brand framework',
+        name: 'Clinic Growth Operating System',
         format: 'strategy system',
         status: 'ready',
         claim: 'Proves the brand work covered positioning, service hierarchy, offer logic, trust language, and visual rules in one reusable framework.',
@@ -146,33 +152,16 @@ const existingRecords = [
       {
         id: 'lifecycle-map',
         testId: 'smooth-md-lifecycle-map',
-        name: 'Lifecycle map',
-        format: 'journey flow',
+        name: 'Patient Lifecycle and CRM Routing',
+        format: 'journey and operations flow',
         status: 'ready',
-        claim: 'Proves lead source, service intent, consult path, follow-up timing, treatment state, retention, and reactivation were mapped as one patient journey.',
-        proof: 'Welcome, service interest, consult CTA, two-day follow-up, provider-name follow-up, and Day 21 reactivation paths connected to CRM and lifecycle routing.',
-        contents: ['Meta lead', 'website lead', 'Instagram inquiry', 'consult CTA', '2-day follow-up', 'Day 21 reactivation', 'retention logic'],
+        claim: 'Proves lead source, service intent, consult path, follow-up timing, CRM state, booking behavior, revenue handoff, retention, and reactivation were mapped as one operating route.',
+        proof: 'Acquisition, qualification, consult, follow-up, booked, no-show, arrived, converted, revenue handoff, retention, and reactivation states share one patient route.',
+        contents: ['lead source', 'service intent', 'consult CTA', 'follow-up timing', 'booked', 'no-show', 'arrived', 'converted', 'revenue handoff', 'reactivation'],
         visualAssets: [
           {
             kind: 'component',
             componentKey: 'smooth-md-lifecycle-map'
-          }
-        ],
-        artifacts: []
-      },
-      {
-        id: 'crm-status-logic',
-        testId: 'smooth-md-crm-status-logic',
-        name: 'CRM status logic',
-        format: 'ops map',
-        status: 'ready',
-        claim: 'Proves follow-up, booking state, arrival, conversion, and revenue handoff were defined as repeatable clinic operations.',
-        proof: 'Lead source, service interest, follow-up date, owner, booked date, arrival, conversion, revenue value, and attribution review mapped into a status model.',
-        contents: ['new lead', 'contacted', 'booked', 'no-show', 'arrived', 'converted', 'revenue handoff', 'reactivation'],
-        visualAssets: [
-          {
-            kind: 'component',
-            componentKey: 'smooth-md-crm-status-logic'
           }
         ],
         artifacts: []
@@ -197,7 +186,7 @@ const existingRecords = [
       {
         id: 'campaign-toolkit',
         testId: 'smooth-md-campaign-toolkit',
-        name: 'Campaign toolkit',
+        name: 'Campaign Toolkit and Performance',
         format: 'creative system',
         status: 'ready',
         claim: 'Proves campaigns were built from reusable offer logic, creative modules, CTA paths, lead capture, follow-up, and performance reads.',
@@ -217,6 +206,9 @@ const existingRecords = [
     id: '02',
     slug: 'mirror',
     title: 'Mirror',
+    displayTitle: 'Mirror',
+    featured: true,
+    filters: ['product', 'interaction'],
     headline: 'Calm feedback from messy check-ins.',
     category: 'product ux',
     type: 'product system',
@@ -225,15 +217,22 @@ const existingRecords = [
     accent: '#c7b2ff',
     oneLine: 'Mirror turns mood, sleep, clarity, and context into readable states, plain explanations, and one gentle next step.',
     overviewVisual: {
-      label: 'PRODUCT SURFACE',
-      caption: 'Check-in signals translated into a readable weather field.',
-      layout: 'single',
-      display: 'productSingle',
+      label: 'PRODUCT EXPERIENCE',
+      caption: 'A lightweight check-in becomes a readable state, a plain-language explanation, and one gentle next move.',
+      layout: 'split',
+      display: 'productSplit',
       images: [
+        {
+          src: '/overview/mirror-checkin-flow.svg',
+          alt: 'Mirror check-in interface showing mood, sleep, clarity, and context inputs before interpretation.',
+          role: 'primary',
+          position: 'center center'
+        },
         {
           src: '/overview/mirror-weather-field.png',
           alt: "Mirror Weather Field interface showing a dark texture field used to describe the user's current state.",
-          role: 'primary'
+          role: 'secondary',
+          position: 'center center'
         }
       ]
     },
@@ -259,18 +258,18 @@ const existingRecords = [
     ],
     receipts: [
       {
-        id: 'signal-interpretation-map',
-        testId: 'mirror-signal-interpretation-map',
-        name: 'Signal Interpretation Engine',
-        format: 'logic diagram',
+        id: 'check-in-experience',
+        testId: 'mirror-check-in-experience',
+        name: 'The Check-In Experience',
+        format: 'product flow',
         status: 'ready',
-        claim: 'Proves Mirror turns mood, sleep, clarity, and tension/context into readable product states before any suggestion is shown.',
-        proof: 'Input model, normalization, state detection order, confidence language, similar-day context, and one gentle next move in one logic diagram.',
-        contents: ['mood', 'sleep', 'clarity', 'tension/context', 'normalization', 'state detection', 'confidence', 'gentle next move'],
+        claim: 'Proves the user can move from a lightweight self-report to a readable result and one gentle next move.',
+        proof: 'Mood, sleep, clarity, and context inputs resolve into a named Body Weather state, a plain-language explanation, and one low-friction suggestion.',
+        contents: ['mood', 'sleep', 'clarity', 'context', 'submit state', 'Body Weather result', 'why this reading', 'gentle next move'],
         visualAssets: [
           {
             kind: 'component',
-            componentKey: 'signal-interpretation-map'
+            componentKey: 'body-weather-state-system'
           }
         ],
         artifacts: []
@@ -287,7 +286,7 @@ const existingRecords = [
         visualAssets: [
           {
             kind: 'component',
-            componentKey: 'body-weather-state-system'
+            componentKey: 'signal-interpretation-map'
           }
         ],
         artifacts: []
@@ -295,10 +294,10 @@ const existingRecords = [
       {
         id: 'debug-overlay-test-bench',
         testId: 'mirror-debug-overlay-test-bench',
-        name: 'Debug Overlay + Test Bench',
-        format: 'QA artifact',
+        name: 'Testing Emotional Edge Cases',
+        format: 'QA and safety artifact',
         status: 'ready',
-        claim: 'Proves the system was testable and inspectable during development.',
+        claim: 'Proves conflicting signals, uncertainty language, sensitive copy, and component behavior were tested as product states rather than left to intuition.',
         proof: 'Scenario matrix with inputs, expected state, actual state, confidence/pass result, similar-day checks, suggestion ranking, and feedback store visibility.',
         contents: ['test scenarios', 'expected state', 'actual state', 'confidence', 'pass/fail', 'similar-day checks', 'feedback store'],
         visualAssets: [
@@ -332,6 +331,9 @@ const existingRecords = [
     id: '03',
     slug: 'meta-airtable-dashboard',
     title: 'Meta + Airtable Campaign Reporting System',
+    displayTitle: 'Campaign Intelligence',
+    featured: false,
+    filters: ['automation', 'growth'],
     headline: 'Connecting ad spend to bookings and revenue.',
     category: 'campaign reporting',
     type: 'campaign reporting',
@@ -344,15 +346,15 @@ const existingRecords = [
     hiringTranslation:
       'This case is relevant to growth, marketing operations, and design technologist roles because it connects Meta Ads, Airtable lead records, CRM status, booking behavior, and revenue context into reporting that guides campaign actions.',
     metrics: [
-      { value: 'Meta', label: 'AD PLATFORM' },
-      { value: 'CRM', label: 'BOOKING STATUS' },
-      { value: 'ROAS', label: 'CAMPAIGN READ' }
+      { value: '31', label: 'shared lead fields' },
+      { value: '4', label: 'decision queues' },
+      { value: '1', label: 'linked record model' }
     ],
     path: ['Meta Ads', 'Airtable lead', 'CRM status', 'booking', 'revenue context', 'campaign call'],
     signal: 'Meta Ads showed spend and lead cost. Airtable held lead records and CRM movement. Booking, arrival, conversion, and revenue signals lived downstream, so campaign reads were missing the behavior that made them useful.',
     system: 'I organized Meta campaign data, Airtable lead records, CRM status updates, booking behavior, revenue context, attribution confidence, and action categories into one campaign reporting system.',
     owned: ['campaign reporting strategy', 'data modeling', 'CRM status rules', 'booking and revenue mapping', 'campaign performance reads', 'action category design'],
-    nextProof: ['Add campaign dashboard screenshot', 'Add Meta ads performance view', 'Add revenue attribution table snapshot'],
+    nextProof: ['Shared Lead Record', 'Campaign Performance Logic', 'Campaign-to-Revenue Trace', 'Decision Case: Scale, Review, or Repair'],
     decisions: [
       { label: 'constraint', body: 'Spend, lead volume, CRM state, booking outcomes, and revenue context were split across tools, which made campaign quality hard to interpret.' },
       { label: 'move', body: 'Model one shared lead record, then roll campaign performance through booked, arrived, converted, revenue value, attribution confidence, and action categories.' },
@@ -397,7 +399,7 @@ const existingRecords = [
       {
         id: 'revenue-attribution-model',
         testId: 'meta-revenue-attribution',
-        name: 'Revenue_Attribution model',
+        name: 'Campaign-to-Revenue Trace',
         format: 'logic layer',
         status: 'ready',
         claim: 'Proves revenue was mapped back to campaigns with confidence levels instead of fake certainty.',
@@ -414,11 +416,11 @@ const existingRecords = [
       {
         id: 'decision-dashboard-ui',
         testId: 'meta-decision-console',
-        name: 'Decision dashboard UI',
+        name: 'Decision Case: Scale, Review, or Repair',
         format: 'interface system',
         status: 'ready',
-        claim: 'Proves scattered campaign, CRM, and revenue signals became action categories like scale, maintain, review, and fix tracking.',
-        proof: 'The dashboard grouped evidence into operational queues so campaign conversations could move from reporting to next action.',
+        claim: 'Proves a campaign decision can be traced from front-end metrics through booking behavior, attribution confidence, and the next operational action.',
+        proof: 'Sanitized campaign evidence resolves into Scale, Maintain, Review, or Repair Tracking instead of ending with a dashboard metric.',
         contents: ['Can Scale', 'Needs Review', 'Tracking Repair', 'Follow Up Risk', 'Recommended Action', 'Confidence'],
         visualAssets: [
           {
@@ -434,6 +436,9 @@ const existingRecords = [
     id: '04',
     slug: 'snip-provider-pipeline',
     title: 'Snip Snip Provider Profile Workflow',
+    displayTitle: 'Provider Profile Pipeline',
+    featured: true,
+    filters: ['automation', 'product'],
     headline: 'Turning provider research into publish-ready profiles.',
     category: 'provider systems',
     type: 'provider profile workflow',
@@ -633,6 +638,10 @@ const existingRecords = [
     id: '06',
     slug: 'multi-brand-retention',
     title: 'Multi-Brand Email Follow-Up System',
+    displayTitle: 'Retention Router',
+    featured: false,
+    archiveGroup: 'more-work',
+    filters: ['growth', 'automation'],
     headline: 'The right follow-up for the right lead.',
     category: 'email follow-up',
     type: 'email follow-up system',
@@ -733,11 +742,24 @@ const existingRecords = [
   }
 ]
 
-export const records = [interfaceBehaviorLabRecord, ...existingRecords].map((item, index) => ({
+const editorialOrder = [
+  'mirror',
+  'snip-provider-pipeline',
+  'smooth-md-growth-os',
+  'meta-airtable-dashboard',
+  'multi-brand-retention',
+  'guardrail-hr'
+]
+
+const orderedExistingRecords = editorialOrder
+  .map((slug) => existingRecords.find((record) => record.slug === slug))
+  .filter(Boolean)
+
+export const records = [interfaceBehaviorLabRecord, ...orderedExistingRecords].map((item, index) => ({
   ...item,
   id: String(index + 1).padStart(2, '0')
 }))
 
-export const filters = ['all', 'interaction systems', 'brand systems', 'product ux', 'campaign reporting', 'email follow-up', 'provider systems']
+export const filters = ['featured', 'product', 'interaction', 'automation', 'growth', 'all']
 
 export default records

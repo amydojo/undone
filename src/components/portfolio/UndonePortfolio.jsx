@@ -14,7 +14,7 @@ const ORIENTATION_HINT_STORAGE_KEY = "undone_seen_orientation_hint";
 export default function UndonePortfolioV10() {
   const visibleRecords = useMemo(() => records.filter((record) => record.visible !== false), []);
   const defaultRecord = visibleRecords[0] ?? records[0];
-  const [activeFilter, setActiveFilter] = useState("all");
+  const [activeFilter, setActiveFilter] = useState("featured");
   const [activeRecordSlug, setActiveRecordSlug] = useState(defaultRecord.slug);
   const [activeReceiptId, setActiveReceiptId] = useState(defaultRecord.receipts[0]?.id ?? null);
   const [workspaceRecordSlug, setWorkspaceRecordSlug] = useState(null);
@@ -38,8 +38,9 @@ export default function UndonePortfolioV10() {
 
   const filteredRecords = useMemo(() => {
     return visibleRecords.filter((record) => {
-      const matchesFilter = activeFilter === "all" || record.category === activeFilter;
-      return matchesFilter;
+      if (activeFilter === 'all') return true;
+      if (activeFilter === 'featured') return record.featured === true;
+      return record.filters?.includes(activeFilter) === true;
     });
   }, [activeFilter, visibleRecords]);
 
@@ -157,7 +158,7 @@ export default function UndonePortfolioV10() {
     const homeRecord = visibleRecords[0] ?? defaultRecord ?? records[0];
     if (!homeRecord) return;
 
-    setActiveFilter("all");
+    setActiveFilter("featured");
     setActiveRecordSlug(homeRecord.slug);
     setActiveReceiptId(homeRecord.receipts[0]?.id ?? null);
     setWorkspaceRecordSlug(null);
