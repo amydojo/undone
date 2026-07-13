@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 820" role="img" aria-labelledby="title desc">
+  <title id="title">Mirror check-in flow</title>
+  <desc id="desc">A quiet product interface showing mood, sleep, clarity, and context inputs resolving into a readable state.</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8f2e8"/><stop offset="1" stop-color="#e9e1d6"/></linearGradient>
+    <radialGradient id="field" cx="50%" cy="45%" r="60%"><stop stop-color="#c7b2ff" stop-opacity=".54"/><stop offset=".56" stop-color="#8871d8" stop-opacity=".16"/><stop offset="1" stop-color="#191821" stop-opacity="0"/></radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="22" stdDeviation="28" flood-color="#17151c" flood-opacity=".14"/></filter>
+  </defs>
+  <rect width="1280" height="820" fill="url(#paper)"/>
+  <g opacity=".18" stroke="#27232d"><path d="M0 110h1280M0 220h1280M0 330h1280M0 440h1280M0 550h1280M0 660h1280M0 770h1280"/><path d="M160 0v820M320 0v820M480 0v820M640 0v820M800 0v820M960 0v820M1120 0v820"/></g>
+  <text x="76" y="78" font-family="Arial,sans-serif" font-size="13" letter-spacing="3" fill="#27232d" opacity=".52">MIRROR / CHECK-IN TO BODY WEATHER</text>
+  <text x="76" y="135" font-family="Arial,sans-serif" font-size="44" font-weight="600" letter-spacing="-2" fill="#17151c">How is today landing?</text>
+  <text x="76" y="175" font-family="Arial,sans-serif" font-size="18" fill="#4d4854">Four quiet signals. One readable state. No diagnosis.</text>
+  <g transform="translate(76 230)" font-family="Arial,sans-serif">
+    <g><text y="0" font-size="12" letter-spacing="2" fill="#605968">MOOD</text><rect y="20" width="470" height="64" rx="32" fill="#fffaf1" stroke="#29252f" stroke-opacity=".16"/><circle cx="180" cy="52" r="8" fill="#8b73dc"/><path d="M32 52h406" stroke="#29252f" stroke-opacity=".16"/><text x="32" y="113" font-size="13" fill="#6a6470">flat</text><text x="413" y="113" font-size="13" fill="#6a6470">bright</text></g>
+    <g transform="translate(0 150)"><text y="0" font-size="12" letter-spacing="2" fill="#605968">SLEEP</text><rect y="20" width="470" height="64" rx="32" fill="#fffaf1" stroke="#29252f" stroke-opacity=".16"/><circle cx="136" cy="52" r="8" fill="#8b73dc"/><path d="M32 52h406" stroke="#29252f" stroke-opacity=".16"/><text x="32" y="113" font-size="13" fill="#6a6470">broken</text><text x="394" y="113" font-size="13" fill="#6a6470">restored</text></g>
+    <g transform="translate(0 300)"><text y="0" font-size="12" letter-spacing="2" fill="#605968">CLARITY</text><rect y="20" width="470" height="64" rx="32" fill="#fffaf1" stroke="#29252f" stroke-opacity=".16"/><circle cx="204" cy="52" r="8" fill="#8b73dc"/><path d="M32 52h406" stroke="#29252f" stroke-opacity=".16"/><text x="32" y="113" font-size="13" fill="#6a6470">foggy</text><text x="405" y="113" font-size="13" fill="#6a6470">sharp</text></g>
+    <g transform="translate(0 450)"><text y="0" font-size="12" letter-spacing="2" fill="#605968">CONTEXT</text><rect y="20" width="470" height="78" rx="18" fill="#fffaf1" stroke="#29252f" stroke-opacity=".16"/><text x="24" y="54" font-size="15" fill="#39343f">Too many tabs open. Quiet, but mentally dense.</text></g>
+  </g>
+  <path d="M590 410h92" stroke="#27232d" stroke-opacity=".38" stroke-width="1.5"/><path d="m672 402 12 8-12 8" fill="none" stroke="#27232d" stroke-opacity=".38" stroke-width="1.5"/>
+  <g transform="translate(720 190)" filter="url(#shadow)">
+    <rect width="480" height="500" rx="34" fill="#121117"/>
+    <rect width="480" height="500" rx="34" fill="url(#field)"/>
+    <g opacity=".28" stroke="#e5dcff"><ellipse cx="240" cy="205" rx="150" ry="92"/><ellipse cx="240" cy="205" rx="110" ry="66"/><ellipse cx="240" cy="205" rx="72" ry="42"/></g>
+    <text x="34" y="44" font-family="Arial,sans-serif" font-size="11" letter-spacing="2.4" fill="#d7cdf8" opacity=".66">BODY WEATHER / CURRENT READ</text>
+    <text x="34" y="314" font-family="Arial,sans-serif" font-size="48" font-weight="600" letter-spacing="-2" fill="#fffaf1">Frayed</text>
+    <text x="34" y="350" font-family="Arial,sans-serif" font-size="14" letter-spacing="1.2" fill="#d7cdf8" opacity=".68">MEDIUM CONFIDENCE · STATIC EDGE</text>
+    <text x="34" y="400" font-family="Arial,sans-serif" font-size="17" fill="#fffaf1" opacity=".76">Sleep is thin, clarity is low, and the day looks dense.</text>
+    <line x1="34" y1="430" x2="446" y2="430" stroke="#fffaf1" stroke-opacity=".12"/>
+    <text x="34" y="463" font-family="Arial,sans-serif" font-size="12" letter-spacing="1.6" fill="#d7cdf8" opacity=".64">GENTLE NEXT MOVE</text>
+    <text x="34" y="490" font-family="Arial,sans-serif" font-size="16" fill="#fffaf1">Reduce one input before choosing the next task.</text>
+  </g>
+</svg>
