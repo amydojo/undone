@@ -8,8 +8,10 @@ import { cx } from "../../utils/cx";
 import { formatMetadataLabel } from "../../utils/caseMetadata";
 import ReceiptVisualGallery from "./ReceiptVisualGallery";
 import OverviewVisualPlate from "./OverviewVisualPlate";
+import CaseLinks from "./CaseLinks";
 
 const DECODER_LINES = {
+  'interface-behavior-lab': 'Binary buttons → readable intent, consequence, state, assistance, and recovery.',
   mirror: 'Mood, sleep, clarity, and context → readable states and one next step.',
   'smooth-md-growth-os': 'Scattered clinic marketing → reusable service, CRM, and campaign logic.',
   'meta-airtable-dashboard': 'Ad spend → booking behavior → revenue-informed decisions.',
@@ -109,6 +111,7 @@ function OverviewTab({ record, openWorkspace }) {
           </p>
         )}
         <p className="mt-2 max-w-[620px] text-[14px] leading-[1.55] text-[#11100d]/40">{record.oneLine}</p>
+        <CaseLinks links={record.links} compact />
       </div>
 
       {/* Proof ledger */}

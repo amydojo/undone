@@ -6,11 +6,13 @@ import MetaAirtableReceiptVisual from "./receipt-visuals/MetaAirtableReceiptVisu
 import MultiBrandRetentionReceiptVisual from "./receipt-visuals/MultiBrandRetentionReceiptVisual";
 import SnipReceiptVisual from "./receipt-visuals/SnipReceiptVisual";
 import SmoothMdReceiptVisual from "./receipt-visuals/SmoothMdReceiptVisual";
+import InterfaceBehaviorLabReceiptVisual from "./receipt-visuals/InterfaceBehaviorLabReceiptVisual";
 import { getMirrorReceiptVisual } from "../../data/mirrorReceiptVisuals";
 import { getMetaAirtableReceiptVisual } from "../../data/metaAirtableReceiptVisuals";
 import { getMultiBrandRetentionReceiptVisual } from "../../data/multiBrandRetentionReceiptVisuals";
 import { getSnipReceiptVisual } from "../../data/snipReceiptVisuals";
 import { getSmoothMdReceiptVisual } from "../../data/smoothMdReceiptVisuals";
+import { getInterfaceBehaviorLabReceiptVisual } from "../../data/interfaceBehaviorLabReceiptVisuals";
 import { resolvePublicSrc } from "../../utils/resolvePublicSrc";
 import { useOverlayBehavior } from "./useOverlayBehavior";
 
@@ -25,6 +27,9 @@ function getAssetKey(asset, index) {
 
 function getComponentAsset(asset) {
   if (asset.kind !== "component") return null;
+
+  const behaviorDefinition = getInterfaceBehaviorLabReceiptVisual(asset.componentKey);
+  if (behaviorDefinition) return { definition: behaviorDefinition, renderer: "behavior" };
 
   const smoothDefinition = getSmoothMdReceiptVisual(asset.componentKey);
   if (smoothDefinition) return { definition: smoothDefinition, renderer: "smooth" };
@@ -45,6 +50,7 @@ function getComponentAsset(asset) {
 }
 
 function getComponentViewerMaxWidth(renderer) {
+  if (renderer === "behavior") return "max-w-[980px]";
   if (renderer === "snip") return "max-w-[980px]";
   if (renderer === "smooth") return "max-w-[960px]";
   if (renderer === "multi") return "max-w-[940px]";
@@ -53,6 +59,7 @@ function getComponentViewerMaxWidth(renderer) {
 }
 
 function getComponentAccentColor(renderer) {
+  if (renderer === "behavior") return "#69dcff";
   if (renderer === "smooth") return "#c8ff62";
   if (renderer === "multi") return "#ffd1a1";
   if (renderer === "snip") return "#8be2ff";
@@ -169,7 +176,9 @@ export default function ReceiptVisualGallery({
 
     if (definition) {
       const Component =
-        componentAsset.renderer === "snip"
+        componentAsset.renderer === "behavior"
+          ? InterfaceBehaviorLabReceiptVisual
+          : componentAsset.renderer === "snip"
           ? SnipReceiptVisual
           : componentAsset.renderer === "smooth"
             ? SmoothMdReceiptVisual

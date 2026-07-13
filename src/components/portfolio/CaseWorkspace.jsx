@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { X } from 'lucide-react'
 import { formatMetadataLabel } from '../../utils/caseMetadata'
 import { useOverlayBehavior } from './useOverlayBehavior'
+import CaseLinks from './CaseLinks'
 
 const SECTIONS = [
   { id: 'brief', label: 'brief' },
@@ -14,6 +15,7 @@ const SECTIONS = [
 ]
 
 const SIDEBAR_CONTEXT_BY_SLUG = {
+  'interface-behavior-lab': { type: 'Interaction System', scope: 'Behavior models, components, accessibility, and coded prototyping' },
   'smooth-md-growth-os': {
     type: 'Clinic Growth System',
     scope: 'Brand, follow-up, and campaign systems'
@@ -37,6 +39,12 @@ const SIDEBAR_CONTEXT_BY_SLUG = {
 }
 
 const CASE_COPY_BY_SLUG = {
+  'interface-behavior-lab': {
+    problem: 'Conventional controls compress very different intentions and consequences into the same binary interaction. A reversible archive action, a public post, an ambient listening state, and an irreversible deletion can all look and feel almost identical.',
+    systemIntro: 'I created six behavioral control families connected through one action lifecycle, then translated that model into semantic variables, reusable Figma components, accessibility rules, motion and haptic specifications, and a live coded laboratory.',
+    designMove: 'I treated behavior as semantic material rather than decoration. Changes in depth, specificity, rhythm, resistance, proximity, and recovery had to communicate meaningful state without moving the target or hiding the consequence.',
+    outcomeIntro: 'The project moved from a speculative question into a documented and implemented interaction system with 95 variables, 46 Figma variants, six live component families, accessible alternate paths, and a production deployment.'
+  },
   'smooth-md-growth-os': {
     problem:
       'Smooth MD had strong services, offers, Instagram proof, ads, CRM follow-up, and patient touchpoints, but those pieces were scattered across channels and using different rules.',
@@ -92,6 +100,14 @@ const CASE_COPY_BY_SLUG = {
 }
 
 const SYSTEM_MODEL_BY_SLUG = {
+  'interface-behavior-lab': [
+    { label: 'Intent', meaning: 'Reveals exact consequence when specificity becomes necessary.' },
+    { label: 'Pressure', meaning: 'Translates staged input into preview, action, commitment, and recovery.' },
+    { label: 'Breathing', meaning: 'Communicates readiness, listening, processing, and completion through restrained rhythm.' },
+    { label: 'Magnetic', meaning: 'Reduces motor effort through a local assistance field while keeping the target stable.' },
+    { label: 'Ethical', meaning: 'Adds proportionate consequence information and resistance before high-impact actions.' },
+    { label: 'Reversible', meaning: 'Keeps recovery attached to the exact target where the action occurred.' }
+  ],
   'smooth-md-growth-os': [
     { label: 'service hierarchy', meaning: 'Unify skin health, laser, injectables, body, membership, and wellness add-ons so every offer and content path starts from the same clinic model.' },
     { label: 'positioning language', meaning: 'Move from generic medspa promotion to skin + laser trust language with clearer consult expectations and local credibility.' },
@@ -140,6 +156,10 @@ const SYSTEM_MODEL_BY_SLUG = {
 }
 
 const PROBLEM_CONTEXT_BY_SLUG = {
+  'interface-behavior-lab': {
+    before: ['binary controls for meaningfully different consequences', 'system activity communicated through generic spinners', 'destructive and reversible actions sharing similar interaction weight', 'novel input behaviors without explicit alternate paths'],
+    after: ['six behavioral control families connected by one action lifecycle', 'named states and exact consequence language', 'stable targets with keyboard, voice, touch, and switch alternatives', 'documented variables, component properties, accessibility rules, and live instrumentation']
+  },
   'smooth-md-growth-os': {
     before: ['scattered service promos', 'service hierarchy unclear across channels', 'consult language and offers handled case by case', 'Instagram proof disconnected from lead follow-up', 'CRM and campaign logic operating separately'],
     after: ['shared service hierarchy and consult path', 'repeatable offer rules and campaign launch kit', 'Instagram proof connected to CRM follow-up', 'booking behavior connected to follow-up state', 'CRM status logic connected to campaign reads']
@@ -167,6 +187,12 @@ const PROBLEM_CONTEXT_BY_SLUG = {
 }
 
 const OUTCOME_BY_SLUG = {
+  'interface-behavior-lab': [
+    'A speculative interaction concept became a structured design language rather than a collection of visual effects.',
+    'The Figma system contains 95 variables, 46 variants, three semantic modes, and six reusable component families.',
+    'The React and TypeScript playground implements all six behaviors with responsive layouts, reduced motion, stable native controls, and event instrumentation.',
+    'Unsupported browser capabilities are presented as explicit simulations instead of being mislabeled as physical pressure, gaze, or haptic sensing.'
+  ],
   'smooth-md-growth-os': [
     'Six-plus service lines moved into one hierarchy that could guide brand language, Instagram proof, campaign offers, and consult paths.',
     'Lead source, service intent, follow-up timing, booking behavior, and reactivation were connected into one clinic follow-up path.',
@@ -293,6 +319,7 @@ function BriefSection({ workspace }) {
           <div className='mb-3 text-[10px] uppercase tracking-[0.15em] text-[#11100d]/38'>Summary</div>
           <p className='text-[15px] leading-[1.7] text-[#11100d]/66'>{copy.summary}</p>
           {workspace.slug === 'mirror' && <MirrorSupportLinks />}
+          <CaseLinks links={workspace.links} />
         </div>
       </div>
 
