@@ -64,7 +64,7 @@ export default function MobileRecordSelector({
             <AccentDot record={activeRecord} size="h-2.5 w-2.5 shrink-0" />
             <div className="min-w-0 text-left">
               <div className="truncate text-[11px] font-medium tracking-[-0.01em] text-[#11100d]">
-                {activeRecord.title}
+                {activeRecord.displayTitle ?? activeRecord.title}
               </div>
               <div className="truncate text-[10px] tracking-[0.01em] text-[#11100d]/48">
                 {formatMetadataLabel(activeRecord.status)} / {formatMetadataLabel(activeRecord.type)}
@@ -158,7 +158,7 @@ export default function MobileRecordSelector({
                       <button
                         key={record.slug}
                         type="button"
-                        aria-label={`Select ${record.title}`}
+                        aria-label={`Select ${record.displayTitle ?? record.title}`}
                         onClick={() => selectRecord(record)}
                         className={cx(
                           "flex min-h-[64px] w-full items-center gap-3 rounded-[16px] border px-4 py-3 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/22",
@@ -175,7 +175,7 @@ export default function MobileRecordSelector({
                               active ? "text-[#f7f1e7]" : "text-[#11100d]"
                             )}
                           >
-                            {record.title}
+                            {record.displayTitle ?? record.title}
                           </div>
                           <div
                             className={cx(

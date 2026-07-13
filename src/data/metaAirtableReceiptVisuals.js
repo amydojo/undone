@@ -164,7 +164,7 @@ export const metaAirtableReceiptVisuals = {
   },
   'meta-revenue-attribution-model': {
     receiptNumber: '03',
-    title: 'Revenue_Attribution Model',
+    title: 'Campaign-to-Revenue Trace',
     type: 'Attribution trace',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
@@ -235,11 +235,11 @@ export const metaAirtableReceiptVisuals = {
   },
   'meta-decision-dashboard-ui': {
     receiptNumber: '04',
-    title: 'Decision Dashboard UI',
+    title: 'Decision Case: Scale, Review, or Repair',
     type: 'Decision queue console',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    claim: 'Proves scattered campaign, CRM, and revenue signals became action categories like scale, maintain, review, and fix tracking.',
+    claim: 'Proves one campaign decision can be traced from front-end performance through booking behavior, attribution confidence, and the next action.',
     operationalSignal: 'The interface grouped scale, maintain, review, and tracking-repair actions from the same campaign evidence.',
     receiptBodyType: 'decisionQueueConsole',
     preview: {

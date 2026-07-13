@@ -102,7 +102,7 @@ export default function RecordRail({
                 key={record.slug}
                 type="button"
                 data-testid={`case-record-${record.slug}`}
-                aria-label={`Select ${record.title}`}
+                aria-label={`Select ${record.displayTitle ?? record.title}`}
                 onClick={() => {
                   onOrientationDismiss();
                   setActiveRecord(record);
@@ -148,7 +148,7 @@ export default function RecordRail({
                   <span className={cx("text-[9px] uppercase tracking-[0.2em]", active ? "text-[#f7f1e7]/46" : "text-[#11100d]/40")}>{caseNumber}</span>
                   <AccentDot record={record} size="h-2.5 w-2.5" />
                 </div>
-                <div className="text-[20px] leading-[1.04] tracking-[-0.03em]">{record.title}</div>
+                <div className="text-[20px] leading-[1.04] tracking-[-0.03em]">{record.displayTitle ?? record.title}</div>
                 <div className={cx("mt-2 text-[10px] tracking-[0.01em]", active ? "text-[#f7f1e7]/46" : "text-[#11100d]/46")}>{formatMetadataLabel(record.status)} / {formatMetadataLabel(record.type)}</div>
                 <AnimatePresence initial={false}>
                   {active ? (

@@ -6,13 +6,13 @@ import { cx } from "../../utils/cx";
 const COPY_BY_VARIANT = {
   desktop: {
     eyebrow: "Start here",
-    title: "Choose a case file.",
-    detail: "Then open receipts on the right.",
+    title: "Select a case.",
+    detail: "Inspect the proof, or open the full system.",
   },
   mobile: {
     eyebrow: "Case switcher",
-    title: "Switch files here.",
-    detail: "Receipts are in the next tab.",
+    title: "Select a case here.",
+    detail: "Inspect proof in the Receipts tab.",
   },
 };
 

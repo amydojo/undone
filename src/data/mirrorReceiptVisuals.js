@@ -1,6 +1,6 @@
 export const mirrorReceiptVisuals = {
   'signal-interpretation-map': {
-    receiptNumber: '01',
+    receiptNumber: '03',
     title: 'Signal Interpretation Engine',
     type: 'Logic diagram',
     status: 'ready',
@@ -48,12 +48,12 @@ export const mirrorReceiptVisuals = {
       'The engine is product logic, not diagnosis: it turns messy self-reporting into a state, a reason, and one next step.'
   },
   'body-weather-state-system': {
-    receiptNumber: '02',
-    title: 'Body Weather State System',
+    receiptNumber: '01',
+    title: 'The Check-In Experience',
     type: 'Product mental model',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    claim: 'Proves the product has a human-readable mental model instead of random mood labels.',
+    claim: 'Proves a lightweight self-report resolves into a named state, a plain explanation, and one gentle next move.',
     receiptBodyType: 'stateMatrix',
     preview: {
       featuredState: 'Frayed',
@@ -132,12 +132,12 @@ export const mirrorReceiptVisuals = {
       'The weather model gives the user readable language while keeping the copy careful: it describes the check-in, not the person.'
   },
   'debug-overlay-test-bench': {
-    receiptNumber: '03',
-    title: 'Debug Overlay + Test Bench',
+    receiptNumber: '04',
+    title: 'Testing Emotional Edge Cases',
     type: 'QA artifact',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    claim: 'Proves the system was testable and inspectable during development.',
+    claim: 'Proves conflicting signals, uncertainty language, safety copy, and state behavior were tested explicitly.',
     receiptBodyType: 'qaConsole',
     preview: {
       rows: ['scenario', 'expected', 'actual', 'pass']
@@ -199,8 +199,8 @@ export const mirrorReceiptVisuals = {
       'The debug bench keeps hidden logic visible: state detection, similar-day context, suggestion ranking, and feedback are inspectable during QA.'
   },
   'storybook-component-environment': {
-    receiptNumber: '04',
-    title: 'Storybook Component Environment',
+    receiptNumber: '02',
+    title: 'Body Weather State System',
     type: 'Component catalog',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',

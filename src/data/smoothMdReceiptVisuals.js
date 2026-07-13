@@ -3,7 +3,7 @@ const imageBase = '/receipts/smooth-md';
 export const smoothMdReceiptVisuals = {
   'smooth-md-brand-framework': {
     receiptNumber: '01',
-    title: 'Smooth MD brand framework',
+    title: 'Clinic Growth Operating System',
     type: 'Strategy system',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
@@ -42,11 +42,11 @@ export const smoothMdReceiptVisuals = {
   },
   'smooth-md-lifecycle-map': {
     receiptNumber: '02',
-    title: 'Lifecycle map',
-    type: 'Journey flow',
+    title: 'Patient Lifecycle and CRM Routing',
+    type: 'Journey and operations flow',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',
-    claim: 'Proves lead source, service intent, consult path, follow-up timing, treatment state, retention, and reactivation were mapped as one patient journey.',
+    claim: 'Proves acquisition, consult, follow-up, CRM movement, booking, revenue handoff, retention, and reactivation were mapped as one route.',
     operationalSignal: 'Lead source, service intent, consult CTA, follow-up timing, booking behavior, and retention logic were treated as one connected route.',
     receiptBodyType: 'lifecycleJourneyMap',
     preview: {
@@ -131,7 +131,7 @@ export const smoothMdReceiptVisuals = {
       "Smooth MD's follow-up and booking work became named CRM states instead of ad hoc lead handling."
   },
   'smooth-md-instagram-identity-rebuild': {
-    receiptNumber: '04',
+    receiptNumber: '03',
     title: 'Instagram identity rebuild',
     type: 'Visual system',
     status: 'ready',
@@ -172,8 +172,8 @@ export const smoothMdReceiptVisuals = {
       'The Instagram rebuild connected identity clarity, service proof, local trust, and inquiry behavior instead of only changing aesthetics.'
   },
   'smooth-md-campaign-toolkit': {
-    receiptNumber: '05',
-    title: 'Campaign toolkit',
+    receiptNumber: '04',
+    title: 'Campaign Toolkit and Performance',
     type: 'Creative system',
     status: 'ready',
     privacyLabel: 'sanitized reconstruction',

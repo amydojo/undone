@@ -62,8 +62,8 @@ const modalTargets = [
   },
   {
     caseSlug: 'smooth-md-growth-os',
-    receiptTestId: 'smooth-md-crm-status-logic',
-    filename: 'smooth-crm-status-logic-modal.png'
+    receiptTestId: 'smooth-md-lifecycle-map',
+    filename: 'smooth-patient-lifecycle-modal.png'
   },
   {
     caseSlug: 'smooth-md-growth-os',
@@ -77,8 +77,8 @@ const modalTargets = [
   },
   {
     caseSlug: 'mirror',
-    receiptTestId: 'mirror-signal-interpretation-map',
-    filename: 'mirror-signal-interpretation-modal.png'
+    receiptTestId: 'mirror-check-in-experience',
+    filename: 'mirror-check-in-experience-modal.png'
   },
   {
     caseSlug: 'mirror',
@@ -174,7 +174,15 @@ async function saveFullPageScreenshot(page, name) {
 }
 
 async function openCase(page, caseSlug) {
-  const caseCard = await expectSingleVisibleTestId(page, `case-record-${caseSlug}`);
+  let caseCard = visibleTestId(page, `case-record-${caseSlug}`);
+
+  if (await caseCard.count() === 0) {
+    const allFilter = page.getByRole('button', { name: /filter cases by all/i });
+    await allFilter.click();
+    caseCard = visibleTestId(page, `case-record-${caseSlug}`);
+  }
+
+  await expect(caseCard, `Expected case ${caseSlug} to remain discoverable through All`).toHaveCount(1);
   await caseCard.click();
 }
 
