@@ -41,4 +41,7 @@ new = """async function openCase(page, caseSlug) {
 }"""
 if old not in qa:
     raise RuntimeError('Could not update screenshot QA openCase helper')
-qa_path.write_text(qa.replace(old, new, 1))
+qa = qa.replace(old, new, 1)
+qa = qa.replace("receiptTestId: 'smooth-md-crm-status-logic',\n    filename: 'smooth-crm-status-logic-modal.png'", "receiptTestId: 'smooth-md-lifecycle-map',\n    filename: 'smooth-patient-lifecycle-modal.png'", 1)
+qa = qa.replace("receiptTestId: 'mirror-signal-interpretation-map',\n    filename: 'mirror-signal-interpretation-modal.png'", "receiptTestId: 'mirror-check-in-experience',\n    filename: 'mirror-check-in-experience-modal.png'", 1)
+qa_path.write_text(qa)
