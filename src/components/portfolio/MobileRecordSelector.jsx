@@ -43,7 +43,6 @@ export default function MobileRecordSelector({
 
   return (
     <>
-      {/* Compact selector bar — sticky so the active case is always visible */}
       <div
         className={cx(
           "sticky top-0 z-30 border-b border-[#11100d]/10 bg-[#f0eadf]/95 px-4 pt-3 backdrop-blur-xl lg:hidden",
@@ -72,9 +71,7 @@ export default function MobileRecordSelector({
             </div>
           </div>
           <div className="flex shrink-0 items-center gap-2">
-            <span className="text-[9px] uppercase tracking-[0.14em] text-[#11100d]/40">
-              {getCaseNumber(activeRecord)}
-            </span>
+            <span className="text-[9px] uppercase tracking-[0.14em] text-[#11100d]/40">{getCaseNumber(activeRecord)}</span>
             <ChevronDown className="h-4 w-4 text-[#11100d]/40" />
           </div>
         </button>
@@ -86,7 +83,6 @@ export default function MobileRecordSelector({
         />
       </div>
 
-      {/* Bottom sheet overlay */}
       {isOpen && (
         <div
           ref={overlayRef}
@@ -96,20 +92,12 @@ export default function MobileRecordSelector({
           aria-label="Case selector"
           tabIndex={-1}
         >
-          {/* Backdrop */}
-          <div
-            className="absolute inset-0 bg-[#11100d]/40"
-            onClick={() => setIsOpen(false)}
-          />
+          <div className="absolute inset-0 bg-[#11100d]/40" onClick={() => setIsOpen(false)} />
 
-          {/* Sheet */}
           <div className="absolute bottom-0 left-0 right-0 flex max-h-[82vh] flex-col overflow-hidden rounded-t-[24px] bg-[#f7f1e7] shadow-[0_-8px_40px_rgba(17,16,13,0.18)]">
-            {/* Handle + header */}
-            <div className="flex items-center justify-between px-5 pt-4 pb-3">
-              <div className="mx-auto mb-1 h-1 w-10 rounded-full bg-[#11100d]/14 absolute left-1/2 top-3 -translate-x-1/2" />
-              <div className="text-[9px] uppercase tracking-[0.22em] text-[#11100d]/42 mt-1">
-                Cases
-              </div>
+            <div className="flex items-center justify-between px-5 pb-3 pt-4">
+              <div className="absolute left-1/2 top-3 mx-auto mb-1 h-1 w-10 -translate-x-1/2 rounded-full bg-[#11100d]/14" />
+              <div className="mt-1 text-[9px] uppercase tracking-[0.22em] text-[#11100d]/42">Cases</div>
               <button
                 ref={closeButtonRef}
                 type="button"
@@ -121,34 +109,32 @@ export default function MobileRecordSelector({
               </button>
             </div>
 
-            {/* Filters */}
             <div className="flex gap-1.5 overflow-x-auto px-5 pb-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
               {filters.map((filter) => {
                 const filterLabel = formatMetadataLabel(filter);
                 return (
-                <button
-                  key={filter}
-                  type="button"
-                  aria-label={`Filter by ${filterLabel}`}
-                  aria-pressed={activeFilter === filter}
-                  onClick={() => {
-                    onOrientationDismiss();
-                    setActiveFilter(filter);
-                  }}
-                  className={cx(
-                    "flex h-11 shrink-0 items-center rounded-full border px-3.5 text-[10px] tracking-[0.01em] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/20",
-                    activeFilter === filter
-                      ? "border-[#11100d] bg-[#11100d] text-[#f7f1e7]"
-                      : "border-[#11100d]/10 text-[#11100d]/44"
-                  )}
-                >
-                  {filterLabel}
-                </button>
+                  <button
+                    key={filter}
+                    type="button"
+                    aria-label={`Filter by ${filterLabel}`}
+                    aria-pressed={activeFilter === filter}
+                    onClick={() => {
+                      onOrientationDismiss();
+                      setActiveFilter(filter);
+                    }}
+                    className={cx(
+                      "flex h-11 shrink-0 items-center rounded-full border px-3.5 text-[10px] tracking-[0.01em] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/20",
+                      activeFilter === filter
+                        ? "border-[#11100d] bg-[#11100d] text-[#f7f1e7]"
+                        : "border-[#11100d]/10 text-[#11100d]/44"
+                    )}
+                  >
+                    {filterLabel}
+                  </button>
                 );
               })}
             </div>
 
-            {/* Record rows */}
             <div className="scrollbar-portfolio overflow-y-auto px-4 pb-6">
               {recordsList.length > 0 ? (
                 <div className="space-y-2">
@@ -158,6 +144,7 @@ export default function MobileRecordSelector({
                       <button
                         key={record.slug}
                         type="button"
+                        data-testid={`case-record-${record.slug}`}
                         aria-label={`Select ${record.displayTitle ?? record.title}`}
                         onClick={() => selectRecord(record)}
                         className={cx(
@@ -169,29 +156,12 @@ export default function MobileRecordSelector({
                       >
                         <AccentDot record={record} size="h-2.5 w-2.5 shrink-0" />
                         <div className="min-w-0 flex-1">
-                          <div
-                            className={cx(
-                              "truncate text-sm leading-5",
-                              active ? "text-[#f7f1e7]" : "text-[#11100d]"
-                            )}
-                          >
-                            {record.displayTitle ?? record.title}
-                          </div>
-                          <div
-                            className={cx(
-                              "truncate text-[10px] tracking-[0.01em]",
-                              active ? "text-[#f7f1e7]/50" : "text-[#11100d]/42"
-                            )}
-                          >
+                          <div className={cx("truncate text-sm leading-5", active ? "text-[#f7f1e7]" : "text-[#11100d]")}>{record.displayTitle ?? record.title}</div>
+                          <div className={cx("truncate text-[10px] tracking-[0.01em]", active ? "text-[#f7f1e7]/50" : "text-[#11100d]/42")}>
                             {formatMetadataLabel(record.status)} / {formatMetadataLabel(record.type)}
                           </div>
                         </div>
-                        <span
-                          className={cx(
-                            "shrink-0 text-[9px] uppercase tracking-[0.14em]",
-                            active ? "text-[#f7f1e7]/50" : "text-[#11100d]/38"
-                          )}
-                        >
+                        <span className={cx("shrink-0 text-[9px] uppercase tracking-[0.14em]", active ? "text-[#f7f1e7]/50" : "text-[#11100d]/38")}>
                           {getCaseNumber(record)}
                         </span>
                       </button>
@@ -199,14 +169,10 @@ export default function MobileRecordSelector({
                   })}
                 </div>
               ) : (
-                <div className="rounded-[16px] border border-[#11100d]/10 bg-[#fffaf1]/55 p-4 text-sm text-[#11100d]/58">
-                  No matching records.
-                </div>
+                <div className="rounded-[16px] border border-[#11100d]/10 bg-[#fffaf1]/55 p-4 text-sm text-[#11100d]/58">No matching records.</div>
               )}
               <div className="mt-5 border-t border-[#11100d]/10 pt-4">
-                <div className="mb-3 text-[8px] uppercase tracking-[0.2em] text-[#11100d]/34">
-                  Service offer
-                </div>
+                <div className="mb-3 text-[8px] uppercase tracking-[0.2em] text-[#11100d]/34">Service offer</div>
                 <SprintLinkCard compact />
               </div>
             </div>
