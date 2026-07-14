@@ -6,52 +6,46 @@ const screenshotDir = 'tests/screenshots';
 const modalScreenshotDir = `${screenshotDir}/modals`;
 const cardScreenshotDir = `${screenshotDir}/cards`;
 
-const cardTargets = [
-  { caseSlug: 'mirror', receiptTestId: 'mirror-storybook-component-environment', filename: 'mirror-body-weather-card.png' },
-  { caseSlug: 'mirror', receiptTestId: 'mirror-body-weather-state-system', filename: 'mirror-interpretation-card.png' },
-  { caseSlug: 'smooth-md-growth-os', receiptTestId: 'smooth-md-brand-framework', filename: 'smooth-growth-system-card.png' },
-  { caseSlug: 'smooth-md-growth-os', receiptTestId: 'smooth-md-lifecycle-map', filename: 'smooth-patient-routing-card.png' },
-  { caseSlug: 'meta-airtable-dashboard', receiptTestId: 'meta-leads-master', filename: 'meta-leads-master-card.png' },
-  { caseSlug: 'meta-airtable-dashboard', receiptTestId: 'meta-campaign-performance', filename: 'meta-campaign-performance-card.png' },
-  { caseSlug: 'meta-airtable-dashboard', receiptTestId: 'meta-revenue-attribution', filename: 'meta-revenue-attribution-card.png' },
-  { caseSlug: 'meta-airtable-dashboard', receiptTestId: 'meta-decision-console', filename: 'meta-decision-console-card.png' },
-  { caseSlug: 'snip-provider-pipeline', receiptTestId: 'snip-nppes-provider-pull', filename: 'snip-nppes-provider-pull-card.png' },
-  { caseSlug: 'snip-provider-pipeline', receiptTestId: 'snip-image-sourcing', filename: 'snip-image-sourcing-card.png' },
-  { caseSlug: 'snip-provider-pipeline', receiptTestId: 'snip-opencv-face-validation', filename: 'snip-face-validation-card.png' },
-  { caseSlug: 'snip-provider-pipeline', receiptTestId: 'snip-structured-asset-folders', filename: 'snip-asset-folders-card.png' }
+const priorityCards = [
+  ['mirror', 'mirror-storybook-component-environment', 'mirror-body-weather-card.png'],
+  ['mirror', 'mirror-body-weather-state-system', 'mirror-interpretation-card.png'],
+  ['smooth-md-growth-os', 'smooth-md-brand-framework', 'smooth-growth-system-card.png'],
+  ['smooth-md-growth-os', 'smooth-md-lifecycle-map', 'smooth-patient-routing-card.png'],
+  ['snip-provider-pipeline', 'snip-image-sourcing', 'snip-image-sourcing-card.png'],
+  ['snip-provider-pipeline', 'snip-opencv-face-validation', 'snip-face-validation-card.png']
 ];
 
-const modalTargets = [
-  { caseSlug: 'smooth-md-growth-os', receiptTestId: 'smooth-md-brand-framework', filename: 'smooth-brand-framework-modal.png' },
-  { caseSlug: 'smooth-md-growth-os', receiptTestId: 'smooth-md-lifecycle-map', filename: 'smooth-patient-lifecycle-modal.png' },
-  { caseSlug: 'smooth-md-growth-os', receiptTestId: 'smooth-md-instagram-identity-rebuild', filename: 'smooth-instagram-rebuild-modal.png' },
-  { caseSlug: 'smooth-md-growth-os', receiptTestId: 'smooth-md-campaign-toolkit', filename: 'smooth-campaign-toolkit-modal.png' },
-  { caseSlug: 'mirror', receiptTestId: 'mirror-check-in-experience', filename: 'mirror-check-in-experience-modal.png' },
-  { caseSlug: 'mirror', receiptTestId: 'mirror-storybook-component-environment', filename: 'mirror-body-weather-states-modal.png' },
-  { caseSlug: 'mirror', receiptTestId: 'mirror-body-weather-state-system', filename: 'mirror-interpretation-trace-modal.png' },
-  { caseSlug: 'mirror', receiptTestId: 'mirror-debug-overlay-test-bench', filename: 'mirror-edge-cases-modal.png' },
-  { caseSlug: 'meta-airtable-dashboard', receiptTestId: 'meta-leads-master', filename: 'meta-leads-master-modal.png' },
-  { caseSlug: 'meta-airtable-dashboard', receiptTestId: 'meta-campaign-performance', filename: 'meta-campaign-performance-modal.png' },
-  { caseSlug: 'meta-airtable-dashboard', receiptTestId: 'meta-revenue-attribution', filename: 'meta-revenue-attribution-modal.png' },
-  { caseSlug: 'meta-airtable-dashboard', receiptTestId: 'meta-decision-console', filename: 'meta-decision-console-modal.png' },
-  { caseSlug: 'snip-provider-pipeline', receiptTestId: 'snip-nppes-provider-pull', filename: 'snip-nppes-provider-pull-modal.png' },
-  { caseSlug: 'snip-provider-pipeline', receiptTestId: 'snip-image-sourcing', filename: 'snip-image-sourcing-modal.png' },
-  { caseSlug: 'snip-provider-pipeline', receiptTestId: 'snip-opencv-face-validation', filename: 'snip-face-validation-modal.png' },
-  { caseSlug: 'snip-provider-pipeline', receiptTestId: 'snip-structured-asset-folders', filename: 'snip-asset-folders-modal.png' },
-  { caseSlug: 'multi-brand-retention', receiptTestId: 'multi-brand-lifecycle-flow-model', filename: 'multi-brand-lifecycle-flow-modal.png' },
-  { caseSlug: 'multi-brand-retention', receiptTestId: 'multi-brand-mailchimp-routing-map', filename: 'multi-brand-routing-map-modal.png' },
-  { caseSlug: 'multi-brand-retention', receiptTestId: 'multi-brand-follow-up-timing-protocol', filename: 'multi-brand-follow-up-timing-modal.png' },
-  { caseSlug: 'multi-brand-retention', receiptTestId: 'multi-brand-email-production-system', filename: 'multi-brand-email-production-modal.png' }
+const desktopModals = [
+  ['smooth-md-growth-os', 'smooth-md-brand-framework', 'smooth-brand-framework-modal.png'],
+  ['smooth-md-growth-os', 'smooth-md-lifecycle-map', 'smooth-patient-lifecycle-modal.png'],
+  ['smooth-md-growth-os', 'smooth-md-instagram-identity-rebuild', 'smooth-instagram-rebuild-modal.png'],
+  ['smooth-md-growth-os', 'smooth-md-campaign-toolkit', 'smooth-campaign-toolkit-modal.png'],
+  ['mirror', 'mirror-check-in-experience', 'mirror-check-in-experience-modal.png'],
+  ['mirror', 'mirror-storybook-component-environment', 'mirror-body-weather-states-modal.png'],
+  ['mirror', 'mirror-body-weather-state-system', 'mirror-interpretation-trace-modal.png'],
+  ['mirror', 'mirror-debug-overlay-test-bench', 'mirror-edge-cases-modal.png'],
+  ['meta-airtable-dashboard', 'meta-leads-master', 'meta-leads-master-modal.png'],
+  ['meta-airtable-dashboard', 'meta-campaign-performance', 'meta-campaign-performance-modal.png'],
+  ['meta-airtable-dashboard', 'meta-revenue-attribution', 'meta-revenue-attribution-modal.png'],
+  ['meta-airtable-dashboard', 'meta-decision-console', 'meta-decision-console-modal.png'],
+  ['snip-provider-pipeline', 'snip-nppes-provider-pull', 'snip-nppes-provider-pull-modal.png'],
+  ['snip-provider-pipeline', 'snip-image-sourcing', 'snip-image-sourcing-modal.png'],
+  ['snip-provider-pipeline', 'snip-opencv-face-validation', 'snip-face-validation-modal.png'],
+  ['snip-provider-pipeline', 'snip-structured-asset-folders', 'snip-asset-folders-modal.png'],
+  ['multi-brand-retention', 'multi-brand-lifecycle-flow-model', 'multi-brand-lifecycle-flow-modal.png'],
+  ['multi-brand-retention', 'multi-brand-mailchimp-routing-map', 'multi-brand-routing-map-modal.png'],
+  ['multi-brand-retention', 'multi-brand-follow-up-timing-protocol', 'multi-brand-follow-up-timing-modal.png'],
+  ['multi-brand-retention', 'multi-brand-email-production-system', 'multi-brand-email-production-modal.png']
 ];
 
-const priorityMobileTargets = [
-  { caseSlug: 'mirror', receiptTestId: 'mirror-storybook-component-environment', title: 'Body Weather States', filename: 'mobile-mirror-body-weather.png' },
-  { caseSlug: 'mirror', receiptTestId: 'mirror-body-weather-state-system', title: 'Interpretation Trace', filename: 'mobile-mirror-interpretation.png' },
-  { caseSlug: 'mirror', receiptTestId: 'mirror-debug-overlay-test-bench', title: 'Edge Case Tests', filename: 'mobile-mirror-edge-cases.png' },
-  { caseSlug: 'smooth-md-growth-os', receiptTestId: 'smooth-md-brand-framework', title: 'Clinic Growth System', filename: 'mobile-smooth-growth-system.png' },
-  { caseSlug: 'smooth-md-growth-os', receiptTestId: 'smooth-md-lifecycle-map', title: 'Patient Routing', filename: 'mobile-smooth-patient-routing.png' },
-  { caseSlug: 'snip-provider-pipeline', receiptTestId: 'snip-image-sourcing', title: 'Image Source Check', filename: 'mobile-snip-image-source.png' },
-  { caseSlug: 'snip-provider-pipeline', receiptTestId: 'snip-opencv-face-validation', title: 'Face Validation', filename: 'mobile-snip-face-validation.png' }
+const mobileEvidence = [
+  ['mirror', 'mirror-storybook-component-environment', 'Body Weather States', 'mobile-mirror-body-weather.png'],
+  ['mirror', 'mirror-body-weather-state-system', 'Interpretation Trace', 'mobile-mirror-interpretation.png'],
+  ['mirror', 'mirror-debug-overlay-test-bench', 'Edge Case Tests', 'mobile-mirror-edge-cases.png'],
+  ['smooth-md-growth-os', 'smooth-md-brand-framework', 'Clinic Growth System', 'mobile-smooth-growth-system.png'],
+  ['smooth-md-growth-os', 'smooth-md-lifecycle-map', 'Patient Routing', 'mobile-smooth-patient-routing.png'],
+  ['snip-provider-pipeline', 'snip-image-sourcing', 'Image Source Check', 'mobile-snip-image-source.png'],
+  ['snip-provider-pipeline', 'snip-opencv-face-validation', 'Face Validation', 'mobile-snip-face-validation.png']
 ];
 
 async function preparePage(page, viewport) {
@@ -65,98 +59,95 @@ function visibleTestId(page, testId) {
   return page.locator(`[data-testid="${testId}"]:visible`);
 }
 
-async function expectSingleVisibleTestId(page, testId) {
-  const locator = visibleTestId(page, testId);
-  await expect(locator, `Expected one visible element with data-testid="${testId}"`).toHaveCount(1);
-  await expect(locator, `Expected data-testid="${testId}" to be visible`).toBeVisible();
-  return locator;
-}
-
-async function saveFullPageScreenshot(page, name) {
-  await mkdir(screenshotDir, { recursive: true });
-  await page.screenshot({ path: `${screenshotDir}/${name}`, fullPage: true });
-}
-
 async function openCase(page, caseSlug) {
   let caseCard = visibleTestId(page, `case-record-${caseSlug}`);
-
   if (await caseCard.count() === 0) {
-    const allFilter = page.getByRole('button', { name: /filter cases by all/i });
-    await allFilter.click();
+    await page.getByRole('button', { name: /filter cases by all/i }).click();
     caseCard = visibleTestId(page, `case-record-${caseSlug}`);
   }
-
-  await expect(caseCard, `Expected case ${caseSlug} to remain discoverable through All`).toHaveCount(1);
+  await expect(caseCard).toHaveCount(1);
   await caseCard.click();
 }
 
 async function openReceiptCard(page, receiptTestId) {
-  const receiptSelector = await expectSingleVisibleTestId(page, `receipt-selector-${receiptTestId}`);
-  await receiptSelector.click();
-  return expectSingleVisibleTestId(page, `receipt-card-${receiptTestId}`);
+  const selector = visibleTestId(page, `receipt-selector-${receiptTestId}`);
+  await expect(selector).toHaveCount(1);
+  await selector.click();
+  const card = visibleTestId(page, `receipt-card-${receiptTestId}`);
+  await expect(card).toHaveCount(1);
+  return card;
 }
 
 async function openReceiptModal(page, receiptTestId) {
-  const receiptCard = await openReceiptCard(page, receiptTestId);
-  await receiptCard.click();
-  return expectSingleVisibleTestId(page, 'receipt-modal');
+  const card = await openReceiptCard(page, receiptTestId);
+  await card.click();
+  const modal = visibleTestId(page, 'receipt-modal');
+  await expect(modal).toHaveCount(1);
+  return modal;
 }
 
-async function saveCardScreenshot(card, name) {
-  await mkdir(cardScreenshotDir, { recursive: true });
-  await card.screenshot({ path: `${cardScreenshotDir}/${name}` });
+async function closeReceiptModal(page) {
+  await page.getByTestId('receipt-modal-close').click();
+  await expect(visibleTestId(page, 'receipt-modal')).toHaveCount(0);
 }
 
-async function saveModalScreenshot(modal, name) {
-  await mkdir(modalScreenshotDir, { recursive: true });
-  await modal.screenshot({ path: `${modalScreenshotDir}/${name}` });
+async function saveScreenshot(locator, directory, name) {
+  await mkdir(directory, { recursive: true });
+  await locator.screenshot({ path: `${directory}/${name}` });
 }
 
-test.describe('receipt visual QA screenshots', () => {
-  test('captures receipt layouts at desktop, tablet, and mobile widths', async ({ page }) => {
-    await preparePage(page, { width: 1440, height: 1200 });
-    await saveFullPageScreenshot(page, 'receipts-desktop.png');
-
-    await preparePage(page, { width: 768, height: 1100 });
-    await saveFullPageScreenshot(page, 'receipts-tablet.png');
-
-    await preparePage(page, { width: 390, height: 900 });
-    await saveFullPageScreenshot(page, 'receipts-mobile.png');
+test.describe('receipt evidence QA', () => {
+  test('captures portfolio layout at desktop, tablet, and mobile widths', async ({ page }) => {
+    test.setTimeout(120000);
+    await mkdir(screenshotDir, { recursive: true });
+    for (const [width, height, name] of [
+      [1440, 1200, 'receipts-desktop.png'],
+      [768, 1100, 'receipts-tablet.png'],
+      [390, 900, 'receipts-mobile.png']
+    ]) {
+      await preparePage(page, { width, height });
+      await page.screenshot({ path: `${screenshotDir}/${name}`, fullPage: true });
+    }
   });
 
-  for (const target of cardTargets) {
-    test(`captures ${target.receiptTestId} compact card`, async ({ page }) => {
-      await preparePage(page, { width: 1440, height: 1200 });
-      await openCase(page, target.caseSlug);
-      const card = await openReceiptCard(page, target.receiptTestId);
-      await saveCardScreenshot(card, target.filename);
-    });
-  }
+  test('captures priority compact cards', async ({ page }) => {
+    test.setTimeout(180000);
+    await preparePage(page, { width: 1440, height: 1200 });
+    for (const [caseSlug, receiptTestId, filename] of priorityCards) {
+      await openCase(page, caseSlug);
+      const card = await openReceiptCard(page, receiptTestId);
+      await saveScreenshot(card, cardScreenshotDir, filename);
+    }
+  });
 
-  for (const target of modalTargets) {
-    test(`captures ${target.receiptTestId} modal`, async ({ page }) => {
-      await preparePage(page, { width: 1440, height: 1200 });
-      await openCase(page, target.caseSlug);
-      const modal = await openReceiptModal(page, target.receiptTestId);
-      await saveModalScreenshot(modal, target.filename);
-    });
-  }
+  test('captures the complete desktop modal set', async ({ page }) => {
+    test.setTimeout(360000);
+    await preparePage(page, { width: 1440, height: 1200 });
+    for (const [caseSlug, receiptTestId, filename] of desktopModals) {
+      await openCase(page, caseSlug);
+      const modal = await openReceiptModal(page, receiptTestId);
+      await saveScreenshot(modal, modalScreenshotDir, filename);
+      await closeReceiptModal(page);
+    }
+  });
 
-  for (const target of priorityMobileTargets) {
-    test(`captures ${target.receiptTestId} evidence at mobile width`, async ({ page }) => {
-      await preparePage(page, { width: 390, height: 900 });
-      await openCase(page, target.caseSlug);
-      const modal = await openReceiptModal(page, target.receiptTestId);
-      await expect(page.getByTestId('receipt-modal-title')).toHaveText(target.title);
-      await expect(page.getByTestId('receipt-modal-close')).toBeVisible();
-      const noHorizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth);
-      expect(noHorizontalOverflow).toBe(true);
-      await saveModalScreenshot(modal, target.filename);
-    });
-  }
-
-  test('uses the active visible title and preserves Escape and backdrop close behavior', async ({ page }) => {
+  test('validates priority evidence at 390px', async ({ page }) => {
+    test.setTimeout(240000);
     await preparePage(page, { width: 390, height: 900 });
+    for (const [caseSlug, receiptTestId, title, filename] of mobileEvidence) {
+      await openCase(page, caseSlug);
+      const modal = await openReceiptModal(page, receiptTestId);
+      await expect(page.getByTestId('receipt-modal-title')).toHaveText(title);
+      await expect(page.getByTestId('receipt-modal-close')).toBeVisible();
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+      await saveScreenshot(modal, modalScreenshotDir, filename);
+      await closeReceiptModal(page);
+    }
+  });
+
+  test('preserves Escape, backdrop close, and short-viewport proof reachability', async ({ page }) => {
+    test.setTimeout(120000);
+    await preparePage(page, { width: 390, height: 650 });
     await openCase(page, 'mirror');
     await openReceiptModal(page, 'mirror-storybook-component-environment');
     await expect(page.getByTestId('receipt-modal-title')).toHaveText('Body Weather States');
@@ -166,10 +157,7 @@ test.describe('receipt visual QA screenshots', () => {
     await openReceiptModal(page, 'mirror-storybook-component-environment');
     await page.getByRole('dialog').click({ position: { x: 4, y: 4 } });
     await expect(visibleTestId(page, 'receipt-modal')).toHaveCount(0);
-  });
 
-  test('keeps proof reachable in a short mobile viewport', async ({ page }) => {
-    await preparePage(page, { width: 390, height: 650 });
     await openCase(page, 'smooth-md-growth-os');
     await openReceiptModal(page, 'smooth-md-lifecycle-map');
     const proof = page.getByTestId('receipt-proof');
