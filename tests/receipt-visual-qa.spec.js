@@ -6,145 +6,52 @@ const screenshotDir = 'tests/screenshots';
 const modalScreenshotDir = `${screenshotDir}/modals`;
 const cardScreenshotDir = `${screenshotDir}/cards`;
 
-const metaCardTargets = [
-  {
-    caseSlug: 'meta-airtable-dashboard',
-    receiptTestId: 'meta-leads-master',
-    filename: 'meta-leads-master-card.png'
-  },
-  {
-    caseSlug: 'meta-airtable-dashboard',
-    receiptTestId: 'meta-campaign-performance',
-    filename: 'meta-campaign-performance-card.png'
-  },
-  {
-    caseSlug: 'meta-airtable-dashboard',
-    receiptTestId: 'meta-revenue-attribution',
-    filename: 'meta-revenue-attribution-card.png'
-  },
-  {
-    caseSlug: 'meta-airtable-dashboard',
-    receiptTestId: 'meta-decision-console',
-    filename: 'meta-decision-console-card.png'
-  }
+const cardTargets = [
+  { caseSlug: 'mirror', receiptTestId: 'mirror-storybook-component-environment', filename: 'mirror-body-weather-card.png' },
+  { caseSlug: 'mirror', receiptTestId: 'mirror-body-weather-state-system', filename: 'mirror-interpretation-card.png' },
+  { caseSlug: 'smooth-md-growth-os', receiptTestId: 'smooth-md-brand-framework', filename: 'smooth-growth-system-card.png' },
+  { caseSlug: 'smooth-md-growth-os', receiptTestId: 'smooth-md-lifecycle-map', filename: 'smooth-patient-routing-card.png' },
+  { caseSlug: 'meta-airtable-dashboard', receiptTestId: 'meta-leads-master', filename: 'meta-leads-master-card.png' },
+  { caseSlug: 'meta-airtable-dashboard', receiptTestId: 'meta-campaign-performance', filename: 'meta-campaign-performance-card.png' },
+  { caseSlug: 'meta-airtable-dashboard', receiptTestId: 'meta-revenue-attribution', filename: 'meta-revenue-attribution-card.png' },
+  { caseSlug: 'meta-airtable-dashboard', receiptTestId: 'meta-decision-console', filename: 'meta-decision-console-card.png' },
+  { caseSlug: 'snip-provider-pipeline', receiptTestId: 'snip-nppes-provider-pull', filename: 'snip-nppes-provider-pull-card.png' },
+  { caseSlug: 'snip-provider-pipeline', receiptTestId: 'snip-image-sourcing', filename: 'snip-image-sourcing-card.png' },
+  { caseSlug: 'snip-provider-pipeline', receiptTestId: 'snip-opencv-face-validation', filename: 'snip-face-validation-card.png' },
+  { caseSlug: 'snip-provider-pipeline', receiptTestId: 'snip-structured-asset-folders', filename: 'snip-asset-folders-card.png' }
 ];
-
-const snipCardTargets = [
-  {
-    caseSlug: 'snip-provider-pipeline',
-    receiptTestId: 'snip-nppes-provider-pull',
-    filename: 'snip-nppes-provider-pull-card.png'
-  },
-  {
-    caseSlug: 'snip-provider-pipeline',
-    receiptTestId: 'snip-image-sourcing',
-    filename: 'snip-image-sourcing-card.png'
-  },
-  {
-    caseSlug: 'snip-provider-pipeline',
-    receiptTestId: 'snip-opencv-face-validation',
-    filename: 'snip-face-validation-card.png'
-  },
-  {
-    caseSlug: 'snip-provider-pipeline',
-    receiptTestId: 'snip-structured-asset-folders',
-    filename: 'snip-asset-folders-card.png'
-  }
-];
-
-const cardTargets = [...metaCardTargets, ...snipCardTargets];
 
 const modalTargets = [
-  {
-    caseSlug: 'smooth-md-growth-os',
-    receiptTestId: 'smooth-md-brand-framework',
-    filename: 'smooth-brand-framework-modal.png'
-  },
-  {
-    caseSlug: 'smooth-md-growth-os',
-    receiptTestId: 'smooth-md-lifecycle-map',
-    filename: 'smooth-patient-lifecycle-modal.png'
-  },
-  {
-    caseSlug: 'smooth-md-growth-os',
-    receiptTestId: 'smooth-md-instagram-identity-rebuild',
-    filename: 'smooth-instagram-rebuild-modal.png'
-  },
-  {
-    caseSlug: 'smooth-md-growth-os',
-    receiptTestId: 'smooth-md-campaign-toolkit',
-    filename: 'smooth-campaign-toolkit-modal.png'
-  },
-  {
-    caseSlug: 'mirror',
-    receiptTestId: 'mirror-check-in-experience',
-    filename: 'mirror-check-in-experience-modal.png'
-  },
-  {
-    caseSlug: 'mirror',
-    receiptTestId: 'mirror-storybook-component-environment',
-    filename: 'mirror-storybook-modal.png'
-  },
-  {
-    caseSlug: 'meta-airtable-dashboard',
-    receiptTestId: 'meta-leads-master',
-    filename: 'meta-leads-master-modal.png'
-  },
-  {
-    caseSlug: 'meta-airtable-dashboard',
-    receiptTestId: 'meta-campaign-performance',
-    filename: 'meta-campaign-performance-modal.png'
-  },
-  {
-    caseSlug: 'meta-airtable-dashboard',
-    receiptTestId: 'meta-revenue-attribution',
-    filename: 'meta-revenue-attribution-modal.png'
-  },
-  {
-    caseSlug: 'meta-airtable-dashboard',
-    receiptTestId: 'meta-decision-console',
-    filename: 'meta-decision-console-modal.png'
-  },
-  {
-    caseSlug: 'snip-provider-pipeline',
-    receiptTestId: 'snip-nppes-provider-pull',
-    filename: 'snip-nppes-provider-pull-modal.png'
-  },
-  {
-    caseSlug: 'snip-provider-pipeline',
-    receiptTestId: 'snip-image-sourcing',
-    filename: 'snip-image-sourcing-modal.png'
-  },
-  {
-    caseSlug: 'snip-provider-pipeline',
-    receiptTestId: 'snip-opencv-face-validation',
-    filename: 'snip-face-validation-modal.png'
-  },
-  {
-    caseSlug: 'snip-provider-pipeline',
-    receiptTestId: 'snip-structured-asset-folders',
-    filename: 'snip-asset-folders-modal.png'
-  },
-  {
-    caseSlug: 'multi-brand-retention',
-    receiptTestId: 'multi-brand-lifecycle-flow-model',
-    filename: 'multi-brand-lifecycle-flow-modal.png'
-  },
-  {
-    caseSlug: 'multi-brand-retention',
-    receiptTestId: 'multi-brand-mailchimp-routing-map',
-    filename: 'multi-brand-routing-map-modal.png'
-  },
-  {
-    caseSlug: 'multi-brand-retention',
-    receiptTestId: 'multi-brand-follow-up-timing-protocol',
-    filename: 'multi-brand-follow-up-timing-modal.png'
-  },
-  {
-    caseSlug: 'multi-brand-retention',
-    receiptTestId: 'multi-brand-email-production-system',
-    filename: 'multi-brand-email-production-modal.png'
-  }
+  { caseSlug: 'smooth-md-growth-os', receiptTestId: 'smooth-md-brand-framework', filename: 'smooth-brand-framework-modal.png' },
+  { caseSlug: 'smooth-md-growth-os', receiptTestId: 'smooth-md-lifecycle-map', filename: 'smooth-patient-lifecycle-modal.png' },
+  { caseSlug: 'smooth-md-growth-os', receiptTestId: 'smooth-md-instagram-identity-rebuild', filename: 'smooth-instagram-rebuild-modal.png' },
+  { caseSlug: 'smooth-md-growth-os', receiptTestId: 'smooth-md-campaign-toolkit', filename: 'smooth-campaign-toolkit-modal.png' },
+  { caseSlug: 'mirror', receiptTestId: 'mirror-check-in-experience', filename: 'mirror-check-in-experience-modal.png' },
+  { caseSlug: 'mirror', receiptTestId: 'mirror-storybook-component-environment', filename: 'mirror-body-weather-states-modal.png' },
+  { caseSlug: 'mirror', receiptTestId: 'mirror-body-weather-state-system', filename: 'mirror-interpretation-trace-modal.png' },
+  { caseSlug: 'mirror', receiptTestId: 'mirror-debug-overlay-test-bench', filename: 'mirror-edge-cases-modal.png' },
+  { caseSlug: 'meta-airtable-dashboard', receiptTestId: 'meta-leads-master', filename: 'meta-leads-master-modal.png' },
+  { caseSlug: 'meta-airtable-dashboard', receiptTestId: 'meta-campaign-performance', filename: 'meta-campaign-performance-modal.png' },
+  { caseSlug: 'meta-airtable-dashboard', receiptTestId: 'meta-revenue-attribution', filename: 'meta-revenue-attribution-modal.png' },
+  { caseSlug: 'meta-airtable-dashboard', receiptTestId: 'meta-decision-console', filename: 'meta-decision-console-modal.png' },
+  { caseSlug: 'snip-provider-pipeline', receiptTestId: 'snip-nppes-provider-pull', filename: 'snip-nppes-provider-pull-modal.png' },
+  { caseSlug: 'snip-provider-pipeline', receiptTestId: 'snip-image-sourcing', filename: 'snip-image-sourcing-modal.png' },
+  { caseSlug: 'snip-provider-pipeline', receiptTestId: 'snip-opencv-face-validation', filename: 'snip-face-validation-modal.png' },
+  { caseSlug: 'snip-provider-pipeline', receiptTestId: 'snip-structured-asset-folders', filename: 'snip-asset-folders-modal.png' },
+  { caseSlug: 'multi-brand-retention', receiptTestId: 'multi-brand-lifecycle-flow-model', filename: 'multi-brand-lifecycle-flow-modal.png' },
+  { caseSlug: 'multi-brand-retention', receiptTestId: 'multi-brand-mailchimp-routing-map', filename: 'multi-brand-routing-map-modal.png' },
+  { caseSlug: 'multi-brand-retention', receiptTestId: 'multi-brand-follow-up-timing-protocol', filename: 'multi-brand-follow-up-timing-modal.png' },
+  { caseSlug: 'multi-brand-retention', receiptTestId: 'multi-brand-email-production-system', filename: 'multi-brand-email-production-modal.png' }
+];
+
+const priorityMobileTargets = [
+  { caseSlug: 'mirror', receiptTestId: 'mirror-storybook-component-environment', title: 'Body Weather States', filename: 'mobile-mirror-body-weather.png' },
+  { caseSlug: 'mirror', receiptTestId: 'mirror-body-weather-state-system', title: 'Interpretation Trace', filename: 'mobile-mirror-interpretation.png' },
+  { caseSlug: 'mirror', receiptTestId: 'mirror-debug-overlay-test-bench', title: 'Edge Case Tests', filename: 'mobile-mirror-edge-cases.png' },
+  { caseSlug: 'smooth-md-growth-os', receiptTestId: 'smooth-md-brand-framework', title: 'Clinic Growth System', filename: 'mobile-smooth-growth-system.png' },
+  { caseSlug: 'smooth-md-growth-os', receiptTestId: 'smooth-md-lifecycle-map', title: 'Patient Routing', filename: 'mobile-smooth-patient-routing.png' },
+  { caseSlug: 'snip-provider-pipeline', receiptTestId: 'snip-image-sourcing', title: 'Image Source Check', filename: 'mobile-snip-image-source.png' },
+  { caseSlug: 'snip-provider-pipeline', receiptTestId: 'snip-opencv-face-validation', title: 'Face Validation', filename: 'mobile-snip-face-validation.png' }
 ];
 
 async function preparePage(page, viewport) {
@@ -167,10 +74,7 @@ async function expectSingleVisibleTestId(page, testId) {
 
 async function saveFullPageScreenshot(page, name) {
   await mkdir(screenshotDir, { recursive: true });
-  await page.screenshot({
-    path: `${screenshotDir}/${name}`,
-    fullPage: true
-  });
+  await page.screenshot({ path: `${screenshotDir}/${name}`, fullPage: true });
 }
 
 async function openCase(page, caseSlug) {
@@ -189,29 +93,23 @@ async function openCase(page, caseSlug) {
 async function openReceiptCard(page, receiptTestId) {
   const receiptSelector = await expectSingleVisibleTestId(page, `receipt-selector-${receiptTestId}`);
   await receiptSelector.click();
-
   return expectSingleVisibleTestId(page, `receipt-card-${receiptTestId}`);
 }
 
 async function openReceiptModal(page, receiptTestId) {
   const receiptCard = await openReceiptCard(page, receiptTestId);
   await receiptCard.click();
-
   return expectSingleVisibleTestId(page, 'receipt-modal');
 }
 
 async function saveCardScreenshot(card, name) {
   await mkdir(cardScreenshotDir, { recursive: true });
-  await card.screenshot({
-    path: `${cardScreenshotDir}/${name}`
-  });
+  await card.screenshot({ path: `${cardScreenshotDir}/${name}` });
 }
 
 async function saveModalScreenshot(modal, name) {
   await mkdir(modalScreenshotDir, { recursive: true });
-  await modal.screenshot({
-    path: `${modalScreenshotDir}/${name}`
-  });
+  await modal.screenshot({ path: `${modalScreenshotDir}/${name}` });
 }
 
 test.describe('receipt visual QA screenshots', () => {
@@ -243,4 +141,40 @@ test.describe('receipt visual QA screenshots', () => {
       await saveModalScreenshot(modal, target.filename);
     });
   }
+
+  for (const target of priorityMobileTargets) {
+    test(`captures ${target.receiptTestId} evidence at mobile width`, async ({ page }) => {
+      await preparePage(page, { width: 390, height: 900 });
+      await openCase(page, target.caseSlug);
+      const modal = await openReceiptModal(page, target.receiptTestId);
+      await expect(page.getByTestId('receipt-modal-title')).toHaveText(target.title);
+      await expect(page.getByTestId('receipt-modal-close')).toBeVisible();
+      const noHorizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth);
+      expect(noHorizontalOverflow).toBe(true);
+      await saveModalScreenshot(modal, target.filename);
+    });
+  }
+
+  test('uses the active visible title and preserves Escape and backdrop close behavior', async ({ page }) => {
+    await preparePage(page, { width: 390, height: 900 });
+    await openCase(page, 'mirror');
+    await openReceiptModal(page, 'mirror-storybook-component-environment');
+    await expect(page.getByTestId('receipt-modal-title')).toHaveText('Body Weather States');
+    await page.keyboard.press('Escape');
+    await expect(visibleTestId(page, 'receipt-modal')).toHaveCount(0);
+
+    await openReceiptModal(page, 'mirror-storybook-component-environment');
+    await page.getByRole('dialog').click({ position: { x: 4, y: 4 } });
+    await expect(visibleTestId(page, 'receipt-modal')).toHaveCount(0);
+  });
+
+  test('keeps proof reachable in a short mobile viewport', async ({ page }) => {
+    await preparePage(page, { width: 390, height: 650 });
+    await openCase(page, 'smooth-md-growth-os');
+    await openReceiptModal(page, 'smooth-md-lifecycle-map');
+    const proof = page.getByTestId('receipt-proof');
+    await proof.scrollIntoViewIfNeeded();
+    await expect(proof).toBeVisible();
+    await expect(page.getByTestId('receipt-modal-close')).toBeVisible();
+  });
 });
