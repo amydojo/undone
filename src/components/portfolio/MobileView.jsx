@@ -6,6 +6,7 @@ import ProfileStrip from "./ProfileStrip";
 import OverviewArtifact from "./OverviewArtifact";
 import { cx } from "../../utils/cx";
 import { formatMetadataLabel } from "../../utils/caseMetadata";
+import { getPresentedReceipts, getReceiptPresentation } from "../../utils/receiptPresentation";
 import ReceiptVisualGallery from "./ReceiptVisualGallery";
 import OverviewVisualPlate from "./OverviewVisualPlate";
 import CaseLinks from "./CaseLinks";
@@ -25,10 +26,7 @@ const TABS = [
   { id: "proof", label: "Receipts" },
 ];
 
-const TAB_MOTION = {
-  duration: 0.36,
-  ease: [0.22, 1, 0.36, 1]
-};
+const TAB_MOTION = { duration: 0.36, ease: [0.22, 1, 0.36, 1] };
 const REDUCED_TAB_MOTION = { duration: 0.12 };
 const TAB_INDEX_BY_ID = TABS.reduce((indexes, tab, index) => {
   indexes[tab.id] = index;
@@ -40,18 +38,9 @@ function getTabIndex(tabId) {
 }
 
 const TAB_PANE_VARIANTS = {
-  enter: (direction) => ({
-    opacity: 0,
-    x: direction * 18
-  }),
-  center: {
-    opacity: 1,
-    x: 0
-  },
-  exit: (direction) => ({
-    opacity: 0,
-    x: direction * -10
-  })
+  enter: (direction) => ({ opacity: 0, x: direction * 18 }),
+  center: { opacity: 1, x: 0 },
+  exit: (direction) => ({ opacity: 0, x: direction * -10 })
 };
 
 const REDUCED_TAB_PANE_VARIANTS = {
@@ -61,25 +50,22 @@ const REDUCED_TAB_PANE_VARIANTS = {
 };
 
 function displayStatus(raw) {
-  if (!raw) return null
-  if (raw === 'needs screenshot' || raw === 'needs visual' || raw === 'needs metric' || raw === 'needs polish' || raw === 'needs link') return 'queued'
-  return raw
+  if (!raw) return null;
+  if (raw === 'needs screenshot' || raw === 'needs visual' || raw === 'needs metric' || raw === 'needs polish' || raw === 'needs link') return 'queued';
+  return raw;
 }
 
 function hasComponentVisual(receipt) {
-  return (receipt?.visualAssets ?? []).some((asset) => asset?.kind === 'component' || asset?.componentKey)
+  return (receipt?.visualAssets ?? []).some((asset) => asset?.kind === 'component' || asset?.componentKey);
 }
 
 function getReceiptTestId(receipt) {
-  return receipt?.testId ?? receipt?.id
+  return receipt?.testId ?? receipt?.id;
 }
-
-// ─── Overview Tab ─────────────────────────────────────────────────────────────
 
 function OverviewTab({ record, openWorkspace }) {
   return (
     <div className="mx-auto max-w-[780px] space-y-6 px-4 py-4 sm:space-y-7 sm:py-5">
-      {/* Top bar */}
       <div className="flex items-center justify-between gap-3">
         <div className="text-[9px] uppercase tracking-[0.18em] text-[#11100d]/42">active case file</div>
         <button
@@ -92,7 +78,6 @@ function OverviewTab({ record, openWorkspace }) {
         </button>
       </div>
 
-      {/* Hero */}
       <div className="max-w-[700px]">
         <div className="flex flex-wrap items-center gap-2 text-[11px] tracking-[0.01em] text-[#11100d]/42">
           {[record.category, record.timeline, record.status].map((item, index) => (
@@ -114,31 +99,24 @@ function OverviewTab({ record, openWorkspace }) {
         <CaseLinks links={record.links} compact />
       </div>
 
-      {/* Proof ledger */}
       <div>
         <div className="text-[10px] uppercase tracking-[0.15em] text-[#11100d]/38">Proof signals</div>
         <div className="mt-3 grid grid-cols-1 divide-y divide-[#11100d]/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-          {record.metrics.map((metric) => (
-            <MetricPill key={metric.label} metric={metric} compact />
-          ))}
+          {record.metrics.map((metric) => <MetricPill key={metric.label} metric={metric} compact />)}
         </div>
       </div>
 
       <OverviewVisualPlate visual={record.overviewVisual} slug={record.slug} variant="inline" />
-
-      {/* System model */}
       <OverviewArtifact record={record} />
-
       <ProfileStrip />
     </div>
   );
 }
 
-// ─── Proof Tab ───────────────────────────────────────────────────────────────
-
 function ProofTab({ record, activeReceipt, onSelectReceipt, resetSignal }) {
-  const receipts = record.receipts;
-  const selectedReceipt = activeReceipt;
+  const receipts = getPresentedReceipts(record.receipts);
+  const selectedReceipt = activeReceipt ?? receipts[0];
+  const selectedPresentation = getReceiptPresentation(selectedReceipt);
   const receiptContents = selectedReceipt?.contents ?? [];
   const componentVisual = hasComponentVisual(selectedReceipt);
   const selectedStatus = displayStatus(selectedReceipt?.status);
@@ -161,68 +139,37 @@ function ProofTab({ record, activeReceipt, onSelectReceipt, resetSignal }) {
             const active = selectedReceipt?.id === receipt.id;
             const status = displayStatus(receipt.status);
             const showStatus = Boolean(status && status !== 'ready');
+            const presentation = getReceiptPresentation(receipt);
 
             return (
               <button
                 key={receipt.id}
                 type="button"
                 data-testid={`receipt-selector-${getReceiptTestId(receipt)}`}
-                aria-label={`Select receipt: ${receipt.name}`}
+                aria-label={`Select receipt: ${presentation.name}`}
                 aria-pressed={active}
                 onClick={() => onSelectReceipt(receipt.id)}
                 className={cx(
                   "relative min-h-[96px] min-w-[200px] snap-start overflow-hidden border px-3.5 py-3 text-left transition active:scale-[0.99]",
-                  active
-                    ? "border-[#11100d]/30 bg-[#fffaf1]"
-                    : "border-[#11100d]/8 bg-[#f7f1e7]/68"
+                  active ? "border-[#11100d]/30 bg-[#fffaf1]" : "border-[#11100d]/8 bg-[#f7f1e7]/68"
                 )}
               >
-                <span
-                  className={cx(
-                    "absolute bottom-0 left-3 top-0 w-px",
-                    active ? "bg-[#11100d]/42" : "bg-transparent"
-                  )}
-                  aria-hidden="true"
-                />
+                <span className={cx("absolute bottom-0 left-3 top-0 w-px", active ? "bg-[#11100d]/42" : "bg-transparent")} aria-hidden="true" />
                 <div className="flex items-start justify-between gap-3">
-                  <span
-                    className={cx(
-                      "shrink-0 font-mono text-[10px] tabular-nums tracking-[0.06em]",
-                      active
-                        ? "text-[#11100d]/62"
-                        : "text-[#11100d]/32"
-                    )}
-                  >
+                  <span className={cx("shrink-0 font-mono text-[10px] tabular-nums tracking-[0.06em]", active ? "text-[#11100d]/62" : "text-[#11100d]/32")}>
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   {showStatus && (
-                    <span
-                      className={cx(
-                        "shrink-0 border-l border-[#11100d]/12 pl-2 text-[9px] uppercase tracking-[0.1em]",
-                        active
-                          ? "text-[#11100d]/44"
-                          : "text-[#11100d]/42"
-                      )}
-                    >
+                    <span className={cx("shrink-0 border-l border-[#11100d]/12 pl-2 text-[9px] uppercase tracking-[0.1em]", active ? "text-[#11100d]/44" : "text-[#11100d]/42")}>
                       {status}
                     </span>
                   )}
                 </div>
-                <div
-                  className={cx(
-                    "mt-2.5 line-clamp-2 text-[13px] leading-[1.35]",
-                    active ? "text-[#11100d]" : "text-[#11100d]/72"
-                  )}
-                >
-                  {receipt.name}
+                <div className={cx("mt-2.5 line-clamp-2 text-[13px] leading-[1.35]", active ? "text-[#11100d]" : "text-[#11100d]/72")}>
+                  {presentation.name}
                 </div>
-                <div
-                  className={cx(
-                    "mt-2 truncate text-[9px] uppercase tracking-[0.11em]",
-                    active ? "text-[#11100d]/46" : "text-[#11100d]/34"
-                  )}
-                >
-                  {receipt.format}
+                <div className={cx("mt-2 truncate text-[9px] uppercase tracking-[0.11em]", active ? "text-[#11100d]/46" : "text-[#11100d]/34")}>
+                  {presentation.format}
                 </div>
               </button>
             );
@@ -234,59 +181,42 @@ function ProofTab({ record, activeReceipt, onSelectReceipt, resetSignal }) {
         <div>
           <ReceiptVisualGallery
             visualAssets={selectedReceipt.visualAssets}
-            receiptName={selectedReceipt.name}
-            receiptFormat={selectedReceipt.format}
+            receiptName={selectedPresentation.name}
+            receiptFormat={selectedPresentation.format}
             receiptTestId={getReceiptTestId(selectedReceipt)}
             variant="mobile"
             resetSignal={resetSignal}
           />
           {showSelectedStatus && (
-            <div className="mt-3">
-              <span className="border-l border-[#11100d]/12 pl-2 text-[9px] uppercase tracking-[0.1em] text-[#11100d]/42">
-                {selectedStatus}
-              </span>
-            </div>
+            <div className="mt-3"><span className="border-l border-[#11100d]/12 pl-2 text-[9px] uppercase tracking-[0.1em] text-[#11100d]/42">{selectedStatus}</span></div>
           )}
         </div>
       )}
 
       {selectedReceipt && !componentVisual && (
         <div className="rounded-[8px] border border-[#11100d]/10 bg-[#fffaf1] p-4">
-          <h3 className="text-[14px] leading-5 text-[#11100d]">
-            {selectedReceipt.name}
-          </h3>
-          <p className="mt-2 text-[13px] leading-6 text-[#11100d]/70">
-            {selectedReceipt.claim}
-          </p>
+          <h3 className="text-[14px] leading-5 text-[#11100d]">{selectedPresentation.name}</h3>
+          <p className="mt-2 text-[13px] leading-6 text-[#11100d]/70">{selectedReceipt.claim}</p>
 
           {receiptContents.length > 0 && (
             <div className="mt-3 flex flex-wrap gap-1.5">
               {receiptContents.map((item) => (
-                <span
-                  key={item}
-                  className="border-l border-[#11100d]/12 pl-2 text-[10px] uppercase tracking-[0.12em] text-[#11100d]/48"
-                >
-                  {item}
-                </span>
+                <span key={item} className="border-l border-[#11100d]/12 pl-2 text-[10px] uppercase tracking-[0.12em] text-[#11100d]/48">{item}</span>
               ))}
             </div>
           )}
 
           <ReceiptVisualGallery
             visualAssets={selectedReceipt.visualAssets}
-            receiptName={selectedReceipt.name}
-            receiptFormat={selectedReceipt.format}
+            receiptName={selectedPresentation.name}
+            receiptFormat={selectedPresentation.format}
             receiptTestId={getReceiptTestId(selectedReceipt)}
             variant="mobile"
             resetSignal={resetSignal}
           />
 
           {showSelectedStatus && (
-            <div className="mt-3">
-              <span className="border-l border-[#11100d]/12 pl-2 text-[9px] uppercase tracking-[0.1em] text-[#11100d]/42">
-                {selectedStatus}
-              </span>
-            </div>
+            <div className="mt-3"><span className="border-l border-[#11100d]/12 pl-2 text-[9px] uppercase tracking-[0.1em] text-[#11100d]/42">{selectedStatus}</span></div>
           )}
         </div>
       )}
@@ -296,7 +226,6 @@ function ProofTab({ record, activeReceipt, onSelectReceipt, resetSignal }) {
 
 function MobileTabPane({ children, direction, prefersReducedMotion }) {
   const isPresent = useIsPresent();
-
   return (
     <motion.div
       custom={direction}
@@ -306,17 +235,12 @@ function MobileTabPane({ children, direction, prefersReducedMotion }) {
       exit="exit"
       transition={prefersReducedMotion ? REDUCED_TAB_MOTION : TAB_MOTION}
       className="inset-x-0 top-0 w-full min-w-0"
-      style={{
-        position: isPresent ? "relative" : "absolute",
-        zIndex: isPresent ? 1 : 0
-      }}
+      style={{ position: isPresent ? "relative" : "absolute", zIndex: isPresent ? 1 : 0 }}
     >
       {children}
     </motion.div>
   );
 }
-
-// ─── Main MobileView ─────────────────────────────────────────────────────────
 
 export default function MobileView({
   record,
@@ -338,9 +262,7 @@ export default function MobileView({
   const tabDirection = activeTabIndex === previousTabIndex ? 0 : activeTabIndex > previousTabIndex ? 1 : -1;
 
   React.useEffect(() => {
-    if (activeMobileTab !== mobileTab) {
-      setMobileTab(activeMobileTab);
-    }
+    if (activeMobileTab !== mobileTab) setMobileTab(activeMobileTab);
   }, [activeMobileTab, mobileTab, setMobileTab]);
 
   React.useEffect(() => {
@@ -348,16 +270,13 @@ export default function MobileView({
   }, [activeMobileTab]);
 
   return (
-    <div className="lg:hidden">
-      {/* Sticky tab bar — positioned below the sticky case selector (~80 px) */}
+    <div className="lg:hidden" data-mode={mode}>
       <div className="sticky top-20 z-20 border-b border-[#11100d]/10 bg-[#f7f1e7]/92 px-4 py-2 backdrop-blur-xl">
         <div
           className="relative grid grid-cols-2 overflow-hidden rounded-full p-1"
           role="group"
           aria-label="Mobile section tabs"
-          onPointerDown={() => {
-            if (!prefersReducedMotion) setTabControlPressed(true);
-          }}
+          onPointerDown={() => { if (!prefersReducedMotion) setTabControlPressed(true); }}
           onPointerUp={() => setTabControlPressed(false)}
           onPointerCancel={() => setTabControlPressed(false)}
           onPointerLeave={() => setTabControlPressed(false)}
@@ -365,10 +284,7 @@ export default function MobileView({
           <motion.div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 rounded-full border border-[#11100d]/10 bg-[#fffaf1]/72 shadow-[inset_0_1px_0_rgba(255,250,241,0.9),inset_0_-1px_0_rgba(17,16,13,0.035)]"
-            animate={{
-              scale: tabControlPressed && !prefersReducedMotion ? 0.995 : 1,
-              opacity: tabControlPressed && !prefersReducedMotion ? 0.96 : 1
-            }}
+            animate={{ scale: tabControlPressed && !prefersReducedMotion ? 0.995 : 1, opacity: tabControlPressed && !prefersReducedMotion ? 0.96 : 1 }}
             transition={{ duration: 0.1, ease: [0.22, 1, 0.36, 1] }}
           />
           <motion.div
@@ -379,13 +295,7 @@ export default function MobileView({
             transition={prefersReducedMotion ? { duration: 0 } : TAB_MOTION}
           >
             <span className="pointer-events-none absolute inset-x-3 top-px h-px bg-[#f7f1e7]/14" aria-hidden="true" />
-            <span
-              className={cx(
-                "pointer-events-none absolute bottom-2 top-2 w-px bg-[#f7f1e7]/18",
-                tabDirection < 0 ? "left-2" : "right-2"
-              )}
-              aria-hidden="true"
-            />
+            <span className={cx("pointer-events-none absolute bottom-2 top-2 w-px bg-[#f7f1e7]/18", tabDirection < 0 ? "left-2" : "right-2")} aria-hidden="true" />
           </motion.div>
           {TABS.map(({ id, label }) => (
             <button
@@ -399,9 +309,7 @@ export default function MobileView({
               }}
               className={cx(
                 "relative z-10 min-h-11 rounded-full px-3 text-[10px] uppercase tracking-[0.12em] transition-colors duration-[360ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/20",
-                activeMobileTab === id
-                  ? "text-[#f7f1e7]"
-                  : "text-[#11100d]/48 hover:text-[#11100d]/64"
+                activeMobileTab === id ? "text-[#f7f1e7]" : "text-[#11100d]/48 hover:text-[#11100d]/64"
               )}
             >
               {label}
@@ -410,23 +318,13 @@ export default function MobileView({
         </div>
       </div>
 
-      {/* Tab content */}
       <div className="relative min-w-0 max-w-full overflow-hidden shadow-[inset_0_10px_18px_rgba(17,16,13,0.025)] before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:z-10 before:h-px before:bg-[#11100d]/5 before:content-['']">
         <AnimatePresence mode="sync" initial={false} custom={tabDirection}>
-          <MobileTabPane
-            key={activeMobileTab}
-            direction={tabDirection}
-            prefersReducedMotion={prefersReducedMotion}
-          >
+          <MobileTabPane key={activeMobileTab} direction={tabDirection} prefersReducedMotion={prefersReducedMotion}>
             {activeMobileTab === "overview" ? (
               <OverviewTab record={record} openWorkspace={openWorkspace} />
             ) : (
-              <ProofTab
-                record={record}
-                activeReceipt={activeReceipt}
-                onSelectReceipt={onSelectReceipt}
-                resetSignal={resetSignal}
-              />
+              <ProofTab record={record} activeReceipt={activeReceipt} onSelectReceipt={onSelectReceipt} resetSignal={resetSignal} />
             )}
           </MobileTabPane>
         </AnimatePresence>
