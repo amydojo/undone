@@ -58,7 +58,7 @@ export default function SimplifiedCaseReceiptVisual({
       </div>
       <div className="border-t border-[#11100d]/8 bg-[#fffaf1] px-4 py-4 sm:px-6">
         <Flow items={copy.flow} accent={style.accent} />
-        <div className="mt-4 border-t border-[#11100d]/8 pt-4 text-[12px] leading-5 text-[#11100d]/70">
+        <div data-testid="receipt-proof" className="mt-4 border-t border-[#11100d]/8 pt-4 text-[12px] leading-5 text-[#11100d]/70">
           <span className="mr-2 text-[9px] uppercase tracking-[0.13em] text-[#11100d]/36">Proves</span>
           {copy.proof}
         </div>
