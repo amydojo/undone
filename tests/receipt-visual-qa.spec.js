@@ -29,16 +29,37 @@ function visibleTestId(page, testId) {
 
 async function openCase(page, caseSlug) {
   let caseCard = visibleTestId(page, `case-record-${caseSlug}`);
-  if (await caseCard.count() === 0) {
-    await page.getByRole('button', { name: /filter cases by all/i }).click();
-    caseCard = visibleTestId(page, `case-record-${caseSlug}`);
+  if (await caseCard.count() > 0) {
+    await caseCard.click();
+    return;
   }
+
+  const mobileSelector = page.getByRole('button', { name: 'Open record selector' });
+  if (await mobileSelector.isVisible().catch(() => false)) {
+    await mobileSelector.click();
+    caseCard = visibleTestId(page, `case-record-${caseSlug}`);
+    if (await caseCard.count() === 0) {
+      await page.getByRole('button', { name: 'Filter by All' }).click();
+      caseCard = visibleTestId(page, `case-record-${caseSlug}`);
+    }
+    await expect(caseCard).toHaveCount(1);
+    await caseCard.click();
+    return;
+  }
+
+  await page.getByRole('button', { name: /filter cases by all/i }).click();
+  caseCard = visibleTestId(page, `case-record-${caseSlug}`);
   await expect(caseCard).toHaveCount(1);
   await caseCard.click();
 }
 
 async function openReceiptCard(page, receiptTestId) {
-  const selector = visibleTestId(page, `receipt-selector-${receiptTestId}`);
+  let selector = visibleTestId(page, `receipt-selector-${receiptTestId}`);
+  if (await selector.count() === 0) {
+    const receiptsTab = page.getByRole('button', { name: 'Show Receipts tab' });
+    if (await receiptsTab.isVisible().catch(() => false)) await receiptsTab.click();
+    selector = visibleTestId(page, `receipt-selector-${receiptTestId}`);
+  }
   await expect(selector).toHaveCount(1);
   await selector.click();
   const card = visibleTestId(page, `receipt-card-${receiptTestId}`);
