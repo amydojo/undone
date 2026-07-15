@@ -57,7 +57,7 @@ export default function ProfileStrip({ className }) {
       <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
         <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
           <span className="text-[13px] font-medium leading-none text-[#11100d]/78">{profile.name}</span>
-          <span className="text-[10px] leading-none text-[#11100d]/42">Design Technologist</span>
+          <span className="text-[10px] leading-none text-[#11100d]/42">{profile.title}</span>
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <a
@@ -96,7 +96,7 @@ export default function ProfileStrip({ className }) {
         <div className="mt-4 border border-[#11100d]/8 bg-[#f7f1e7]/60 px-4 py-3">
           <div className="grid gap-4 lg:grid-cols-[1.12fr_0.86fr_1fr]">
             <div className="border-b border-[#11100d]/8 pb-3 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-4">
-              <div className="mb-2 text-[9px] uppercase tracking-[0.15em] text-[#11100d]/34">Positioning</div>
+              <div className="mb-2 text-[9px] uppercase tracking-[0.15em] text-[#11100d]/34">Practice</div>
               <p className="text-[12px] leading-[1.6] text-[#11100d]/62">{profile.detailsPositioning}</p>
             </div>
 
