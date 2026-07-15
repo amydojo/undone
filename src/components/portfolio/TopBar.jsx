@@ -15,13 +15,13 @@ export default function TopBar({ onHomeReset }) {
           onClick={onHomeReset}
           className="flex min-h-11 min-w-0 flex-col justify-center gap-0.5 rounded-[6px] text-left transition hover:text-[#11100d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11100d]/25 lg:min-h-0 lg:flex-row lg:items-baseline lg:gap-2.5"
         >
-          <span className="text-[13px] font-medium leading-none text-[#11100d]/82">Amy Do</span>
+          <span className="text-[13px] font-medium leading-none text-[#11100d]/82">{profile.name}</span>
           <span className="hidden text-[10px] leading-none text-[#11100d]/44 lg:inline">
-            Design Technologist · Product systems &amp; growth infrastructure
+            {profile.title} · Affective interfaces &amp; product systems
           </span>
-          <span className="text-[10px] leading-none text-[#11100d]/44 lg:hidden">Design Technologist</span>
+          <span className="text-[10px] leading-none text-[#11100d]/44 lg:hidden">{profile.title}</span>
           <span className="whitespace-nowrap text-[8px] leading-none text-[#11100d]/34 lg:hidden">
-            Product systems &amp; growth infrastructure
+            Psychology × interaction × code
           </span>
         </button>
         {/* Mobile-only: résumé + contact always visible */}
