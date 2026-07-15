@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { AnimatePresence } from "framer-motion";
 import { records } from "../../data/records";
 import TopBar from "./TopBar";
+import PracticeSpine from "./PracticeSpine";
 import RecordRail from "./RecordRail";
 import ActiveCanvas from "./ActiveCanvas";
 import ProofRail from "./ProofRail";
@@ -179,10 +180,11 @@ export default function UndonePortfolioV10() {
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#0b0b09] font-sans text-[#11100d]">
-      <div className="mx-auto min-h-screen max-w-[1720px] overflow-x-hidden bg-[#f7f1e7] shadow-[0_0_0_1px_rgba(255,255,255,0.08)]">
+      <div className="mx-auto min-h-screen max-w-[1720px] overflow-x-hidden bg-[#f7f1e7] shadow-[0_0_0_1px_rgba(255,255,255,0.08)] lg:h-screen">
         <div className="pointer-events-none fixed inset-0 opacity-[0.45] [background-image:radial-gradient(circle_at_18%_8%,rgba(255,255,255,0.85),transparent_28%),linear-gradient(rgba(17,16,13,0.028)_1px,transparent_1px),linear-gradient(90deg,rgba(17,16,13,0.028)_1px,transparent_1px)] [background-size:auto,38px_38px,38px_38px]" />
-        <div className="relative z-10">
+        <div className="relative z-10 flex min-h-screen flex-col lg:h-screen lg:min-h-0">
           <TopBar onHomeReset={resetPortfolioHome} />
+          <PracticeSpine />
 
           {/* Mobile layout */}
           <MobileRecordSelector
@@ -210,7 +212,7 @@ export default function UndonePortfolioV10() {
           />
 
           {/* Desktop layout */}
-          <div className="hidden lg:grid lg:h-[calc(100vh-73px)] lg:grid-cols-[320px_minmax(0,1fr)_360px] lg:overflow-hidden">
+          <div className="hidden lg:grid lg:min-h-0 lg:flex-1 lg:grid-cols-[320px_minmax(0,1fr)_360px] lg:overflow-hidden">
             <RecordRail
               recordsList={filteredRecords}
               activeRecord={activeRecord}
