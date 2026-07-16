@@ -1,7 +1,6 @@
 import React from "react";
 import UndonePortfolioV10 from "./components/portfolio/UndonePortfolio";
 import MensWellnessLeadPageSprint from "./components/services/MensWellnessLeadPageSprint";
-import TypeArchiveCaseStudy from "./components/cases/TypeArchiveCaseStudy";
 import { installTypeArchiveRecord } from "./data/typeArchiveRecord";
 
 export default function App() {
@@ -9,10 +8,6 @@ export default function App() {
 
   if (pathname.endsWith("/mens-wellness-lead-page-sprint")) {
     return <MensWellnessLeadPageSprint />;
-  }
-
-  if (pathname.endsWith("/work/type-archive")) {
-    return <TypeArchiveCaseStudy />;
   }
 
   let prioritizeTypeArchive = false;
