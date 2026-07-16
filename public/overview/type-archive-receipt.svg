@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Typography Decision Receipt</title>
+  <desc id="desc">A receipt preserving selected type roles, signals, licensing, tradeoffs, sources, and CSS.</desc>
+  <rect width="900" height="1000" fill="#171512"/>
+  <g transform="translate(88 58)" font-family="Arial, Helvetica, sans-serif" fill="#171512">
+    <rect width="724" height="884" rx="18" fill="#fffaf1"/>
+    <rect width="724" height="10" rx="5" fill="#ff6a3d"/>
+    <text x="42" y="62" font-size="15" letter-spacing="3" opacity=".42">TYPE ARCHIVE / DECISION 0048</text>
+    <circle cx="662" cy="56" r="8" fill="#ff6a3d"/>
+    <path d="M42 92H682" stroke="#171512" stroke-opacity=".12"/>
+
+    <text x="42" y="140" font-size="13" letter-spacing="2.4" opacity=".38">BRIEF</text>
+    <text x="42" y="181" font-size="28" font-weight="600">Quiet precision. Clinical trust.</text>
+    <text x="42" y="215" font-size="20" opacity=".62">Human, intelligent, and exact without feeling sterile.</text>
+
+    <path d="M42 252H682" stroke="#171512" stroke-opacity=".12"/>
+    <text x="42" y="292" font-size="13" letter-spacing="2.4" opacity=".38">SELECTED SYSTEM</text>
+
+    <g transform="translate(42 324)">
+      <rect width="640" height="118" rx="14" fill="#f6efe4" stroke="#171512" stroke-opacity=".10"/>
+      <text x="22" y="31" font-size="11" letter-spacing="2" opacity=".38">DISPLAY</text>
+      <text x="22" y="74" font-size="34" font-weight="600">Instrument Serif</text>
+      <text x="488" y="31" font-size="11" letter-spacing="1.8" opacity=".38">OPEN SOURCE</text>
+      <text x="488" y="72" font-size="14" opacity=".56">SIL OFL 1.1</text>
+    </g>
+
+    <g transform="translate(42 456)">
+      <rect width="640" height="96" rx="14" fill="#f6efe4" stroke="#171512" stroke-opacity=".10"/>
+      <text x="22" y="29" font-size="11" letter-spacing="2" opacity=".38">INTERFACE</text>
+      <text x="22" y="66" font-size="27" font-weight="600">Instrument Sans</text>
+      <text x="488" y="29" font-size="11" letter-spacing="1.8" opacity=".38">ROLE FIT</text>
+      <text x="488" y="64" font-size="14" opacity=".56">precise · human</text>
+    </g>
+
+    <g transform="translate(42 566)">
+      <rect width="640" height="86" rx="14" fill="#171512"/>
+      <text x="22" y="28" font-size="11" letter-spacing="2" fill="#fffaf1" opacity=".38">METADATA</text>
+      <text x="22" y="61" font-size="23" font-family="monospace" fill="#fffaf1">IBM Plex Mono</text>
+      <circle cx="600" cy="43" r="7" fill="#ff6a3d"/>
+    </g>
+
+    <path d="M42 684H682" stroke="#171512" stroke-opacity=".12"/>
+    <text x="42" y="724" font-size="13" letter-spacing="2.4" opacity=".38">EVIDENCE</text>
+
+    <g font-size="15" opacity=".66">
+      <text x="42" y="760">Precise 92</text>
+      <text x="190" y="760">Human 84</text>
+      <text x="326" y="760">Clinical 79</text>
+      <text x="476" y="760">Quiet 71</text>
+    </g>
+    <path d="M42 780H682" stroke="#171512" stroke-opacity=".08"/>
+
+    <g font-size="13" opacity=".54">
+      <text x="42" y="816">Tradeoff</text>
+      <text x="142" y="816">Display character is restrained to protect interface clarity.</text>
+      <text x="42" y="846">Rejected</text>
+      <text x="142" y="846">Bodoni Moda · role contrast too severe for current brief.</text>
+      <text x="42" y="876">Output</text>
+      <text x="142" y="876" font-family="monospace">font-family: &quot;Instrument Sans&quot;, sans-serif;</text>
+    </g>
+  </g>
+</svg>

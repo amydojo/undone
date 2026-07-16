@@ -12,6 +12,17 @@ const SYSTEM_OBJECTS = {
       right: ['Named state and exact consequence', 'Proportionate assistance and friction', 'Recovery attached to the original action'],
     },
   },
+  'type-archive': {
+    title: 'Typography Decision System',
+    purpose: 'Turns a vague creative brief into visible signals, separate role recommendations, controlled comparison, recovery paths, and a restorable decision receipt.',
+    flow: ['Brief', 'Signals', 'Role scoring', 'Compare', 'Recover', 'Receipt'],
+    contrast: {
+      leftLabel: 'Font gallery',
+      left: ['Browse by appearance', 'Compare in inconsistent layouts', 'Lose the reasoning after selection'],
+      rightLabel: 'Decision system',
+      right: ['Inspect role fit and penalties', 'Hold comparison variables still', 'Preserve licensing, tradeoffs, and CSS'],
+    },
+  },
   mirror: {
     title: 'Signal Inspector',
     purpose: 'Turns mood, sleep, clarity, and context inputs into readable states and gentle next moves.',

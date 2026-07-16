@@ -12,13 +12,26 @@ import MobileView from "./MobileView";
 
 const ORIENTATION_HINT_STORAGE_KEY = "undone_seen_orientation_hint";
 
-export default function UndonePortfolioV10() {
+function replaceCaseQuery(slug) {
+  try {
+    const url = new URL(window.location.href);
+    if (slug) url.searchParams.set("case", slug);
+    else url.searchParams.delete("case");
+    window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+  } catch {
+    // URL state is optional. The workspace still opens and closes in memory.
+  }
+}
+
+export default function UndonePortfolioV10({ initialWorkspaceSlug = null }) {
   const visibleRecords = useMemo(() => records.filter((record) => record.visible !== false), []);
   const defaultRecord = visibleRecords[0] ?? records[0];
+  const requestedRecord = visibleRecords.find((record) => record.slug === initialWorkspaceSlug) ?? null;
+  const initialRecord = requestedRecord ?? defaultRecord;
   const [activeFilter, setActiveFilter] = useState("featured");
-  const [activeRecordSlug, setActiveRecordSlug] = useState(defaultRecord.slug);
-  const [activeReceiptId, setActiveReceiptId] = useState(defaultRecord.receipts[0]?.id ?? null);
-  const [workspaceRecordSlug, setWorkspaceRecordSlug] = useState(null);
+  const [activeRecordSlug, setActiveRecordSlug] = useState(initialRecord.slug);
+  const [activeReceiptId, setActiveReceiptId] = useState(initialRecord.receipts[0]?.id ?? null);
+  const [workspaceRecordSlug, setWorkspaceRecordSlug] = useState(requestedRecord?.slug ?? null);
   const [mobileSheetOpen, setMobileSheetOpen] = useState(false);
   const [mobileTab, setMobileTab] = useState("overview");
   const [resetSignal, setResetSignal] = useState(0);
@@ -37,10 +50,21 @@ export default function UndonePortfolioV10() {
     }
   }, []);
 
+  const closeWorkspace = useCallback(() => {
+    setWorkspaceRecordSlug(null);
+    replaceCaseQuery(null);
+  }, []);
+
+  const openWorkspace = useCallback((record) => {
+    setActiveRecordSlug(record.slug);
+    setWorkspaceRecordSlug(record.slug);
+    replaceCaseQuery(record.slug);
+  }, []);
+
   const filteredRecords = useMemo(() => {
     return visibleRecords.filter((record) => {
-      if (activeFilter === 'all') return true;
-      if (activeFilter === 'featured') return record.featured === true;
+      if (activeFilter === "all") return true;
+      if (activeFilter === "featured") return record.featured === true;
       return record.filters?.includes(activeFilter) === true;
     });
   }, [activeFilter, visibleRecords]);
@@ -127,7 +151,7 @@ export default function UndonePortfolioV10() {
         activeElement?.isContentEditable === true;
 
       if (event.key === "Escape") {
-        setWorkspaceRecordSlug(null);
+        closeWorkspace();
         dismissOrientationHint();
       }
 
@@ -151,9 +175,7 @@ export default function UndonePortfolioV10() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeRecord.slug, dismissOrientationHint, filteredRecords]);
-
-  const openWorkspace = (record) => setWorkspaceRecordSlug(record.slug);
+  }, [activeRecord.slug, closeWorkspace, dismissOrientationHint, filteredRecords]);
 
   function resetPortfolioHome() {
     const homeRecord = visibleRecords[0] ?? defaultRecord ?? records[0];
@@ -162,7 +184,7 @@ export default function UndonePortfolioV10() {
     setActiveFilter("featured");
     setActiveRecordSlug(homeRecord.slug);
     setActiveReceiptId(homeRecord.receipts[0]?.id ?? null);
-    setWorkspaceRecordSlug(null);
+    closeWorkspace();
     setMobileSheetOpen(false);
     setMobileTab("overview");
     setResetSignal((value) => value + 1);
@@ -237,10 +259,7 @@ export default function UndonePortfolioV10() {
 
       <AnimatePresence>
         {workspaceRecord ? (
-          <CaseWorkspace
-            workspace={workspaceRecord}
-            closeWorkspace={() => setWorkspaceRecordSlug(null)}
-          />
+          <CaseWorkspace workspace={workspaceRecord} closeWorkspace={closeWorkspace} />
         ) : null}
       </AnimatePresence>
     </div>

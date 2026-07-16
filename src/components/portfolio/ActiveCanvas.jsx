@@ -10,6 +10,7 @@ import { formatMetadataLabel } from "../../utils/caseMetadata";
 
 const DECODER_LINES = {
   'interface-behavior-lab': 'Binary buttons → readable intent, consequence, state, assistance, and recovery.',
+  'type-archive': 'Vague creative intent → inspectable roles, tradeoffs, licensing, and a defensible decision.',
   mirror: 'Mood, sleep, clarity, and context → readable states and one next step.',
   'smooth-md-growth-os': 'Scattered clinic marketing → reusable service, CRM, and campaign logic.',
   'meta-airtable-dashboard': 'Ad spend → booking behavior → revenue-informed decisions.',
