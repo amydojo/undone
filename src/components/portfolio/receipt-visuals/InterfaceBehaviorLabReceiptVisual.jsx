@@ -1,4 +1,5 @@
 import React from 'react'
+import TypeArchiveReceiptVisual from './TypeArchiveReceiptVisual'
 
 const ACCENT = '#1aa8cc'
 
@@ -247,6 +248,7 @@ function PlaygroundReceipt() {
 
 export default function InterfaceBehaviorLabReceiptVisual(props) {
   const { title, type, claim, receiptBodyType, displayMode = 'full', ctaLabel = 'Inspect receipt' } = props
+  if (receiptBodyType?.startsWith('type-')) return <TypeArchiveReceiptVisual {...props} />
   let body = <PlaygroundReceipt />
   if (receiptBodyType === 'lifecycle') body = <LifecycleReceipt />
   if (receiptBodyType === 'library') body = <LibraryReceipt />
