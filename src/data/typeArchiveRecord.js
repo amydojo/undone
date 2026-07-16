@@ -13,7 +13,6 @@ export const typeArchiveRecord = {
   status: "live",
   timeline: "2026",
   accent: "#ff6a3d",
-  caseStudyHref: "/work/type-archive",
   oneLine:
     "I rebuilt a curated font index into a transparent, license-aware product that helps designers discover candidates, compare them fairly, recover from weak recommendations, and preserve the reasoning behind a final type system.",
   overviewVisual: {
@@ -44,15 +43,14 @@ export const typeArchiveRecord = {
   hiringTranslation:
     "This case demonstrates product modeling, transparent recommendation logic, schema design, interaction architecture, responsible data curation, accessibility specifications, performance constraints, and production deployment.",
   links: [
-    { label: "Read full case study", href: "/work/type-archive", primary: true },
-    { label: "Launch Type Archive", href: "https://type-archive.vercel.app" },
-    { label: "Inspect proof receipts", href: "https://type-archive.vercel.app/proof-receipts.html" },
-    { label: "View GitHub", href: "https://github.com/amydojo/type-archive" },
+    { label: "Launch product", href: "https://type-archive.vercel.app", primary: true },
+    { label: "View report", href: "https://type-archive.vercel.app/case-study.html" },
+    { label: "Methodology", href: "https://type-archive.vercel.app/methodology.html" },
   ],
   metrics: [
     { value: "81", label: "canonical type records" },
     { value: "14", label: "documented signals" },
-    { value: "10", label: "evidence receipts" },
+    { value: "4", label: "controlled contexts" },
   ],
   path: ["brief", "signals", "role scoring", "comparison", "recovery", "decision receipt"],
   signal:
@@ -105,7 +103,7 @@ export const typeArchiveRecord = {
       format: "decision model",
       status: "ready",
       claim:
-        "Proves the recommendations come from a documented, role-specific system rather than an opaque generated answer.",
+        "The recommendation comes from a documented, role-specific system rather than an opaque generated answer.",
       proof:
         "A 14-signal vocabulary, canonical v2 records, separate display, interface, and metadata scoring, visible contributions, visible penalties, and role-level rejection recovery are present in the product and repository.",
       contents: [
@@ -119,12 +117,7 @@ export const typeArchiveRecord = {
         "role rejection",
       ],
       visualAssets: [
-        {
-          src: "/proof/type-archive/type-dna-model.svg",
-          alt: "Type DNA model showing signal interpretation, separate role scoring, contributions, penalties, and recommendation evidence.",
-          caption:
-            "The model separates contextual fit from universal quality and exposes the evidence behind each role recommendation.",
-        },
+        { kind: "component", componentKey: "type-archive-type-dna" },
       ],
       artifacts: [],
     },
@@ -135,7 +128,7 @@ export const typeArchiveRecord = {
       format: "evaluation interface",
       status: "ready",
       claim:
-        "Proves candidates can be evaluated while surrounding variables remain consistent.",
+        "Candidates can be evaluated while the surrounding variables remain consistent.",
       proof:
         "Display, interface, body, and metadata contexts synchronize specimen text, size, measure, line height, and theme across up to three candidates.",
       contents: [
@@ -148,12 +141,7 @@ export const typeArchiveRecord = {
         "three-candidate queue",
       ],
       visualAssets: [
-        {
-          src: "/proof/type-archive/controlled-comparison.svg",
-          alt: "Controlled typography comparison showing three candidates under synchronized display, interface, body, and metadata settings.",
-          caption:
-            "The interface holds the evaluation conditions still so differences belong to the candidates rather than the surrounding layout.",
-        },
+        { kind: "component", componentKey: "type-archive-controlled-comparison" },
       ],
       artifacts: [],
     },
@@ -164,7 +152,7 @@ export const typeArchiveRecord = {
       format: "replacement logic",
       status: "ready",
       claim:
-        "Proves a premium reference can be translated into accessible alternatives without claiming an exact duplicate.",
+        "A premium reference can be translated into accessible alternatives without claiming an exact duplicate.",
       proof:
         "Each substitution states what is preserved, what changes, licensing differences, role fit, and situations where the replacement may fail.",
       contents: [
@@ -177,12 +165,7 @@ export const typeArchiveRecord = {
         "no exact-dupe claims",
       ],
       visualAssets: [
-        {
-          src: "/proof/type-archive/responsible-substitution.svg",
-          alt: "Responsible font substitution comparison showing preserved traits, changed traits, licensing, and failure cases.",
-          caption:
-            "Substitution is framed as a documented tradeoff, not a promise that different typefaces are interchangeable.",
-        },
+        { kind: "component", componentKey: "type-archive-responsible-substitution" },
       ],
       artifacts: [],
     },
@@ -190,10 +173,10 @@ export const typeArchiveRecord = {
       id: "decision-receipt-contract",
       testId: "type-archive-decision-receipt-contract",
       name: "Decision Receipt and Verification Contract",
-      format: "proof and engineering artifact",
+      format: "proof artifact",
       status: "ready",
       claim:
-        "Proves the final system preserves its rationale and that product claims are separated from unearned research outcomes.",
+        "The final system preserves its rationale while product claims stay separate from unearned research outcomes.",
       proof:
         "The receipt stores the brief, interpreted signals, selected roles, role evidence, licensing, tradeoffs, rejected candidates, sources, and CSS. Repository contracts cover data, model, browser, accessibility, privacy, performance, research, and portfolio checks.",
       contents: [
@@ -208,12 +191,7 @@ export const typeArchiveRecord = {
         "evidence boundaries",
       ],
       visualAssets: [
-        {
-          src: "/proof/type-archive/decision-receipt.svg",
-          alt: "Typography Decision Receipt and engineering verification contract with evidence levels and unearned outcome boundaries.",
-          caption:
-            "The product preserves the decision trail and explicitly distinguishes implemented proof from human outcomes that have not yet been earned.",
-        },
+        { kind: "component", componentKey: "type-archive-decision-receipt" },
       ],
       artifacts: [],
     },
