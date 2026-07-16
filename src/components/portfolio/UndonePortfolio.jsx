@@ -153,14 +153,7 @@ export default function UndonePortfolioV10() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [activeRecord.slug, dismissOrientationHint, filteredRecords]);
 
-  const openWorkspace = (record) => {
-    if (record.caseStudyHref) {
-      window.location.assign(record.caseStudyHref);
-      return;
-    }
-
-    setWorkspaceRecordSlug(record.slug);
-  };
+  const openWorkspace = (record) => setWorkspaceRecordSlug(record.slug);
 
   function resetPortfolioHome() {
     const homeRecord = visibleRecords[0] ?? defaultRecord ?? records[0];
