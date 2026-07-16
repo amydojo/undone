@@ -10,14 +10,22 @@ export default function App() {
     return <MensWellnessLeadPageSprint />;
   }
 
-  let prioritizeTypeArchive = false;
+  let initialWorkspaceSlug = null;
 
   try {
-    prioritizeTypeArchive = new URLSearchParams(window.location.search).get("case") === "type-archive";
+    initialWorkspaceSlug = new URLSearchParams(window.location.search).get("case");
   } catch {
-    prioritizeTypeArchive = false;
+    initialWorkspaceSlug = null;
   }
 
-  installTypeArchiveRecord({ prioritize: prioritizeTypeArchive });
-  return <UndonePortfolioV10 />;
+  const isLegacyTypeArchiveRoute = pathname.endsWith("/work/type-archive");
+  if (isLegacyTypeArchiveRoute) initialWorkspaceSlug = "type-archive";
+
+  installTypeArchiveRecord({ prioritize: initialWorkspaceSlug === "type-archive" });
+
+  if (isLegacyTypeArchiveRoute) {
+    window.history.replaceState(null, "", "/?case=type-archive");
+  }
+
+  return <UndonePortfolioV10 initialWorkspaceSlug={initialWorkspaceSlug} />;
 }
