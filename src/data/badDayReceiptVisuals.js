@@ -35,6 +35,7 @@ export const badDayReceiptVisuals = {
     proof: 'All three choices count as finished.',
     body: {
       endings: ['KEEP', 'LET GO', 'CARRY'],
+      screen: '/overview/bad-day-receipt-endings.jpg',
     },
   },
   'bad-day-carry-forward': {
@@ -52,6 +53,7 @@ export const badDayReceiptVisuals = {
       obligation: 'CONFIRM REPAIR TIME',
       supports: ['ONE STEP', 'FEWER CHOICES', 'SAVE PROGRESS', 'SKIP EXTRA'],
       activeSupport: 0,
+      screen: '/overview/bad-day-receipt-carry-forward.jpg',
     },
   },
   'bad-day-one-thing-mode': {
