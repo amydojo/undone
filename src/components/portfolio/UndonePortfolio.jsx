@@ -7,10 +7,12 @@ import RecordRail from "./RecordRail";
 import ActiveCanvas from "./ActiveCanvas";
 import ProofRail from "./ProofRail";
 import CaseWorkspace from "./CaseWorkspace";
+import FlagshipCaseWorkspace from "./FlagshipCaseWorkspace";
 import MobileRecordSelector from "./MobileRecordSelector";
 import MobileView from "./MobileView";
 
 const ORIENTATION_HINT_STORAGE_KEY = "undone_seen_orientation_hint";
+const FLAGSHIP_CASES = new Set(["interface-behavior-lab", "type-archive"]);
 
 function replaceCaseQuery(slug) {
   try {
@@ -190,7 +192,6 @@ export default function UndonePortfolioV10({ initialWorkspaceSlug = null }) {
     setResetSignal((value) => value + 1);
   }
 
-  // Derive the receipt object for child components
   const activeReceipt = useMemo(
     () => activeRecord.receipts.find((r) => r.id === activeReceiptId) ?? null,
     [activeRecord, activeReceiptId]
@@ -200,6 +201,10 @@ export default function UndonePortfolioV10({ initialWorkspaceSlug = null }) {
     setActiveReceiptId(id);
   }
 
+  const WorkspaceComponent = workspaceRecord && FLAGSHIP_CASES.has(workspaceRecord.slug)
+    ? FlagshipCaseWorkspace
+    : CaseWorkspace;
+
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#0b0b09] font-sans text-[#11100d]">
       <div className="mx-auto min-h-screen max-w-[1720px] overflow-x-hidden bg-[#f7f1e7] shadow-[0_0_0_1px_rgba(255,255,255,0.08)] lg:h-screen">
@@ -208,7 +213,6 @@ export default function UndonePortfolioV10({ initialWorkspaceSlug = null }) {
           <TopBar onHomeReset={resetPortfolioHome} />
           <PracticeSpine />
 
-          {/* Mobile layout */}
           <MobileRecordSelector
             recordsList={filteredRecords}
             activeRecord={activeRecord}
@@ -233,7 +237,6 @@ export default function UndonePortfolioV10({ initialWorkspaceSlug = null }) {
             onOrientationDismiss={dismissOrientationHint}
           />
 
-          {/* Desktop layout */}
           <div className="hidden lg:grid lg:min-h-0 lg:flex-1 lg:grid-cols-[320px_minmax(0,1fr)_360px] lg:overflow-hidden">
             <RecordRail
               recordsList={filteredRecords}
@@ -259,7 +262,7 @@ export default function UndonePortfolioV10({ initialWorkspaceSlug = null }) {
 
       <AnimatePresence>
         {workspaceRecord ? (
-          <CaseWorkspace workspace={workspaceRecord} closeWorkspace={closeWorkspace} />
+          <WorkspaceComponent workspace={workspaceRecord} closeWorkspace={closeWorkspace} />
         ) : null}
       </AnimatePresence>
     </div>
