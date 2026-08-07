@@ -18,21 +18,15 @@ export const typeArchiveRecord = {
   overviewVisual: {
     label: "TRANSPARENT DECISION SYSTEM",
     caption:
-      "A vague brief becomes visible signals, role-specific recommendations, controlled comparison, and a restorable decision receipt.",
-    layout: "split",
-    display: "typeArchiveSplit",
+      "The current product, shown at the point where a brief becomes an inspectable recommendation and preserved decision rationale.",
+    layout: "single",
+    display: "caseHeroCapture",
+    fit: "contain",
     images: [
       {
-        src: "/overview/type-archive-system.svg",
-        alt: "Type Archive system diagram showing a brief moving through signals, role scoring, comparison, and a decision receipt.",
+        src: "/overview/type-archive-hero.png",
+        alt: "Type Archive current decision system interface showing a completed typography decision state and preserved reasoning.",
         role: "primary",
-        position: "center center",
-        fit: "contain",
-      },
-      {
-        src: "/overview/type-archive-receipt.svg",
-        alt: "Typography Decision Receipt showing selected roles, signal evidence, licensing, tradeoffs, and CSS output.",
-        role: "secondary",
         position: "center center",
         fit: "contain",
       },
@@ -106,19 +100,8 @@ export const typeArchiveRecord = {
         "The recommendation comes from a documented, role-specific system rather than an opaque generated answer.",
       proof:
         "A 14-signal vocabulary, canonical v2 records, separate display, interface, and metadata scoring, visible contributions, visible penalties, and role-level rejection recovery are present in the product and repository.",
-      contents: [
-        "14 design signals",
-        "81 canonical records",
-        "display role",
-        "interface role",
-        "metadata role",
-        "visible contributions",
-        "visible penalties",
-        "role rejection",
-      ],
-      visualAssets: [
-        { kind: "component", componentKey: "type-archive-type-dna" },
-      ],
+      contents: ["14 design signals", "81 canonical records", "display role", "interface role", "metadata role", "visible contributions", "visible penalties", "role rejection"],
+      visualAssets: [{ kind: "component", componentKey: "type-archive-type-dna" }],
       artifacts: [],
     },
     {
@@ -131,18 +114,8 @@ export const typeArchiveRecord = {
         "Candidates can be evaluated while the surrounding variables remain consistent.",
       proof:
         "Display, interface, body, and metadata contexts synchronize specimen text, size, measure, line height, and theme across up to three candidates.",
-      contents: [
-        "4 contexts",
-        "shared specimen text",
-        "shared size",
-        "shared measure",
-        "shared line height",
-        "shared theme",
-        "three-candidate queue",
-      ],
-      visualAssets: [
-        { kind: "component", componentKey: "type-archive-controlled-comparison" },
-      ],
+      contents: ["4 contexts", "shared specimen text", "shared size", "shared measure", "shared line height", "shared theme", "three-candidate queue"],
+      visualAssets: [{ kind: "component", componentKey: "type-archive-controlled-comparison" }],
       artifacts: [],
     },
     {
@@ -155,18 +128,8 @@ export const typeArchiveRecord = {
         "A premium reference can be translated into accessible alternatives without claiming an exact duplicate.",
       proof:
         "Each substitution states what is preserved, what changes, licensing differences, role fit, and situations where the replacement may fail.",
-      contents: [
-        "premium reference",
-        "accessible alternatives",
-        "preserved traits",
-        "changed traits",
-        "license visibility",
-        "failure cases",
-        "no exact-dupe claims",
-      ],
-      visualAssets: [
-        { kind: "component", componentKey: "type-archive-responsible-substitution" },
-      ],
+      contents: ["premium reference", "accessible alternatives", "preserved traits", "changed traits", "license visibility", "failure cases", "no exact-dupe claims"],
+      visualAssets: [{ kind: "component", componentKey: "type-archive-responsible-substitution" }],
       artifacts: [],
     },
     {
@@ -179,20 +142,8 @@ export const typeArchiveRecord = {
         "The final system preserves its rationale while product claims stay separate from unearned research outcomes.",
       proof:
         "The receipt stores the brief, interpreted signals, selected roles, role evidence, licensing, tradeoffs, rejected candidates, sources, and CSS. Repository contracts cover data, model, browser, accessibility, privacy, performance, research, and portfolio checks.",
-      contents: [
-        "brief",
-        "signal evidence",
-        "role rationale",
-        "licensing",
-        "tradeoffs",
-        "rejected candidates",
-        "official sources",
-        "CSS",
-        "evidence boundaries",
-      ],
-      visualAssets: [
-        { kind: "component", componentKey: "type-archive-decision-receipt" },
-      ],
+      contents: ["brief", "signal evidence", "role rationale", "licensing", "tradeoffs", "rejected candidates", "official sources", "CSS", "evidence boundaries"],
+      visualAssets: [{ kind: "component", componentKey: "type-archive-decision-receipt" }],
       artifacts: [],
     },
   ],
