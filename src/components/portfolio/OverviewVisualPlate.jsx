@@ -4,11 +4,9 @@ import { resolvePublicSrc } from "../../utils/resolvePublicSrc";
 
 const LIVE_HERO_BY_SLUG = {
   "interface-behavior-lab": {
-    src: "/overview/interface-behavior-lab-live.png",
-    alt: "Interface Behavior Lab Intent specimen in its revealed state, showing the adaptive action, assistance field, and current-state readout.",
-    scale: 1.74,
+    src: "/overview/interface-behavior-lab-hero.svg",
+    alt: "Interface Behavior Lab Intent specimen in its revealed state, showing the complete adaptive action and assistance field.",
     position: "center center",
-    transformOrigin: "50% 20%",
   },
   "type-archive": {
     src: "/overview/type-archive-live.png",
