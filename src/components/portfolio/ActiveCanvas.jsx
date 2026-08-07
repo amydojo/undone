@@ -5,6 +5,7 @@ import MetricPill from "../ui/MetricPill";
 import ProfileStrip from "./ProfileStrip";
 import OverviewArtifact from "./OverviewArtifact";
 import OverviewVisualPlate from "./OverviewVisualPlate";
+import FlagshipOverviewVisualPlate, { isFlagshipHero } from "./FlagshipOverviewVisualPlate";
 import CaseLinks from "./CaseLinks";
 import { formatMetadataLabel } from "../../utils/caseMetadata";
 
@@ -148,7 +149,11 @@ function CanvasFilePane({ record, openWorkspace, prefersReducedMotion }) {
           </div>
         </div>
 
-        <OverviewVisualPlate visual={record.overviewVisual} slug={record.slug} />
+        {isFlagshipHero(record.slug) ? (
+          <FlagshipOverviewVisualPlate visual={record.overviewVisual} slug={record.slug} />
+        ) : (
+          <OverviewVisualPlate visual={record.overviewVisual} slug={record.slug} />
+        )}
 
         <div className="border-t border-[#11100d]/8 px-5 pb-12 pt-10 xl:px-10 xl:pb-16 xl:pt-14">
           <div className="mb-7 text-[10px] uppercase tracking-[0.15em] text-[#11100d]/38">System model</div>
