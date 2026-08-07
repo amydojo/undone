@@ -77,7 +77,8 @@ function getSideBySideHeight(display, width) {
   return Math.round(Math.min(500, Math.max(380, width * 0.56)));
 }
 
-function getImageFrameClass({ layout, role, isSideBySide, display }) {
+function getImageFrameClass({ layout, role, isSideBySide, display, seamless }) {
+  if (seamless && layout === "single") return "aspect-[1.6/1]";
   if (display === "caseHeroSingle") return "aspect-[1.6/1]";
   if (display === "behaviorSplit" && !isSideBySide) return role === "primary" ? "aspect-[1.95/1]" : "aspect-[1.55/1]";
   if (display === "typeArchiveSplit" && !isSideBySide) return role === "primary" ? "aspect-[1.7/1]" : "aspect-[1.5/1]";
@@ -112,9 +113,9 @@ function getDefaultPosition({ role, display }) {
   return "center top";
 }
 
-function getImageStyle(image, visual) {
+function getImageStyle(image, visual, seamless) {
   return {
-    objectFit: image.fit ?? visual.fit ?? "cover",
+    objectFit: seamless ? "cover" : image.fit ?? visual.fit ?? "cover",
     objectPosition:
       image.position ??
       visual.position ??
@@ -161,6 +162,7 @@ export default function OverviewVisualPlate({ visual, slug, variant = "canvas" }
   if (!hasVisual) return null;
 
   const isCanvas = variant === "canvas";
+  const seamless = slug === "bad-day-receipt";
   const layout = resolvedVisual.layout ?? (resolvedVisual.images.length > 1 ? "split" : "single");
   const display = getDisplay({ ...resolvedVisual, layout }, slug);
   const isFeatureCase = slug === "interface-behavior-lab" || slug === "type-archive";
@@ -172,18 +174,21 @@ export default function OverviewVisualPlate({ visual, slug, variant = "canvas" }
   const isSideBySide = isSplit && compositionWidth !== null && compositionWidth >= getSplitThreshold(display);
   const sideBySideHeight = isSideBySide ? getSideBySideHeight(display, compositionWidth) : undefined;
 
-  const sectionClassName = isCanvas
-    ? cx(
-        "border-t border-[#11100d]/8",
-        isFeatureCase ? "px-5 py-10 sm:px-6 xl:px-10 xl:py-14" : "px-5 py-10 xl:px-10 xl:py-14"
-      )
-    : "";
+  const sectionClassName = cx(
+    isCanvas
+      ? cx(
+          "border-t border-[#11100d]/8",
+          isFeatureCase ? "px-5 py-10 sm:px-6 xl:px-10 xl:py-14" : "px-5 py-10 xl:px-10 xl:py-14"
+        )
+      : "",
+    seamless && !isCanvas ? "-mx-4 sm:mx-0" : ""
+  );
 
   return (
     <section className={sectionClassName}>
       <div
         className={cx(
-          isFeatureCase
+          seamless || isFeatureCase
             ? "overflow-visible bg-transparent"
             : "overflow-hidden rounded-[18px] border border-[#11100d]/10 bg-[#fffdf8] lg:rounded-[20px]"
         )}
@@ -192,7 +197,11 @@ export default function OverviewVisualPlate({ visual, slug, variant = "canvas" }
           <div
             className={cx(
               "text-[9px] uppercase tracking-[0.18em] text-[#11100d]/36",
-              isFeatureCase ? "px-0 pb-4 sm:pb-5" : "px-4 pt-4 sm:px-5 sm:pt-5 lg:px-6 lg:pt-6"
+              seamless
+                ? "px-4 sm:px-0"
+                : isFeatureCase
+                  ? "px-0 pb-4 sm:pb-5"
+                  : "px-4 pt-4 sm:px-5 sm:pt-5 lg:px-6 lg:pt-6"
             )}
           >
             {resolvedVisual.label}
@@ -202,10 +211,14 @@ export default function OverviewVisualPlate({ visual, slug, variant = "canvas" }
         <div
           ref={compositionRef}
           className={cx(
-            "grid min-w-0 overflow-hidden",
-            isFeatureCase
-              ? "m-0 grid-cols-1 rounded-[16px] bg-transparent lg:rounded-[20px]"
-              : "mx-3 mt-3 bg-white sm:mx-4 sm:mt-4 lg:mx-5",
+            seamless
+              ? "mt-3 grid min-w-0 overflow-hidden bg-transparent"
+              : cx(
+                  "grid min-w-0 overflow-hidden",
+                  isFeatureCase
+                    ? "m-0 grid-cols-1 rounded-[16px] bg-transparent lg:rounded-[20px]"
+                    : "mx-3 mt-3 bg-white sm:mx-4 sm:mt-4 lg:mx-5"
+                ),
             isSideBySide
               ? cx(isFeatureCase ? "gap-3 lg:gap-4" : "gap-4", getSplitGridClass(slug))
               : cx("grid-cols-1", isSplit ? "gap-3 sm:gap-4" : "")
@@ -218,7 +231,7 @@ export default function OverviewVisualPlate({ visual, slug, variant = "canvas" }
               className={cx(
                 "min-w-0 overflow-hidden",
                 isFeatureCase ? "rounded-[16px] bg-transparent sm:rounded-[18px] lg:rounded-[20px]" : "",
-                getImageFrameClass({ layout, role: image.role, isSideBySide, display })
+                getImageFrameClass({ layout, role: image.role, isSideBySide, display, seamless })
               )}
             >
               <img
@@ -229,7 +242,7 @@ export default function OverviewVisualPlate({ visual, slug, variant = "canvas" }
                   "block h-full w-full",
                   isFeatureCase && "transition-transform duration-500 ease-out"
                 )}
-                style={getImageStyle(image, { ...resolvedVisual, layout, display, isSideBySide })}
+                style={getImageStyle(image, { ...resolvedVisual, layout, display, isSideBySide }, seamless)}
               />
             </figure>
           ))}
@@ -239,9 +252,11 @@ export default function OverviewVisualPlate({ visual, slug, variant = "canvas" }
           <p
             className={cx(
               "text-[12px] leading-5 text-[#11100d]/50",
-              isFeatureCase
-                ? "m-0 max-w-[760px] px-0 pb-0 pt-4 sm:pt-5"
-                : "px-4 pb-4 pt-3 sm:px-5 sm:pb-5 lg:px-6 lg:pb-6"
+              seamless
+                ? "px-4 pt-4 sm:px-0"
+                : isFeatureCase
+                  ? "m-0 max-w-[760px] px-0 pb-0 pt-4 sm:pt-5"
+                  : "px-4 pb-4 pt-3 sm:px-5 sm:pb-5 lg:px-6 lg:pb-6"
             )}
           >
             {resolvedVisual.caption}
