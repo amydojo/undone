@@ -5,12 +5,13 @@ import MetricPill from "../ui/MetricPill";
 import ProfileStrip from "./ProfileStrip";
 import OverviewArtifact from "./OverviewArtifact";
 import OverviewVisualPlate from "./OverviewVisualPlate";
+import FlagshipOverviewVisualPlate, { isFlagshipHero } from "./FlagshipOverviewVisualPlate";
 import CaseLinks from "./CaseLinks";
 import { formatMetadataLabel } from "../../utils/caseMetadata";
 
 const DECODER_LINES = {
-  'interface-behavior-lab': 'Binary buttons → readable intent, consequence, state, assistance, and recovery.',
-  'type-archive': 'Vague creative intent → inspectable roles, tradeoffs, licensing, and a defensible decision.',
+  'interface-behavior-lab': 'Six controls for actions that need more clarity than a tap.',
+  'type-archive': 'From a vague brief to a type system you can compare and explain.',
   mirror: 'Mood, sleep, clarity, and context → readable states and one next step.',
   'smooth-md-growth-os': 'Scattered clinic marketing → reusable service, CRM, and campaign logic.',
   'meta-airtable-dashboard': 'Ad spend → booking behavior → revenue-informed decisions.',
@@ -97,7 +98,6 @@ function CanvasFilePane({ record, openWorkspace, prefersReducedMotion }) {
         animate="animate"
         exit="exit"
       >
-        {/* ── BEAT 01 · HERO ──────────────────────────────────── */}
         <div className="flex min-h-[54vh] flex-col px-5 py-6 xl:min-h-[62vh] xl:px-10 xl:py-8">
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-3 text-[9px] uppercase tracking-[0.22em] text-[#11100d]/44">
@@ -140,7 +140,6 @@ function CanvasFilePane({ record, openWorkspace, prefersReducedMotion }) {
           </div>
         </div>
 
-        {/* ── BEAT 02 · PROOF LEDGER ──────────────────────────── */}
         <div className="border-t border-[#11100d]/8 px-5 pb-12 pt-10 xl:px-10 xl:pb-16 xl:pt-14">
           <div className="text-[10px] uppercase tracking-[0.15em] text-[#11100d]/38">Proof signals</div>
           <div className="mt-6 grid grid-cols-3 divide-x divide-[#11100d]/10">
@@ -150,9 +149,12 @@ function CanvasFilePane({ record, openWorkspace, prefersReducedMotion }) {
           </div>
         </div>
 
-        <OverviewVisualPlate visual={record.overviewVisual} slug={record.slug} />
+        {isFlagshipHero(record.slug) ? (
+          <FlagshipOverviewVisualPlate visual={record.overviewVisual} slug={record.slug} />
+        ) : (
+          <OverviewVisualPlate visual={record.overviewVisual} slug={record.slug} />
+        )}
 
-        {/* ── BEAT 03 · SYSTEM MODEL ──────────────────────────── */}
         <div className="border-t border-[#11100d]/8 px-5 pb-12 pt-10 xl:px-10 xl:pb-16 xl:pt-14">
           <div className="mb-7 text-[10px] uppercase tracking-[0.15em] text-[#11100d]/38">System model</div>
           <OverviewArtifact record={record} />
