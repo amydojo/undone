@@ -1,4 +1,8 @@
 import { records } from "./records";
+import { mirrorReceiptVisuals } from "./mirrorReceiptVisuals";
+import { badDayReceiptVisuals } from "./badDayReceiptVisuals";
+
+Object.assign(mirrorReceiptVisuals, badDayReceiptVisuals);
 
 export const badDayReceiptRecord = {
   id: "02",
@@ -76,10 +80,10 @@ export const badDayReceiptRecord = {
     "React implementation and production verification",
   ],
   nextProof: [
-    "Emotional Receipt Machine",
+    "Receipt Machine",
     "Three Valid Endings",
-    "Carry Forward and Interaction Budget",
-    "Validated One Thing Mode",
+    "Carry Forward",
+    "One Thing Mode",
   ],
   decisions: [
     {
@@ -107,29 +111,16 @@ export const badDayReceiptRecord = {
     {
       id: "emotional-receipt-machine",
       testId: "bad-day-receipt-machine",
-      name: "Emotional Receipt Machine",
-      format: "interactive artifact",
+      name: "Receipt Machine",
+      format: "artifact system",
       status: "ready",
-      claim:
-        "Proves a vague emotional judgment can become a bounded, physical-feeling artifact without pretending the output is diagnosis or objective measurement.",
-      proof:
-        "The shipped product supports emotional receipt composition, custom charges and credits, five paper systems, deterministic printer states, totals and verdicts, image export, local drafts and history, interrupted-print recovery, offline support, reduced motion, and browser accessibility coverage.",
-      contents: [
-        "custom charges",
-        "custom credits",
-        "5 receipt papers",
-        "printer states",
-        "totals and verdicts",
-        "image export",
-        "local drafts",
-        "interrupted-print recovery",
-        "offline support",
-        "reduced motion",
-      ],
+      claim: "Turns invisible effort into a bounded artifact without diagnosis.",
+      proof: "Five paper systems, deterministic printer states, local history, recovery, export, and offline behavior.",
+      contents: ["5 paper systems", "printer states", "local history", "recovery"],
       visualAssets: [
         {
-          src: "/overview/bad-day-receipt-artifact.jpg",
-          alt: "Human Condition POS machine with the completed Bad Day Receipt printed beneath it.",
+          kind: "component",
+          componentKey: "bad-day-receipt-machine",
         },
       ],
       artifacts: [],
@@ -138,24 +129,15 @@ export const badDayReceiptRecord = {
       id: "three-valid-endings",
       testId: "bad-day-receipt-three-endings",
       name: "Three Valid Endings",
-      format: "closure architecture",
+      format: "closure model",
       status: "ready",
-      claim:
-        "Proves the product treats completion as a user-controlled decision instead of silently converting recognition into another required workflow.",
-      proof:
-        "After print completion, Keep Receipt confirms a private local archive write, Let It Go confirms local deletion with a bounded Undo window, and Carry One Thing Forward preserves the receipt while creating separate temporary task context.",
-      contents: [
-        "print complete",
-        "keep receipt",
-        "let it go",
-        "bounded undo",
-        "carry one thing forward",
-        "separate task context",
-      ],
+      claim: "Completion stays valid before any next action.",
+      proof: "Keep, Let Go, and Carry Forward are equal outcomes after the receipt is complete.",
+      contents: ["keep", "let go", "carry forward"],
       visualAssets: [
         {
-          src: "/overview/bad-day-receipt-endings.jpg",
-          alt: "Bad Day Receipt completed state showing the user-controlled ending decision after the day has been documented.",
+          kind: "component",
+          componentKey: "bad-day-three-valid-endings",
         },
       ],
       artifacts: [],
@@ -163,27 +145,16 @@ export const badDayReceiptRecord = {
     {
       id: "carry-forward-interaction-budget",
       testId: "bad-day-receipt-carry-forward",
-      name: "Carry Forward and Interaction Budget",
-      format: "adaptive interaction model",
+      name: "Carry Forward",
+      format: "adaptive path",
       status: "ready",
-      claim:
-        "Proves adaptation is based on support the person explicitly asks for rather than covert emotional inference.",
-      proof:
-        "The user can request one step at a time, fewer decisions, protected progress, or deferred optional work. Those declared needs become deterministic presentation rules rather than model-inferred psychological conclusions.",
-      contents: [
-        "one step at a time",
-        "fewer decisions",
-        "protect my progress",
-        "defer optional work",
-        "preview adaptation",
-        "user authorized",
-        "temporary",
-        "reversible",
-      ],
+      claim: "Adaptation follows declared support, not inferred emotion.",
+      proof: "One obligation moves forward with user-selected support rules that remain temporary and reversible.",
+      contents: ["one thing", "declared support", "temporary", "reversible"],
       visualAssets: [
         {
-          src: "/overview/bad-day-receipt-carry-forward.jpg",
-          alt: "Bad Day Receipt Carry Forward designation state asking what is still asking something from the user.",
+          kind: "component",
+          componentKey: "bad-day-carry-forward",
         },
       ],
       artifacts: [],
@@ -191,24 +162,18 @@ export const badDayReceiptRecord = {
     {
       id: "validated-one-thing-mode",
       testId: "bad-day-receipt-one-thing-mode",
-      name: "Validated One Thing Mode",
-      format: "constrained AI runtime",
+      name: "One Thing Mode",
+      format: "validated AI runtime",
       status: "ready",
-      claim:
-        "Proves generative AI can propose task structure without controlling the interface or performing irreversible actions.",
-      proof:
-        "GPT-5.6 returns a strict TaskPlan using only read, choice, compose, checklist, and review steps. The application validates the plan, rejects malformed output, keeps actions and layout application-owned, and falls back to a manual one-task workspace when assisted compilation fails.",
-      contents: [
-        "GPT-5.6",
-        "Structured Outputs",
-        "5 typed step kinds",
-        "application validator",
-        "fixed React renderers",
-        "no model-generated HTML",
-        "no automatic external actions",
-        "manual fallback",
+      claim: "AI proposes structure while the application controls the interface and actions.",
+      proof: "GPT-5.6 is limited to five typed step kinds that must pass application validation before rendering.",
+      contents: ["5 typed steps", "strict schema", "fixed React", "no auto actions"],
+      visualAssets: [
+        {
+          kind: "component",
+          componentKey: "bad-day-one-thing-mode",
+        },
       ],
-      visualAssets: [],
       artifacts: [],
     },
   ],
