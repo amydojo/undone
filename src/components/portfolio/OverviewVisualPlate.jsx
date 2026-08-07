@@ -2,6 +2,36 @@ import React from "react";
 import { cx } from "../../utils/cx";
 import { resolvePublicSrc } from "../../utils/resolvePublicSrc";
 
+const LIVE_HERO_BY_SLUG = {
+  "interface-behavior-lab": {
+    src: "/overview/interface-behavior-lab-live.png",
+    alt: "Interface Behavior Lab Intent specimen in its revealed state, showing the adaptive action, assistance field, and current-state readout.",
+  },
+  "type-archive": {
+    src: "/overview/type-archive-live.png",
+    alt: "Type Archive decision receipt showing the final typography system and the signals preserved with the choice.",
+  },
+};
+
+function resolveVisual(visual, slug) {
+  const hero = LIVE_HERO_BY_SLUG[slug];
+  if (!hero) return visual;
+
+  return {
+    ...visual,
+    layout: "single",
+    display: "caseHeroSingle",
+    images: [
+      {
+        ...hero,
+        role: "primary",
+        fit: "cover",
+        position: "center center",
+      },
+    ],
+  };
+}
+
 function getSplitGridClass(slug) {
   if (slug === "interface-behavior-lab") return "grid-cols-[minmax(0,1.62fr)_minmax(0,0.72fr)]";
   if (slug === "type-archive") return "grid-cols-[minmax(0,1.38fr)_minmax(0,0.82fr)]";
@@ -47,6 +77,7 @@ function getSideBySideHeight(display, width) {
 }
 
 function getImageFrameClass({ layout, role, isSideBySide, display }) {
+  if (display === "caseHeroSingle") return "aspect-[1.6/1]";
   if (display === "behaviorSplit" && !isSideBySide) return role === "primary" ? "aspect-[1.95/1]" : "aspect-[1.55/1]";
   if (display === "typeArchiveSplit" && !isSideBySide) return role === "primary" ? "aspect-[1.7/1]" : "aspect-[1.5/1]";
   if (layout === "single") {
@@ -71,6 +102,7 @@ function getImageFrameClass({ layout, role, isSideBySide, display }) {
 }
 
 function getDefaultPosition({ role, display }) {
+  if (display === "caseHeroSingle") return "center center";
   if (display === "behaviorSplit") return role === "primary" ? "center 46%" : "center 34%";
   if (display === "typeArchiveSplit") return role === "primary" ? "center 52%" : "center 44%";
   if (display === "brandSplit") return "center top";
@@ -119,16 +151,17 @@ function useElementWidth(active) {
 }
 
 export default function OverviewVisualPlate({ visual, slug, variant = "canvas" }) {
-  const hasVisual = Boolean(visual?.images?.length);
+  const resolvedVisual = resolveVisual(visual, slug);
+  const hasVisual = Boolean(resolvedVisual?.images?.length);
   const [compositionRef, compositionWidth] = useElementWidth(hasVisual);
 
   if (!hasVisual) return null;
 
   const isCanvas = variant === "canvas";
-  const layout = visual.layout ?? (visual.images.length > 1 ? "split" : "single");
-  const display = getDisplay({ ...visual, layout }, slug);
+  const layout = resolvedVisual.layout ?? (resolvedVisual.images.length > 1 ? "split" : "single");
+  const display = getDisplay({ ...resolvedVisual, layout }, slug);
   const isFeatureCase = slug === "interface-behavior-lab" || slug === "type-archive";
-  const sortedImages = [...visual.images].sort((a, b) => {
+  const sortedImages = [...resolvedVisual.images].sort((a, b) => {
     if (a.role === b.role) return 0;
     return a.role === "primary" ? -1 : 1;
   });
@@ -142,12 +175,12 @@ export default function OverviewVisualPlate({ visual, slug, variant = "canvas" }
         "overflow-hidden rounded-[18px] border border-[#11100d]/10 lg:rounded-[20px]",
         isFeatureCase ? "bg-[#f5f1e8]" : "bg-[#fffdf8]"
       )}>
-        {visual.label && (
+        {resolvedVisual.label && (
           <div className={cx(
             "text-[9px] uppercase tracking-[0.18em] text-[#11100d]/36",
             isFeatureCase ? "px-4 pt-4 sm:px-5 sm:pt-5 lg:px-7 lg:pt-7" : "px-4 pt-4 sm:px-5 sm:pt-5 lg:px-6 lg:pt-6"
           )}>
-            {visual.label}
+            {resolvedVisual.label}
           </div>
         )}
         <div
@@ -177,17 +210,17 @@ export default function OverviewVisualPlate({ visual, slug, variant = "canvas" }
                 alt={image.alt ?? ""}
                 loading="lazy"
                 className="h-full w-full"
-                style={getImageStyle(image, { ...visual, layout, display, isSideBySide })}
+                style={getImageStyle(image, { ...resolvedVisual, layout, display, isSideBySide })}
               />
             </figure>
           ))}
         </div>
-        {visual.caption && (
+        {resolvedVisual.caption && (
           <p className={cx(
             "text-[12px] leading-5 text-[#11100d]/50",
             isFeatureCase ? "px-4 pb-5 pt-4 sm:px-5 sm:pb-6 lg:px-7 lg:pb-7" : "px-4 pb-4 pt-3 sm:px-5 sm:pb-5 lg:px-6 lg:pb-6"
           )}>
-            {visual.caption}
+            {resolvedVisual.caption}
           </p>
         )}
       </div>
