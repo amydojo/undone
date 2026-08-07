@@ -84,7 +84,7 @@ function ReceiptMachineFace({ body, compact }) {
           <div className='mt-3 inline-block -rotate-2 border-2 border-[#ff5b4d] px-2 py-1 text-[9px] font-medium text-[#d94b3d]'>{body.verdict}</div>
         </div>
       </div>
-      <ScreenProof src={body.screen} alt='Bad Day Receipt live product with the completed thermal-style receipt.' />
+      <ScreenProof src={body.screen} alt='Bad Day Receipt live product with the completed receipt.' />
     </div>
   )
 }
@@ -94,7 +94,7 @@ function ThreeEndingsFace({ body, compact }) {
     <div className={`${compact ? 'px-3 pb-2.5 pt-3' : 'px-5 pb-5 pt-5'} overflow-hidden rounded-[12px] border border-[#171713]/10 bg-[#f4efd9]`}>
       <div className='flex items-center justify-between border-b border-dashed border-[#171713]/18 pb-2.5'>
         <div>
-          <div className='text-[7px] uppercase tracking-[0.14em] text-[#171713]/34'>Record status</div>
+          <div className='text-[7px] uppercase tracking-[0.14em] text-[#171713]/34'>Done</div>
           <div className={`${compact ? 'mt-1 text-[10px]' : 'mt-1.5 text-[13px]'} font-medium tracking-[-0.01em]`}>DAY DOCUMENTED</div>
         </div>
         <Dot color={COLORS.green} />
@@ -108,8 +108,6 @@ function ThreeEndingsFace({ body, compact }) {
           </div>
         ))}
       </div>
-
-      <div className={`${compact ? 'mt-2 text-[6px]' : 'mt-3 text-[7px]'} text-center uppercase tracking-[0.14em] text-[#171713]/28`}>choose one · nothing required</div>
     </div>
   )
 }
@@ -118,11 +116,8 @@ function CarryForwardFace({ body, compact }) {
   return (
     <div className={`${compact ? 'grid-cols-[1.15fr_0.85fr]' : 'md:grid-cols-[1.2fr_0.8fr]'} grid overflow-hidden rounded-[12px] border border-[#171713]/10 bg-[#fffaf1]`}>
       <div className={`${compact ? 'p-3' : 'p-5'} bg-[#f4efd9]`}>
-        <div className='text-[7px] uppercase tracking-[0.14em] text-[#171713]/34'>Carry stub</div>
+        <div className='text-[7px] uppercase tracking-[0.14em] text-[#171713]/34'>One thing</div>
         <div className={`${compact ? 'mt-4 text-[12px] leading-4' : 'mt-7 text-[22px] leading-7'} max-w-[14ch] tracking-[-0.025em] text-[#171713]`}>{body.obligation}</div>
-        <div className={`${compact ? 'mt-4' : 'mt-7'} flex items-center gap-2 border-t border-dashed border-[#171713]/18 pt-2 text-[6px] uppercase tracking-[0.12em] text-[#171713]/34`}>
-          <Dot /> user chosen
-        </div>
       </div>
 
       <div className={`${compact ? 'p-2.5' : 'p-4'} bg-[#171713] text-[#fffaf1]`}>
@@ -148,7 +143,7 @@ function OneThingFace({ body, compact }) {
     <div className={`${compact ? 'p-3' : 'p-5'} rounded-[12px] bg-[#171713] text-[#fffaf1]`}>
       <div className='flex items-center justify-between text-[7px] uppercase tracking-[0.14em] text-[#fffaf1]/30'>
         <span>One Thing</span>
-        <span className='flex items-center gap-1.5 text-[#b8f3c6]/72'><Dot color='#70c98d' />pass</span>
+        <span className='flex items-center gap-1.5 text-[#b8f3c6]/72'><Dot color='#70c98d' />checked</span>
       </div>
 
       <div className={`${compact ? 'mt-5 text-[13px] leading-4' : 'mt-8 text-[24px] leading-7'} max-w-[16ch] tracking-[-0.025em]`}>{body.task}</div>
@@ -164,8 +159,8 @@ function OneThingFace({ body, compact }) {
       </div>
 
       <div className={`${compact ? 'mt-4 text-[6px]' : 'mt-5 text-[7px]'} flex items-center justify-between border-t border-[#fffaf1]/10 pt-2.5 uppercase tracking-[0.12em] text-[#fffaf1]/28`}>
-        <span>5 typed steps</span>
-        <span>no auto actions</span>
+        <span>5 allowed steps</span>
+        <span>nothing automatic</span>
       </div>
     </div>
   )
@@ -189,7 +184,7 @@ export default function BadDayReceiptVisual({
   body = {},
   displayMode = 'full',
   ctaLabel = 'Inspect receipt',
-  privacyLabel = 'production proof',
+  privacyLabel = 'live product',
   quiet = false,
 }) {
   const compact = displayMode === 'compact'
@@ -225,7 +220,7 @@ export default function BadDayReceiptVisual({
       ) : (
         <footer className='border-t border-[#171713]/8 bg-[#fffaf1] px-4 py-4 sm:px-6'>
           <Flow items={flow} />
-          <div className='mt-3 border-t border-[#171713]/8 pt-3 text-[11px] leading-5 text-[#171713]/64'><span className='mr-2 text-[8px] uppercase tracking-[0.12em] text-[#171713]/34'>Proves</span>{proof}</div>
+          <div className='mt-3 border-t border-[#171713]/8 pt-3 text-[11px] leading-5 text-[#171713]/64'><span className='mr-2 text-[8px] uppercase tracking-[0.12em] text-[#171713]/34'>Why</span>{proof}</div>
           <div className='mt-2 text-[7px] uppercase tracking-[0.12em] text-[#171713]/26'>{privacyLabel}</div>
         </footer>
       )}
