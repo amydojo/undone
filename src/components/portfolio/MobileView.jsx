@@ -8,10 +8,12 @@ import { cx } from "../../utils/cx";
 import { formatMetadataLabel } from "../../utils/caseMetadata";
 import ReceiptVisualGallery from "./ReceiptVisualGallery";
 import OverviewVisualPlate from "./OverviewVisualPlate";
+import FlagshipOverviewVisualPlate, { isFlagshipHero } from "./FlagshipOverviewVisualPlate";
 import CaseLinks from "./CaseLinks";
 
 const DECODER_LINES = {
-  'interface-behavior-lab': 'Binary buttons → readable intent, consequence, state, assistance, and recovery.',
+  'interface-behavior-lab': 'Six controls for actions that need more clarity than a tap.',
+  'type-archive': 'From a vague brief to a type system you can compare and explain.',
   mirror: 'Mood, sleep, clarity, and context → readable states and one next step.',
   'smooth-md-growth-os': 'Scattered clinic marketing → reusable service, CRM, and campaign logic.',
   'meta-airtable-dashboard': 'Ad spend → booking behavior → revenue-informed decisions.',
@@ -74,12 +76,9 @@ function getReceiptTestId(receipt) {
   return receipt?.testId ?? receipt?.id
 }
 
-// ─── Overview Tab ─────────────────────────────────────────────────────────────
-
 function OverviewTab({ record, openWorkspace }) {
   return (
     <div className="mx-auto max-w-[780px] space-y-6 px-4 py-4 sm:space-y-7 sm:py-5">
-      {/* Top bar */}
       <div className="flex items-center justify-between gap-3">
         <div className="text-[9px] uppercase tracking-[0.18em] text-[#11100d]/42">active case file</div>
         <button
@@ -92,7 +91,6 @@ function OverviewTab({ record, openWorkspace }) {
         </button>
       </div>
 
-      {/* Hero */}
       <div className="max-w-[700px]">
         <div className="flex flex-wrap items-center gap-2 text-[11px] tracking-[0.01em] text-[#11100d]/42">
           {[record.category, record.timeline, record.status].map((item, index) => (
@@ -114,7 +112,6 @@ function OverviewTab({ record, openWorkspace }) {
         <CaseLinks links={record.links} compact />
       </div>
 
-      {/* Proof ledger */}
       <div>
         <div className="text-[10px] uppercase tracking-[0.15em] text-[#11100d]/38">Proof signals</div>
         <div className="mt-3 grid grid-cols-1 divide-y divide-[#11100d]/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
@@ -124,17 +121,18 @@ function OverviewTab({ record, openWorkspace }) {
         </div>
       </div>
 
-      <OverviewVisualPlate visual={record.overviewVisual} slug={record.slug} variant="inline" />
+      {isFlagshipHero(record.slug) ? (
+        <FlagshipOverviewVisualPlate visual={record.overviewVisual} slug={record.slug} variant="inline" />
+      ) : (
+        <OverviewVisualPlate visual={record.overviewVisual} slug={record.slug} variant="inline" />
+      )}
 
-      {/* System model */}
       <OverviewArtifact record={record} />
 
       <ProfileStrip />
     </div>
   );
 }
-
-// ─── Proof Tab ───────────────────────────────────────────────────────────────
 
 function ProofTab({ record, activeReceipt, onSelectReceipt, resetSignal }) {
   const receipts = record.receipts;
@@ -316,8 +314,6 @@ function MobileTabPane({ children, direction, prefersReducedMotion }) {
   );
 }
 
-// ─── Main MobileView ─────────────────────────────────────────────────────────
-
 export default function MobileView({
   record,
   mode,
@@ -349,7 +345,6 @@ export default function MobileView({
 
   return (
     <div className="lg:hidden">
-      {/* Sticky tab bar — positioned below the sticky case selector (~80 px) */}
       <div className="sticky top-20 z-20 border-b border-[#11100d]/10 bg-[#f7f1e7]/92 px-4 py-2 backdrop-blur-xl">
         <div
           className="relative grid grid-cols-2 overflow-hidden rounded-full p-1"
@@ -410,7 +405,6 @@ export default function MobileView({
         </div>
       </div>
 
-      {/* Tab content */}
       <div className="relative min-w-0 max-w-full overflow-hidden shadow-[inset_0_10px_18px_rgba(17,16,13,0.025)] before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:z-10 before:h-px before:bg-[#11100d]/5 before:content-['']">
         <AnimatePresence mode="sync" initial={false} custom={tabDirection}>
           <MobileTabPane
