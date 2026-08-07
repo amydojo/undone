@@ -12,30 +12,30 @@ export const badDayReceiptRecord = {
   featured: true,
   filters: ["product", "interaction"],
   headline: "The day has been itemized.",
-  category: "affective interaction",
-  type: "coded emotional utility",
+  category: "interaction design",
+  type: "interactive web product",
   status: "live",
   timeline: "2026",
   accent: "#d94b3d",
   oneLine:
-    "I designed and built an emotional documentation machine that turns invisible effort into a physical-feeling receipt, then gives the user three valid endings: keep it, let it go, or carry one remaining obligation into a temporary minimum-necessary interface.",
+    "Bad Day Receipt turns a hard day into a receipt you can keep, let go, or carry one unfinished thing forward from.",
   overviewVisual: {
-    label: "EMOTIONAL DOCUMENTATION MACHINE",
+    label: "BAD DAY RECEIPT",
     caption:
-      "A difficult day becomes an inspectable receipt, then ends on the user's terms instead of forcing another task, score, or recovery ritual.",
+      "Pick what cost you energy. Print the receipt. Decide what happens next.",
     layout: "single",
     display: "productSingle",
     images: [
       {
         src: "/overview/bad-day-receipt-hero.jpg",
-        alt: "Bad Day Receipt live product showing the paperwork system, selected emotional charges, and Human Condition POS receipt machine.",
+        alt: "Bad Day Receipt showing selected charges, the Human Condition POS, and a printed receipt.",
         role: "primary",
         position: "center center",
         fit: "contain",
       },
     ],
   },
-  role: "Product designer, creative technologist, and interaction systems designer",
+  role: "Product designer and creative technologist",
   tools: [
     "Figma",
     "React",
@@ -47,41 +47,41 @@ export const badDayReceiptRecord = {
     "Vercel",
   ],
   hiringTranslation:
-    "This case demonstrates affective product strategy, unusual interaction metaphors, local-first state design, accessibility and recovery thinking, constrained AI architecture, typed rendering, validation boundaries, responsive implementation, and production verification.",
+    "I designed the concept, interaction, interface, AI limits, code, and production behavior.",
   links: [
-    { label: "Launch live product", href: "https://bad-day-receipt.vercel.app", primary: true },
+    { label: "Launch product", href: "https://bad-day-receipt.vercel.app", primary: true },
     { label: "View GitHub", href: "https://github.com/amydojo/bad-day-receipt" },
   ],
   metrics: [
-    { value: "5", label: "receipt paper systems" },
-    { value: "3", label: "valid endings" },
-    { value: "5", label: "typed AI step kinds" },
+    { value: "5", label: "receipt styles" },
+    { value: "3", label: "ways to finish" },
+    { value: "5", label: "allowed AI steps" },
   ],
   path: [
-    "document",
-    "itemize",
-    "print",
-    "choose ending",
-    "declare support",
-    "finish one thing",
+    "name the cost",
+    "build the receipt",
+    "print it",
+    "choose an ending",
+    "carry one thing",
+    "finish",
   ],
   signal:
-    "A difficult day can require real attention, emotional labor, decisions, and recovery while leaving almost no visible evidence behind. The next interface usually behaves as though none of that happened.",
+    "Some days take a lot out of you and leave nothing to show for it. By night, the whole thing can collapse into one verdict: bad day.",
   system:
-    "Bad Day Receipt turns invisible effort into a bounded artifact first. A completed receipt is independently valid. From there, the user can keep it, let it go, or explicitly carry one remaining obligation into One Thing Mode, where GPT-5.6 proposes a constrained task plan and the application validates and renders it through fixed, typed components.",
+    "Bad Day Receipt makes those small costs visible. Once the receipt prints, you can keep it, let it go, or carry one unfinished thing into a quieter mode that helps you finish just that.",
   owned: [
-    "product thesis and emotional framing",
-    "receipt interaction model",
-    "Three Valid Endings architecture",
-    "Minimum Necessary Interface concept",
-    "Interaction Budget model",
-    "constrained AI product boundary",
-    "visual and interaction direction",
-    "React implementation and production verification",
+    "concept and product direction",
+    "interaction flow",
+    "receipt system",
+    "ending choices",
+    "One Thing Mode",
+    "AI guardrails",
+    "visual design",
+    "React build and testing",
   ],
   nextProof: [
     "Receipt Machine",
-    "Three Valid Endings",
+    "Three Ways to End",
     "Carry Forward",
     "One Thing Mode",
   ],
@@ -89,22 +89,22 @@ export const badDayReceiptRecord = {
     {
       label: "constraint",
       body:
-        "The product deals with emotionally loaded self-reporting, but it should not diagnose the user, estimate distress, detect emotion, or turn a difficult day into another optimization score.",
+        "It had to feel useful without acting like a therapist, diagnosis, or score.",
     },
     {
       label: "move",
       body:
-        "Borrow the authority and physicality of a receipt to document what the day required, then make closure explicit: keep the artifact, release it, or deliberately carry one remaining obligation forward.",
+        "Use the familiar language of a receipt: list what the day cost, print it, then decide what to do with it.",
     },
     {
       label: "tradeoff",
       body:
-        "The AI path is intentionally narrower than a chatbot. The model proposes structure, while the application owns validation, layout, persistence, filenames, actions, recovery, and exit controls.",
+        "AI can help break down one task, but it cannot control the interface or take actions for you.",
     },
     {
       label: "principle",
       body:
-        "A completed receipt is already a valid ending. Recognition does not need to become productivity before it counts.",
+        "The receipt is already enough. A hard day does not have to become a productivity exercise.",
     },
   ],
   receipts: [
@@ -112,11 +112,11 @@ export const badDayReceiptRecord = {
       id: "emotional-receipt-machine",
       testId: "bad-day-receipt-machine",
       name: "Receipt Machine",
-      format: "artifact system",
+      format: "live product",
       status: "ready",
-      claim: "Turns invisible effort into a bounded artifact without diagnosis.",
-      proof: "Five paper systems, deterministic printer states, local history, recovery, export, and offline behavior.",
-      contents: ["5 paper systems", "printer states", "local history", "recovery"],
+      claim: "Turns a vague bad day into something you can see and keep.",
+      proof: "Five receipt styles, custom line items, print and export, local history, and print recovery.",
+      contents: ["5 receipt styles", "custom items", "print and export", "local history"],
       visualAssets: [
         {
           kind: "component",
@@ -128,12 +128,12 @@ export const badDayReceiptRecord = {
     {
       id: "three-valid-endings",
       testId: "bad-day-receipt-three-endings",
-      name: "Three Valid Endings",
-      format: "closure model",
+      name: "Three Ways to End",
+      format: "ending choice",
       status: "ready",
-      claim: "Completion stays valid before any next action.",
-      proof: "Keep, Let Go, and Carry Forward are equal outcomes after the receipt is complete.",
-      contents: ["keep", "let go", "carry forward"],
+      claim: "After the receipt prints, you can keep it, let it go, or carry one thing forward.",
+      proof: "All three choices count as a complete ending.",
+      contents: ["keep", "let go", "carry one thing"],
       visualAssets: [
         {
           kind: "component",
@@ -146,11 +146,11 @@ export const badDayReceiptRecord = {
       id: "carry-forward-interaction-budget",
       testId: "bad-day-receipt-carry-forward",
       name: "Carry Forward",
-      format: "adaptive path",
+      format: "optional next step",
       status: "ready",
-      claim: "Adaptation follows declared support, not inferred emotion.",
-      proof: "One obligation moves forward with user-selected support rules that remain temporary and reversible.",
-      contents: ["one thing", "declared support", "temporary", "reversible"],
+      claim: "If one thing still matters, you can carry only that forward.",
+      proof: "You choose what support you want. The product does not guess how you feel.",
+      contents: ["one thing", "one step at a time", "fewer choices", "save progress"],
       visualAssets: [
         {
           kind: "component",
@@ -163,11 +163,11 @@ export const badDayReceiptRecord = {
       id: "validated-one-thing-mode",
       testId: "bad-day-receipt-one-thing-mode",
       name: "One Thing Mode",
-      format: "validated AI runtime",
+      format: "AI helper",
       status: "ready",
-      claim: "AI proposes structure while the application controls the interface and actions.",
-      proof: "GPT-5.6 is limited to five typed step kinds that must pass application validation before rendering.",
-      contents: ["5 typed steps", "strict schema", "fixed React", "no auto actions"],
+      claim: "AI can help break one task into a small plan without taking over.",
+      proof: "It can only return five approved step types. The app checks the plan before showing it.",
+      contents: ["read", "choose", "write", "check", "review"],
       visualAssets: [
         {
           kind: "component",
