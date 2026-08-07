@@ -3,12 +3,9 @@ import { resolvePublicSrc } from '../../../utils/resolvePublicSrc'
 
 const COLORS = {
   ink: '#171713',
-  secondary: '#6e6b63',
   coral: '#ff5b4d',
   paper: '#f4efd9',
   green: '#295c45',
-  canvas: '#d7d3ca',
-  subtle: '#e3e0d8',
   cream: '#fffaf1',
 }
 
@@ -94,66 +91,81 @@ function ReceiptMachineFace({ body, compact }) {
 
 function ThreeEndingsFace({ body, compact }) {
   return (
-    <div>
-      <div className={`${compact ? 'p-2.5' : 'p-4'} rounded-[12px] border border-[#171713]/10 bg-[#f4efd9]`}>
-        <div className='flex items-center justify-between border-b border-[#171713]/12 pb-2 text-[7px] uppercase tracking-[0.13em] text-[#171713]/42'>
-          <span>Day documented</span><Dot color={COLORS.green} />
+    <div className={`${compact ? 'px-3 pb-2.5 pt-3' : 'px-5 pb-5 pt-5'} overflow-hidden rounded-[12px] border border-[#171713]/10 bg-[#f4efd9]`}>
+      <div className='flex items-center justify-between border-b border-dashed border-[#171713]/18 pb-2.5'>
+        <div>
+          <div className='text-[7px] uppercase tracking-[0.14em] text-[#171713]/34'>Record status</div>
+          <div className={`${compact ? 'mt-1 text-[10px]' : 'mt-1.5 text-[13px]'} font-medium tracking-[-0.01em]`}>DAY DOCUMENTED</div>
         </div>
-        <div className={`grid grid-cols-3 ${compact ? 'gap-1.5 pt-2.5' : 'gap-2.5 pt-4'}`}>
-          {body.endings.map((ending) => (
-            <div key={ending.label} className={`${compact ? 'min-h-[52px] p-2' : 'min-h-[92px] p-3'} flex flex-col justify-between border border-[#171713]/12 bg-[#fffaf1]`}>
-              <span className={`${compact ? 'text-[9px]' : 'text-[13px]'} font-medium tracking-[-0.01em]`}>{ending.label}</span>
-              <span className={`${compact ? 'text-[6px]' : 'text-[8px]'} uppercase tracking-[0.1em] text-[#171713]/36`}>{ending.detail}</span>
-            </div>
-          ))}
-        </div>
+        <Dot color={COLORS.green} />
       </div>
-      {!compact && <ScreenProof src={body.screen} alt='Bad Day Receipt production ending decision.' />}
+
+      <div className={`${compact ? 'mt-2.5' : 'mt-4'} grid grid-cols-3 divide-x divide-dashed divide-[#171713]/18 border-y border-dashed border-[#171713]/18`}>
+        {body.endings.map((ending, index) => (
+          <div key={ending} className={`${compact ? 'py-3' : 'py-5'} text-center`}>
+            <div className='text-[6px] tabular-nums tracking-[0.12em] text-[#171713]/28'>{String(index + 1).padStart(2, '0')}</div>
+            <div className={`${compact ? 'mt-2 text-[9px]' : 'mt-3 text-[12px]'} font-medium tracking-[0.02em] text-[#171713]/78`}>{ending}</div>
+          </div>
+        ))}
+      </div>
+
+      <div className={`${compact ? 'mt-2 text-[6px]' : 'mt-3 text-[7px]'} text-center uppercase tracking-[0.14em] text-[#171713]/28`}>choose one · nothing required</div>
     </div>
   )
 }
 
 function CarryForwardFace({ body, compact }) {
   return (
-    <div>
-      <div className={`grid ${compact ? 'grid-cols-[0.9fr_1.1fr] gap-2' : 'gap-3 md:grid-cols-[0.85fr_1.15fr]'}`}>
-        <div className={`${compact ? 'p-2.5' : 'p-4'} rounded-[12px] bg-[#171713] text-[#fffaf1]`}>
-          <div className='text-[7px] uppercase tracking-[0.14em] text-[#fffaf1]/38'>One thing</div>
-          <div className={`${compact ? 'mt-5 text-[11px] leading-4' : 'mt-8 text-[20px] leading-7'} tracking-[-0.02em]`}>{body.obligation}</div>
-          <div className={`${compact ? 'mt-3' : 'mt-6'} flex items-center gap-2 text-[7px] uppercase tracking-[0.11em] text-[#fffaf1]/46`}><Dot />user designated</div>
-        </div>
-        <div className={`${compact ? 'p-2.5' : 'p-4'} rounded-[12px] border border-[#171713]/10 bg-[#fffaf1]`}>
-          <div className='text-[7px] uppercase tracking-[0.14em] text-[#171713]/38'>Support requested</div>
-          <div className={`${compact ? 'mt-2 grid-cols-2 gap-1.5' : 'mt-4 grid-cols-2 gap-2'} grid`}>
-            {body.supports.map((support) => (
-              <div key={support} className={`${compact ? 'px-2 py-2 text-[7px]' : 'px-3 py-3 text-[9px]'} border-l-2 border-[#ff5b4d] bg-[#f4efd9] uppercase tracking-[0.08em] text-[#171713]/62`}>{support}</div>
-            ))}
-          </div>
+    <div className={`${compact ? 'grid-cols-[1.15fr_0.85fr]' : 'md:grid-cols-[1.2fr_0.8fr]'} grid overflow-hidden rounded-[12px] border border-[#171713]/10 bg-[#fffaf1]`}>
+      <div className={`${compact ? 'p-3' : 'p-5'} bg-[#f4efd9]`}>
+        <div className='text-[7px] uppercase tracking-[0.14em] text-[#171713]/34'>Carry stub</div>
+        <div className={`${compact ? 'mt-4 text-[12px] leading-4' : 'mt-7 text-[22px] leading-7'} max-w-[14ch] tracking-[-0.025em] text-[#171713]`}>{body.obligation}</div>
+        <div className={`${compact ? 'mt-4' : 'mt-7'} flex items-center gap-2 border-t border-dashed border-[#171713]/18 pt-2 text-[6px] uppercase tracking-[0.12em] text-[#171713]/34`}>
+          <Dot /> user chosen
         </div>
       </div>
-      {!compact && <ScreenProof src={body.screen} alt='Bad Day Receipt Carry Forward designation state.' />}
+
+      <div className={`${compact ? 'p-2.5' : 'p-4'} bg-[#171713] text-[#fffaf1]`}>
+        <div className='text-[7px] uppercase tracking-[0.14em] text-[#fffaf1]/30'>Support</div>
+        <div className={`${compact ? 'mt-3 gap-1.5' : 'mt-5 gap-2.5'} flex flex-col`}>
+          {body.supports.map((support, index) => {
+            const active = index === body.activeSupport
+            return (
+              <div key={support} className={`${compact ? 'py-1.5 text-[7px]' : 'py-2 text-[9px]'} flex items-center gap-2 border-b border-[#fffaf1]/8 last:border-b-0 ${active ? 'text-[#fffaf1]' : 'text-[#fffaf1]/30'}`}>
+                <Dot color={active ? COLORS.coral : '#4b4a45'} />
+                <span className='uppercase tracking-[0.08em]'>{support}</span>
+              </div>
+            )
+          })}
+        </div>
+      </div>
     </div>
   )
 }
 
 function OneThingFace({ body, compact }) {
   return (
-    <div className={`${compact ? 'p-2.5' : 'p-4'} rounded-[12px] bg-[#171713] text-[#fffaf1]`}>
-      <div className='flex items-center justify-between text-[7px] uppercase tracking-[0.14em] text-[#fffaf1]/38'>
-        <span>Validated runtime</span><span className='flex items-center gap-1.5 text-[#b8f3c6]'><Dot color='#70c98d' />schema pass</span>
+    <div className={`${compact ? 'p-3' : 'p-5'} rounded-[12px] bg-[#171713] text-[#fffaf1]`}>
+      <div className='flex items-center justify-between text-[7px] uppercase tracking-[0.14em] text-[#fffaf1]/30'>
+        <span>One Thing</span>
+        <span className='flex items-center gap-1.5 text-[#b8f3c6]/72'><Dot color='#70c98d' />pass</span>
       </div>
-      <div className={`${compact ? 'mt-4 gap-1' : 'mt-7 gap-2'} grid grid-cols-5`}>
+
+      <div className={`${compact ? 'mt-5 text-[13px] leading-4' : 'mt-8 text-[24px] leading-7'} max-w-[16ch] tracking-[-0.025em]`}>{body.task}</div>
+
+      <div className={`${compact ? 'mt-5' : 'mt-8'} grid grid-cols-5 gap-1`}>
         {body.steps.map((step, index) => (
-          <div key={step} className={`${compact ? 'min-h-[48px] px-1 py-2' : 'min-h-[82px] px-2 py-3'} border border-[#fffaf1]/12 bg-[#fffaf1]/[0.04]`}>
-            <div className='text-[6px] tabular-nums text-[#fffaf1]/28'>{String(index + 1).padStart(2, '0')}</div>
-            <div className={`${compact ? 'mt-3 text-[6px]' : 'mt-6 text-[8px]'} uppercase tracking-[0.08em] text-[#fffaf1]/72`}>{step}</div>
+          <div key={step} className='min-w-0'>
+            <div className={`${index === body.activeStep ? 'bg-[#ff5b4d]' : 'bg-[#fffaf1]/14'} h-1 w-full`} />
+            <div className={`${compact ? 'mt-1.5 text-[6px]' : 'mt-2 text-[7px]'} tabular-nums text-[#fffaf1]/30`}>{String(index + 1).padStart(2, '0')}</div>
+            {!compact && <div className='mt-1 truncate text-[7px] uppercase tracking-[0.08em] text-[#fffaf1]/40'>{step}</div>}
           </div>
         ))}
       </div>
-      <div className={`${compact ? 'mt-2 gap-1' : 'mt-4 gap-2'} grid grid-cols-3`}>
-        {body.boundary.map((item) => (
-          <div key={item} className={`${compact ? 'py-1.5 text-[6px]' : 'py-2 text-[8px]'} border-t border-[#ff5b4d]/55 text-center uppercase tracking-[0.08em] text-[#fffaf1]/48`}>{item}</div>
-        ))}
+
+      <div className={`${compact ? 'mt-4 text-[6px]' : 'mt-5 text-[7px]'} flex items-center justify-between border-t border-[#fffaf1]/10 pt-2.5 uppercase tracking-[0.12em] text-[#fffaf1]/28`}>
+        <span>5 typed steps</span>
+        <span>no auto actions</span>
       </div>
     </div>
   )
@@ -178,6 +190,7 @@ export default function BadDayReceiptVisual({
   displayMode = 'full',
   ctaLabel = 'Inspect receipt',
   privacyLabel = 'production proof',
+  quiet = false,
 }) {
   const compact = displayMode === 'compact'
 
@@ -191,8 +204,8 @@ export default function BadDayReceiptVisual({
           <h3 className='text-[16px] font-medium leading-5 tracking-[-0.025em]'>{title}</h3>
           <div className='mt-3'><Face receiptBodyType={receiptBodyType} body={body} compact /></div>
         </div>
-        <div className='mt-3 border-t border-[#171713]/8 px-3.5 py-2.5'><Flow items={flow} compact /></div>
-        <div className='border-t border-[#171713]/8 px-3.5 py-2 text-[8px] uppercase tracking-[0.12em] text-[#171713]/38'>{ctaLabel}</div>
+        {!quiet && <div className='mt-3 border-t border-[#171713]/8 px-3.5 py-2.5'><Flow items={flow} compact /></div>}
+        <div className={`${quiet ? 'mt-3' : ''} border-t border-[#171713]/8 px-3.5 py-2 text-[8px] uppercase tracking-[0.12em] text-[#171713]/38`}>{ctaLabel}</div>
       </article>
     )
   }
@@ -204,14 +217,18 @@ export default function BadDayReceiptVisual({
           <span>Receipt {receiptNumber}</span><span>{type}</span>
         </div>
         <h2 className='mt-4 text-[28px] font-medium leading-none tracking-[-0.04em] sm:text-[34px]'>{title}</h2>
-        <p className='mt-2 max-w-xl text-[13px] leading-5 text-[#171713]/56'>{summary}</p>
+        {!quiet && <p className='mt-2 max-w-xl text-[13px] leading-5 text-[#171713]/56'>{summary}</p>}
       </header>
       <div className='p-4 sm:p-6'><Face receiptBodyType={receiptBodyType} body={body} compact={false} /></div>
-      <footer className='border-t border-[#171713]/8 bg-[#fffaf1] px-4 py-4 sm:px-6'>
-        <Flow items={flow} />
-        <div className='mt-3 border-t border-[#171713]/8 pt-3 text-[11px] leading-5 text-[#171713]/64'><span className='mr-2 text-[8px] uppercase tracking-[0.12em] text-[#171713]/34'>Proves</span>{proof}</div>
-        <div className='mt-2 text-[7px] uppercase tracking-[0.12em] text-[#171713]/26'>{privacyLabel}</div>
-      </footer>
+      {quiet ? (
+        <footer className='border-t border-[#171713]/8 bg-[#fffaf1] px-4 py-3 text-[7px] uppercase tracking-[0.12em] text-[#171713]/26 sm:px-6'>{privacyLabel}</footer>
+      ) : (
+        <footer className='border-t border-[#171713]/8 bg-[#fffaf1] px-4 py-4 sm:px-6'>
+          <Flow items={flow} />
+          <div className='mt-3 border-t border-[#171713]/8 pt-3 text-[11px] leading-5 text-[#171713]/64'><span className='mr-2 text-[8px] uppercase tracking-[0.12em] text-[#171713]/34'>Proves</span>{proof}</div>
+          <div className='mt-2 text-[7px] uppercase tracking-[0.12em] text-[#171713]/26'>{privacyLabel}</div>
+        </footer>
+      )}
     </article>
   )
 }
