@@ -6,10 +6,14 @@ const LIVE_HERO_BY_SLUG = {
   "interface-behavior-lab": {
     src: "/overview/interface-behavior-lab-live.png",
     alt: "Interface Behavior Lab Intent specimen in its revealed state, showing the adaptive action, assistance field, and current-state readout.",
+    scale: 1.5,
+    position: "center 45%",
   },
   "type-archive": {
     src: "/overview/type-archive-live.png",
     alt: "Type Archive decision receipt showing the final typography system and the signals preserved with the choice.",
+    scale: 1.04,
+    position: "center center",
   },
 };
 
@@ -26,7 +30,6 @@ function resolveVisual(visual, slug) {
         ...hero,
         role: "primary",
         fit: "cover",
-        position: "center center",
       },
     ],
   };
@@ -77,7 +80,9 @@ function getSideBySideHeight(display, width) {
 }
 
 function getImageFrameClass({ layout, role, isSideBySide, display }) {
-  if (display === "caseHeroSingle") return "aspect-[1.6/1]";
+  if (display === "caseHeroSingle") {
+    return "aspect-[1.42/1] sm:aspect-[1.5/1] lg:aspect-[1.6/1]";
+  }
   if (display === "behaviorSplit" && !isSideBySide) return role === "primary" ? "aspect-[1.95/1]" : "aspect-[1.55/1]";
   if (display === "typeArchiveSplit" && !isSideBySide) return role === "primary" ? "aspect-[1.7/1]" : "aspect-[1.5/1]";
   if (layout === "single") {
@@ -118,6 +123,7 @@ function getImageStyle(image, visual) {
       image.position ??
       visual.position ??
       getDefaultPosition({ role: image.role, display: visual.display }),
+    transform: image.scale ? `scale(${image.scale})` : undefined,
   };
 }
 
@@ -169,26 +175,39 @@ export default function OverviewVisualPlate({ visual, slug, variant = "canvas" }
   const isSideBySide = isSplit && compositionWidth !== null && compositionWidth >= getSplitThreshold(display);
   const sideBySideHeight = isSideBySide ? getSideBySideHeight(display, compositionWidth) : undefined;
 
+  const sectionClassName = isCanvas
+    ? cx(
+        "border-t border-[#11100d]/8",
+        isFeatureCase ? "px-5 py-10 sm:px-6 xl:px-10 xl:py-14" : "px-5 py-10 xl:px-10 xl:py-14"
+      )
+    : "";
+
   return (
-    <section className={isCanvas ? "border-t border-[#11100d]/8 px-5 py-10 xl:px-10 xl:py-14" : ""}>
-      <div className={cx(
-        "overflow-hidden rounded-[18px] border border-[#11100d]/10 lg:rounded-[20px]",
-        isFeatureCase ? "bg-[#f5f1e8]" : "bg-[#fffdf8]"
-      )}>
+    <section className={sectionClassName}>
+      <div
+        className={cx(
+          isFeatureCase
+            ? "overflow-visible bg-transparent"
+            : "overflow-hidden rounded-[18px] border border-[#11100d]/10 bg-[#fffdf8] lg:rounded-[20px]"
+        )}
+      >
         {resolvedVisual.label && (
-          <div className={cx(
-            "text-[9px] uppercase tracking-[0.18em] text-[#11100d]/36",
-            isFeatureCase ? "px-4 pt-4 sm:px-5 sm:pt-5 lg:px-7 lg:pt-7" : "px-4 pt-4 sm:px-5 sm:pt-5 lg:px-6 lg:pt-6"
-          )}>
+          <div
+            className={cx(
+              "text-[9px] uppercase tracking-[0.18em] text-[#11100d]/36",
+              isFeatureCase ? "px-0 pb-4 sm:pb-5" : "px-4 pt-4 sm:px-5 sm:pt-5 lg:px-6 lg:pt-6"
+            )}
+          >
             {resolvedVisual.label}
           </div>
         )}
+
         <div
           ref={compositionRef}
           className={cx(
             "grid min-w-0 overflow-hidden",
             isFeatureCase
-              ? "mx-3 mt-3 rounded-[12px] bg-[#f7f4ec] sm:mx-4 sm:mt-4 lg:mx-7"
+              ? "m-0 grid-cols-1 rounded-[16px] bg-transparent lg:rounded-[20px]"
               : "mx-3 mt-3 bg-white sm:mx-4 sm:mt-4 lg:mx-5",
             isSideBySide
               ? cx(isFeatureCase ? "gap-3 lg:gap-4" : "gap-4", getSplitGridClass(slug))
@@ -201,7 +220,9 @@ export default function OverviewVisualPlate({ visual, slug, variant = "canvas" }
               key={image.src}
               className={cx(
                 "min-w-0 overflow-hidden",
-                isFeatureCase && "rounded-[10px] border border-[#11100d]/8 bg-white shadow-[0_18px_45px_rgba(17,16,13,0.08)]",
+                isFeatureCase
+                  ? "rounded-[16px] bg-transparent sm:rounded-[18px] lg:rounded-[20px]"
+                  : "",
                 getImageFrameClass({ layout, role: image.role, isSideBySide, display })
               )}
             >
@@ -209,17 +230,25 @@ export default function OverviewVisualPlate({ visual, slug, variant = "canvas" }
                 src={resolvePublicSrc(image.src)}
                 alt={image.alt ?? ""}
                 loading="lazy"
-                className="h-full w-full"
+                className={cx(
+                  "h-full w-full",
+                  isFeatureCase && "transition-transform duration-500 ease-out"
+                )}
                 style={getImageStyle(image, { ...resolvedVisual, layout, display, isSideBySide })}
               />
             </figure>
           ))}
         </div>
+
         {resolvedVisual.caption && (
-          <p className={cx(
-            "text-[12px] leading-5 text-[#11100d]/50",
-            isFeatureCase ? "px-4 pb-5 pt-4 sm:px-5 sm:pb-6 lg:px-7 lg:pb-7" : "px-4 pb-4 pt-3 sm:px-5 sm:pb-5 lg:px-6 lg:pb-6"
-          )}>
+          <p
+            className={cx(
+              "text-[12px] leading-5 text-[#11100d]/50",
+              isFeatureCase
+                ? "m-0 max-w-[760px] px-0 pb-0 pt-4 sm:pt-5"
+                : "px-4 pb-4 pt-3 sm:px-5 sm:pb-5 lg:px-6 lg:pb-6"
+            )}
+          >
             {resolvedVisual.caption}
           </p>
         )}
