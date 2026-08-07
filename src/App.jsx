@@ -2,6 +2,7 @@ import React from "react";
 import UndonePortfolioV10 from "./components/portfolio/UndonePortfolio";
 import MensWellnessLeadPageSprint from "./components/services/MensWellnessLeadPageSprint";
 import { installTypeArchiveRecord } from "./data/typeArchiveRecord";
+import { installInterfaceBehaviorLabPolish } from "./data/interfaceBehaviorLabPolish";
 
 export default function App() {
   const pathname = window.location.pathname.replace(/\/+$/, "");
@@ -22,6 +23,7 @@ export default function App() {
   if (isLegacyTypeArchiveRoute) initialWorkspaceSlug = "type-archive";
 
   installTypeArchiveRecord({ prioritize: initialWorkspaceSlug === "type-archive" });
+  installInterfaceBehaviorLabPolish();
 
   if (isLegacyTypeArchiveRoute) {
     window.history.replaceState(null, "", "/?case=type-archive");
