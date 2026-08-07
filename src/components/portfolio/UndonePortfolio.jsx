@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { records } from "../../data/records";
+import { installInterfaceBehaviorLabPolish } from "../../data/interfaceBehaviorLabPolish";
 import TopBar from "./TopBar";
 import PracticeSpine from "./PracticeSpine";
 import RecordRail from "./RecordRail";
@@ -10,6 +11,8 @@ import CaseWorkspace from "./CaseWorkspace";
 import FlagshipCaseWorkspace from "./FlagshipCaseWorkspace";
 import MobileRecordSelector from "./MobileRecordSelector";
 import MobileView from "./MobileView";
+
+installInterfaceBehaviorLabPolish();
 
 const ORIENTATION_HINT_STORAGE_KEY = "undone_seen_orientation_hint";
 const FLAGSHIP_CASES = new Set(["interface-behavior-lab", "type-archive"]);
