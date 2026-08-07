@@ -19,20 +19,15 @@ export const badDayReceiptRecord = {
     label: "EMOTIONAL DOCUMENTATION MACHINE",
     caption:
       "A difficult day becomes an inspectable receipt, then ends on the user's terms instead of forcing another task, score, or recovery ritual.",
-    layout: "split",
-    display: "productSplit",
+    layout: "single",
+    display: "productSingle",
     images: [
       {
         src: "/overview/bad-day-receipt-hero.jpg",
         alt: "Bad Day Receipt live product showing the paperwork system, selected emotional charges, and Human Condition POS receipt machine.",
         role: "primary",
         position: "center center",
-      },
-      {
-        src: "/overview/bad-day-receipt-artifact.jpg",
-        alt: "Bad Day Receipt live product showing the Human Condition POS machine and a fully printed thermal-style receipt artifact.",
-        role: "secondary",
-        position: "center center",
+        fit: "contain",
       },
     ],
   },
