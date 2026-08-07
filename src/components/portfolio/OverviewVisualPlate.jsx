@@ -6,8 +6,9 @@ const LIVE_HERO_BY_SLUG = {
   "interface-behavior-lab": {
     src: "/overview/interface-behavior-lab-live.png",
     alt: "Interface Behavior Lab Intent specimen in its revealed state, showing the adaptive action, assistance field, and current-state readout.",
-    scale: 1.3,
-    position: "center 48%",
+    scale: 1.74,
+    position: "center center",
+    transformOrigin: "50% 20%",
   },
   "type-archive": {
     src: "/overview/type-archive-live.png",
@@ -121,7 +122,7 @@ function getImageStyle(image, visual) {
       visual.position ??
       getDefaultPosition({ role: image.role, display: visual.display }),
     transform: image.scale ? `scale(${image.scale})` : undefined,
-    transformOrigin: "center center",
+    transformOrigin: image.transformOrigin ?? "center center",
   };
 }
 
@@ -219,7 +220,10 @@ export default function OverviewVisualPlate({ visual, slug, variant = "canvas" }
               className={cx(
                 "min-w-0 overflow-hidden",
                 isFeatureCase
-                  ? "rounded-[16px] bg-transparent sm:rounded-[18px] lg:rounded-[20px]"
+                  ? cx(
+                      "rounded-[16px] sm:rounded-[18px] lg:rounded-[20px]",
+                      slug === "interface-behavior-lab" ? "bg-[#080806]" : "bg-transparent"
+                    )
                   : "",
                 getImageFrameClass({ layout, role: image.role, isSideBySide, display })
               )}
