@@ -1,6 +1,7 @@
 import React from "react";
 import UndonePortfolioV10 from "./components/portfolio/UndonePortfolio";
 import MensWellnessLeadPageSprint from "./components/services/MensWellnessLeadPageSprint";
+import { installBadDayReceiptRecord } from "./data/badDayReceiptRecord";
 import { installTypeArchiveRecord } from "./data/typeArchiveRecord";
 
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
   if (isLegacyTypeArchiveRoute) initialWorkspaceSlug = "type-archive";
 
   installTypeArchiveRecord({ prioritize: initialWorkspaceSlug === "type-archive" });
+  installBadDayReceiptRecord({ prioritize: initialWorkspaceSlug === "bad-day-receipt" });
 
   if (isLegacyTypeArchiveRoute) {
     window.history.replaceState(null, "", "/?case=type-archive");
