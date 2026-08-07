@@ -2,25 +2,25 @@ import React from 'react'
 
 const SYSTEM_OBJECTS = {
   'interface-behavior-lab': {
-    title: 'Adaptive Action Language',
-    purpose: 'Connects six control behaviors into one readable lifecycle so assistance, intent, consequence, commitment, system state, and recovery remain part of the same action.',
+    title: 'Six Behaviors, One Action',
+    purpose: 'Each control handles a different moment, from getting your attention to making consequences clear and helping you recover.',
     flow: ['Approach', 'Clarify', 'Weigh', 'Commit', 'Resolve', 'Recover'],
     contrast: {
-      leftLabel: 'Conventional control',
-      left: ['One binary tap', 'Same weight for different consequences', 'Generic loading and confirmation'],
+      leftLabel: 'Typical button',
+      left: ['One tap for everything', 'High and low stakes look alike', 'Recovery often happens somewhere else'],
       rightLabel: 'Adaptive control',
-      right: ['Named state and exact consequence', 'Proportionate assistance and friction', 'Recovery attached to the original action'],
+      right: ['Shows what the action means', 'Adds friction only when needed', 'Keeps recovery close to the action'],
     },
   },
   'type-archive': {
-    title: 'Typography Decision System',
-    purpose: 'Turns a vague creative brief into visible signals, separate role recommendations, controlled comparison, recovery paths, and a restorable decision receipt.',
-    flow: ['Brief', 'Signals', 'Role scoring', 'Compare', 'Recover', 'Receipt'],
+    title: 'From Brief to Type System',
+    purpose: 'The tool turns a vague brief into a short list, a fair comparison, and a saved explanation of the final choice.',
+    flow: ['Brief', 'Signals', 'Recommend', 'Compare', 'Choose', 'Save'],
     contrast: {
-      leftLabel: 'Font gallery',
-      left: ['Browse by appearance', 'Compare in inconsistent layouts', 'Lose the reasoning after selection'],
-      rightLabel: 'Decision system',
-      right: ['Inspect role fit and penalties', 'Hold comparison variables still', 'Preserve licensing, tradeoffs, and CSS'],
+      leftLabel: 'Font browsing',
+      left: ['Pick by appearance', 'Compare in different contexts', 'Lose the reasoning after the choice'],
+      rightLabel: 'Type Archive',
+      right: ['See why each font fits', 'Compare under the same conditions', 'Save licensing, tradeoffs, and CSS'],
     },
   },
   mirror: {
