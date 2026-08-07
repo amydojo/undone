@@ -43,7 +43,8 @@ function getSideBySideHeight(display, width) {
   return Math.round(Math.min(500, Math.max(380, width * 0.56)));
 }
 
-function getImageFrameClass({ layout, role, isSideBySide, display }) {
+function getImageFrameClass({ layout, role, isSideBySide, display, seamless }) {
+  if (seamless && layout === "single") return "aspect-[1.6/1]";
   if (display === "behaviorSplit" && !isSideBySide) return role === "primary" ? "aspect-[1.8/1]" : "aspect-[1.45/1]";
   if (layout === "single") {
     return "aspect-[1.08/1] sm:aspect-[1.28/1] lg:aspect-[1.42/1] xl:aspect-[1.5/1]";
@@ -84,9 +85,9 @@ function getDefaultPosition({ role, display }) {
   return "center top";
 }
 
-function getImageStyle(image, visual) {
+function getImageStyle(image, visual, seamless) {
   return {
-    objectFit: image.fit ?? visual.fit ?? "cover",
+    objectFit: seamless ? "cover" : image.fit ?? visual.fit ?? "cover",
     objectPosition:
       image.position ??
       visual.position ??
@@ -139,6 +140,7 @@ export default function OverviewVisualPlate({ visual, slug, variant = "canvas" }
   if (!hasVisual) return null;
 
   const isCanvas = variant === "canvas";
+  const seamless = slug === "bad-day-receipt";
   const layout = visual.layout ?? (visual.images.length > 1 ? "split" : "single");
   const display = getDisplay({ ...visual, layout }, slug);
   const sortedImages = [...visual.images].sort((a, b) => {
@@ -151,17 +153,37 @@ export default function OverviewVisualPlate({ visual, slug, variant = "canvas" }
   const sideBySideHeight = isSideBySide ? getSideBySideHeight(display, compositionWidth) : undefined;
 
   return (
-    <section className={isCanvas ? "border-t border-[#11100d]/8 px-5 py-10 xl:px-10 xl:py-14" : ""}>
-      <div className="overflow-hidden rounded-[18px] border border-[#11100d]/10 bg-[#fffdf8] lg:rounded-[20px]">
+    <section
+      className={cx(
+        isCanvas ? "border-t border-[#11100d]/8 px-5 py-10 xl:px-10 xl:py-14" : "",
+        seamless && !isCanvas ? "-mx-4 sm:mx-0" : ""
+      )}
+    >
+      <div
+        className={cx(
+          seamless
+            ? "overflow-visible bg-transparent"
+            : "overflow-hidden rounded-[18px] border border-[#11100d]/10 bg-[#fffdf8] lg:rounded-[20px]"
+        )}
+      >
         {visual.label && (
-          <div className="px-4 pt-4 text-[9px] uppercase tracking-[0.18em] text-[#11100d]/36 sm:px-5 sm:pt-5 lg:px-6 lg:pt-6">
+          <div
+            className={cx(
+              "text-[9px] uppercase tracking-[0.18em] text-[#11100d]/36",
+              seamless
+                ? "px-4 sm:px-0"
+                : "px-4 pt-4 sm:px-5 sm:pt-5 lg:px-6 lg:pt-6"
+            )}
+          >
             {visual.label}
           </div>
         )}
         <div
           ref={compositionRef}
           className={cx(
-            "mx-3 mt-3 grid min-w-0 overflow-hidden bg-white sm:mx-4 sm:mt-4 lg:mx-5",
+            seamless
+              ? "mt-3 grid min-w-0 overflow-hidden bg-transparent"
+              : "mx-3 mt-3 grid min-w-0 overflow-hidden bg-white sm:mx-4 sm:mt-4 lg:mx-5",
             isSideBySide
               ? cx("gap-4", getSplitGridClass(slug))
               : cx("grid-cols-1", isSplit ? "gap-3 sm:gap-4" : "")
@@ -173,7 +195,7 @@ export default function OverviewVisualPlate({ visual, slug, variant = "canvas" }
               key={image.src}
               className={cx(
                 "min-w-0 overflow-hidden",
-                getImageFrameClass({ layout, role: image.role, isSideBySide, display })
+                getImageFrameClass({ layout, role: image.role, isSideBySide, display, seamless })
               )}
             >
               <img
@@ -181,13 +203,20 @@ export default function OverviewVisualPlate({ visual, slug, variant = "canvas" }
                 alt={image.alt ?? ""}
                 loading="lazy"
                 className="h-full w-full"
-                style={getImageStyle(image, { ...visual, layout, display, isSideBySide })}
+                style={getImageStyle(image, { ...visual, layout, display, isSideBySide }, seamless)}
               />
             </figure>
           ))}
         </div>
         {visual.caption && (
-          <p className="px-4 pb-4 pt-3 text-[12px] leading-5 text-[#11100d]/50 sm:px-5 sm:pb-5 lg:px-6 lg:pb-6">
+          <p
+            className={cx(
+              "text-[12px] leading-5 text-[#11100d]/50",
+              seamless
+                ? "px-4 pt-4 sm:px-0"
+                : "px-4 pb-4 pt-3 sm:px-5 sm:pb-5 lg:px-6 lg:pb-6"
+            )}
+          >
             {visual.caption}
           </p>
         )}
