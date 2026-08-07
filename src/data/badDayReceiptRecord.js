@@ -21,7 +21,20 @@ export const badDayReceiptRecord = {
       "A difficult day becomes an inspectable receipt, then ends on the user's terms instead of forcing another task, score, or recovery ritual.",
     layout: "split",
     display: "productSplit",
-    images: [],
+    images: [
+      {
+        src: "/overview/bad-day-receipt-hero.jpg",
+        alt: "Bad Day Receipt live product showing the paperwork system, selected emotional charges, and Human Condition POS receipt machine.",
+        role: "primary",
+        position: "center center",
+      },
+      {
+        src: "/overview/bad-day-receipt-artifact.jpg",
+        alt: "Bad Day Receipt live product showing the Human Condition POS machine and a fully printed thermal-style receipt artifact.",
+        role: "secondary",
+        position: "center center",
+      },
+    ],
   },
   role: "Product designer, creative technologist, and interaction systems designer",
   tools: [
@@ -118,7 +131,12 @@ export const badDayReceiptRecord = {
         "offline support",
         "reduced motion",
       ],
-      visualAssets: [],
+      visualAssets: [
+        {
+          src: "/overview/bad-day-receipt-artifact.jpg",
+          alt: "Human Condition POS machine with the completed Bad Day Receipt printed beneath it.",
+        },
+      ],
       artifacts: [],
     },
     {
@@ -139,7 +157,12 @@ export const badDayReceiptRecord = {
         "carry one thing forward",
         "separate task context",
       ],
-      visualAssets: [],
+      visualAssets: [
+        {
+          src: "/overview/bad-day-receipt-endings.jpg",
+          alt: "Bad Day Receipt completed state showing the user-controlled ending decision after the day has been documented.",
+        },
+      ],
       artifacts: [],
     },
     {
@@ -162,7 +185,12 @@ export const badDayReceiptRecord = {
         "temporary",
         "reversible",
       ],
-      visualAssets: [],
+      visualAssets: [
+        {
+          src: "/overview/bad-day-receipt-carry-forward.jpg",
+          alt: "Bad Day Receipt Carry Forward designation state asking what is still asking something from the user.",
+        },
+      ],
       artifacts: [],
     },
     {
