@@ -6,13 +6,12 @@ const LIVE_HERO_BY_SLUG = {
   "interface-behavior-lab": {
     src: "/overview/interface-behavior-lab-live.png",
     alt: "Interface Behavior Lab Intent specimen in its revealed state, showing the adaptive action, assistance field, and current-state readout.",
-    scale: 1.5,
-    position: "center 45%",
+    scale: 1.3,
+    position: "center 48%",
   },
   "type-archive": {
     src: "/overview/type-archive-live.png",
     alt: "Type Archive decision receipt showing the final typography system and the signals preserved with the choice.",
-    scale: 1.04,
     position: "center center",
   },
 };
@@ -80,9 +79,7 @@ function getSideBySideHeight(display, width) {
 }
 
 function getImageFrameClass({ layout, role, isSideBySide, display }) {
-  if (display === "caseHeroSingle") {
-    return "aspect-[1.42/1] sm:aspect-[1.5/1] lg:aspect-[1.6/1]";
-  }
+  if (display === "caseHeroSingle") return "aspect-[1.6/1]";
   if (display === "behaviorSplit" && !isSideBySide) return role === "primary" ? "aspect-[1.95/1]" : "aspect-[1.55/1]";
   if (display === "typeArchiveSplit" && !isSideBySide) return role === "primary" ? "aspect-[1.7/1]" : "aspect-[1.5/1]";
   if (layout === "single") {
@@ -124,6 +121,7 @@ function getImageStyle(image, visual) {
       visual.position ??
       getDefaultPosition({ role: image.role, display: visual.display }),
     transform: image.scale ? `scale(${image.scale})` : undefined,
+    transformOrigin: "center center",
   };
 }
 
@@ -231,7 +229,7 @@ export default function OverviewVisualPlate({ visual, slug, variant = "canvas" }
                 alt={image.alt ?? ""}
                 loading="lazy"
                 className={cx(
-                  "h-full w-full",
+                  "block h-full w-full",
                   isFeatureCase && "transition-transform duration-500 ease-out"
                 )}
                 style={getImageStyle(image, { ...resolvedVisual, layout, display, isSideBySide })}
