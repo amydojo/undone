@@ -1,6 +1,6 @@
 export const profile = {
   name: "Amy Do",
-  title: "Creative Technologist",
+  title: "Design Technologist",
   positioning:
     "Creative technologist combining psychology, interaction design, and code to build humane software, experimental interfaces, and product systems.",
   oneSentence:
