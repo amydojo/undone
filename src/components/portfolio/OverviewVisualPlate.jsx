@@ -4,8 +4,8 @@ import { resolvePublicSrc } from "../../utils/resolvePublicSrc";
 
 const LIVE_HERO_BY_SLUG = {
   "interface-behavior-lab": {
-    src: "/overview/interface-behavior-lab-hero.svg",
-    alt: "Interface Behavior Lab Intent specimen in its revealed state, showing the complete adaptive action and assistance field.",
+    src: "/overview/interface-behavior-lab-current-hero.svg",
+    alt: "Current Interface Behavior Lab landing composition showing the project thesis and revealed Intent specimen together.",
     position: "center center",
   },
   "type-archive": {
@@ -217,12 +217,7 @@ export default function OverviewVisualPlate({ visual, slug, variant = "canvas" }
               key={image.src}
               className={cx(
                 "min-w-0 overflow-hidden",
-                isFeatureCase
-                  ? cx(
-                      "rounded-[16px] sm:rounded-[18px] lg:rounded-[20px]",
-                      slug === "interface-behavior-lab" ? "bg-[#080806]" : "bg-transparent"
-                    )
-                  : "",
+                isFeatureCase ? "rounded-[16px] bg-transparent sm:rounded-[18px] lg:rounded-[20px]" : "",
                 getImageFrameClass({ layout, role: image.role, isSideBySide, display })
               )}
             >
